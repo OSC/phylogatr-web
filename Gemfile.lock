@@ -105,7 +105,6 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
-    mustache (1.1.0)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     ood_appkit (1.0.3)
@@ -118,20 +117,12 @@ GEM
       ffi (~> 1.9, >= 1.9.6)
       ood_support (~> 0.0.2)
     ood_support (0.0.3)
-    osc-machete (1.2.2)
-      mustache
-      pbs (~> 2.0)
-    osc_machete_rails (1.2.2)
-      osc-machete (~> 1.2.0)
-      rails (~> 4.0)
     paperclip (4.3.7)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    pbs (2.2.1)
-      ffi (~> 1.9, >= 1.9.6)
     public_suffix (3.1.1)
     rack (1.6.10)
     rack-test (0.6.3)
@@ -224,7 +215,6 @@ DEPENDENCIES
   jquery-rails
   ood_appkit (~> 1.0)
   ood_support (~> 0.0.2)
-  osc_machete_rails (~> 1.2)
   paperclip (~> 4.3)
   rails (= 4.2.10)
   rails_12factor

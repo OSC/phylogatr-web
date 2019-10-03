@@ -49,6 +49,5 @@ gem 'dotenv-rails', '~> 2.1'
 gem 'paperclip', '~> 4.3'
 gem 'jquery-datatables-rails', '~> 3.4'
 gem 'rails_12factor', group: :production
-gem 'osc_machete_rails', '~> 1.2'
 gem 'ood_support', '~> 0.0.2'
 gem 'ood_appkit', '~> 1.0'
