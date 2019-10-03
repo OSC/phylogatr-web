@@ -46,6 +46,10 @@ class ConfigurationSingleton
     Dotenv.load(*dotenv_files)
   end
 
+  def app_title
+    @app_title ||= YAML.load(Rails.root.join("manifest.yml").read)['name']
+  end
+
   def dataroot
     # copied from OodAppkit::Configuration#set_default_configuration
     # then modified to ensure dataroot is never nil
