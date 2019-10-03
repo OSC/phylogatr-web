@@ -8,7 +8,7 @@ class DotenvTest < ActiveSupport::TestCase
 
       assert_equal "usr/#{Etc.getlogin}/#{name}", envs['APP_TOKEN']
 
-      # ~/awesim/data/efranz/pseudofun
+      # ~/awesim/data/efranz/phylogatr
       #
       assert_equal "#{Dir.home}/awesim/data/#{Etc.getlogin}/#{name}", envs['OOD_DATAROOT']
       assert_equal "#{Dir.home}/awesim/data/#{Etc.getlogin}/#{name}/production.sqlite3", envs['DATABASE_PATH']
@@ -23,7 +23,7 @@ class DotenvTest < ActiveSupport::TestCase
 
       assert_equal "sys/#{name}", envs['APP_TOKEN']
 
-      # ~/ondemand/data/sys/pseudofun
+      # ~/ondemand/data/sys/phylogatr
       #
       assert_equal "#{Dir.home}/ondemand/data/sys/#{name}", envs['OOD_DATAROOT']
       assert_equal "#{Dir.home}/ondemand/data/sys/#{name}/production.sqlite3", envs['DATABASE_PATH']

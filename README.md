@@ -11,7 +11,7 @@ These three files contain domain specific code from the Zhang Lab of Computation
 - [blasts.js](app/assets/javascripts/blasts.js)
 
 An open-source version of the application is available at:
-https://integrativeomics.shinyapps.io/pseudofun_app/
+https://integrativeomics.shinyapps.io/phylogatr_app/
 
 See [full license text](LICENSE_CC_BY_4.0)
 

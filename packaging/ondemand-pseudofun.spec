@@ -1,7 +1,7 @@
 # Disable debuginfo as it causes issues with bundled gems that build libraries
 %global debug_package %{nil}
-%global repo_name pseudofun
-%global app_name pseudofun
+%global repo_name phylogatr
+%global app_name phylogatr
 
 %{!?package_version: %define package_version %{major}.%{minor}.%{patch}}
 %{!?package_release: %define package_release 1}
@@ -101,13 +101,13 @@ touch %{_localstatedir}/www/ood/apps/sys/%{app_name}/tmp/restart.txt
   ondemand SCL for ondemand 1.5 (tdockendorf@osc.edu)
 
 * Wed Oct 24 2018 Morgan Rodgers <mrodgers@osc.edu> 0.2.1-2
-- Update pseudofun dependencies (mrodgers@osc.edu)
+- Update phylogatr dependencies (mrodgers@osc.edu)
 
 * Wed Jul 18 2018 Trey Dockendorf <tdockendorf@osc.edu> 0.2.0-2
 - Remove production.log (tdockendorf@osc.edu)
 
 * Tue May 29 2018 Jeremy Nicklas <jnicklas@osc.edu> 0.2.0-1
-- Bump pseudofun to 0.2.0 (jnicklas@osc.edu)
+- Bump phylogatr to 0.2.0 (jnicklas@osc.edu)
 
 * Thu May 24 2018 Jeremy Nicklas <jnicklas@osc.edu> 0.1.0-1
 - new package built with tito
