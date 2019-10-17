@@ -5,20 +5,11 @@ class SequenceReader
 
     ff = Bio::GenBank.open(path)
     ff.each_entry do |entry|
-      gene_sequences(entry).each do |sequence|
-        yield sequence
+      entry.each_cds do |feature|
+        yield Sequence.new(entry, feature)
       end
     end
   end
-
-  def gene_sequences(entry)
-    cds_features(entry).map {|feature| Sequence.new(entry, feature)}
-  end
-
-  def cds_features(entry)
-    entry.features.select {|f| f.feature.upcase == 'CDS'}
-  end
-
 
   class Sequence
     attr_reader :gb, :feature
