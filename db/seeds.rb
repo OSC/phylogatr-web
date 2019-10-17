@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require "active_support/all"
+
+accessions = []
+OccurrenceReader.new.each_occurrence("db/occurrence.txt") do |row|
+  puts row.slice(*%w(gbifID species accession))
+  accessions << row["accession"]
+end
+
+puts accessions
