@@ -20,17 +20,4 @@ class OccurrenceReader
       end
     end
   end
-
-  # iterate over each sequence in the genbank sequences file
-  # filtering out those that are not in the specified accessions list
-  #
-  # FIXME: we need a better way to quickly retrieve unparsed sequences
-  # after processing a set of occurrences so we can do these together in
-  # batches; right now consecutive calls would reread through the sequence file
-  # the previous method was we have the list of accessions and we use the API to
-  # download the sequences for the given accessions, so we know which ones go
-  # together; using a copy of genbank files means we need to re-think this
-  # search
-  def each_sequence(path, accessions)
-  end
 end
