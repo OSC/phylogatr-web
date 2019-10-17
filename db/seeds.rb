@@ -9,7 +9,7 @@
 require "active_support/all"
 
 accessions = []
-OccurrenceReader.new.each_occurrence("db/occurrence.txt") do |row|
+OccurrenceReader.new.each_occurrence("db/seed_data/occurrence.txt") do |row|
   puts row.slice(*%w(gbifID species accession))
   accessions << row["accession"]
 end
@@ -28,8 +28,10 @@ puts accessions
 # search
 #
 # FIXME: lazy enumeration?
-SequenceReader.new.each_sequence("db/sequence.gb").select {|s|
-  accessions.include?(s.accession)
-}.each { |s|
-  puts "#{s.accession} - #{s.gene_name} - #{s.gene} - #{s.gb.definition}"
-}
+SequenceReader.new.each_sequence("db/seed_data/sequence.gb") do |s|
+  if accessions.include?(s.accession)
+    puts "#{s.accession} - #{s.gene} - #{s.gene} - #{s.gb.definition}"
+  else
+    puts "skipped #{s.accession}"
+  end
+end

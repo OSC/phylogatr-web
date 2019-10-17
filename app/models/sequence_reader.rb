@@ -12,7 +12,7 @@ class SequenceReader
   end
 
   def gene_sequences(entry)
-    cds_features(entry).map {|cds| Sequence.new(entry, cds)}
+    cds_features(entry).map {|feature| Sequence.new(entry, feature)}
   end
 
   def cds_features(entry)
@@ -39,7 +39,7 @@ class SequenceReader
     end
 
     def gene
-      return nil unless cds
+      return nil unless feature
 
       feature.qualifiers.select {|q|
         q.qualifier == "gene" || q.qualifier == "product"
