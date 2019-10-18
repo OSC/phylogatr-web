@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source scl_source enable rh-ruby24 rh-nodejs6 rh-git29
+
+exec /bin/env ruby "$@"
