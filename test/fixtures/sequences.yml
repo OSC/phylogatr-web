@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gbif_id: MyString
+  accession: MyString
+  lng: -96.982841
+  lat: 32.91663
+  taxon_kingdom: MyString
+  taxon_phylum: MyString
+  taxon_class: MyString
+  taxon_order: MyString
+  taxon_family: MyString
+  taxon_genus: MyString
+  taxon_species: MyString
+  taxon_genbank_species: MyString
+  gene_name: MyString
+  sequence: MyText
+  sequence_aligned: MyText
+
+two:
+  gbif_id: MyString
+  accession: MyString
+  lng: -96.919495
+  lat: 32.96302
+  taxon_kingdom: MyString
+  taxon_phylum: MyString
+  taxon_class: MyString
+  taxon_order: MyString
+  taxon_family: MyString
+  taxon_genus: MyString
+  taxon_species: MyString
+  taxon_genbank_species: MyString
+  gene_name: MyString
+  sequence: MyText
+  sequence_aligned: MyText
