@@ -7,17 +7,20 @@ class OccurrenceReader
     row["associatedSequences"].scan /\w{2}\d{6}/
   end
 
-  def occurrence_keys
-    %w(gbifID decimalLatitude decimalLongitude kingdom phylum class order family genus species)
-  end
-
-  def occurrence_keys_normalized
-    # 1:1 correspondence with keys above
-    %i(gbif_id lat lng taxon_kingdom taxon_phylum taxon_class taxon_order taxon_family taxon_genus taxon_species)
-  end
-
-  def occurrence_key_lookup
-    @occurrence_key_lookup ||= Hash[occurrence_keys.zip(occurrence_keys_normalized)]
+  # map GBIF key names to symbols for the column names in database
+  def occurrence_keys_lookup
+    {
+      "gbifID" => :gbif_id,
+      "decimalLatitude" => :lat,
+      "decimalLongitude" => :lng,
+      "kingdom" => :taxon_kingdom,
+      "phylum" => :taxon_phylum,
+      "class" => :taxon_class,
+      "order" => :taxon_order,
+      "family" => :taxon_family,
+      "genus" => :taxon_genus,
+      "species" => :taxon_species
+    }
   end
 
   def each_occurrence(path)
@@ -31,6 +34,6 @@ class OccurrenceReader
   end
 
   def occurrence_hash_from_row(row, accession)
-    row.to_hash.slice(*occurrence_keys).merge("accession" => accession).transform_keys { |key| occurrence_key_lookup.fetch(key, key) }
+    row.to_hash.slice(*(occurrence_keys_lookup.keys)).merge("accession" => accession).transform_keys { |key| occurrence_keys_lookup.fetch(key, key) }
   end
 end
