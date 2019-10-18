@@ -1,10 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require "active_support/all"
 
@@ -14,18 +9,8 @@ require "active_support/all"
 #
 sequences = {}
 
-keylookup = {
-"gbifID" => :gbif_id,
-"decimalLatitude" => :lat,
-"decimalLongitude" => :lng
-}
-%w(kingdom phylum class order family genus species).each do |taxon|
-  keylookup[taxon] = :"taxon_#{taxon}"
-end
-
-OccurrenceReader.new.each_occurrence("db/seed_data/occurrence.txt") do |row|
-  occurrence = row.slice(*%w(gbifID accession decimalLatitude decimalLongitude kingdom phylum class order family genus subgenus species))
-  sequences[row["accession"]] = Sequence.new(occurrence.transform_keys {|key| keylookup.fetch(key, key) })
+OccurrenceReader.new.each_occurrence("db/seed_data/occurrence.txt") do |occurrence|
+  sequences[occurrence["accession"]] = Sequence.new(occurrence)
 end
 
 puts sequences.keys
