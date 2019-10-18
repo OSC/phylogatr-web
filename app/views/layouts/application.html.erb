@@ -42,6 +42,12 @@
           <li>
             <%= link_to '<span class="glyphicon glyphicon-search"></span> New  Query'.html_safe, "#" %>
           </li>
+          <li>
+            <%= link_to '<span class="glyphicon glyphicon-align-left"></span> All Sequences'.html_safe, sequences_path %>
+          </li>
+          <li>
+            <%= link_to '<span class="glyphicon glyphicon-align-justify"></span> Aligned Sequences'.html_safe, aligned_sequences_path %>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if OodAppkit.routes.wiki && File.exist?(File.join('wiki/Home.md')) %>

@@ -6,8 +6,4 @@ jQuery ->
   # Set up datatable
   $('.data-table').DataTable
     order: [0, 'desc']
-    columnDefs: [{
-      orderable: false
-      targets: 'no-sort'
-    }]
     iDisplayLength: 50
