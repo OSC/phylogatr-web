@@ -54,3 +54,4 @@ gem 'ood_support', '~> 0.0.2'
 gem 'ood_appkit', '~> 1.0'
 
 gem 'bio'
+gem 'geokit-rails'

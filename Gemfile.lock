@@ -72,6 +72,10 @@ GEM
     ffi (1.9.25)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
+    geokit (1.13.1)
+    geokit-rails (2.3.1)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.5)
@@ -217,6 +221,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   dotenv-rails (~> 2.1)
   font-awesome-sass (~> 4.6)
+  geokit-rails
   jbuilder (~> 2.0)
   jquery-datatables-rails (~> 3.4)
   jquery-rails
