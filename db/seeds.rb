@@ -8,13 +8,27 @@
 
 require "active_support/all"
 
-accessions = []
-OccurrenceReader.new.each_occurrence("db/seed_data/occurrence.txt") do |row|
-  puts row.slice(*%w(gbifID accession hasCoordinate decimalLatitude decimalLongitude kingdom phylum class order family genus subgenus species))
-  accessions << row["accession"]
+#FIXME: doing simple inefficient
+# - 1 table, no indexes
+# - retain all occurrence objects in memory till single write to database
+#
+sequences = {}
+
+keylookup = {
+"gbifID" => :gbif_id,
+"decimalLatitude" => :lat,
+"decimalLongitude" => :lng
+}
+%w(kingdom phylum class order family genus species).each do |taxon|
+  keylookup[taxon] = :"taxon_#{taxon}"
 end
 
-puts accessions
+OccurrenceReader.new.each_occurrence("db/seed_data/occurrence.txt") do |row|
+  occurrence = row.slice(*%w(gbifID accession decimalLatitude decimalLongitude kingdom phylum class order family genus subgenus species))
+  sequences[row["accession"]] = Sequence.new(occurrence.transform_keys {|key| keylookup.fetch(key, key) })
+end
+
+puts sequences.keys
 
 # iterate over each sequence in the genbank sequences file
 # filtering out those that are not in the specified accessions list
@@ -27,7 +41,13 @@ puts accessions
 # together; using a copy of genbank files means we need to re-think this
 # search
 SequenceReader.new.each_sequence("db/seed_data/sequence.gb") do |s|
-  if accessions.include?(s.accession)
-    puts "#{s.accession} - #{s.gene} - #{s.species} - #{s.seq}"
+  if sequences.keys.include?(s.accession)
+    # this sequence object should serve as a clonable copy
+    newseq = sequences[s.accession].clone
+
+    newseq.gene_name = s.gene
+    newseq.sequence = s.seq
+    newseq.taxon_genbank_species = s.species
+    newseq.save
   end
 end
