@@ -10,7 +10,7 @@ require "active_support/all"
 
 accessions = []
 OccurrenceReader.new.each_occurrence("db/seed_data/occurrence.txt") do |row|
-  puts row.slice(*%w(gbifID species accession))
+  puts row.slice(*%w(gbifID accession hasCoordinate decimalLatitude decimalLongitude kingdom phylum class order family genus subgenus species))
   accessions << row["accession"]
 end
 
@@ -26,12 +26,8 @@ puts accessions
 # download the sequences for the given accessions, so we know which ones go
 # together; using a copy of genbank files means we need to re-think this
 # search
-#
-# FIXME: lazy enumeration?
 SequenceReader.new.each_sequence("db/seed_data/sequence.gb") do |s|
   if accessions.include?(s.accession)
-    puts "#{s.accession} - #{s.gene} - #{s.gene} - #{s.gb.definition}"
-  else
-    puts "skipped #{s.accession}"
+    puts "#{s.accession} - #{s.gene} - #{s.species} - #{s.seq}"
   end
 end
