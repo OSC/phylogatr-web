@@ -31,3 +31,6 @@
 
 # Do not version the dependencies
 /vendor/bundle
+
+# hide muscle
+/bin/muscle*
