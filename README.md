@@ -16,6 +16,27 @@ Install MUSCLE binary to bin/ using wget i.e.
     tar -xzf muscle3.8.31_i86linux64.tar.gz
     rm muscle3.8.31_i86linux64.tar.gz
 
+Install and use [Miller](https://github.com/johnkerl/miller) for parsing CSV (and tab delimited CSV files) first:
+
+    cd ~/bin
+    wget https://github.com/johnkerl/miller/releases/download/v5.6.2/mlr.linux.x86_64
+    mv mlr.linux.x86_64 mlr
+    chmod 755 mlr
+
+Then can pre-parse the occurrence download for the relevant information:
+
+    mlr --tsv cut -f gbifID,decimalLatitude,decimalLongitude,phylum,class,order,family,genus,species,associatedSequences db/seed_data/occurrence.txt | mlr --tsv filter '$associatedSequences !=~ "^[, ]*$"'
+
+
+Some of the GBIF records have mismatched quotes. In that case we can try using
+tsvlite:
+
+
+    mlr --tsvlite cut -f gbifID,decimalLatitude,decimalLongitude,phylum,class,order,family,genus,species,associatedSequences db/seed_data/occurrence.txt | mlr --tsvlite filter '$associatedSequences !=~ "^[, ]*$"'
+
+In the actual pipeline it is possible this tool could be used as part of a bash
+pipeline to generate insert commands in to a database for each occurrence.
+
 
 ## License
 

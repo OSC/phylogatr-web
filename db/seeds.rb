@@ -13,7 +13,7 @@ sequences = {}
 # that we will be using Ruby for the pipeline anyways. But one way to speed up
 # is to use a subprocess that executes which filters out all records without
 # associatedSequences i.e. via IO.popen
-OccurrenceReader.new.each_occurrence("db/seed_data/occurrence.txt") do |occurrence|
+OccurrenceReader.new.each_occurrence("db/seed_data/occurrence.txt.filtered") do |occurrence|
   sequences[occurrence["accession"]] = Sequence.new(occurrence)
 end
 
