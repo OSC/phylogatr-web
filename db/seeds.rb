@@ -2,6 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 require "active_support/all"
+require "open3"
 
 #FIXME: doing simple inefficient
 # - 1 table, no indexes
@@ -40,3 +41,6 @@ SequenceReader.new.each_sequence("db/seed_data/sequence.gb") do |s|
     newseq.save
   end
 end
+
+# use muscle to align the files
+Sequence.align_sequences
