@@ -43,4 +43,4 @@ SequenceReader.new.each_sequence("db/seed_data/sequence.gb") do |s|
 end
 
 # use muscle to align the files
-Sequence.align_sequences
+Sequence.align_sequences(Sequence.all)

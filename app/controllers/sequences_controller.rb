@@ -26,7 +26,7 @@ class SequencesController < ApplicationController
 
     # TODO:
     # group by species gene
-    @sequences = Sequence.alignable_groups.values.flatten
+    @sequences = Sequence.alignable_groups(Sequence.all).values.flatten
 
     render :index
   end
