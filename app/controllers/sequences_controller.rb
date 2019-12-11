@@ -49,6 +49,8 @@ class SequencesController < ApplicationController
     params[:northeast_corner_latitude]
     params[:northeast_corner_longitude]
 
+    taxon = params.select {|k,v| k.starts_with?("taxon_") && v.present? }.symbolize_keys
+
     # # what are the other params?
     # # should we use a form object? yes, for validations et al
     swpoint = [params[:southwest_corner_latitude], params[:southwest_corner_longitude]]
@@ -56,7 +58,7 @@ class SequencesController < ApplicationController
 
     # # problem: what if the query is too big?
     # # validations would do a query + count to see...?
-    @sequences = Sequence.in_bounds([swpoint, nepoint])
+    @sequences = Sequence.in_bounds([swpoint, nepoint]).where(taxon)
 
     flash.now[:notice] = "Found #{@sequences.count} results for swpoint: #{swpoint.inspect} and nepoint: #{nepoint.inspect}"
     render :index

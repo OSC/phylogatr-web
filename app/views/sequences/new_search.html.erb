@@ -6,5 +6,12 @@
   <%= f.text_field :southwest_corner_longitude %>
   <%= f.text_field :northeast_corner_latitude %>
   <%= f.text_field :northeast_corner_longitude %>
-  <%= f.submit %>
+
+  <% %w(kingdom phylum class order family genus).each do |taxon| %>
+    <%= f.select :"taxon_#{taxon}", Sequence.distinct.pluck(:"taxon_#{taxon}"), { label: taxon.titleize, help: "Required" } %>
+  <% end %>
+
+  <%= f.select :"taxon_species", Sequence.distinct.pluck(:"taxon_species"), { label: "Species", include_blank: true, help: "Optional"} %>
+
+  <%= f.submit "Search" %>
 <% end %>
