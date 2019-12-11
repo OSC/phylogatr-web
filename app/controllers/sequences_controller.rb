@@ -31,6 +31,34 @@ class SequencesController < ApplicationController
     render :index
   end
 
-  # need to handle "species" and "subspecies" => merged into one group
-  # so does a subspecies have a different taxonomic identifier
+  def new_search
+  end
+
+  # yes its more semantic to have a searches controller
+  # but...
+  #
+  #
+  # GET /search?lng=....&lat=...
+  def search
+    # TODO: split into POST search and GET search results (which can change to a
+    # SearchesController) with new, create, show
+    #
+    params[:southwest_corner_latitude]
+    params[:southwest_corner_longitude]
+
+    params[:northeast_corner_latitude]
+    params[:northeast_corner_longitude]
+
+    # # what are the other params?
+    # # should we use a form object? yes, for validations et al
+    swpoint = [params[:southwest_corner_latitude], params[:southwest_corner_longitude]]
+    nepoint = [params[:northeast_corner_latitude], params[:northeast_corner_longitude]]
+
+    # # problem: what if the query is too big?
+    # # validations would do a query + count to see...?
+    @sequences = Sequence.in_bounds([swpoint, nepoint])
+
+    flash.now[:notice] = "Found #{@sequences.count} results for swpoint: #{swpoint.inspect} and nepoint: #{nepoint.inspect}"
+    render :index
+  end
 end

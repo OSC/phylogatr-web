@@ -1,0 +1,10 @@
+<h1>Searches#new</h1>
+<p>Find me in app/views/searches/new.html.erb</p>
+
+<%= bootstrap_form_tag url: search_sequences_path, method: :get do |f| %>
+  <%= f.text_field :southwest_corner_latitude %>
+  <%= f.text_field :southwest_corner_longitude %>
+  <%= f.text_field :northeast_corner_latitude %>
+  <%= f.text_field :northeast_corner_longitude %>
+  <%= f.submit %>
+<% end %>

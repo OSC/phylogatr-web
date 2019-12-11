@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   get 'about' => 'pages#about'
-
   root 'pages#about'
 
   resources :sequences, only: :index do
     collection do
       get 'aligned'
+
+      #FIXME: temporary search
+      get 'search'
+      get 'new_search'
     end
   end
 
