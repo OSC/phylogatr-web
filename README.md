@@ -37,6 +37,22 @@ tsvlite:
 In the actual pipeline it is possible this tool could be used as part of a bash
 pipeline to generate insert commands in to a database for each occurrence.
 
+Note: xsv is much faster than mlr
+
+```
+efranz@owens-login01:~/ondemand/dev/phylogatr/db/seed_data (master)$ time mlr --tsv cut -f gbifID,associatedSequences,decimalLatitude,decimalLongitude,phylum,class,order,family,genus,species occurrence.txt | mlr --tsv filter '$associatedSequences !=~ "^[, ]*$"' > occurrence.txt.filtered
+
+real	0m2.034s
+user	0m2.041s
+sys	0m0.042s
+efranz@owens-login01:~/ondemand/dev/phylogatr/db/seed_data (master)$ time xsv select -d $'\t' gbifID,associatedSequences,decimalLatitude,decimalLongitude,phylum,class,order,family,genus,species occurrence.txt | xsv search -s associatedSequences '[^ ,]' | xsv fmt -t $'\t' > occurrence.txt.filtered.2
+
+real	0m0.082s
+user	0m0.083s
+sys	0m0.021s
+efranz@owens-login01:~/ondemand/dev/phylogatr/db/seed_data (master)$ diff occurrence.txt.filtered occurrence.txt.filtered.2
+efranz@owens-login01:~/ondemand/dev/phylogatr/db/seed_data (master)$
+```
 
 ## License
 
