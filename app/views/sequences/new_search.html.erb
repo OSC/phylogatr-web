@@ -2,6 +2,59 @@
 <p>Find me in app/views/searches/new.html.erb</p>
 
 <%= bootstrap_form_tag url: search_sequences_path, method: :get do |f| %>
+  <div id="mapid" style="height: 400px"></div>
+  <script>
+var map = L.map('mapid').setView([51.505, -0.09], 1);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  var drawnItems = new L.FeatureGroup().addTo(map);
+
+  var drawControl = new L.Control.Draw({
+    edit: {
+      featureGroup: drawnItems,
+      remove: true
+    },
+    draw: {
+      circle: false,
+      circlemarker: false,
+      marker: false,
+      polyline: false,
+      polygon: false
+    }
+  });
+  map.addControl(drawControl);
+
+  // https://github.com/Leaflet/Leaflet.draw/issues/315
+  var drawControlEditOnly = new L.Control.Draw({
+    edit: {
+      featureGroup: drawnItems
+    },
+    draw: false
+  });
+
+  // FIXME: the problem with this and why you need update
+  // visibility instead is that
+  // we need to initialize the form with selection after a form validation error
+  map.on('draw:created', function(e){
+    drawnItems.addLayer(e.layer);
+
+    drawControl.remove();
+    drawControlEditOnly.addTo(map);
+  });
+
+  map.on('draw:deleted', function(e){
+    drawnItems.removeLayer(e.layer);
+
+    if(drawnItems.getLayers().length === 0){
+      drawControlEditOnly.remove();
+      drawControl.addTo(map);
+    }
+  });
+  </script>
+
+
   <%= f.text_field :southwest_corner_latitude %>
   <%= f.text_field :southwest_corner_longitude %>
   <%= f.text_field :northeast_corner_latitude %>
