@@ -34,6 +34,8 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
     draw: false
   });
 
+  // enable or disable rectangle drawing based on
+  // whether or not there is a rectangle
   var updateDrawControlVisibility = function(){
     if(drawnItems.getLayers().length > 0){
       drawControl.remove();
@@ -45,17 +47,48 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
     }
   };
 
+  var updateMapWithFormValues = function(){
+    //TODO: this is for initializing the map with form values on validation error
+  }
+
+  var updateFormValuesWithMap = function(){
+    var north = "", south = "", east = "", west = "";
+    if(drawnItems.getLayers().length > 0){
+      let bounds = drawnItems.getLayers()[0].getBounds();
+
+      // lat
+      north = bounds.getNorth();
+      south = bounds.getSouth();
+
+      // lng
+      east = bounds.getEast();
+      west = bounds.getWest();
+    }
+
+    $('input#northeast_corner_latitude').val(north);
+    $('input#southwest_corner_latitude').val(south);
+
+    $('input#northeast_corner_longitude').val(east);
+    $('input#southwest_corner_longitude').val(west);
+  }
+
   // FIXME: the problem with this and why you need update
   // visibility instead is that
   // we need to initialize the form with selection after a form validation error
   map.on('draw:created', function(e){
     drawnItems.addLayer(e.layer);
     updateDrawControlVisibility();
+    updateFormValuesWithMap();
   });
 
   map.on('draw:deleted', function(e){
     drawnItems.removeLayer(e.layer);
     updateDrawControlVisibility();
+    updateFormValuesWithMap();
+  });
+
+  map.on('draw:edited', function(e){
+    updateFormValuesWithMap();
   });
   </script>
 
