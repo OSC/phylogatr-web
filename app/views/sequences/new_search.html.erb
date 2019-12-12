@@ -34,23 +34,28 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
     draw: false
   });
 
+  var updateDrawControlVisibility = function(){
+    if(drawnItems.getLayers().length > 0){
+      drawControl.remove();
+      drawControlEditOnly.addTo(map);
+    }
+    else{
+      drawControlEditOnly.remove();
+      drawControl.addTo(map);
+    }
+  };
+
   // FIXME: the problem with this and why you need update
   // visibility instead is that
   // we need to initialize the form with selection after a form validation error
   map.on('draw:created', function(e){
     drawnItems.addLayer(e.layer);
-
-    drawControl.remove();
-    drawControlEditOnly.addTo(map);
+    updateDrawControlVisibility();
   });
 
   map.on('draw:deleted', function(e){
     drawnItems.removeLayer(e.layer);
-
-    if(drawnItems.getLayers().length === 0){
-      drawControlEditOnly.remove();
-      drawControl.addTo(map);
-    }
+    updateDrawControlVisibility();
   });
   </script>
 
