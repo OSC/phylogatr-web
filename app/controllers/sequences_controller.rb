@@ -53,6 +53,5 @@ class SequencesController < ApplicationController
     @sequences = results.sequences
 
     flash.now[:notice] = "Found #{@sequences.count} results for swpoint: #{results.swpoint.inspect} and nepoint: #{results.nepoint.inspect}"
-    render :index
   end
 end

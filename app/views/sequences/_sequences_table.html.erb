@@ -1,0 +1,48 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>GBIF ID</th>
+      <th>Accession</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <!--
+      <th>Kingdom</th>
+      <th>Phylum</th>
+      <th>Class</th>
+      <th>Order</th>
+      <th>Family</th>
+      <th>Genus</th>
+      -->
+      <th>Species</th>
+      <th>Species (GenBank)</th>
+      <th>Gene Name</th>
+      <th class="no-sort">Sequence</th>
+      <th class="no-sort">Sequence Aligned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sequences.each do |sequence| %>
+    <tr>
+      <td><%= sequence.id %></td>
+      <td><%= sequence.gbif_id %></td>
+      <td><%= sequence.accession %></td>
+      <td><%= sequence.lat %></td>
+      <td><%= sequence.lng %></td>
+      <!--
+      <td><%= sequence.taxon_kingdom %></td>
+      <td><%= sequence.taxon_phylum %></td>
+      <td><%= sequence.taxon_class %></td>
+      <td><%= sequence.taxon_order %></td>
+      <td><%= sequence.taxon_family %></td>
+      <td><%= sequence.taxon_genus %></td>
+      -->
+      <td><%= sequence.taxon_species %></td>
+      <td><%= sequence.taxon_genbank_species %></td>
+      <td><%= sequence.gene_name %></td>
+      <td><div style="max-width:300px; word-wrap: break-word;"><%= sequence.sequence %></div></td>
+      <td><div style="max-width:300px; word-wrap: break-word;"><%= sequence.sequence_aligned %></div></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
