@@ -1,8 +1,18 @@
 <h1>Searches#new</h1>
 <p>Find me in app/views/searches/new.html.erb</p>
 
+<div class="row">
 <%= bootstrap_form_tag url: search_sequences_path, method: :get do |f| %>
-  <div id="mapid" style="height: 400px"></div>
+  <div class="col-xs-12 col-md-6">
+    <div id="mapid" style="height: 400px"></div>
+    <%= f.text_field :southwest_corner_latitude %>
+    <%= f.text_field :southwest_corner_longitude %>
+    <%= f.text_field :northeast_corner_latitude %>
+    <%= f.text_field :northeast_corner_longitude %>
+
+  <%= f.submit "Search", class: "btn btn-primary" %>
+  </div>
+
   <script>
 var map = L.map('mapid').setView([51.505, -0.09], 1);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -94,16 +104,13 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
   </script>
 
 
-  <%= f.text_field :southwest_corner_latitude %>
-  <%= f.text_field :southwest_corner_longitude %>
-  <%= f.text_field :northeast_corner_latitude %>
-  <%= f.text_field :northeast_corner_longitude %>
 
-  <% %w(kingdom phylum class order family genus).each do |taxon| %>
-    <%= f.select :"taxon_#{taxon}", Sequence.distinct.pluck(:"taxon_#{taxon}"), { label: taxon.titleize, help: "Required" } %>
-  <% end %>
+  <div class="col-xs-12 col-md-4">
+    <% %w(kingdom phylum class order family genus).each do |taxon| %>
+      <%= f.select :"taxon_#{taxon}", Sequence.distinct.pluck(:"taxon_#{taxon}"), { label: taxon.titleize, help: "Required" } %>
+    <% end %>
 
-  <%= f.select :"taxon_species", Sequence.distinct.pluck(:"taxon_species"), { label: "Species", include_blank: true, help: "Optional"} %>
+    <%= f.select :"taxon_species", Sequence.distinct.pluck(:"taxon_species"), { label: "Species", include_blank: true, help: "Optional"} %>
+  </div>
 
-  <%= f.submit "Search" %>
 <% end %>
