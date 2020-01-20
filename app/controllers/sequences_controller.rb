@@ -34,33 +34,25 @@ class SequencesController < ApplicationController
   def new_search
   end
 
-  # yes its more semantic to have a searches controller
-  # but...
-  #
+  # TODO: searches controller instead?
   #
   # GET /search?lng=....&lat=...
   def search
     # TODO: split into POST search and GET search results (which can change to a
     # SearchesController) with new, create, show
     #
-    params[:southwest_corner_latitude]
-    params[:southwest_corner_longitude]
+    # TODO: a search results model would be appropriate
+    # results = SearchResults.new(params)
+    # results.sequences
+    # results.swpoint
+    # results.nepoint
+    #
+    # TODO: search results could be ActiveModel, contain validations and thus
+    # become our "form object"
+    results = SearchResults.new(params)
+    @sequences = results.sequences
 
-    params[:northeast_corner_latitude]
-    params[:northeast_corner_longitude]
-
-    taxon = params.select {|k,v| k.starts_with?("taxon_") && v.present? }.symbolize_keys
-
-    # # what are the other params?
-    # # should we use a form object? yes, for validations et al
-    swpoint = [params[:southwest_corner_latitude], params[:southwest_corner_longitude]]
-    nepoint = [params[:northeast_corner_latitude], params[:northeast_corner_longitude]]
-
-    # # problem: what if the query is too big?
-    # # validations would do a query + count to see...?
-    @sequences = Sequence.in_bounds([swpoint, nepoint]).where(taxon)
-
-    flash.now[:notice] = "Found #{@sequences.count} results for swpoint: #{swpoint.inspect} and nepoint: #{nepoint.inspect}"
+    flash.now[:notice] = "Found #{@sequences.count} results for swpoint: #{results.swpoint.inspect} and nepoint: #{results.nepoint.inspect}"
     render :index
   end
 end
