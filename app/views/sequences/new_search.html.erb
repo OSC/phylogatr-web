@@ -88,6 +88,7 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
   });
 
   map.on('draw:edited', function(e){
+    updateDrawControlVisibility();
     updateFormValuesWithMap();
   });
   </script>
