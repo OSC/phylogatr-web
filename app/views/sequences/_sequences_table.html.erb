@@ -4,6 +4,7 @@
       <th>#</th>
       <th>GBIF ID</th>
       <th>Accession</th>
+      <th>FASTA basename</th>
       <th>Latitude</th>
       <th>Longitude</th>
       <!--
@@ -28,6 +29,7 @@
       <td><%= sequence.id %></td>
       <td><%= sequence.gbif_id %></td>
       <td><%= sequence.accession %></td>
+      <td><pre><%= sequence.fasta_basename %></pre></td>
       <td><%= sequence.lat %></td>
       <td><%= sequence.lng %></td>
       <!--

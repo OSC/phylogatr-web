@@ -39,6 +39,12 @@ class Sequence < ActiveRecord::Base
     end
   end
 
+  # FIXME: safer if all lowercase etc. but we can also do queries to determine
+  # conflicts - like are there examples of case differences we need to address?
+  def fasta_basename
+    "#{taxon_species}-#{gene_abbrev}".gsub(/ /, "-")
+  end
+
   # FIXME: may be inaccurrate, but putting gene_name right oafter accession
   # enables easy parsing of Gene name from Bio::FlatFile#locus
   def to_fasta
