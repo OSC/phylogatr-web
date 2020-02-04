@@ -12,7 +12,23 @@ class SearchResults
     @taxon = params.select {|k,v| k.starts_with?("taxon_") && v.present? }.symbolize_keys
   end
 
+  def occurrences
+    @occurrences ||= Sequence.in_bounds([swpoint, nepoint]).where(taxon)
+  end
+
   def sequences
-    @sequences ||= Sequence.in_bounds([swpoint, nepoint]).where(taxon)
+    @sequences ||= occurrences.uniq {|o| o.accession }
+  end
+
+  def files
+    sequences.group_by {|s| s.fasta_basename }
+  end
+
+  def species_count
+    sequences.map(&:taxon_species).uniq.count
+  end
+
+  def genes_count
+    files.size
   end
 end

@@ -49,9 +49,7 @@ class SequencesController < ApplicationController
     #
     # TODO: search results could be ActiveModel, contain validations and thus
     # become our "form object"
-    results = SearchResults.new(params)
-    @sequences = results.sequences
-
-    flash.now[:notice] = "Found #{@sequences.count} results for swpoint: #{results.swpoint.inspect} and nepoint: #{results.nepoint.inspect}"
+    @results = SearchResults.new(params)
+    @sequences = @results.sequences
   end
 end

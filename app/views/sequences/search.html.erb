@@ -1,3 +1,35 @@
 <h2>Search Results</h2>
 
+In region marked by southwest point <%= @results.swpoint.inspect %> and northeast point <%= @results.nepoint.inspect %> with taxon:
+
+<%= content_tag :pre, @results.taxon.pretty_inspect %>
+
+the results include:
+
+<ul>
+  <li><%= @results.occurrences.count %> occurrences </li>
+  <li><%= @results.sequences.count %> sequences</li>
+  <li><%= @results.species_count %> species</li>
+  <li><%= @results.genes_count %> genes</li>
+</ul>
+
+
+<%= bootstrap_form_tag url: "#", method: :get do |f| %>
+  <%= f.check_box :include_occurrences_csv, :checked => true %>
+  <%= f.check_box :include_aligned_fasta_sequences, :checked => true %>
+  <%= f.check_box :include_unaligned_fasta_sequences, :checked => true %>
+  <%= f.form_group :package, label: { text: "Download as"  } do %>
+    <%= f.radio_button :package, 0, label: "tar.gz", checked: true, inline: true %>
+    <%= f.radio_button :package, 1, label: "zip", inline: true %>
+  <% end %>
+  <%= f.submit "Download", class: "btn btn-primary" %>
+<% end %>
+
+<% @results.files.each_pair do |basename, sequences| %>
+  <h6><%= basename %>.fa</h6>
+  <%= content_tag :pre, sequences.map(&:to_fasta).join("\n") %>
+  <h6><%= basename %>.afa</h6>
+  <%= content_tag :pre, sequences.map(&:to_aligned_fasta).join("\n") %>
+<% end %>
+
 <%= render partial: "sequences_table" %>
