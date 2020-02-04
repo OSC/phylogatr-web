@@ -42,11 +42,11 @@ class Sequence < ActiveRecord::Base
   # FIXME: may be inaccurrate, but putting gene_name right oafter accession
   # enables easy parsing of Gene name from Bio::FlatFile#locus
   def to_fasta
-    ">gb|#{accession}|#{gene_name}| #{taxon_genbank_species}\n#{sequence}"
+    ">#{accession}\n#{sequence}"
   end
 
   def to_aligned_fasta
-    ">gb#{accession}|#{gene_name}| #{taxon_genbank_species}\n#{sequence_aligned}"
+    ">#{accession}\n#{sequence_aligned}"
   end
 end
 
