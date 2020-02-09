@@ -4,7 +4,7 @@ import pipeline
 
 @task
 def make_index(c, genbank_path, index_path):
-    print("Hello")
+    pipeline.make_index(genbank_path, index_path)
 
 @task
 def hellop(c):
