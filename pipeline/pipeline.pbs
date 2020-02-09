@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Steps
+# 1. given original gbif occurrences tsv, expand on accessions column so there is 1 accession per row
+# 2. in parallel for each genbank .seq flatfile
+#    1. make index  
+#    2. join on accession
+#    3. for each relevant accession, read flatfile format sequence data and corresponding occurrence record and:
+#       1. append organism to last column if genbank organism differs from occurrence record taxonomy, or empty string
+#       2. write occurrence record with new column to a new output file
+#       3. create directory to store sequence data
+#       4. for each gene, use lookup to get gene short name for gene, then create directory and write gene and sequences as files
+#       5. write gene metadata record to file
+#
+# 3. cat all occurrence files together into 1
+# 4. cat all gene files together into 1
+#
+# The resulting files can be imported into the database used by the web app.
+
+
+# TODO:
+#
+# Setup test with the plethodon you were testing:
+# Pull out gbif AND occurrences from the list of accessions in your test db
+# have a test that does the full pipeline and verifies the results

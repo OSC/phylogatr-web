@@ -34,3 +34,6 @@
 
 # hide muscle
 /bin/muscle*
+
+# ignore pyc files
+*.pyc
