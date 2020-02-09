@@ -1,5 +1,11 @@
 #!/bin/bash
 
+export INDEX_ROOT=/fs/scratch/PAS1604/genbank
+export GENBANK_ROOT=/fs/project/PAS1604/genbank
+export GBIF_PATH=/fs/project/PAS1604/gbif_zenodo_3531675_accessions.txt
+
+cd $PBS_O_WORKDIR
+
 # Steps
 # 1. given original gbif occurrences tsv, expand on accessions column so there is 1 accession per row
 # 2. in parallel for each genbank .seq flatfile
@@ -11,12 +17,26 @@
 #       3. create directory to store sequence data
 #       4. for each gene, use lookup to get gene short name for gene, then create directory and write gene and sequences as files
 #       5. write gene metadata record to file
-#
+
+module load pcp
+
+ls -1 "$GENBANK_ROOT"/*seq | \
+    ruby -ne 'puts %Q[invoke pipeline #{ENV["GBIF_PATH"]} #{$_.strip} #{File.join(ENV["INDEX_ROOT"], File.basename($_.strip))}.idx]' | \
+    mpiexec parallel-command-processor
+
+#TODO: for now just write pipeline files including directories to the index_root
+
+
 # 3. cat all occurrence files together into 1
+
+# TODO:
+
 # 4. cat all gene files together into 1
+
+# TODO:
+
 #
 # The resulting files can be imported into the database used by the web app.
-
 
 # TODO:
 #
