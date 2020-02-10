@@ -7,4 +7,4 @@ def make_index(c, genbank_path, index_path):
     pipeline.make_index(genbank_path, index_path)
 
 @task pipeline(c, gbif_path, genbank_path, index_path):
-    pipeline.pipeline(gbif_path, genbank_path, index_path)
+    pipeline.Pipeline(gbif_path, genbank_path, index_path).pipeline()
