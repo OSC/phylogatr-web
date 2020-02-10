@@ -4,12 +4,26 @@ import os
 from Bio import SeqIO
 
 
-class Sequence:
-    pass
-
-
 class Gene:
-    pass
+    def __init__(self, feature, record, accession):
+        self.feature = feature
+        self.record = record
+        self.accession = accession
+
+    def length(self):
+        return self.feature.location.end.position - self.feature.location.start.position
+
+    def name(self):
+        return (self.feature.qualifiers.get('gene') or self.feature.qualifiers.get('product'))[0]
+
+    def write_sequence(self, output_dir):
+        # mkdir_p
+        # write sequence header then body
+        pass
+
+
+def genes_for_record(record, accession):
+    return [Gene(f, record, accession) for f in record.features if (f.type == 'CDS' and ('gene' in f.qualifiers or 'product' in f.qualifiers)) ]
 
 def accession_from_version(version):
     return version.split('.')[0]
