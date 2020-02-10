@@ -21,7 +21,7 @@ cd $PBS_O_WORKDIR
 module load pcp
 
 ls -1 "$GENBANK_DIR"/*seq | \
-    ruby -ne 'puts %Q[invoke pipeline #{ENV["GBIF_PATH"]} #{$_.strip} #{ENV["OUTPUT_DIR"]}]' | \
+    ruby -ne 'puts %Q[invoke run-pipeline #{ENV["GBIF_PATH"]} #{$_.strip} #{ENV["OUTPUT_DIR"]}]' | \
     mpiexec parallel-command-processor
 
 #TODO: for now just write pipeline files including directories to the index_root
