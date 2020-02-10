@@ -15,16 +15,17 @@ def accession_from_version(version):
     return version.split('.')[0]
 
 class Pipeline:
-    def __init__(self, gbif_path, genbank_path, index_path):
+    def __init__(self, gbif_path, genbank_path, output_dir):
         self.gbif_path = gbif_path
         self.genbank_path = genbank_path
+        self.output_dir = output_dir
 
-        # TODO: replace without output_dir_path, then join
-        self.index_path = index_path
+    def index_path(self):
+        return os.path.join(self.output_dir, os.path.basename(self.genbank_path) + ".idx");
 
     def make_index(self):
         """Create if doesn't exist, then return BioPython flatfile index"""
-        return SeqIO.index_db(self.index_path, self.genbank_path, 'genbank', None, accession_from_version)
+        return SeqIO.index_db(self.index_path(), self.genbank_path, 'genbank', None, accession_from_version)
 
     def write_expanded_occurrence_record(self, accession, parts, record):
         # add columns:
@@ -44,7 +45,7 @@ class Pipeline:
         pass
 
     def pipeline(self):
-        db = make_index(self.genbank_path, self.index_path)
+        db = self.make_index()
 
         # maintain a set of accessions HERE
         sequences_written = set()

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export INDEX_ROOT=/fs/scratch/PAS1604/genbank
-export GENBANK_ROOT=/fs/project/PAS1604/genbank
+export OUTPUT_DIR=/fs/scratch/PAS1604/genbank
+export GENBANK_DIR=/fs/project/PAS1604/genbank
 export GBIF_PATH=/fs/project/PAS1604/gbif_zenodo_3531675_accessions.txt
 
 cd $PBS_O_WORKDIR
@@ -9,7 +9,7 @@ cd $PBS_O_WORKDIR
 # Steps
 # 1. given original gbif occurrences tsv, expand on accessions column so there is 1 accession per row
 # 2. in parallel for each genbank .seq flatfile
-#    1. make index  
+#    1. make index
 #    2. join on accession
 #    3. for each relevant accession, read flatfile format sequence data and corresponding occurrence record and:
 #       1. append organism to last column if genbank organism differs from occurrence record taxonomy, or empty string
@@ -20,8 +20,8 @@ cd $PBS_O_WORKDIR
 
 module load pcp
 
-ls -1 "$GENBANK_ROOT"/*seq | \
-    ruby -ne 'puts %Q[invoke pipeline #{ENV["GBIF_PATH"]} #{$_.strip} #{File.join(ENV["INDEX_ROOT"], File.basename($_.strip))}.idx]' | \
+ls -1 "$GENBANK_DIR"/*seq | \
+    ruby -ne 'puts %Q[invoke pipeline #{ENV["GBIF_PATH"]} #{$_.strip} #{ENV["OUTPUT_DIR"]}]' | \
     mpiexec parallel-command-processor
 
 #TODO: for now just write pipeline files including directories to the index_root
