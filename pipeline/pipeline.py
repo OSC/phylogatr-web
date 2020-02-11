@@ -1,7 +1,27 @@
 # module to hold pipeline functions and classes
 import re
 import os
+import enum
 from Bio import SeqIO
+
+
+class OccurrenceRecordIndex(enum.IntEnum):
+    """column names for gbif occurrences expanded on accession"""
+    ACCESSION = 0
+    GBIF_ID = enum.auto()
+    LATITUDE = enum.auto()
+    LONGITUDE = enum.auto()
+    KINGDOM = enum.auto()
+    PHYLUM = enum.auto()
+    CLASS = enum.auto()
+    ORDER = enum.auto()
+    FAMILY = enum.auto()
+    GENUS = enum.auto()
+    SPECIES = enum.auto()
+    SUBSPECIES = enum.auto()
+    BASIS_OF_RECORD = enum.auto()
+    GEODETIC_DATUM = enum.auto()
+    ISSUE  = enum.auto()
 
 
 def expand_gbif_occurrences_on_accession(gbif_file, gbif_out_file):
