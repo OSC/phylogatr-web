@@ -2,7 +2,7 @@
 
 export OUTPUT_DIR=/fs/scratch/PAS1604/genbank
 export GENBANK_DIR=/fs/project/PAS1604/genbank
-export GBIF_PATH=/fs/project/PAS1604/gbif_zenodo_3531675_accessions.txt
+export GBIF_PATH=/fs/project/PAS1604/gbif_zenodo_3531675.csv
 
 cd $PBS_O_WORKDIR
 
