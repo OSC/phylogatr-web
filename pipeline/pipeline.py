@@ -4,6 +4,14 @@ import os
 from Bio import SeqIO
 
 
+def expand_gbif_occurrences_on_accession(gbif_file, gbif_out_file):
+    accession_regex = re.compile('\w{2}\d{6}')
+    for line in gbif_file:
+        parts = line.split("\t")
+        for accession in accession_regex.findall(parts[0]):
+            gbif_out_file.write("\t".join([accession] + parts[1:]))
+
+
 class Gene:
     def __init__(self, feature, record, accession):
         self.feature = feature

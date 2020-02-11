@@ -21,14 +21,11 @@ class TestPipeline(unittest.TestCase):
               "https://www.ncbi.nlm.nih.gov/nuccore/KT604601| other\t1841684418\t54.76\t-126.93\n" + \
               "https://www.ncbi.nlm.nih.gov/nuccore/KT605555| other\t1841684419\t56.26\t-124.33\n"
         expected_tsv = "MG076766\t1841684417\t43.37\t-80.36\n" + \
-              "KT604601\t1841684418\t54.76\t-126.93\n"
-        db = {
-            "MG076766" : SeqRecord(Seq("ATGC")),
-            "KT604601" : SeqRecord(Seq("ATGC"))
-        }
+              "KT604601\t1841684418\t54.76\t-126.93\n" + \
+              "KT605555\t1841684419\t56.26\t-124.33\n"
         out = StringIO()
 
-        Pipeline('', '', '').expand_gbif_occurrences_on_accession(StringIO(tsv), db, out)
+        pipeline.expand_gbif_occurrences_on_accession(StringIO(tsv), out)
 
         self.assertEqual(expected_tsv, out.getvalue())
 

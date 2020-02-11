@@ -11,6 +11,13 @@ cd $PBS_O_WORKDIR
 
 # Steps
 # 1. given original gbif occurrences tsv, expand on accessions column so there is 1 accession per row
+
+split -d -n 27 $GBIF_PATH $TMPDIR/x
+ls -1 $TMPDIR/x* | \
+    ruby -ne 'puts %Q[invoke expand-occurrences #{$_.strip} #{$_.strip}.expanded]' | \
+    mpiexec parallel-command-processor
+cat $TMPDIR/x*expanded > $TMPDIR/gbif_occurrences.csv
+
 # 2. in parallel for each genbank .seq flatfile
 #    1. make index
 #    2. join on accession
