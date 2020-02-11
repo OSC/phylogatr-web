@@ -72,6 +72,21 @@ class Pipeline:
         """Create if doesn't exist, then return BioPython flatfile index"""
         return SeqIO.index_db(self.index_path(), self.genbank_path, 'genbank', None, accession_from_version)
 
+    def occurrence_without_null(self, occurrence):
+        return ['' if x.strip() == '\\N' else x for x in occurrence]
+
+    def alt_species(self, occurrence, record):
+        alt = ''
+        organism = record.annotations.get('organism')
+
+        if(organism and organism not in (
+              occurrence[OccurrenceRecordIndex.SPECIES],
+              ' '.join([occurrence[OccurrenceRecordIndex.SPECIES], occurrence[OccurrenceRecordIndex.SUBSPECIES]])
+        )):
+            alt = organism
+
+        return alt
+
     def write_expanded_occurrence_record(self, gbif_out_file, accession, parts, record):
         # add columns:
         # 1. alt organism if genbank organism differs from gbif

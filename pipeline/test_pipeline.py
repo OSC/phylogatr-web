@@ -34,5 +34,23 @@ class TestPipeline(unittest.TestCase):
         # with the accession; or for the accession, get the taxid, and use that to get the full blessed
         # taxonomy => which I think is preferable
 
+    def test_occurrence_without_null(self):
+        self.assertEqual(['one', '', '', 'four'], Pipeline('','','').occurrence_without_null(['one', '\\N',' \\N ', 'four']))
+
+    def test_alt_species_same(self):
+        record = SeqRecord('ATGC', annotations={'organism': 'Pantherophis vulpinus'})
+        occurrence = ['' for x in range(1, len(pipeline.OccurrenceRecordIndex))]
+        occurrence[pipeline.OccurrenceRecordIndex.SPECIES] = 'Pantherophis vulpinus'
+
+        self.assertEqual('', Pipeline('','','').alt_species(occurrence, record))
+
+    def test_alt_species_different(self):
+        record = SeqRecord('ATGC', annotations={'organism': 'Pantherophis v.'})
+        occurrence = ['' for x in range(1, len(pipeline.OccurrenceRecordIndex))]
+        occurrence[pipeline.OccurrenceRecordIndex.SPECIES] = 'Pantherophis vulpinus'
+
+        self.assertEqual('Pantherophis v.', Pipeline('','','').alt_species(occurrence, record))
+
+
 if __name__ == '__main__':
     unittest.main()
