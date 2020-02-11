@@ -35,7 +35,7 @@ class TestPipeline(unittest.TestCase):
         # taxonomy => which I think is preferable
 
     def test_occurrence_without_null(self):
-        self.assertEqual(['one', '', '', 'four'], Pipeline('','','').occurrence_without_null(['one', '\\N',' \\N ', 'four']))
+        self.assertEqual(['one', '', '', 'four'], pipeline.occurrence_without_null(['one', '\\N',' \\N ', 'four']))
 
     def test_alt_species_same(self):
         record = SeqRecord('ATGC', annotations={'organism': 'Pantherophis vulpinus'})

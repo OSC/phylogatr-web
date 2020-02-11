@@ -23,13 +23,19 @@ class OccurrenceRecordIndex(enum.IntEnum):
     GEODETIC_DATUM = enum.auto()
     ISSUE  = enum.auto()
 
+def occurrence_without_null(occurrence):
+    return ['' if x.strip() == '\\N' else x for x in occurrence]
 
 def expand_gbif_occurrences_on_accession(gbif_file, gbif_out_file):
     accession_regex = re.compile('\w{2}\d{6}')
     for line in gbif_file:
-        parts = line.split("\t")
-        for accession in accession_regex.findall(parts[0]):
-            gbif_out_file.write("\t".join([accession] + parts[1:]))
+        parts = occurrence_without_null(line.split("\t"))
+
+        # omit occurrences that are missing KINGDOM through SPECIES
+        if('' not in parts[OccurrenceRecordIndex.KINGDOM:OccurrenceRecordIndex.SUBSPECIES]):
+            # expand the accession column
+            for accession in accession_regex.findall(parts[0]):
+                gbif_out_file.write("\t".join([accession] + parts[1:]))
 
 
 class Gene:
@@ -75,9 +81,6 @@ class Pipeline:
         """Create if doesn't exist, then return BioPython flatfile index"""
         return SeqIO.index_db(self.index_path(), self.genbank_path, 'genbank', None, accession_from_version)
 
-    def occurrence_without_null(self, occurrence):
-        return ['' if x.strip() == '\\N' else x for x in occurrence]
-
     def alt_species(self, occurrence, record):
         alt = ''
         organism = record.annotations.get('organism')
@@ -90,10 +93,8 @@ class Pipeline:
 
         return alt
 
-    def write_occurrence_record(self, gbif_out_file, occurrence_, record):
+    def write_occurrence_record(self, gbif_out_file, occurrence, record):
         """append to end of occurrence source genbank filename and alt organism string"""
-        occurrence = occurrence_without_null(occurrence_)
-
         gbif_out_file.write("\t".join(occurrence
          + [os.path.basename(self.genbank_path)]
          + [alt_species(occurrence, record)])
