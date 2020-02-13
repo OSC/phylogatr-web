@@ -3,8 +3,10 @@ from invoke import task
 import pipeline
 
 @task
-def make_index(c, genbank_path, index_path):
-    pipeline.make_index(genbank_path, index_path)
+def make_index(c, genbank_path, output_dir):
+    p = pipeline.Pipeline('', genbank_path, output_dir)
+    p.make_index()
+    print(p.index_path())
 
 @task
 def run_pipeline(c, gbif_path, genbank_path, output_dir):
