@@ -51,6 +51,29 @@ class TestPipeline(unittest.TestCase):
 
         self.assertEqual('Pantherophis v.', Pipeline('','','').alt_species(occurrence, record))
 
+    def test_write_genes_for_sequences(self):
+        out = StringIO()
+        seq_path = 'test/fixtures/panthropis.seq'
+        gbif_path = 'test/fixtures/panthropis.seq.idx.occurrences'
+        expected_out_path =  'test/fixtures/expected_genes'
+        with open(gbif_path, 'r') as gbif_file, open(expected_out_path, 'r') as expected_out: 
+            p = Pipeline(gbif_path, seq_path,'test/fixtures')
+            db = p.make_index()
+            p.write_genes_for_sequences_in_occurrences(gbif_file, db, out)
+
+            self.maxDiff = None
+            expected = expected_out.read().split("\n")
+            actual = out.getvalue().split("\n")
+
+            # test first line
+            self.assertEqual(expected[0], actual[0])
+            self.assertEqual(len(expected), len(actual))
+            for i in range(0, len(expected)):
+                self.assertEqual(expected[i], actual[i])
+
+            db.close()
+            out.close()
+        
 
 if __name__ == '__main__':
     unittest.main()
