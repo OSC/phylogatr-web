@@ -1,26 +1,57 @@
 #!/bin/bash
+#PBS -l nodes=1:ppn=28
+#PBS -l walltime=02:00:00
+#PBS -N phylogatr_pipeline
+#PBS -j oe
+#PBS -A PZS0714
+
+set -xe
 
 export OUTPUT_DIR=/fs/scratch/PAS1604/genbank
-export WORK_DIR=$TMPDIR/genbank
 
 export GENBANK_DIR=/fs/project/PAS1604/genbank
 export GBIF_PATH=/fs/project/PAS1604/gbif_zenodo_3531675.csv
+export INDEXES_CACHE_DIR=/fs/scratch/PAS1604/genbank_indexes
 
-mkdir -p $WORK_DIR
 cd $PBS_O_WORKDIR
 
 # Steps
 # 1. given original gbif occurrences tsv, expand on accessions column so there is 1 accession per row
 
-split -d -n 27 $GBIF_PATH $TMPDIR/x
-ls -1 $TMPDIR/x* | \
-    ruby -ne 'puts %Q[invoke expand-occurrences #{$_.strip} #{$_.strip}.expanded]' | \
-    mpiexec parallel-command-processor
-cat $TMPDIR/x*expanded > $TMPDIR/gbif_occurrences.csv
+module load pcp
+module load python/3.6-conda5.2
+source activate local
 
-# 2. in parallel for each genbank .seq flatfile
-#    1. make index
-#    2. join on accession
+function generate_indexes_and_occurrence_files {
+    split -d -n 27 $GBIF_PATH $TMPDIR/x
+    ls -1 $TMPDIR/x* | \
+        ruby -ne 'puts %Q[invoke expand-occurrences #{$_.strip} #{$_.strip}.expanded]' | \
+        mpiexec parallel-command-processor
+    cat $TMPDIR/x*expanded > $TMPDIR/gbif_occurrences.csv
+    rm $TMPDIR/x*
+
+    sort -k 1b,1 $TMPDIR/gbif_occurrences.csv > $TMPDIR/gbif_occurrences.csv.sorted
+
+    # 2. in parallel for each genbank .seq flatfile
+    #    1. make index
+    #    2. join on accession
+    ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
+        ruby -ne 'puts %Q[#{ENV["PBS_O_WORKDIR"]}/generate_index_and_accessions_files.sh #{ENV["TMPDIR"]}/gbif_occurrences.csv.sorted #{$_.strip} #{ENV["TMPDIR"]}]' > $TMPDIR/gen_index_cmds
+
+    mpiexec parallel-command-processor $TMPDIR/gen_index_cmds
+}
+
+if [[ -d $INDEXES_CACHE_DIR ]]; then
+    echo "Using index from cache at $INDEXES_CACHE_DIR"
+    cp -r $INDEXES_CACHE_DIR/* $TMPDIR
+else
+    echo "Generating index files"
+    generate_indexes_and_occurrence_files
+    mkdir -p $INDEXES_CACHE_DIR
+    cp $TMPDIR/*idx $TMPDIR/*idx.occurrences $INDEXES_CACHE_DIR
+fi
+
+
 #    3. for each relevant accession, read flatfile format sequence data and corresponding occurrence record and:
 #       1. append organism to last column if genbank organism differs from occurrence record taxonomy, or empty string
 #       2. write occurrence record with new column to a new output file
@@ -28,24 +59,21 @@ cat $TMPDIR/x*expanded > $TMPDIR/gbif_occurrences.csv
 #       4. for each gene, use lookup to get gene short name for gene, then create directory and write gene and sequences as files
 #       5. write gene metadata record to file
 
-module load pcp
+ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
+    ruby -ne 'puts %Q[invoke run-pipeline #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{$_.strip} #{ENV["TMPDIR"]}]' > $PBS_O_WORKDIR/run_pipeline_cmds
 
-ls -1 "$GENBANK_DIR"/*seq | \
-    ruby -ne 'puts %Q[invoke run-pipeline #{ENV["GBIF_PATH"]} #{$_.strip} #{ENV["WORK_DIR"]}]' | \
-    mpiexec parallel-command-processor
-
-#TODO: for now just write pipeline files including directories to the index_root
+mpiexec parallel-command-processor $PBS_O_WORKDIR/run_pipeline_cmds
 
 
 # 3. cat all occurrence files together into 1
-
-# TODO:
+cat $TMPDIR/*.gbif.tsv > $TMPDIR/gbif_occurrences_final.tsv
+cp $TMPDIR/gbif_occurrences_final.tsv $OUTPUT_DIR
 
 # 4. cat all gene files together into 1
+cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
+cp $TMPDIR/genes.tsv $OUTPUT_DIR
 
-# TODO:
 
-#
 # The resulting files can be imported into the database used by the web app.
 
 # TODO:
