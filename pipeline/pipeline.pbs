@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -l nodes=1:ppn=28
-#PBS -l walltime=02:00:00
+#PBS -l walltime=01:00:00
 #PBS -N phylogatr_pipeline
 #PBS -j oe
 #PBS -A PZS0714
@@ -60,13 +60,19 @@ fi
 #       5. write gene metadata record to file
 
 ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
-    ruby -ne 'puts %Q[invoke run-pipeline #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{$_.strip} #{ENV["TMPDIR"]}]' > $PBS_O_WORKDIR/run_pipeline_cmds
+    ruby -ne 'puts %Q[invoke write-genes #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{$_.strip} #{ENV["TMPDIR"]}]' > $PBS_O_WORKDIR/run_pipeline_cmds
 
 mpiexec parallel-command-processor $PBS_O_WORKDIR/run_pipeline_cmds
 
 
+# retain only accessions that have genes
+ls -1 "$TMPDIR/$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
+    ruby -ne 'puts %Q[#{ENV["PBS_O_WORKDIR"]}/occurrences_that_have_genes.sh #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.genes.tsv]' > $TMPDIR/gen_index_cmds
+
+mpiexec parallel-command-processor $TMPDIR/gen_index_cmds
+
 # 3. cat all occurrence files together into 1
-cat $TMPDIR/*.gbif.tsv > $TMPDIR/gbif_occurrences_final.tsv
+cat $TMPDIR/*.occurrences.with_genes > $TMPDIR/gbif_occurrences_final.tsv
 cp $TMPDIR/gbif_occurrences_final.tsv $OUTPUT_DIR
 
 # 4. cat all gene files together into 1
