@@ -5,6 +5,7 @@ import enum
 from Bio import SeqIO
 
 
+# FIXME: changing occurrence to an object would make the code easier to read
 class OccurrenceRecordIndex(enum.IntEnum):
     """column names for gbif occurrences expanded on accession"""
     ACCESSION = 0
@@ -39,10 +40,16 @@ def expand_gbif_occurrences_on_accession(gbif_file, gbif_out_file):
 
 
 class Gene:
-    def __init__(self, feature, record, accession):
+    def __init__(self, feature, record, occurrence):
         self.feature = feature
         self.record = record
-        self.accession = accession
+        self.occurrence = occurrence
+
+    def accession(self):
+        return self.occurrence[OccurrenceRecordIndex.ACCESSION]
+
+    def fasta_file_prefix(self):
+        return (self.occurrence[OccurrenceRecordIndex.SPECIES] + '-' + self.name()).replace(' ', '-')
 
     def start_position(self):
         return self.feature.location.start.position
@@ -77,8 +84,8 @@ class Gene:
         write_sequence(out_file)
         out_file.write('\n')
 
-def genes_for_record(record, accession):
-    return [Gene(f, record, accession) for f in record.features if (f.type == 'CDS' and ('gene' in f.qualifiers or 'product' in f.qualifiers)) ]
+def genes_for_record(record, occurrence):
+    return [Gene(f, record, occurrence) for f in record.features if (f.type == 'CDS' and ('gene' in f.qualifiers or 'product' in f.qualifiers)) ]
 
 
 def accession_from_version(version):
@@ -144,16 +151,13 @@ class Pipeline:
                     postprocess(record, accession)
                     accessions_postprocessed.add(accession)
 
+    def genbank_filename(self):
+        return os.path.basename(self.genbank_path)
+
     def write_gene_metadata_record(self, gene, out_file):
         # TODO: source = os.path.basename(self.genbank_path)
         # TODO: gene.length() and gene.abbreviation()
-        out_file.write("\t".join([gene.accession, gene.name(), gene.organism(), gene.sequence().lower()])+ "\n")
-
-    def write_gene_metadata_record_for_each_gene_in_sequence(self, record, accession, out_file):
-        genes = genes_for_record(record, accession)
-
-        for gene in genes:
-            self.write_gene_metadata_record(gene, out_file)
+        out_file.write("\t".join([gene.accession(), gene.name(), gene.fasta_file_prefix(), gene.organism(), self.genbank_filename(), gene.sequence().lower()])+ "\n")
 
     def write_genes_for_sequences_in_occurrences(self, gbif_file, db, out_genes_file):
         """write all the gene info to a file once for each accession in gbif_file"""
@@ -164,7 +168,9 @@ class Pipeline:
             if not accession in accessions_processed:
                 record = db.get(accession)
                 if record:
-                    self.write_gene_metadata_record_for_each_gene_in_sequence(record, accession, out_genes_file)
+                    genes = genes_for_record(record, occurrence)
+                    for gene in genes:
+                        self.write_gene_metadata_record(gene, out_genes_file)
 
     def write_genes(self):
         db = self.make_index()
