@@ -48,13 +48,26 @@ class Gene:
         return self.feature.location.end.position - self.feature.location.start.position
 
     def name(self):
-        return (self.feature.qualifiers.get('gene') or self.feature.qualifiers.get('product'))[0]
+        #FIXME: the four replaces at the end to match original pipeline from carstens; this can be simplified with better python
+        return ((self.feature.qualifiers.get('gene') or self.feature.qualifiers.get('product'))[0] or '').replace(' ','-').replace('/','-').replace("'",'').replace(".",'')
 
-    def write_sequence(self, output_dir):
-        # mkdir_p
-        # write sequence header then body
-        pass
+    def abbreviation(self):
+        #TODO: the abbreviation problem is unsolved; at this point we are just looking at a big lookup table
+        # for starters we could add in the abbreviations that were recommended
+        return self.name()
 
+    def sequence():
+        self.record.seq[self.feature.location.start.position:feature.location.end.position]
+
+    def write_sequence(self, out_file):
+        #FIXME: verify this doesn't trunctate a character you need:
+        #FIXME: a more appropriate way? has the record already loaded the entire sequence into memory? if not perhaps we want to do this a different way?
+        out_file.write(self.record.seq[self.feature.location.start.position:feature.location.end.position])
+
+    def write_fasta(self, out_file):
+        out_file.write(f'>{accession}\n')
+        write_sequence(out_file)
+        out_file.write('\n')
 
 def genes_for_record(record, accession):
     return [Gene(f, record, accession) for f in record.features if (f.type == 'CDS' and ('gene' in f.qualifiers or 'product' in f.qualifiers)) ]
@@ -97,7 +110,7 @@ class Pipeline:
         """append to end of occurrence source genbank filename and alt organism string"""
         gbif_out_file.write("\t".join(occurrence
          + [os.path.basename(self.genbank_path)]
-         + [alt_species(occurrence, record)])
+         + [self.alt_species(occurrence, record)])
         )
 
     def write_gene_sequence_data(self):
@@ -106,9 +119,8 @@ class Pipeline:
         # then create directory and write gene and sequences as files
         pass
 
-    def write_gene_metatada_record(self):
-        # write gene metadata record to file:   genes.txt.part.X
-        pass
+    def write_gene_metadata_record(self, gene, out_file):
+        out_file.write("\t".join([gene.accession, gene.name(), gene.abbreviation(), gene.sequence()]))
 
     def filter_gbif_occurrences_on_accession(self, gbif_file, db, gbif_out_file, postprocess = None):
         accessions_postprocessed = set()
@@ -130,9 +142,15 @@ class Pipeline:
         genes = genes_for_record(record, accession)
         gene_lengths = [g.length() for g in genes]
 
-        # TODO: for each gene, write sequence data and write gene metadata
+        max_gene_length = 0
+        if(gene_lengths):
+            max_gene_length = max(gene_lengths)
 
-        return max(gene_lengths)
+        with open(self.output_genes_path, 'w') as out_file:
+            for gene in genes:
+                self.write_gene_metadata_record(gene, out_file)
+
+        print(f'{accession} has {len(genes)} genes and max gene length {max_gene_length}')
 
     def pipeline(self):
         db = self.make_index()
