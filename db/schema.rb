@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200214163715) do
+ActiveRecord::Schema.define(version: 20200214164035) do
+
+  create_table "genes", force: :cascade do |t|
+    t.string "accession"
+    t.string "name"
+    t.string "fasta_file_prefix"
+    t.string "taxon_genbank_species"
+    t.string "genbank_source_file"
+    t.text   "sequence",              limit: 16777215
+    t.text   "sequence_aligned",      limit: 16777215
+  end
 
   create_table "occurrences", force: :cascade do |t|
     t.string   "gbif_id"
