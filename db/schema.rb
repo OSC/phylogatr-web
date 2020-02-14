@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200214162752) do
+ActiveRecord::Schema.define(version: 20200214163119) do
 
   create_table "occurrences", force: :cascade do |t|
     t.string   "gbif_id"
     t.string   "accession"
-    t.decimal  "lng",                   precision: 15, scale: 10
-    t.decimal  "lat",                   precision: 15, scale: 10
+    t.decimal  "lng",                              precision: 15, scale: 10
+    t.decimal  "lat",                              precision: 15, scale: 10
     t.string   "taxon_kingdom"
     t.string   "taxon_phylum"
     t.string   "taxon_class"
@@ -29,8 +29,12 @@ ActiveRecord::Schema.define(version: 20200214162752) do
     t.string   "gene_name"
     t.text     "sequence"
     t.text     "sequence_aligned"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
+    t.string   "basis_of_record"
+    t.string   "geodetic_datum"
+    t.integer  "coordinate_uncertainty_in_meters"
+    t.string   "issue"
   end
 
 end
