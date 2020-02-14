@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191018010553) do
+ActiveRecord::Schema.define(version: 20200214162752) do
 
-  create_table "sequences", force: :cascade do |t|
+  create_table "occurrences", force: :cascade do |t|
     t.string   "gbif_id"
     t.string   "accession"
     t.decimal  "lng",                   precision: 15, scale: 10
