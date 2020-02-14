@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200214164035) do
+ActiveRecord::Schema.define(version: 20200214210151) do
 
   create_table "genes", force: :cascade do |t|
     t.string "accession"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20200214164035) do
     t.string "genbank_source_file"
     t.text   "sequence",              limit: 16777215
     t.text   "sequence_aligned",      limit: 16777215
+    t.string "symbol"
   end
 
   create_table "occurrences", force: :cascade do |t|
