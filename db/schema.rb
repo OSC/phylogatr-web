@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200214163119) do
+ActiveRecord::Schema.define(version: 20200214163715) do
 
   create_table "occurrences", force: :cascade do |t|
     t.string   "gbif_id"
@@ -25,10 +25,6 @@ ActiveRecord::Schema.define(version: 20200214163119) do
     t.string   "taxon_family"
     t.string   "taxon_genus"
     t.string   "taxon_species"
-    t.string   "taxon_genbank_species"
-    t.string   "gene_name"
-    t.text     "sequence"
-    t.text     "sequence_aligned"
     t.datetime "created_at",                                                 null: false
     t.datetime "updated_at",                                                 null: false
     t.string   "basis_of_record"
