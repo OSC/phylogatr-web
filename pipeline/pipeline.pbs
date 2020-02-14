@@ -3,7 +3,7 @@
 #PBS -l walltime=01:00:00
 #PBS -N phylogatr_pipeline
 #PBS -j oe
-#PBS -A PZS0714
+#PBS -A PAS1604
 
 set -xe
 
