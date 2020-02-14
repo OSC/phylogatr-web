@@ -66,7 +66,7 @@ mpiexec parallel-command-processor $PBS_O_WORKDIR/run_pipeline_cmds
 
 
 # retain only accessions that have genes
-ls -1 "$TMPDIR/$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
+ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
     ruby -ne 'puts %Q[#{ENV["PBS_O_WORKDIR"]}/occurrences_that_have_genes.sh #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.genes.tsv]' > $TMPDIR/gen_index_cmds
 
 mpiexec parallel-command-processor $TMPDIR/gen_index_cmds
