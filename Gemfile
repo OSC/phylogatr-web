@@ -55,3 +55,4 @@ gem 'ood_appkit', '~> 1.0'
 
 gem 'bio'
 gem 'geokit-rails'
+gem 'activerecord-import'
