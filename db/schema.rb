@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200214210151) do
+ActiveRecord::Schema.define(version: 20200214212822) do
 
   create_table "genes", force: :cascade do |t|
     t.string "accession"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20200214210151) do
     t.string   "geodetic_datum"
     t.integer  "coordinate_uncertainty_in_meters"
     t.string   "issue"
+    t.string   "taxon_subspecies"
   end
 
 end
