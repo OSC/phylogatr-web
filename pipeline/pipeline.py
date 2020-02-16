@@ -170,6 +170,7 @@ class Pipeline:
                     genes = genes_for_record(record, occurrence)
                     for gene in genes:
                         self.write_gene_metadata_record(gene, out_genes_file)
+                    accessions_processed.add(accession)
 
     def write_genes(self):
         db = self.make_index()
