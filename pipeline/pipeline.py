@@ -68,7 +68,7 @@ class Gene:
         return ((self.feature.qualifiers.get('product') or [''])[0]).replace(' ','-').replace('/','-').replace("'",'').replace(".",'')
 
     def symbol(self):
-        return ((self.feature.qualifiers.get('gene') or [''])[0] or '').replace(' ','-').replace('/','-').replace("'",'').replace(".",'')
+        return ((self.feature.qualifiers.get('gene') or [''])[0] or '').replace(' ','-').replace('/','-').replace("'",'').replace(".",'').upper()
 
     def sequence(self):
         return str(self.record.seq[self.start_position():self.end_position()])
