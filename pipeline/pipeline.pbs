@@ -69,21 +69,19 @@ mpiexec parallel-command-processor $TMPDIR/run_pipeline_cmds
 ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
     ruby -ne 'puts %Q[#{ENV["PBS_O_WORKDIR"]}/occurrences_that_have_genes.sh #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.genes.tsv]' > $TMPDIR/gen_index_cmds
 
+
 mpiexec parallel-command-processor $TMPDIR/gen_index_cmds
 
+function add_incrementing_index_column_to_file {
+    awk '{ print NR "\t" $0  }'
+}
+
 # 3. cat all occurrence files together into 1
-cat $TMPDIR/*.occurrences.with_genes > $TMPDIR/gbif_occurrences_final.tsv
+cat $TMPDIR/*.occurrences.with_genes | add_incrementing_index_column_to_file > $TMPDIR/gbif_occurrences_final.tsv
 cp $TMPDIR/gbif_occurrences_final.tsv $OUTPUT_DIR
 
 # 4. cat all gene files together into 1
-cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
+cat $TMPDIR/*.genes.tsv | add_incrementing_index_column_to_file > $TMPDIR/genes.tsv
 cp $TMPDIR/genes.tsv $OUTPUT_DIR
 
-
 # The resulting files can be imported into the database used by the web app.
-
-# TODO:
-#
-# Setup test with the plethodon you were testing:
-# Pull out gbif AND occurrences from the list of accessions in your test db
-# have a test that does the full pipeline and verifies the results
