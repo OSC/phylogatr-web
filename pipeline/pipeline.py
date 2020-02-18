@@ -49,7 +49,7 @@ class Gene:
         return self.occurrence[OccurrenceRecordIndex.ACCESSION]
 
     def fasta_file_prefix(self):
-        return (self.occurrence[OccurrenceRecordIndex.SPECIES] + '-' + (self.symbol() or self.name())).replace(' ', '-')
+        return (self.occurrence[OccurrenceRecordIndex.SPECIES] + '-' + self.symbol()).replace(' ', '-') if self.symbol() else ''
 
     def start_position(self):
         return self.feature.location.start.position
