@@ -1,12 +1,52 @@
 #!/usr/bin/env ruby
 
 require 'rexml/document'
-require 'rexml/xpath'
+require 'rexml/streamlistener'
+
+# the benefit of this approach is that it works in Ruby 1.8.7+ with the standard
+# library and thus can be run anywhere Ruby is installed
 
 filename = ARGV[0] # 'Pantherophis-obsoletus-COI'
-query = %Q(select id,accession,sequence,fasta_file_prefix from genes where fasta_file_prefix = "#{filename}" order by accession;)
+query = %Q(select id,sequence,fasta_file_prefix from genes where fasta_file_prefix = "#{filename}" order by accession;)
 
-xml = `mysql --defaults-file=/users/PZS0562/efranz/.my.cnf.phylogatrtest -X -e '#{query}'`
+cmd = "mysql --defaults-file=/users/PZS0562/efranz/.my.cnf.phylogatrtest -X -e '#{query}'"
+
+class Listener
+  include REXML::StreamListener
+
+  attr_reader :print_field_tag
+
+  def tag_start(name, attrs)
+    if name == "row"
+      print ">"
+    elsif name == "field"
+      if attrs["name"] == "sequence"
+        print "\n"
+        @print_field_tag = true
+      elsif attrs["name"] == "id"
+        @print_field_tag = true
+      end
+    end
+  end
+
+  def text(text)
+    print text if print_field_tag
+  end
+
+  def tag_end(name)
+    if name == "row"
+      print "\n"
+    end
+
+    @print_field_tag = false
+  end
+end
+
+listener = Listener.new
+
+IO.popen(cmd, "r") do |f|
+  REXML::Document.parse_stream(f, listener)
+end
 
 # XML is a bunch of rows like:
 #
@@ -16,8 +56,3 @@ xml = `mysql --defaults-file=/users/PZS0562/efranz/.my.cnf.phylogatrtest -X -e '
 #   <field name="sequence">cctataccttac....</field>
 #   <field name="fasta_file_prefix">Pantherophis-obseletus...</field>
 # </row>
-
-# output formated FASTA file
-doc = REXML::Document.new(xml)
-fields = REXML::XPath.match(doc, '//field/text()')
-puts fields.each_slice(4).map {|x| ">#{x[1]}-#{x[0]}\n#{x[2]}" }.join("\n")

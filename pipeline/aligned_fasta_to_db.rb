@@ -3,7 +3,7 @@
 fasta = STDIN.read
 
 values = fasta.gsub("\n", "").strip.split(">").reject {|s| s.empty? }.map { |f|
-  f =~ /^\w+-(\d+)(.*)$/
+  f =~ /^(\d+)(.*)$/
     "(#{$1}, '#{$2.downcase}')"
 }
 
