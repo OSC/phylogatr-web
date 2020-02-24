@@ -31,47 +31,95 @@ class SearchJob < ActiveJob::Base
         # Note: cannot use find-each because that uses primary key and limit and
         # offset and its own sort by primary key so it ignores sort order we
         # want
-        gene_enumerator = Gene.find_each_in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+        
 
         cite_yaml = {
             gbif_doi: '10.35000/cdl.t4hfxk',
             genbank_release: 'GenBank Flat File Release 234.0',
             phylogatr_code_version: 'd609767'
-        }.to_yaml
+        }.stringify_keys.to_yaml
 
         tar.add_file_simple("phylogatr-results/cite.txt", 0644, cite_yaml.length) do |io|
           io.write(cite_yaml)
         end
 
-        loop do
-          # keep writing files till this me
-          write_genes_to_tar_file gene_enumerator, tar
-        end
-      end
-    end
-  end
+        current_sequences = []
+        current_prefix = nil
+        current_species = nil
 
-  # pass in an enmerator, and add sequence of each gene to a new file in the
-  # tarball till we hit the last item in the enumerator or we get to a new file
-  def write_genes_to_tar_file(gene_enumerator, tar)
-    prefix = gene_enumerator.peek.fasta_file_prefix
-    #FIXME: HACK we substitute ' ' for '-' as we do in the pipeline.py
-    # we might consider generating this as well when running the pipeline for
-    # convenience, or using the join table to generate both of these on the fly
-    # instead
-    species = gene_enumerator.peek.taxon_species.gsub(' ', '-')
+        # Gene is really a gene_sequence
+        Gene.find_each_in_bounds_with_taxonomy(swpoint, nepoint, taxonomy) do |gene|
+          current_prefix ||= gene.fasta_file_prefix
+          current_species ||= gene.taxon_species.gsub(' ', '-')
 
-    tar.add_file("phylogatr-results/#{species}/#{prefix}.fa", 0644) do |io|
-      begin
-        while gene_enumerator.peek.fasta_file_prefix == prefix
-          io.write(gene_enumerator.next.to_fasta)
+          if(gene.fasta_file_prefix != current_prefix)
+            # new file so we write out the current first
+            tar.add_file_simple("phylogatr-results/#{current_species}/#{current_prefix}.fa", 0644, current_sequences.sum { |s| s.to_fasta.length }) do |io|
+              current_sequences.each do |s|
+                io.write(s.to_fasta)
+              end
+            end
+
+            tar.add_file_simple("phylogatr-results/#{current_species}/#{current_prefix}.afa", 0644, current_sequences.sum { |s| s.to_aligned_fasta.length }) do |io|
+              current_sequences.each do |s|
+                io.write(s.to_aligned_fasta)
+              end
+            end
+
+            current_sequences = [gene]
+            current_prefix = gene.fasta_file_prefix
+            current_species = gene.taxon_species.gsub(' ', '-')
+          else
+            #FIXME: better to add count of sequence (and thus FASTA) here to speed things up (instead of memoizing fasta and sequence which balloons memory)
+            current_sequences << gene
+          end
         end
-      rescue => e
-        # ignore StopIteration when its inside this block, otherwise the file
-        # will not be properly closed and contents written
-        #
-        # StopIteration will be emitted in this block only if the file stops
-        # reading
+
+        if current_sequences.any?
+          tar.add_file_simple("phylogatr-results/#{current_species}/#{current_prefix}.fa", 0644, current_sequences.sum { |s| s.to_fasta.length }) do |io|
+            current_sequences.each do |s|
+              io.write(s.to_fasta)
+            end
+          end
+          tar.add_file_simple("phylogatr-results/#{current_species}/#{current_prefix}.afa", 0644, current_sequences.sum { |s| s.to_aligned_fasta.length }) do |io|
+            current_sequences.each do |s|
+              io.write(s.to_aligned_fasta)
+            end
+          end
+        end
+
+        current_sequences = []
+
+
+        current_occurrences = []
+        current_species = nil
+
+        # ordered by species
+        Occurrence.find_each_in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy) do |occurrence|
+          current_species ||= occurrence.taxon_species.gsub(' ', '-')
+
+          if(occurrence.taxon_species.gsub(' ', '-') != current_species)
+            # new file so we write out the current first
+            tar.add_file_simple("phylogatr-results/#{current_species}/occurrences.txt", 0644, current_occurrences.sum { |o| o.to_str.length }) do |io|
+              current_occurrences.each do |o|
+                io.write(o.to_str)
+              end
+            end
+
+            current_occurrences = [occurrence]
+            current_species = occurrence.taxon_species.gsub(' ', '-')
+          else
+            current_occurrences << occurrence
+          end
+        end
+
+        if current_occurrences.any?
+          tar.add_file_simple("phylogatr-results/#{current_species}/occurrences.txt", 0644, current_occurrences.sum { |o| o.to_str.length }) do |io|
+            current_occurrences.each do |o|
+              io.write(o.to_str)
+            end
+          end
+        end
       end
     end
   end
