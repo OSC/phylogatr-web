@@ -5,7 +5,7 @@ class SearchJob < ActiveJob::Base
 
   # in_bounds_with_taxonomy.count # so we know the maximum
   def perform(path, swpoint, nepoint, taxonomy)
-    tarball_path = Pathname.new(path).join("results.tar")
+    tarball_path = Pathname.new(path).join("phylogatr-results.tar")
     tarball_path.parent.mkpath
 
     # TODO: instead of making 1 tarball, we would want to expand to multiple for
@@ -45,10 +45,15 @@ class SearchJob < ActiveJob::Base
   # tarball till we hit the last item in the enumerator or we get to a new file
   def write_genes_to_tar_file(gene_enumerator, tar)
     prefix = gene_enumerator.peek.fasta_file_prefix
-    tar.add_file("seqs/#{prefix}.fa", 0644) do |io|
+    #FIXME: HACK we substitute ' ' for '-' as we do in the pipeline.py
+    # we might consider generating this as well when running the pipeline for
+    # convenience, or using the join table to generate both of these on the fly
+    # instead
+    species = gene_enumerator.peek.taxon_species.gsub(' ', '-')
+
+    tar.add_file("phylogatr-results/#{species}/#{prefix}.fa", 0644) do |io|
       begin
         while gene_enumerator.peek.fasta_file_prefix == prefix
-          puts "writing fasta: #{gene_enumerator.peek.to_fasta}"
           io.write(gene_enumerator.next.to_fasta)
         end
       rescue => e

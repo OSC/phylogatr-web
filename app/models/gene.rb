@@ -15,7 +15,10 @@ class Gene < ActiveRecord::Base
     count = self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).count
 
     (0..count).step(batch_size) do |offset|
-      self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).limit(batch_size).offset(offset).each do |gene|
+      self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+          .select('genes.*, occurrences.taxon_species') #FIXME: HACK
+          .limit(batch_size)
+          .offset(offset).each do |gene|
         yield gene
       end
     end
