@@ -12,8 +12,8 @@ dq:
   taxon_species: Pantherophis vulpinus
   basis_of_record: PRESERVED_SPECIMEN
   geodetic_datum: NAD27
-  coordinate_uncertainty_in_meters: 2253.09
-  issue: COORDINATE_ROUNDEDCOORDINATE_REPROJECTED
+  coordinate_uncertainty_in_meters: 2253
+  issue: "COORDINATE_ROUNDED\u0002COORDINATE_REPROJECTED"
 km1:
   accession: KM655149
   gbif_id: 2304584304
@@ -27,7 +27,7 @@ km1:
   taxon_genus: Pantherophis
   taxon_species: Pantherophis obsoletus
   basis_of_record: PRESERVED_SPECIMEN
-  issue: GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
+  issue: "GEODETIC_DATUM_ASSUMED_WGS84\u0002COUNTRY_DERIVED_FROM_COORDINATES"
 km2:
   accession: KM655171
   gbif_id: 2308296652
@@ -41,4 +41,4 @@ km2:
   taxon_genus: Pantherophis
   taxon_species: Pantherophis obsoletus
   basis_of_record: PRESERVED_SPECIMEN
-  issue: GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
+  issue: "GEODETIC_DATUM_ASSUMED_WGS84\u0002COUNTRY_DERIVED_FROM_COORDINATES"
