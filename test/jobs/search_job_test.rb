@@ -4,8 +4,8 @@ class SearchJobTest < ActiveJob::TestCase
   test "job writes tarball" do
     Dir.mktmpdir do |dir|
       #FIXME: programatically extend to capture all values
-      swpoint = [29.71533, -110.15726]
-      nepoint = [40.785091, -73.68285]
+      swpoint = [29, -110]
+      nepoint = [45, -73]
 
       dir = "/users/PZS0562/efranz/ondemand/dev/phylogatr/tmp"
       SearchJob.perform_now(dir, swpoint, nepoint, {})

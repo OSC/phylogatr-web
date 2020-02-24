@@ -1,15 +1,19 @@
 dq:
   accession: DQ902089
-  gbif_id: 2304584304
-  lat: 31.74
-  lng: -92.55
+  gbif_id: 543534886
+  lat: 41.54879418289171
+  lng: -82.8059095162788
   taxon_kingdom: Animalia
   taxon_phylum: Chordata
   taxon_class: Reptilia
   taxon_order: Squamata
   taxon_family: Colubridae
   taxon_genus: Pantherophis
-  taxon_species: Pantherophis obsoletus
+  taxon_species: Pantherophis vulpinus
+  basis_of_record: PRESERVED_SPECIMEN
+  geodetic_datum: NAD27
+  coordinate_uncertainty_in_meters: 2253.09
+  issue: COORDINATE_ROUNDEDCOORDINATE_REPROJECTED
 km1:
   accession: KM655149
   gbif_id: 2304584304
@@ -22,9 +26,11 @@ km1:
   taxon_family: Colubridae
   taxon_genus: Pantherophis
   taxon_species: Pantherophis obsoletus
+  basis_of_record: PRESERVED_SPECIMEN
+  issue: GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 km2:
   accession: KM655171
-  gbif_id: 2304584304
+  gbif_id: 2308296652
   lat: 30.07
   lng: -90.75
   taxon_kingdom: Animalia
@@ -34,3 +40,5 @@ km2:
   taxon_family: Colubridae
   taxon_genus: Pantherophis
   taxon_species: Pantherophis obsoletus
+  basis_of_record: PRESERVED_SPECIMEN
+  issue: GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
