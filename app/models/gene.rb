@@ -32,11 +32,11 @@ class Gene < ActiveRecord::Base
   end
 
   def to_fasta
-    ">#{accession}\n#{sequence}"
+    ">#{accession}\n#{sequence}\n"
   end
 
   def to_aligned_fasta
-    ">#{accession}\n#{sequence_aligned}"
+    ">#{accession}\n#{sequence_aligned}\n"
   end
 
 end
