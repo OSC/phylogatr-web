@@ -33,6 +33,14 @@ class SearchJob < ActiveJob::Base
         # want
         gene_enumerator = Gene.find_each_in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
 
+        tar.add_file("phylogatr-results/cite.txt", 0644) do |io|
+          io.write({
+            gbif_doi: '10.35000/cdl.t4hfxk',
+            genbank_release: 'GenBank Flat File Release 234.0',
+            phylogatr_code_version: 'd609767'
+          }.to_yaml)
+        end
+
         loop do
           # keep writing files till this me
           write_genes_to_tar_file gene_enumerator, tar
