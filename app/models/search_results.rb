@@ -15,6 +15,39 @@ class SearchResults
     @taxonomy = taxonomy
   end
 
+  def summary
+    Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+        .group(:fasta_file_prefix)
+        .select('count(distinct("genes"."id")) as num_seqs')
+        .select('sum(length("genes"."sequence")) as fa_length')
+        .select('sum(length("genes"."sequence_aligned")) as afa_length')
+        .select(:fasta_file_prefix)
+        .as_json
+        .map do |row|
+          # FIXME: calcuating this length can be done in the query itself
+          # with subquery
+          # or even as a stored virtual column in MySQL
+          #
+          # Rails 5 supports keyword virtual and stored
+          # https://github.com/rails/rails/commit/65bf1c60053e727835e06392d27a2fb49665484c
+          #
+          # the fa_length and afa_length omits the >, 2 newlines, and accession
+          #
+          # sqlite3 does support generated columns
+          # https://sqlite.org/gencol.html but this is in 3.31.0 and we use only
+          # 3.7 right now, switching to this would lose support for developing
+          # against both databases
+          offset = row['num_seqs']*11 # ACCESSON_LENGTH + 3 chars
+
+          {
+            'fasta_file_prefix' => row['fasta_file_prefix'],
+            'count' => row['num_seqs'],
+            'fa_length' => row['fa_length'] + offset,
+            'afa_length' => row['afa_length'] + offset,
+          }
+        end
+  end
+
   # summary query (so we will group by)
   def write_tar(file)
     Zlib::GzipWriter.wrap(file) do |gz|

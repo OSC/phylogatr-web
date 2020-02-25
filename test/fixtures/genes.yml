@@ -1,4 +1,4 @@
-one:
+vulpinus:
   accession: DQ902089
   symbol: C-MOS
   name: oocyte-maturation-factor-Mos
@@ -7,7 +7,7 @@ one:
   genbank_source_file: gbvrt29.seq
   sequence: tctcctgcatctcctcggct
   sequence_aligned: '--tctcctgcatctcctcggct'
-two:
+obsoletus1:
   accession: KM655149
   symbol: COI
   name: cytochrome-oxidase-subunit-1
@@ -16,7 +16,7 @@ two:
   genbank_source_file: gbvrt39.seq
   sequence:  ggtacaggatgaaccgtcta
   sequence_aligned: '-----ggtacaggatgaaccgtctatcc'
-three:
+obsoletus2:
   accession: KM655171
   symbol: COI
   name: cytochrome-oxidase-subunit-1
