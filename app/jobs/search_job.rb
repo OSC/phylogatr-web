@@ -5,7 +5,7 @@ class SearchJob < ActiveJob::Base
 
   # in_bounds_with_taxonomy.count # so we know the maximum
   def perform(path, swpoint, nepoint, taxonomy)
-    tarball_path = Pathname.new(path).join("phylogatr-results.tar")
+    tarball_path = Pathname.new(path).join("phylogatr-results.tar.gz")
     tarball_path.parent.mkpath
 
     # TODO: instead of making 1 tarball, we would want to expand to multiple for
@@ -25,9 +25,9 @@ class SearchJob < ActiveJob::Base
       # chunking the request, or sorting by file fasta prefix and then accession
       # prior to generation of primary keys indices for genes
       #
-      # Zlib::GzipWriter.wrap(file) do |gz|
+      Zlib::GzipWriter.wrap(file) do |gz|
 
-      Gem::Package::TarWriter.new(file) do |tar|
+      Gem::Package::TarWriter.new(gz) do |tar|
         # Note: cannot use find-each because that uses primary key and limit and
         # offset and its own sort by primary key so it ignores sort order we
         # want
@@ -121,6 +121,7 @@ class SearchJob < ActiveJob::Base
           end
         end
       end
+    end
     end
   end
 end

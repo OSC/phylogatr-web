@@ -14,12 +14,12 @@ class SearchJobTest < ActiveJob::TestCase
       #
       SearchJob.perform_now(dir, swpoint, nepoint, {})
 
-      results = File.join(dir, 'phylogatr-results.tar')
+      results = File.join(dir, 'phylogatr-results.tar.gz')
 
       assert File.file?(results), "ResultsWriter did not create results.tar"
 
       # unpack the tar
-      `cd #{dir}; tar -xf phylogatr-results.tar`
+      `cd #{dir}; tar -xzf phylogatr-results.tar.gz`
 
       expected_results = File.join(fixture_path, 'expected_results')
       actual_results = File.join(dir, 'phylogatr-results')
