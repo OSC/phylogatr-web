@@ -1,16 +1,8 @@
 Rails.application.routes.draw do
   get 'about' => 'pages#about'
-  root 'pages#about'
 
-  resources :sequences, only: :index do
-    collection do
-      get 'aligned'
-
-      #FIXME: temporary search
-      get 'search'
-      get 'new_search'
-    end
-  end
+  resources :searches, only: [:new, :create, :show]
+  root 'searches#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

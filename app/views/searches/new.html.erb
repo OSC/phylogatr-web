@@ -1,0 +1,120 @@
+<h1>Searches#new</h1>
+<p>Find me in app/views/searches/new.html.erb</p>
+
+<div class="row">
+<%= bootstrap_form_tag url: searches_path, method: :post do |f| %>
+  <div class="col-xs-12 col-md-6">
+    <div id="mapid" style="height: 400px"></div>
+    <%= f.text_field :southwest_corner_latitude %>
+    <%= f.text_field :southwest_corner_longitude %>
+    <%= f.text_field :northeast_corner_latitude %>
+    <%= f.text_field :northeast_corner_longitude %>
+
+  <%= f.submit "Search", class: "btn btn-primary" %>
+  </div>
+
+  <script>
+var map = L.map('mapid').setView([51.505, -0.09], 1);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  var drawnItems = new L.FeatureGroup().addTo(map);
+
+  var drawControl = new L.Control.Draw({
+    edit: {
+      featureGroup: drawnItems,
+      remove: true
+    },
+    draw: {
+      circle: false,
+      circlemarker: false,
+      marker: false,
+      polyline: false,
+      polygon: false
+    }
+  });
+  map.addControl(drawControl);
+
+  // https://github.com/Leaflet/Leaflet.draw/issues/315
+  var drawControlEditOnly = new L.Control.Draw({
+    edit: {
+      featureGroup: drawnItems
+    },
+    draw: false
+  });
+
+  // enable or disable rectangle drawing based on
+  // whether or not there is a rectangle
+  var updateDrawControlVisibility = function(){
+    if(drawnItems.getLayers().length > 0){
+      drawControl.remove();
+      drawControlEditOnly.addTo(map);
+    }
+    else{
+      drawControlEditOnly.remove();
+      drawControl.addTo(map);
+    }
+  };
+
+  var updateMapWithFormValues = function(){
+    //TODO: this is for initializing the map with form values on validation error
+  }
+
+  var updateFormValuesWithMap = function(){
+    var north = "", south = "", east = "", west = "";
+    if(drawnItems.getLayers().length > 0){
+      let bounds = drawnItems.getLayers()[0].getBounds();
+
+      // lat
+      north = bounds.getNorth();
+      south = bounds.getSouth();
+
+      // lng
+      east = bounds.getEast();
+      west = bounds.getWest();
+    }
+
+    $('input#northeast_corner_latitude').val(north);
+    $('input#southwest_corner_latitude').val(south);
+
+    $('input#northeast_corner_longitude').val(east);
+    $('input#southwest_corner_longitude').val(west);
+  }
+
+  // FIXME: the problem with this and why you need update
+  // visibility instead is that
+  // we need to initialize the form with selection after a form validation error
+  map.on('draw:created', function(e){
+    drawnItems.addLayer(e.layer);
+    updateDrawControlVisibility();
+    updateFormValuesWithMap();
+  });
+
+  map.on('draw:deleted', function(e){
+    drawnItems.removeLayer(e.layer);
+    updateDrawControlVisibility();
+    updateFormValuesWithMap();
+  });
+
+  map.on('draw:edited', function(e){
+    updateDrawControlVisibility();
+    updateFormValuesWithMap();
+  });
+  </script>
+
+
+
+  <div class="col-xs-12 col-md-4">
+    <% %w(kingdom phylum class order family).each do |taxon| %>
+      <%= f.select :"taxon_#{taxon}", Occurrence.distinct.pluck(:"taxon_#{taxon}"), { label: taxon.titleize, help: "Required" } %>
+    <% end %>
+
+    <%# f.select :"taxon_species", Occurrence.distinct.pluck(:"taxon_species"), { label: "Species", include_blank: true, help: "Optional"} %>
+    <%= f.text_field :"taxon_genus", help: "Optional" %>
+    <%= f.text_field :"taxon_species", help: "Optional" %> <%# FIXME: right now species name must include genus :-P; this is why searching for the option is preferable %>
+  </div>
+
+  <%= %w(kingdom phylum class order family genus).map {|t| "#{t}: " + Occurrence.distinct.pluck(:"taxon_#{t}").count.to_s } %>
+
+<% end %>

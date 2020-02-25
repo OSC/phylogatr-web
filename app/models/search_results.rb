@@ -15,12 +15,21 @@ class SearchResults
     @taxonomy = taxonomy
   end
 
+  def params
+    {
+      southwest_corner_latitude: swpoint[0],
+      southwest_corner_longitude: swpoint[1],
+      northeast_corner_latitude: nepoint[0],
+      northeast_corner_longitude: nepoint[1]
+    }.merge(taxonomy)
+  end
+
   def summary
     Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
         .group(:fasta_file_prefix)
-        .select('count(distinct("genes"."id")) as num_seqs')
-        .select('sum(length("genes"."sequence")) as fa_length')
-        .select('sum(length("genes"."sequence_aligned")) as afa_length')
+        .select('count(distinct(genes.id)) as num_seqs')
+        .select('sum(length(genes.sequence)) as fa_length')
+        .select('sum(length(genes.sequence_aligned)) as afa_length')
         .select(:fasta_file_prefix)
         .as_json
         .map do |row|
