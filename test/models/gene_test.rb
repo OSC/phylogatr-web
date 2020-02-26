@@ -12,10 +12,24 @@ class GeneTest < ActiveJob::TestCase
 
   # Succeeds:
   test "query scope to get all genes in location" do
-    swpoint = [29.71533, -110.15726]
-    nepoint = [40.785091, -73.68285]
+    swpoint = [29, -110]
+    nepoint = [45, -73]
 
-    assert 3, Gene.in_bounds_with_taxonomy(swpoint, nepoint, {}).count
+    assert_equal 3, Gene.in_bounds_with_taxonomy(swpoint, nepoint, {}).count
+  end
+
+  test "query scope to get no genes due to location" do
+    swpoint = [9, -9]
+    nepoint = [5, -5]
+
+    assert_equal 0, Gene.in_bounds_with_taxonomy(swpoint, nepoint, {}).count
+  end
+
+  test "query scope to get no genes due to taxonomy" do
+    swpoint = [29, -110]
+    nepoint = [45, -73]
+
+    assert_equal 0, Gene.in_bounds_with_taxonomy(swpoint, nepoint, {taxon_kingdom: 'Bacteria'}).count
   end
 
   test "batch iterator iterates through every gene" do
