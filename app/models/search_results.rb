@@ -77,10 +77,11 @@ class SearchResults
         # offset and its own sort by primary key so it ignores sort order we
         # want
 
+        #TODO:
         cite_yaml = {
           gbif_doi: '10.35000/cdl.t4hfxk',
           genbank_release: 'GenBank Flat File Release 234.0',
-          phylogatr_code_version: 'd609767'
+          phylogatr_code_version: Configuration.app_version
         }.stringify_keys.to_yaml
 
         tar.add_file_simple("phylogatr-results/cite.txt", 0644, cite_yaml.length) do |io|

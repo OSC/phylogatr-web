@@ -21,6 +21,27 @@ require 'dotenv'
 #
 class ConfigurationSingleton
 
+  # @return [String] memoized version string
+  def app_version
+    @app_version ||= (version_from_file(Rails.root) || version_from_git(Rails.root) || "Unknown").strip
+  end
+
+  # @return [String, nil] version string from git describe, or nil if not git repo
+  def version_from_git(dir)
+    Dir.chdir(Pathname.new(dir)) do
+      version = `git describe --always --tags 2>/dev/null`
+      version.blank? ? nil : version
+    end
+  rescue Errno::ENOENT
+    nil
+  end
+
+  # @return [String, nil] version string from VERSION file, or nil if no file avail
+  def version_from_file(dir)
+    file = Pathname.new(dir).join("VERSION")
+    file.read if file.file?
+  end
+
   # The app's configuration root directory
   # @return [Pathname] path to configuration root
   def config_root
