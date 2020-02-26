@@ -2,6 +2,8 @@ require 'test_helper'
 
 class SearchJobTest < ActiveJob::TestCase
   test "job writes tarball" do
+    Configuration.stubs(:app_version).returns('d609767')
+
     Dir.mktmpdir do |dir|
       #FIXME: programatically extend to capture all values
       swpoint = [29, -110]
