@@ -3,6 +3,7 @@ class Occurrence < ActiveRecord::Base
 
   def self.in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy)
     Occurrence.joins("INNER JOIN genes ON occurrences.accession = genes.accession")
+        .in_bounds([swpoint, nepoint]).where(taxonomy)
         .merge(Gene.where.not(sequence_aligned: nil))
         .order(:taxon_species, :accession)
   end
