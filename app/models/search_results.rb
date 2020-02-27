@@ -25,13 +25,37 @@ class SearchResults
   end
 
   def num_seqs
-    Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).count
+    @num_seqs ||= Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).count
+  end
+
+  def download_limit
+    20*1024*1024
+  end
+
+  def estimated_tar_size
+    # total number of bytes + accession, >, and newlines
+    num_bytes.values.map(&:to_i).reduce(&:+) + num_seqs*2*11
   end
 
   def num_seqs_per_file
     Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
         .group(:fasta_file_prefix)
         .count
+  end
+
+  def num_bytes
+    @num_bytes ||= Gene.from(
+      Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+          .select('genes.accession')
+          .select('length(sequence) as sequence_length')
+          .select('length(sequence_aligned) as aligned_length')
+    ).select('SUM(sequence_length) AS total_sequences_length, SUM(aligned_length) AS total_aligned_length')
+     .as_json
+     .first
+  end
+
+  def num_bytes_sequences_aligned
+    Gene.from(Gene.in_bounds_with_taxonomy(s, n, {taxon_genus: 'Pantherophis'}).select('genes.accession, length(sequence_aligned) as seqlengths')).sum('seqlengths')
   end
 
   # FIXME: the sum here did not work and was returning the wrong results
