@@ -13,7 +13,8 @@ class SearchesController < ApplicationController
   # POST /searches
   def create
     # TODO: validate using form helper
-    redirect_to searches_path(1234, search: params)
+    # TODO: id would come from  uuid or other job id, indicating where to find results
+    redirect_to search_path(1234, search: params)
   end
 
   # GET /searches/1234/?longitude=?&latitude=?&taxon_anima=?
@@ -44,7 +45,6 @@ class SearchesController < ApplicationController
       }
       format.html {
         @search_results = SearchResults.from_params(params[:search])
-        @summary = @search_results.summary
       }
     end
   end
