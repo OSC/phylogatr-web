@@ -115,6 +115,6 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
     <%= f.text_field :"taxon_species", help: "Optional" %> <%# FIXME: right now species name must include genus :-P; this is why searching for the option is preferable %>
   </div>
 
-  <%= %w(kingdom phylum class order family genus).map {|t| "#{t}: " + Occurrence.distinct.pluck(:"taxon_#{t}").count.to_s } %>
+  <%# %w(kingdom phylum class order family genus).map {|t| "#{t}: " + Occurrence.distinct.pluck(:"taxon_#{t}").count.to_s } %>
 
 <% end %>
