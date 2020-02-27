@@ -5,5 +5,4 @@
 jQuery ->
   # Set up datatable
   $('.data-table').DataTable
-    order: [0, 'desc']
-    iDisplayLength: 50
+    iDisplayLength: 10
