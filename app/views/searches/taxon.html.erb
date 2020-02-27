@@ -1,0 +1,65 @@
+<h1>taxon here</h1>
+
+<table id="taxonomy-table" class="table">
+  <thead>
+    <tr>
+      <th>Kingdom</th>
+      <th>Phylum</th>
+      <th>Class</th>
+      <th>Order</th>
+      <th>Family</th>
+      <th>Genus</th>
+      <th>Species</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% Rails.public_path.join('taxon.tsv').each_line do |line| %>
+    <tr>
+      <% line.strip.split("\t").each do |taxon| %>
+        <td><%= taxon %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+var table = $('#taxonomy-table').DataTable({
+  select: {
+    style: 'multi',
+    items: 'cell'
+    },
+    "columns": [
+    { className: "taxon_kingdom"  },
+    { className: "taxon_phylum"  },
+    { className: "taxon_class"  },
+    { className: "taxon_order"  },
+    { className: "taxon_family"  },
+    { className: "taxon_genus"  },
+    { className: "taxon_species"  }
+    ]
+});
+
+
+table.on('user-select', function(e, dt, type, cell){
+    console.log(cell.data());
+    console.log(cell);
+    dt.cells(cell.index().row, cell.index().column).filter(function(c, index){
+        console.log(c);
+        console.log(index);
+        return dt.cell(c[0].row, c[0].column).data() == cell.data()
+    }).select();
+
+    dt.column(cell.index().column).search(cell.data());
+
+    /*
+    if(type === 'cell' && indexes.length == 1){
+      console.log(e);
+      var cell = dt.cell(indexes);
+      dt.column(indexes[0].column).search(cell.data())
+      table.cells('tr', indexes[0].column, {search: 'applied'}).select().draw();
+    }
+    */
+});
+table.on('deselect', function(e, dt, type, indexes){
+});
+</script>

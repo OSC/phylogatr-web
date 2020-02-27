@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   get 'about' => 'pages#about'
 
-  resources :searches, only: [:new, :create, :show]
+  resources :searches, only: [:new, :create, :show] do
+    collection do
+      get 'taxon'
+    end
+  end
+
   root 'searches#new'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -7,6 +7,9 @@ class SearchesController < ApplicationController
     # https://thoughtbot.com/blog/activemodel-form-objects)
   end
 
+  def taxon
+  end
+
   # POST /searches
   def create
     # TODO: validate using form helper
