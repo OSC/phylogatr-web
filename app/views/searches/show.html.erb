@@ -2,10 +2,22 @@ Summary:
 
 <ul>
   <li><%= @search_results.num_seqs %> files</li>
+  <li>Estimated uncompressed tar size, excluding occurrence data: <%= number_to_human_size  @search_results.estimated_tar_size %></li>
+  <% if @search_results.estimated_tar_size > @search_results.download_limit %>
+  <li>
+    <div class="alert alert-warning">
+      Search results are estimated to be greater than <%= number_to_human_size @search_results.download_limit %>
+      Large search results are not yet well supported.
+    </div>
+  </li>
+  <% else %>
   <li><%= link_to 'Download as tarball', search_path(1234, @search_results.params.merge(format: :tgz)) %>
+  <% end %>
 </ul>
 
-<table class="table table-striped">
+
+<% if @search_results.estimated_tar_size <= @search_results.download_limit %>
+<table class="table table-striped data-table">
   <thead>
     <tr>
       <th>FASTA files</th>
@@ -13,7 +25,7 @@ Summary:
     </tr>
   </thead>
   <tbody>
-    <% @search_results.num_seqs_per_file do |fasta_file_prefix, num_seqs| %>
+    <% @search_results.num_seqs_per_file.each do |fasta_file_prefix, num_seqs| %>
     <tr>
       <td>
         <%= "#{fasta_file_prefix}.fa" %><br>
@@ -24,3 +36,4 @@ Summary:
     <% end %>
   </tbody>
 </table>
+<% end %>
