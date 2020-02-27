@@ -57,7 +57,6 @@ gem 'bootstrap_form', '~> 2.5'
 gem 'font-awesome-sass', '~> 4.6'
 gem 'dotenv-rails', '~> 2.1'
 gem 'paperclip', '~> 4.3'
-gem 'jquery-datatables-rails', '~> 3.4'
 gem 'rails_12factor', group: :production
 gem 'ood_support', '~> 0.0.2'
 gem 'ood_appkit', '~> 1.0'
