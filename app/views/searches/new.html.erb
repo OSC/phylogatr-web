@@ -111,8 +111,8 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
     <% end %>
 
     <%# f.select :"taxon_species", Occurrence.distinct.pluck(:"taxon_species"), { label: "Species", include_blank: true, help: "Optional"} %>
-    <%= f.text_field :"taxon_genus", help: "Must be exact as in db" %>
-    <%= f.text_field :"taxon_species", help: "Must be exact as in db, including genus as first part of name" %> <%# FIXME: right now species name must include genus :-P; this is why searching for the option is preferable %>
+    <%= f.text_field :"taxon_genus", label: "Genus", help: "Must be exact as in db" %>
+    <%= f.text_field :"taxon_species", label: "Genus AND Species", help: "Must be exact as in db, including genus as first part of name" %> <%# FIXME: right now species name must include genus :-P; this is why searching for the option is preferable %>
   </div>
 
   <%# %w(kingdom phylum class order family genus).map {|t| "#{t}: " + Occurrence.distinct.pluck(:"taxon_#{t}").count.to_s } %>
