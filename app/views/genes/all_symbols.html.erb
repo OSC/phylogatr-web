@@ -1,0 +1,24 @@
+<h1>Genes with product without symbol <small>Threshold greater than <%= @limit %> sequences</small></h1>
+
+<table id="symbols-table" class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Sequences</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @genes.each do |k,v| %>
+      <tr>
+        <td><%= k %></td>
+        <td><%= v %></td>
+        <td></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+var table = $('#symbols-table').DataTable({pageLength: 100});
+</script>
