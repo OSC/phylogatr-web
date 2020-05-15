@@ -32,8 +32,10 @@
 # Do not version the dependencies
 /vendor/bundle
 
-# hide muscle
+# hide bin dependencies
 /bin/muscle*
+/bin/trimal*
+/bin/readal*
 
 # ignore pyc files
 *.pyc
