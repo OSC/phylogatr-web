@@ -177,7 +177,11 @@ class SearchResults
 
           if(occurrence.taxon_species.gsub(' ', '-') != current_species)
             # new file so we write out the current first
-            tar.add_file_simple("phylogatr-results/#{current_species_dir}/occurrences.txt", 0644, current_occurrences.sum { |o| o.to_str.length }) do |io|
+            tar.add_file_simple("phylogatr-results/#{current_species_dir}/occurrences.txt", 0644, current_occurrences.sum { |o| o.to_str.length }+Occurrence.headers_tsv.length) do |io|
+              # write headers
+              io.write(Occurrence.headers_tsv)
+
+              # write occurrences
               current_occurrences.each do |o|
                 io.write(o.to_str)
               end

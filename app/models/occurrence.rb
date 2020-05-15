@@ -24,7 +24,7 @@ class Occurrence < ActiveRecord::Base
     end
   end
 
-  def to_str
+  def self.headers
     %w(
       accession
       gbif_id
@@ -42,6 +42,14 @@ class Occurrence < ActiveRecord::Base
       geodetic_datum
       coordinate_uncertainty_in_meters
       issue
-    ).map {|a| read_attribute_before_type_cast(a) }.join("\t")+"\n"
+    )
+  end
+
+  def self.headers_tsv
+    headers.join("\t") + "\n"
+  end
+
+  def to_str
+    self.class.headers.map {|a| read_attribute_before_type_cast(a) }.join("\t")+"\n"
   end
 end
