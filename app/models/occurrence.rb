@@ -17,6 +17,7 @@ class Occurrence < ActiveRecord::Base
 
     (0..count).step(batch_size) do |offset|
       self.in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy)
+          .select('occurrences.*, genes.taxon_genbank_species')
           .limit(batch_size)
           .offset(offset).each do |occurrence|
         yield occurrence
@@ -38,6 +39,7 @@ class Occurrence < ActiveRecord::Base
       taxon_genus
       taxon_species
       taxon_subspecies
+      different_genbank_species
       basis_of_record
       geodetic_datum
       coordinate_uncertainty_in_meters
@@ -50,6 +52,14 @@ class Occurrence < ActiveRecord::Base
   end
   def longitude
     read_attribute_before_type_cast(:lng)
+  end
+
+  def different_genbank_species
+    if attribute_present?(:taxon_genbank_species) && read_attribute(:taxon_genbank_species) != taxon_species
+      read_attribute(:taxon_genbank_species)
+    else
+      ""
+    end
   end
 
   def self.headers_tsv
