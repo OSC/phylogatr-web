@@ -28,8 +28,8 @@ class Occurrence < ActiveRecord::Base
     %w(
       accession
       gbif_id
-      lat
-      lng
+      latitude
+      longitude
       taxon_kingdom
       taxon_phylum
       taxon_class
@@ -45,11 +45,18 @@ class Occurrence < ActiveRecord::Base
     )
   end
 
+  def latitude
+    read_attribute_before_type_cast(:lat)
+  end
+  def longitude
+    read_attribute_before_type_cast(:lng)
+  end
+
   def self.headers_tsv
     headers.join("\t") + "\n"
   end
 
   def to_str
-    self.class.headers.map {|a| read_attribute_before_type_cast(a) }.join("\t")+"\n"
+    self.class.headers.map {|a| self.send(a) }.join("\t")+"\n"
   end
 end
