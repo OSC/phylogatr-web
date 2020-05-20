@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Conflicting Mappings") do |sheet|
+  sheet.add_row ["Sequences", "Product", "Symbol", "New Symbol"]
+
+  @genes.sort_by{|k,v| k.downcase }.each do |product,v|
+    v.each do |mapping|
+      sheet.add_row [mapping[1], product, mapping[0][0]]
+    end
+  end
+end

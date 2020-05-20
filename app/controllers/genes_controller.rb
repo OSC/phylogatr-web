@@ -18,6 +18,10 @@ class GenesController < ApplicationController
     #     [["COX1", "cytochrome-oxidase-subunit-1"], 2479]
     #   ],
     # }
+    respond_to do |format|
+      format.xlsx
+      format.html
+    end
   end
 
   def product_and_symbol
@@ -56,5 +60,10 @@ class GenesController < ApplicationController
                   .order('count_id desc')
                   .count('id')
              ).select {|k,v| v > @limit }
+
+    respond_to do |format|
+      format.xlsx
+      format.html
+    end
   end
 end

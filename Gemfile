@@ -64,3 +64,6 @@ gem 'mocha'
 
 gem 'bio'
 gem 'geokit-rails'
+
+gem 'caxlsx'
+gem 'caxlsx_rails'
