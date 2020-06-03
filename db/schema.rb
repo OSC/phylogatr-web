@@ -11,50 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200218001221) do
+ActiveRecord::Schema.define(version: 20200602200443) do
 
   create_table "genes", force: :cascade do |t|
-    t.string "accession"
-    t.string "symbol"
-    t.string "name"
-    t.string "fasta_file_prefix"
-    t.string "taxon_genbank_species"
-    t.string "genbank_source_file"
-    t.text   "sequence",              limit: 16777215
-    t.text   "sequence_aligned",      limit: 16777215
+    t.string "accession",                limit: 255
+    t.string "symbol",                   limit: 255
+    t.string "name",                     limit: 255
+    t.string "fasta_file_prefix",        limit: 255
+    t.string "taxon_genbank_species",    limit: 255
+    t.string "genbank_source_file",      limit: 255
+    t.text   "sequence",                 limit: 16777215
+    t.text   "sequence_aligned",         limit: 16777215
+    t.string "taxon_occurrence_species", limit: 255
   end
 
-  add_index "genes", ["accession"], name: "index_genes_on_accession"
-  add_index "genes", ["fasta_file_prefix", "accession"], name: "index_genes_on_fasta_file_prefix_and_accession"
+  add_index "genes", ["accession"], name: "index_genes_on_accession", using: :btree
+  add_index "genes", ["fasta_file_prefix", "accession"], name: "index_genes_on_fasta_file_prefix_and_accession", using: :btree
+  add_index "genes", ["taxon_occurrence_species"], name: "index_genes_on_taxon_occurrence_species", using: :btree
 
   create_table "occurrences", force: :cascade do |t|
-    t.string  "accession"
+    t.string  "accession",                        limit: 255
     t.integer "gbif_id",                          limit: 8
-    t.decimal "lat",                                        precision: 15, scale: 10
-    t.decimal "lng",                                        precision: 15, scale: 10
-    t.string  "taxon_kingdom"
-    t.string  "taxon_phylum"
-    t.string  "taxon_class"
-    t.string  "taxon_order"
-    t.string  "taxon_family"
-    t.string  "taxon_genus"
-    t.string  "taxon_species"
-    t.string  "taxon_subspecies"
-    t.string  "basis_of_record"
-    t.string  "geodetic_datum"
-    t.integer "coordinate_uncertainty_in_meters"
-    t.string  "issue"
+    t.decimal "lat",                                          precision: 15, scale: 10
+    t.decimal "lng",                                          precision: 15, scale: 10
+    t.string  "taxon_kingdom",                    limit: 255
+    t.string  "taxon_phylum",                     limit: 255
+    t.string  "taxon_class",                      limit: 255
+    t.string  "taxon_order",                      limit: 255
+    t.string  "taxon_family",                     limit: 255
+    t.string  "taxon_genus",                      limit: 255
+    t.string  "taxon_species",                    limit: 255
+    t.string  "taxon_subspecies",                 limit: 255
+    t.string  "basis_of_record",                  limit: 255
+    t.string  "geodetic_datum",                   limit: 255
+    t.integer "coordinate_uncertainty_in_meters", limit: 4
+    t.string  "issue",                            limit: 255
   end
 
-  add_index "occurrences", ["accession"], name: "index_occurrences_on_accession"
-  add_index "occurrences", ["lat"], name: "index_occurrences_on_lat"
-  add_index "occurrences", ["lng"], name: "index_occurrences_on_lng"
-  add_index "occurrences", ["taxon_class"], name: "index_occurrences_on_taxon_class"
-  add_index "occurrences", ["taxon_family"], name: "index_occurrences_on_taxon_family"
-  add_index "occurrences", ["taxon_genus"], name: "index_occurrences_on_taxon_genus"
-  add_index "occurrences", ["taxon_kingdom"], name: "index_occurrences_on_taxon_kingdom"
-  add_index "occurrences", ["taxon_order"], name: "index_occurrences_on_taxon_order"
-  add_index "occurrences", ["taxon_phylum"], name: "index_occurrences_on_taxon_phylum"
-  add_index "occurrences", ["taxon_species"], name: "index_occurrences_on_taxon_species"
+  add_index "occurrences", ["accession"], name: "index_occurrences_on_accession", using: :btree
+  add_index "occurrences", ["lat"], name: "index_occurrences_on_lat", using: :btree
+  add_index "occurrences", ["lng"], name: "index_occurrences_on_lng", using: :btree
+  add_index "occurrences", ["taxon_class"], name: "index_occurrences_on_taxon_class", using: :btree
+  add_index "occurrences", ["taxon_family"], name: "index_occurrences_on_taxon_family", using: :btree
+  add_index "occurrences", ["taxon_genus"], name: "index_occurrences_on_taxon_genus", using: :btree
+  add_index "occurrences", ["taxon_kingdom"], name: "index_occurrences_on_taxon_kingdom", using: :btree
+  add_index "occurrences", ["taxon_order"], name: "index_occurrences_on_taxon_order", using: :btree
+  add_index "occurrences", ["taxon_phylum"], name: "index_occurrences_on_taxon_phylum", using: :btree
+  add_index "occurrences", ["taxon_species"], name: "index_occurrences_on_taxon_species", using: :btree
 
 end
