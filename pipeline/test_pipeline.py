@@ -56,27 +56,32 @@ class TestPipeline(unittest.TestCase):
         self.assertEqual('Pantherophis v.', gene.species())
         self.assertEqual('Pantherophis v.', gene.species_different_from_occurrence())
 
+    def assertFileContentEqual(self, expected, actual):
+        expected_lines, actual_lines = expected.split("\n"), actual.split("\n")
+        self.assertEqual(len(expected_lines), len(actual_lines))
+        self.assertEqual(expected[0], actual[0])
+        for i in range(0, len(expected)):
+            self.assertEqual(expected[i], actual[i])
+
     def test_write_genes_for_sequences(self):
-        out = StringIO()
+        # allow seeing full diff in assertion
+        self.maxDiff = None
+
+        genes_out, occurrences_out = StringIO(), StringIO()
         seq_path = 'test/fixtures/panthropis.seq'
         gbif_path = 'test/fixtures/panthropis.seq.idx.occurrences'
         with open(gbif_path, 'r') as gbif_file: 
             p = Pipeline(gbif_path, seq_path,'test/fixtures')
             db = p.make_index()
-            p.write_genes_for_sequences_in_occurrences(gbif_file, db, out)
+            p.write_genes_for_sequences_in_occurrences(gbif_file, db, genes_out, occurrences_out)
 
-            self.maxDiff = None
-            expected = Path('test/fixtures/expected_genes').read_text().split("\n")
-            actual = out.getvalue().split("\n")
-
-            # test first line
-            self.assertEqual(expected[0], actual[0])
-            self.assertEqual(len(expected), len(actual))
-            for i in range(0, len(expected)):
-                self.assertEqual(expected[i], actual[i])
+            self.assertFileContentEqual(Path('test/fixtures/expected_genes').read_text(), genes_out.getvalue())
+            self.assertEqual(Path('test/fixtures/expected_genes_occurrences').read_text(), occurrences_out.getvalue())
+            self.assertFileContentEqual(Path('test/fixtures/expected_genes_occurrences').read_text(), occurrences_out.getvalue())
 
             db.close()
-            out.close()
+            genes_out.close()
+            occurrences_out.close()
         
 
 if __name__ == '__main__':

@@ -3,6 +3,8 @@ import re
 import os
 import enum
 from Bio import SeqIO
+from collections import OrderedDict
+import pprint
 
 
 # FIXME: changing occurrence to an object would make the code easier to read
@@ -22,7 +24,48 @@ class OccurrenceRecordIndex(enum.IntEnum):
     SUBSPECIES = enum.auto()
     BASIS_OF_RECORD = enum.auto()
     GEODETIC_DATUM = enum.auto()
+    COORDINATE_UNCERTAINTIY_IN_METERS = enum.auto()
     ISSUE  = enum.auto()
+
+
+# precedence is the value - larger is higher precendence
+VALID_BASIS = {"PRESERVED_SPECIMEN":3, "MATERIAL_SAMPLE":2, "HUMAN_OBSERVATION":1, "MACHINE_OBSERVATION":0  }
+
+class OccurrencesWriter:
+    def __init__(self):
+        self.occurrences = OrderedDict() 
+
+
+    def add_with_gene(self, occurrence, different_species):
+        path = os.path.join(occurrence[OccurrenceRecordIndex.CLASS],
+               occurrence[OccurrenceRecordIndex.ORDER],
+               occurrence[OccurrenceRecordIndex.FAMILY],
+               occurrence[OccurrenceRecordIndex.SPECIES]).replace(' ', '-')
+
+        self.occurrences[occurrence[OccurrenceRecordIndex.ACCESSION]] = (occurrence + [different_species, path])
+
+    def add(self, occurrence):
+        accession = occurrence[OccurrenceRecordIndex.ACCESSION]
+
+        if accession in self.occurrences and self.greater_than(occurrence, self.occurrences[accession]):
+            self.occurrences[accession] = occurrence + self.occurrences[accession][-2:]
+
+    def write(self, out_file):
+        for o in self.occurrences.values():
+            # pprint.pprint(o)
+            #FIXME: hack - a  newline is added to the end of occurrence, not sure where
+            out_file.write("\t".join(o).replace('\n','') + "\n")
+
+    # retur true if o1 > o2; false otherwise
+    def greater_than(self, o1, o2):
+        b1 = VALID_BASIS.get(o1[OccurrenceRecordIndex.BASIS_OF_RECORD]) or 0
+        b2 = VALID_BASIS.get(o2[OccurrenceRecordIndex.BASIS_OF_RECORD]) or 0
+
+        # TODO: add distance in meters, other metrics after refactoring to Occurrence class
+        # and improving tests
+        return b1 > b2
+        # return False
+
 
 def occurrence_without_null(occurrence):
     return ['' if x.strip() == '\\N' else x for x in occurrence]
@@ -100,8 +143,8 @@ class Pipeline:
         self.genbank_path = genbank_path
         self.output_dir = output_dir
 
-        self.output_occurrences_path = os.path.join(self.output_dir, os.path.basename(self.genbank_path) + ".gbif.tsv");
         self.output_genes_path = os.path.join(self.output_dir, os.path.basename(self.genbank_path) + ".genes.tsv");
+        self.output_occurrences_path = os.path.join(self.output_dir, os.path.basename(self.genbank_path) + ".genes.tsv.occurrences");
 
     def index_path(self):
         return os.path.join(self.output_dir, os.path.basename(self.genbank_path) + ".idx");
@@ -118,9 +161,14 @@ class Pipeline:
         # TODO: gene.length() and gene.abbreviation()
         out_file.write("\t".join([gene.accession(), gene.symbol(), gene.name(), gene.fasta_file_prefix(), gene.species(), self.genbank_filename(), gene.sequence().lower()])+ "\n")
 
-    def write_genes_for_sequences_in_occurrences(self, gbif_file, db, out_genes_file):
+    def write_genes_for_sequences_in_occurrences(self, gbif_file, db, out_genes_file, out_occurrences_file):
         """write all the gene info to a file once for each accession in gbif_file"""
+
+        # TODO: build occurrences up now throwing out duplicates for the same accession (so Occurrence, add())
+
         accessions_processed = set()
+        occurrences = OccurrencesWriter()
+
         for line in gbif_file:
             occurrence = line.split("\t")
             accession = occurrence[OccurrenceRecordIndex.ACCESSION]
@@ -132,8 +180,15 @@ class Pipeline:
                         self.write_gene_metadata_record(gene, out_genes_file)
                     accessions_processed.add(accession)
 
+                    if(len(genes) > 0):
+                        occurrences.add_with_gene(occurrence, genes[0].species_different_from_occurrence())
+            else:
+                occurrences.add(occurrence)
+
+        occurrences.write(out_occurrences_file)
+
     def write_genes(self):
         db = self.make_index()
-        with open(self.gbif_path, 'r') as gbif_file, open(self.output_genes_path, 'w') as out_genes_file:
-            self.write_genes_for_sequences_in_occurrences(gbif_file, db, out_genes_file)
+        with open(self.gbif_path, 'r') as gbif_file, open(self.output_genes_path, 'w') as out_genes_file, open(self.output_occurrences_path, 'w') as out_occurrences_file:
+            self.write_genes_for_sequences_in_occurrences(gbif_file, db, out_genes_file, out_occurrences_file)
         db.close()
