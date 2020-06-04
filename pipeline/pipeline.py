@@ -57,8 +57,11 @@ class Gene:
     def end_position(self):
         return self.feature.location.end.position
 
-    def organism(self):
+    def species(self):
         return self.record.annotations.get('organism')
+
+    def species_different_from_occurrence(self):
+        return self.species() if self.species() != self.occurrence[OccurrenceRecordIndex.SPECIES] else ''
 
     def length(self):
         return self.end_position() - self.start_position()
@@ -103,52 +106,9 @@ class Pipeline:
     def index_path(self):
         return os.path.join(self.output_dir, os.path.basename(self.genbank_path) + ".idx");
 
-
     def make_index(self):
         """Create if doesn't exist, then return BioPython flatfile index"""
         return SeqIO.index_db(self.index_path(), self.genbank_path, 'genbank', None, accession_from_version)
-
-    def alt_species(self, occurrence, record):
-        alt = ''
-        organism = record.annotations.get('organism')
-
-        if(organism and organism not in (
-              occurrence[OccurrenceRecordIndex.SPECIES],
-              ' '.join([occurrence[OccurrenceRecordIndex.SPECIES], occurrence[OccurrenceRecordIndex.SUBSPECIES]])
-        )):
-            alt = organism
-
-        return alt
-
-    def write_occurrence_record(self, gbif_out_file, occurrence, record):
-        """append to end of occurrence source genbank filename and alt organism string"""
-        gbif_out_file.write("\t".join(occurrence
-         + [os.path.basename(self.genbank_path)]
-         + [self.alt_species(occurrence, record)])
-        )
-
-    def write_gene_sequence_data(self):
-        # create directory to store sequence data
-        # for each gene, use lookup to get gene short name for gene
-        # then create directory and write gene and sequences as files
-        pass
-
-
-    def filter_gbif_occurrences_on_accession(self, gbif_file, db, gbif_out_file, postprocess = None):
-        accessions_postprocessed = set()
-
-        for line in gbif_file:
-            # refactor to each_accession after move to class
-            occurrence = line.split("\t")
-            accession = occurrence[OccurrenceRecordIndex.ACCESSION]
-            record = db.get(accession)
-            if record:
-                self.write_occurrence_record(gbif_out_file, occurrence, record)
-
-                # post process only once per accession
-                if postprocess and not accession in accessions_postprocessed:
-                    postprocess(record, accession)
-                    accessions_postprocessed.add(accession)
 
     def genbank_filename(self):
         return os.path.basename(self.genbank_path)
@@ -156,7 +116,7 @@ class Pipeline:
     def write_gene_metadata_record(self, gene, out_file):
         # TODO: source = os.path.basename(self.genbank_path)
         # TODO: gene.length() and gene.abbreviation()
-        out_file.write("\t".join([gene.accession(), gene.symbol(), gene.name(), gene.fasta_file_prefix(), gene.organism(), self.genbank_filename(), gene.sequence().lower()])+ "\n")
+        out_file.write("\t".join([gene.accession(), gene.symbol(), gene.name(), gene.fasta_file_prefix(), gene.species(), self.genbank_filename(), gene.sequence().lower()])+ "\n")
 
     def write_genes_for_sequences_in_occurrences(self, gbif_file, db, out_genes_file):
         """write all the gene info to a file once for each accession in gbif_file"""
@@ -177,13 +137,3 @@ class Pipeline:
         with open(self.gbif_path, 'r') as gbif_file, open(self.output_genes_path, 'w') as out_genes_file:
             self.write_genes_for_sequences_in_occurrences(gbif_file, db, out_genes_file)
         db.close()
-
-
-    def pipeline(self):
-        db = self.make_index()
-
-        # max_gene_length = 0
-        with open(self.gbif_path, 'r') as gbif_file, open(self.output_occurrences_path, 'w') as gbif_out_file:
-            self.filter_gbif_occurrences_on_accession(gbif_file, db, gbif_out_file, self.write_gene_data)
-
-        # print(f'max_gene_length: {max_gene_length}')

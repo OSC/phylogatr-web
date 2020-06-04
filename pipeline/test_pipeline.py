@@ -4,6 +4,7 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 import pipeline
 from pipeline import Pipeline
+from pathlib import Path
 
 class TestPipeline(unittest.TestCase):
 
@@ -41,28 +42,31 @@ class TestPipeline(unittest.TestCase):
         record = SeqRecord('ATGC', annotations={'organism': 'Pantherophis vulpinus'})
         occurrence = ['' for x in range(1, len(pipeline.OccurrenceRecordIndex))]
         occurrence[pipeline.OccurrenceRecordIndex.SPECIES] = 'Pantherophis vulpinus'
+        gene = pipeline.Gene(None, record, occurrence)
 
-        self.assertEqual('', Pipeline('','','').alt_species(occurrence, record))
+        self.assertEqual('Pantherophis vulpinus', gene.species())
+        self.assertEqual('', gene.species_different_from_occurrence())
 
     def test_alt_species_different(self):
         record = SeqRecord('ATGC', annotations={'organism': 'Pantherophis v.'})
         occurrence = ['' for x in range(1, len(pipeline.OccurrenceRecordIndex))]
         occurrence[pipeline.OccurrenceRecordIndex.SPECIES] = 'Pantherophis vulpinus'
 
-        self.assertEqual('Pantherophis v.', Pipeline('','','').alt_species(occurrence, record))
+        gene = pipeline.Gene(None, record, occurrence)
+        self.assertEqual('Pantherophis v.', gene.species())
+        self.assertEqual('Pantherophis v.', gene.species_different_from_occurrence())
 
     def test_write_genes_for_sequences(self):
         out = StringIO()
         seq_path = 'test/fixtures/panthropis.seq'
         gbif_path = 'test/fixtures/panthropis.seq.idx.occurrences'
-        expected_out_path =  'test/fixtures/expected_genes'
-        with open(gbif_path, 'r') as gbif_file, open(expected_out_path, 'r') as expected_out: 
+        with open(gbif_path, 'r') as gbif_file: 
             p = Pipeline(gbif_path, seq_path,'test/fixtures')
             db = p.make_index()
             p.write_genes_for_sequences_in_occurrences(gbif_file, db, out)
 
             self.maxDiff = None
-            expected = expected_out.read().split("\n")
+            expected = Path('test/fixtures/expected_genes').read_text().split("\n")
             actual = out.getvalue().split("\n")
 
             # test first line

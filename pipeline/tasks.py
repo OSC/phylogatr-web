@@ -9,10 +9,6 @@ def make_index(c, genbank_path, output_dir):
     print(p.index_path())
 
 @task
-def run_pipeline(c, gbif_path, genbank_path, output_dir):
-    pipeline.Pipeline(gbif_path, genbank_path, output_dir).pipeline()
-
-@task
 def write_genes(c, gbif_path, genbank_path, output_dir):
     pipeline.Pipeline(gbif_path, genbank_path, output_dir).write_genes()
 
