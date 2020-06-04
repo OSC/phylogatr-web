@@ -171,8 +171,13 @@ class Pipeline:
 
         for line in gbif_file:
             occurrence = line.split("\t")
+
+            #FIXME: Occurrence class to handle this
             accession = occurrence[OccurrenceRecordIndex.ACCESSION]
-            if not accession in accessions_processed:
+            valid_basis = occurrence[OccurrenceRecordIndex.BASIS_OF_RECORD] in VALID_BASIS
+            valid_taxonomy = (not bool(re.search(r'\d', ''.join(occurrence[OccurrenceRecordIndex.KINGDOM:OccurrenceRecordIndex.SUBSPECIES]))))
+
+            if((not accession in accessions_processed) and valid_basis and valid_taxonomy):
                 record = db.get(accession)
                 if record:
                     genes = genes_for_record(record, occurrence)
@@ -182,7 +187,7 @@ class Pipeline:
 
                     if(len(genes) > 0):
                         occurrences.add_with_gene(occurrence, genes[0].species_different_from_occurrence())
-            else:
+            elif(valid_basis):
                 occurrences.add(occurrence)
 
         occurrences.write(out_occurrences_file)
