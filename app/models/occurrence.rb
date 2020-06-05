@@ -2,6 +2,7 @@ class Occurrence < ActiveRecord::Base
   acts_as_mappable
 
   def self.in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy)
+    #TODO: what to add to occurrences table so we can avoid this join?
     Occurrence.joins("INNER JOIN genes ON occurrences.accession = genes.accession")
         .in_bounds([swpoint, nepoint]).where(taxonomy)
         .merge(Gene.where.not(sequence_aligned: nil))
@@ -52,14 +53,6 @@ class Occurrence < ActiveRecord::Base
   end
   def longitude
     read_attribute_before_type_cast(:lng)
-  end
-
-  def different_genbank_species
-    if attribute_present?(:taxon_genbank_species) && read_attribute(:taxon_genbank_species) != taxon_species
-      read_attribute(:taxon_genbank_species)
-    else
-      ""
-    end
   end
 
   def self.headers_tsv
