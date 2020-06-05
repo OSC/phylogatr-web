@@ -1,6 +1,11 @@
 class Occurrence < ActiveRecord::Base
   acts_as_mappable
 
+
+  def species
+    Species.new(Configuration.genbank_root.join(species_path))
+  end
+
   def self.in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy)
     #TODO: what to add to occurrences table so we can avoid this join?
     Occurrence.joins("INNER JOIN genes ON occurrences.accession = genes.accession")

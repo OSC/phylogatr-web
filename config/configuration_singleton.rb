@@ -105,6 +105,16 @@ class ConfigurationSingleton
     Pathname.new(ENV["DATABASE_PATH"] || dataroot.join('production.sqlite3'))
   end
 
+  # The app's configuration root directory
+  # @return [Pathname] path to configuration root
+  def config_root
+    Pathname.new(ENV["OOD_APP_CONFIG_ROOT"] || "/etc/ood/config/apps/phylogatr")
+  end
+
+  def genbank_root
+    Pathname.new(ENV["GENBANK_ROOT"] || "/fs/scratch/PAS1604/genbank/genes")
+  end
+
   private
 
   # The environment
