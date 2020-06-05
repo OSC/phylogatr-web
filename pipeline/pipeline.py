@@ -94,6 +94,13 @@ class Gene:
     def fasta_file_prefix(self):
         return (self.occurrence[OccurrenceRecordIndex.SPECIES] + '-' + self.symbol()).replace(' ', '-') if self.symbol() else ''
 
+    def fasta_file_path(self):
+        return os.path.join(self.occurrence[OccurrenceRecordIndex.CLASS],
+               self.occurrence[OccurrenceRecordIndex.ORDER],
+               self.occurrence[OccurrenceRecordIndex.FAMILY],
+               self.occurrence[OccurrenceRecordIndex.SPECIES],
+               self.fasta_file_prefix()).replace(' ', '-') if self.symbol() else ''
+
     def start_position(self):
         return self.feature.location.start.position
 
@@ -162,7 +169,7 @@ class Pipeline:
     def write_gene_metadata_record(self, gene, out_file):
         # TODO: source = os.path.basename(self.genbank_path)
         # TODO: gene.length() and gene.abbreviation()
-        out_file.write("\t".join([gene.accession(), gene.symbol(), gene.name(), gene.fasta_file_prefix(), gene.species(), self.genbank_filename(), gene.sequence().lower()])+ "\n")
+        out_file.write("\t".join([gene.fasta_file_path(), gene.accession(), gene.symbol(), gene.name(), gene.fasta_file_prefix(), gene.species(), self.genbank_filename(), gene.sequence().lower()])+ "\n")
 
     def write_genes_for_sequences_in_occurrences(self, gbif_file, db, out_genes_file, out_occurrences_file):
         """write all the gene info to a file once for each accession in gbif_file"""
