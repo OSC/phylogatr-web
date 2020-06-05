@@ -70,11 +70,13 @@ function add_incrementing_index_column_to_file {
 }
 
 
-cat $TMPDIR/*.genes.tsv.occurrences | add_incrementing_index_column_to_file > $TMPDIR/gbif_occurrences_final.tsv
-cp $TMPDIR/gbif_occurrences_final.tsv $OUTPUT_DIR
-
 # 4. cat all gene files together into 1
-cat $TMPDIR/*.genes.tsv | add_incrementing_index_column_to_file > $TMPDIR/genes.tsv
-cp $TMPDIR/genes.tsv $OUTPUT_DIR
+cat $TMPDIR/*.genes.tsv.occurrences > $TMPDIR/gbif_occurrences_final.tsv
+cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
 
-# The resulting files can be imported into the database used by the web app.
+# 5. get rid of occurrences and genes that do not have 3 genes or more
+cut -f1 $TMPDIR/genes.tsv | sort | uniq -c | sort -n | ruby -ne 'puts $_.strip if($_.to_i > 2 && $_.to_i < 1000)' | cut -d ' ' -f2 | sort -k 1b,1 > $TMPDIR/genes_with_gt2_seqs
+invoke trim-genes-and-occurrences-by-fasta-paths $TMPDIR/genes.tsv $TMPDIR/gbif_occurrences_final.tsv $TMPDIR/genes_with_gt2_seqs
+
+cat $TMPDIR/gbif_occurrences_final.tsv.trimmed | add_incrementing_index_column_to_file > $OUTPUT_DIR/gbif_occurrences_final.tsv
+cat $TMPDIR/genes.tsv.trimmed | add_incrementing_index_column_to_file > $OUTPUT_DIR/genes.tsv
