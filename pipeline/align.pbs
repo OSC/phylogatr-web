@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -l nodes=2:ppn=28
+#PBS -l walltime=06:00:00
+#PBS -N phylogatr_quick_alignments
+#PBS -j oe
+#PBS -A PAS1604
+
+set -xe
+
+cd $PBS_O_WORKDIR
+
+module load pcp
+module load ruby
+
+# FIXME: change to find
+# fd --type f --extension .fa --absolute-path --full-path . 'scratch/genbank/genes' | xargs -I {} echo ./align_sequences.sh {} > alignall
+mpiexec parallel-command-processor alignall
