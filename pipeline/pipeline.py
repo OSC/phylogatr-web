@@ -132,6 +132,9 @@ class Gene:
 def genes_for_record(record, occurrence):
     return [Gene(f, record, occurrence) for f in record.features if (f.type == 'CDS' and ('gene' in f.qualifiers or 'product' in f.qualifiers)) ]
 
+def genes_with_symbols(genes):
+    return [gene for gene in genes if gene.symbol()]
+
 
 def accession_from_version(version):
     return version.split('.')[0]
@@ -180,7 +183,8 @@ class Pipeline:
             if((not accession in accessions_processed) and valid_basis and valid_taxonomy):
                 record = db.get(accession)
                 if record:
-                    genes = genes_for_record(record, occurrence)
+                    # FIXME: we will want to write out the genes without symbols to another file for debugging purposes in the future
+                    genes = genes_with_symbols(genes_for_record(record, occurrence))
                     for gene in genes:
                         self.write_gene_metadata_record(gene, out_genes_file)
                     accessions_processed.add(accession)
