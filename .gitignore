@@ -36,6 +36,19 @@
 /bin/muscle*
 /bin/trimal*
 /bin/readal*
+/bin/mafft*
+/bin/einsi
+/bin/fftns
+/bin/fftnsi
+/bin/ginsi
+/bin/linsi
+/bin/nwns
+/bin/nwnsi
+/mafft
+
+# hide job output files
+*.o[0-9][0-9][0-9][0-9]*
+
 
 # ignore pyc files
 *.pyc
