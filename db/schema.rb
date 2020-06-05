@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200602200443) do
+ActiveRecord::Schema.define(version: 20200603194212) do
 
   create_table "genes", force: :cascade do |t|
     t.string "accession",                limit: 255
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20200602200443) do
     t.text   "sequence",                 limit: 16777215
     t.text   "sequence_aligned",         limit: 16777215
     t.string "taxon_occurrence_species", limit: 255
+    t.string "species_path",             limit: 255
   end
 
   add_index "genes", ["accession"], name: "index_genes_on_accession", using: :btree
@@ -46,11 +47,17 @@ ActiveRecord::Schema.define(version: 20200602200443) do
     t.string  "geodetic_datum",                   limit: 255
     t.integer "coordinate_uncertainty_in_meters", limit: 4
     t.string  "issue",                            limit: 255
+    t.string  "different_genbank_species",        limit: 255
+    t.string  "species_path",                     limit: 255
+    t.integer "species_max_seqs_per_gene",        limit: 4
+    t.integer "species_total_seqs",               limit: 4
+    t.integer "species_total_base_pairs",         limit: 4
   end
 
   add_index "occurrences", ["accession"], name: "index_occurrences_on_accession", using: :btree
   add_index "occurrences", ["lat"], name: "index_occurrences_on_lat", using: :btree
   add_index "occurrences", ["lng"], name: "index_occurrences_on_lng", using: :btree
+  add_index "occurrences", ["species_max_seqs_per_gene"], name: "index_occurrences_on_species_max_seqs_per_gene", using: :btree
   add_index "occurrences", ["taxon_class"], name: "index_occurrences_on_taxon_class", using: :btree
   add_index "occurrences", ["taxon_family"], name: "index_occurrences_on_taxon_family", using: :btree
   add_index "occurrences", ["taxon_genus"], name: "index_occurrences_on_taxon_genus", using: :btree
