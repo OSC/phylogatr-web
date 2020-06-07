@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200605151757) do
+ActiveRecord::Schema.define(version: 20200607013731) do
 
   create_table "genes", force: :cascade do |t|
     t.string "accession",                limit: 255
@@ -52,11 +52,13 @@ ActiveRecord::Schema.define(version: 20200605151757) do
     t.integer "species_max_seqs_per_gene",        limit: 4
     t.integer "species_total_seqs",               limit: 4
     t.integer "species_total_bytes",              limit: 4
+    t.boolean "species_aligned"
   end
 
   add_index "occurrences", ["accession"], name: "index_occurrences_on_accession", using: :btree
   add_index "occurrences", ["lat"], name: "index_occurrences_on_lat", using: :btree
   add_index "occurrences", ["lng"], name: "index_occurrences_on_lng", using: :btree
+  add_index "occurrences", ["species_aligned"], name: "index_occurrences_on_species_aligned", using: :btree
   add_index "occurrences", ["species_max_seqs_per_gene"], name: "index_occurrences_on_species_max_seqs_per_gene", using: :btree
   add_index "occurrences", ["species_path"], name: "index_occurrences_on_species_path", using: :btree
   add_index "occurrences", ["taxon_class"], name: "index_occurrences_on_taxon_class", using: :btree

@@ -1,0 +1,4 @@
+Occurrence.group(:species_path).find_each do |o|
+  Occurrence.where(species_path: o.species_path).update_all(species_aligned: Species.new(Configuration.genbank_root.join(o.species_path)).aligned?)
+end
+
