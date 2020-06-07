@@ -16,6 +16,12 @@ class Species
     end
   end
 
+  def aligned?
+    # for every fa file there is a corresponding afa file
+    # means that chopping off the extensions there will be 2 of every file
+    (path.glob('*.fa').map {|f| f.basename('.fa')} - path.glob('*.afa').map {|f| f.basename('.afa')}).empty?
+  end
+
   def name
     path.basename.to_s.sub('-', ' ')
   end
