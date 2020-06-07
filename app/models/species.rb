@@ -9,6 +9,11 @@ class Species
 
   Fasta = Struct.new(:seqs, :bytes)
 
+  # FIXME: this method should not exist
+  # rather, when generating and storing file data we should also store metadata in the database
+  # and keep using the database as the access point for file information; files should only be on the file system
+  # for accessing the file contents
+  #
   def file_summaries
     @files ||= path.glob('*fa').map do |f|
       lines, bytes = `wc -lc #{Shellwords.escape(f.to_s)}`.strip.split.map(&:to_i)
@@ -16,6 +21,7 @@ class Species
     end
   end
 
+  # FIXME: this method should not exist. see above.
   def aligned?
     # for every fa file there is a corresponding afa file
     # means that chopping off the extensions there will be 2 of every file
