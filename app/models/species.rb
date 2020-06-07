@@ -1,3 +1,5 @@
+require 'shellwords'
+
 class Species
   attr_reader :path
 
@@ -9,7 +11,7 @@ class Species
 
   def file_summaries
     @files ||= path.glob('*fa').map do |f|
-      lines, bytes = `wc -lc #{f.to_s}`.strip.split.map(&:to_i)
+      lines, bytes = `wc -lc #{Shellwords.escape(f.to_s)}`.strip.split.map(&:to_i)
       Fasta.new(lines/2, bytes)
     end
   end
