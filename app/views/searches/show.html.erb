@@ -1,7 +1,7 @@
 Summary:
 
 <ul>
-  <li><%= @search_results.num_seqs %> files</li>
+  <li><%= @search_results.num_species %> species</li>
   <li>Estimated uncompressed tar size, excluding occurrence data: <%= number_to_human_size  @search_results.estimated_tar_size %></li>
   <% if @search_results.estimated_tar_size > @search_results.download_limit %>
   <li>
@@ -14,26 +14,3 @@ Summary:
   <li><%= link_to 'Download as tarball', search_path(1234, @search_results.params.merge(format: :tgz)) %>
   <% end %>
 </ul>
-
-
-<% if @search_results.estimated_tar_size <= @search_results.download_limit %>
-<table class="table table-striped data-table">
-  <thead>
-    <tr>
-      <th>FASTA files</th>
-      <th>Number of sequences</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @search_results.num_seqs_per_file.each do |fasta_file_prefix, num_seqs| %>
-    <tr>
-      <td>
-        <%= "#{fasta_file_prefix}.fa" %><br>
-        <%= "#{fasta_file_prefix}.afa" %><br>
-      </td>
-      <td><%= num_seqs %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<% end %>

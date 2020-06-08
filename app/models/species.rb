@@ -28,6 +28,11 @@ class Species
     (path.glob('*.fa').map {|f| f.basename('.fa')} - path.glob('*.afa').map {|f| f.basename('.afa')}).empty?
   end
 
+  def files
+    # both fa and afa files
+    path.glob('*fa')
+  end
+
   def name
     path.basename.to_s.sub('-', ' ')
   end

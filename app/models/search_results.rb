@@ -9,10 +9,24 @@ class SearchResults
     self.new(swpoint, nepoint, taxonomy)
   end
 
+  # ordered by precendence, 0 lowest, 6 highest
+  def taxonomy_ranks_db_keys
+    %w(kingdom phylum class order family genus species).map { |t| "taxon_#{t}" }.reverse
+  end
+
+  def simplify_taxonomy(taxonomy)
+    #TODO: tests first
+    # taxonomy.fetch(taxonomy.compact.keys.max {|a, b|
+    #   taxonomy_ranks_db_keys.index(a) <=> taxonomy_ranks_db_keys.index(b)
+    # })
+
+    taxonomy
+  end
+
   def initialize(swpoint, nepoint, taxonomy)
     @swpoint = swpoint
     @nepoint = nepoint
-    @taxonomy = taxonomy
+    @taxonomy = simplify_taxonomy(taxonomy)
   end
 
   def params
@@ -24,74 +38,32 @@ class SearchResults
     }.merge(taxonomy)
   end
 
-  def num_seqs
-    @num_seqs ||= Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).count
-  end
-
   def download_limit
     20*1024*1024
   end
 
-  def estimated_tar_size
-    # total number of bytes + accession, >, and newlines
-    num_bytes.values.map(&:to_i).reduce(&:+) + num_seqs*2*11
+  def num_species
+    # FIXME: species table
+    # FIXME: taxon_species is preferred to use once fixing pipeline issue
+    Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.count(:species_path)
   end
 
-  def num_seqs_per_file
-    Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-        .group(:fasta_file_prefix)
-        .count
-  end
-
-  def num_bytes
-    @num_bytes ||= Gene.from(
-      Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-          .select('genes.accession')
-          .select('length(sequence) as sequence_length')
-          .select('length(sequence_aligned) as aligned_length')
-    ).select('SUM(sequence_length) AS total_sequences_length, SUM(aligned_length) AS total_aligned_length')
-     .as_json
-     .first
-  end
-
-  def num_bytes_sequences_aligned
-    Gene.from(Gene.in_bounds_with_taxonomy(s, n, {taxon_genus: 'Pantherophis'}).select('genes.accession, length(sequence_aligned) as seqlengths')).sum('seqlengths')
-  end
-
-  # FIXME: the sum here did not work and was returning the wrong results
-  #
-  # def summary
-  #   Gene.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-  #       .group(:fasta_file_prefix)
-  #       .select('count(distinct(genes.id)) as num_seqs')
-  #       .select('sum(length(genes.sequence)) as fa_length')
-  #       .select('sum(length(genes.sequence_aligned)) as afa_length')
-  #       .select(:fasta_file_prefix)
-  #       .as_json
-  #       .map do |row|
-  #         # FIXME: calcuating this length can be done in the query itself
-  #         # with subquery
-  #         # or even as a stored virtual column in MySQL
-  #         #
-  #         # Rails 5 supports keyword virtual and stored
-  #         # https://github.com/rails/rails/commit/65bf1c60053e727835e06392d27a2fb49665484c
-  #         #
-  #         # the fa_length and afa_length omits the >, 2 newlines, and accession
-  #         #
-  #         # sqlite3 does support generated columns
-  #         # https://sqlite.org/gencol.html but this is in 3.31.0 and we use only
-  #         # 3.7 right now, switching to this would lose support for developing
-  #         # against both databases
-  #         offset = row['num_seqs']*11 # ACCESSON_LENGTH + 3 chars
-
-  #         {
-  #           'fasta_file_prefix' => row['fasta_file_prefix'],
-  #           'count' => row['num_seqs'],
-  #           'fa_length' => row['fa_length'] + offset,
-  #           'afa_length' => row['afa_length'] + offset,
-  #         }
-  #       end
+  # TODO:
+  # def seqs_per_species
+  #   # FIXME: species table
+  #   Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+  #     .select(:species_path, :species_total_seqs).distinct.as_json
   # end
+
+  def estimated_tar_size
+    Occurrence.from(
+      Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+       .where.not(species_total_bytes: nil)
+       .distinct
+       .select(:species_path, :species_total_bytes)
+    ).sum('subquery.species_total_bytes')
+  end
+
   def species_path(o)
     (File.join o.taxon_class, o.taxon_order, o.taxon_family, o.taxon_species).gsub(' ', '-')
   end
@@ -115,92 +87,41 @@ class SearchResults
           io.write(cite_yaml)
         end
 
-        current_sequences = []
-        current_prefix = nil
-        current_species = nil
-        current_species_dir = nil
+        #FIXME: ask for another db to setup tests
+        #FIXME: add to metrics a json field with cached summary of file sizes
+        # for writing tarballs faster, if we continue to use Ruby
+        # FIXME: pulling everyting down in 1 query...
 
-        # Gene is really a gene_sequence
-        Gene.find_each_in_bounds_with_taxonomy(swpoint, nepoint, taxonomy) do |gene|
-          current_prefix ||= gene.fasta_file_prefix
-          current_species ||= gene.taxon_species.gsub(' ', '-')
-          current_species_dir ||= species_path(gene)
-
-          if(gene.fasta_file_prefix != current_prefix)
-            # new file so we write out the current first
-            tar.add_file_simple("phylogatr-results/#{current_species_dir}/#{current_prefix}.fa", 0644, current_sequences.sum { |s| s.to_fasta.length }) do |io|
-              current_sequences.each do |s|
-                io.write(s.to_fasta)
+        species_paths = Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.pluck(:species_path)
+        species_paths.each do |species_path|
+          Species.new(Configuration.genbank_root.join(species_path)).files.each do |file|
+            tar_file_path = File.join('phylogatr-results', file.relative_path_from(Configuration.genbank_root))
+            tar.add_file_simple(tar_file_path, 0644, file.size) do |tar_file|
+              Rails.logger.debug "adding tar file: #{tar_file_path}"
+              File.open(file) do |fasta_file|
+                Rails.logger.debug "wrote to tar bytes: #{IO.copy_stream(fasta_file, tar_file)}"
               end
-            end
-
-            tar.add_file_simple("phylogatr-results/#{current_species_dir}/#{current_prefix}.afa", 0644, current_sequences.sum { |s| s.to_aligned_fasta.length }) do |io|
-              current_sequences.each do |s|
-                io.write(s.to_aligned_fasta)
-              end
-            end
-
-            current_sequences = [gene]
-            current_prefix = gene.fasta_file_prefix
-            current_species = gene.taxon_species.gsub(' ', '-')
-            current_species_dir = species_path(gene)
-          else
-            #FIXME: better to add count of sequence (and thus FASTA) here to speed things up (instead of memoizing fasta and sequence which balloons memory)
-            current_sequences << gene
-          end
-        end
-
-        if current_sequences.any?
-          tar.add_file_simple("phylogatr-results/#{current_species_dir}/#{current_prefix}.fa", 0644, current_sequences.sum { |s| s.to_fasta.length }) do |io|
-            current_sequences.each do |s|
-              io.write(s.to_fasta)
-            end
-          end
-          tar.add_file_simple("phylogatr-results/#{current_species_dir}/#{current_prefix}.afa", 0644, current_sequences.sum { |s| s.to_aligned_fasta.length }) do |io|
-            current_sequences.each do |s|
-              io.write(s.to_aligned_fasta)
             end
           end
         end
 
-        current_sequences = []
-
-
-        current_occurrences = []
-        current_species = nil
-        current_species_dir = nil
-
-        # ordered by species
-        Occurrence.find_each_in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy) do |occurrence|
-          current_species ||= occurrence.taxon_species.gsub(' ', '-')
-          current_species_dir ||= species_path(occurrence)
-
-          if(occurrence.taxon_species.gsub(' ', '-') != current_species)
-            # new file so we write out the current first
-            tar.add_file_simple("phylogatr-results/#{current_species_dir}/occurrences.txt", 0644, current_occurrences.sum { |o| o.to_str.length }+Occurrence.headers_tsv.length) do |io|
-              # write headers
-              io.write(Occurrence.headers_tsv)
-
-              # write occurrences
-              current_occurrences.each do |o|
-                io.write(o.to_str)
+        # FIXME: this uses more memory but is simpler
+        # will use far less if we reduce what we write to these files
+        species_paths.each_slice(500) do |subset|
+          Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+            .where(species_path: subset)
+            .order(:species_path)
+            .group_by(&:species_path).each { |species_path, occurrences|
+              bytesize = occurrences.sum { |o| o.to_str.length }+Occurrence.headers_tsv.length
+              tar.add_file_simple(File.join('phylogatr-results', species_path, 'occurrences.txt'), 0644, bytesize) do |io|
+                # write headers
+                io.write(Occurrence.headers_tsv)
+                # write occurrences
+                occurrences.each do |o|
+                  io.write(o.to_str)
+                end
               end
-            end
-
-            current_occurrences = [occurrence]
-            current_species = occurrence.taxon_species.gsub(' ', '-')
-            current_species_dir = species_path(occurrence)
-          else
-            current_occurrences << occurrence
-          end
-        end
-
-        if current_occurrences.any?
-          tar.add_file_simple("phylogatr-results/#{current_species_dir}/occurrences.txt", 0644, current_occurrences.sum { |o| o.to_str.length }) do |io|
-            current_occurrences.each do |o|
-              io.write(o.to_str)
-            end
-          end
+          }
         end
       end
     end

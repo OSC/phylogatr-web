@@ -1,34 +1,15 @@
 class Occurrence < ActiveRecord::Base
   acts_as_mappable
 
-
   def species
     Species.new(Configuration.genbank_root.join(species_path))
   end
 
-  def self.in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy)
+  def self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
     #TODO: what to add to occurrences table so we can avoid this join?
-    Occurrence.joins("INNER JOIN genes ON occurrences.accession = genes.accession")
+    Occurrence
         .in_bounds([swpoint, nepoint]).where(taxonomy)
-        .merge(Gene.where.not(sequence_aligned: nil))
         .order(:taxon_species, :accession)
-  end
-
-  def self.find_each_in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy, batch_size: 1024)
-    return to_enum(:find_each_in_bounds_with_taxonomy_joins_genes, swpoint, nepoint, taxonomy, batch_size: batch_size) unless block_given?
-
-    #FIXME: below is problematic if the queries are happening while the database is
-    # being modified
-    count = self.in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy).count
-
-    (0..count).step(batch_size) do |offset|
-      self.in_bounds_with_taxonomy_joins_genes(swpoint, nepoint, taxonomy)
-          .select('occurrences.*, genes.taxon_genbank_species')
-          .limit(batch_size)
-          .offset(offset).each do |occurrence|
-        yield occurrence
-      end
-    end
   end
 
   def self.headers
@@ -65,6 +46,6 @@ class Occurrence < ActiveRecord::Base
   end
 
   def to_str
-    self.class.headers.map {|a| self.send(a) }.join("\t")+"\n"
+    @str ||= self.class.headers.map {|a| self.send(a) }.join("\t")+"\n"
   end
 end
