@@ -112,6 +112,8 @@ class SearchResults
             .where(species_path: subset)
             .order(:species_path)
             .group_by(&:species_path).each { |species_path, occurrences|
+
+
               bytesize = occurrences.sum { |o| o.to_str.length }+Occurrence.headers_tsv.length
               tar.add_file_simple(File.join('phylogatr-results', species_path, 'occurrences.txt'), 0644, bytesize) do |io|
                 # write headers
@@ -120,6 +122,13 @@ class SearchResults
                 occurrences.each do |o|
                   io.write(o.to_str)
                 end
+              end
+
+              species = occurrences.first.species
+              tar.add_file_simple(File.join('phylogatr-results', species_path, 'genes.txt'), 0644, species.genes_index_filesize(occurrences.first)) do |io|
+                # write headers
+                io.write(Species.genes_index_headers_tsv)
+                io.write(species.genes_index_str(occurrences.first))
               end
           }
         end

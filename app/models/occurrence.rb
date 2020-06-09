@@ -12,33 +12,24 @@ class Occurrence < ActiveRecord::Base
         .order(:taxon_species, :accession)
   end
 
+  def latitude
+    read_attribute_before_type_cast(:lat)
+  end
+  def longitude
+    read_attribute_before_type_cast(:lng)
+  end
+
   def self.headers
     %w(
       accession
       gbif_id
       latitude
       longitude
-      taxon_kingdom
-      taxon_phylum
-      taxon_class
-      taxon_order
-      taxon_family
-      taxon_genus
-      taxon_species
-      taxon_subspecies
-      different_genbank_species
       basis_of_record
       geodetic_datum
       coordinate_uncertainty_in_meters
       issue
     )
-  end
-
-  def latitude
-    read_attribute_before_type_cast(:lat)
-  end
-  def longitude
-    read_attribute_before_type_cast(:lng)
   end
 
   def self.headers_tsv
