@@ -1,5 +1,35 @@
 ## Phylogatr
 
+### Install
+
+Clone app
+
+    git clone ... app
+    cd app
+
+Add to .bashrc
+
+    export PATH=$HOME/bin:$PATH
+    source scl_source enable rh-ruby25 rh-nodejs10
+
+Then source .bashrc: `source ~/.bashrc`
+
+Install bundler
+
+    gem install --user bundler -v 1.17.3
+
+Install gems
+
+    bin/bundle install --path vendor/bundle # scls for ruby and devel required
+
+Compile assets
+
+    RAILS_ENV=production bin/rake assets:precompile
+
+Add .env.production with database connection information and chmod 600
+
+
+
 ### Pipeline steps
 
 #### 1. Download nucleotide database
