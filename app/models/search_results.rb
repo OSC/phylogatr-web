@@ -10,23 +10,22 @@ class SearchResults
   end
 
   # ordered by precendence, 0 lowest, 6 highest
-  def taxonomy_ranks_db_keys
-    %w(kingdom phylum class order family genus species).map { |t| "taxon_#{t}" }.reverse
+  def taxonomic_ranks
+    %w(kingdom phylum class order family genus species).map { |t| "taxon_#{t}".to_sym }
   end
 
-  def simplify_taxonomy(taxonomy)
-    #TODO: tests first
-    # taxonomy.fetch(taxonomy.compact.keys.max {|a, b|
-    #   taxonomy_ranks_db_keys.index(a) <=> taxonomy_ranks_db_keys.index(b)
-    # })
-
-    taxonomy
+  def reduce_taxonomy_to_one_constraint(tax)
+    Hash[*((tax || {}).reject { |k,v|
+      v.blank?
+    }.max_by {|k, v|
+      taxonomic_ranks.index(k)
+    })]
   end
 
   def initialize(swpoint, nepoint, taxonomy)
     @swpoint = swpoint
     @nepoint = nepoint
-    @taxonomy = simplify_taxonomy(taxonomy)
+    @taxonomy = reduce_taxonomy_to_one_constraint(taxonomy)
   end
 
   def params
