@@ -28,6 +28,15 @@ class SearchResults
     @taxonomy = reduce_taxonomy_to_one_constraint(taxonomy)
   end
 
+  def to_s
+    rank, taxon = taxonomy.each_pair.first
+
+    #TODO: add longitude and lattitudes of each point?
+    # or human readable location reference
+
+    "#{rank.to_s.sub('taxon_', '').capitalize} #{taxon}"
+  end
+
   def params
     {
       southwest_corner_latitude: swpoint[0],
