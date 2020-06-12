@@ -30,11 +30,17 @@ class SearchResults
 
   def to_s
     rank, taxon = taxonomy.each_pair.first
+    taxon_summary = "#{rank.to_s.sub('taxon_', '').capitalize} #{taxon}"
 
-    #TODO: add longitude and lattitudes of each point?
-    # or human readable location reference
-
-    "#{rank.to_s.sub('taxon_', '').capitalize} #{taxon}"
+    if swpoint.all?(&:present?) && nepoint.all?(&:present?) && taxonomy.present?
+      "#{taxon_summary} in bounds southwest #{swpoint} to northeast #{nepoint}"
+    elsif swpoint.all?(&:present?) && nepoint.all?(&:present?)
+      "All in bounds southwest #{swpoint} to northeast #{nepoint}"
+    elsif taxonomy.present?
+      "#{taxon_summary}"
+    else
+      "All"
+    end
   end
 
   def params

@@ -6,10 +6,15 @@ class Occurrence < ActiveRecord::Base
   end
 
   def self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-    #TODO: what to add to occurrences table so we can avoid this join?
-    Occurrence
-        .in_bounds([swpoint, nepoint]).where(taxonomy)
-        .order(:taxon_species, :accession)
+    if swpoint.all?(&:present?) && nepoint.all?(&:present?) && taxonomy.present?
+      Occurrence.in_bounds([swpoint, nepoint]).where(taxonomy).order(:taxon_species, :accession)
+    elsif swpoint.all?(&:present?) && nepoint.all?(&:present?)
+      Occurrence.in_bounds([swpoint, nepoint]).order(:taxon_species, :accession)
+    elsif taxonomy.present?
+      Occurrence.where(taxonomy).order(:taxon_species, :accession)
+    else
+      Occurrence.all
+    end
   end
 
   def latitude
