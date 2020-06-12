@@ -1,0 +1,70 @@
+<%# needs 6 input fields with ids taxon0, taxon1, taxon2, etc. %>
+<table id="taxonomy-table" class="table">
+  <thead>
+    <tr>
+      <th>Kingdom</th>
+      <th>Phylum</th>
+      <th>Class</th>
+      <th>Order</th>
+      <th>Family</th>
+      <th>Genus</th>
+      <th>Species</th>
+    </tr>
+    <tr id="constraints" >
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<script>
+
+var table = $('#taxonomy-table').DataTable({
+  columnDefs: [
+    {
+      targets: '_all',
+      render: function ( data, type, row, meta ) {
+        //TODO: add class if column search exists based on meta.col (column index)
+        //
+        // if(column(meta.col).search() == ""){
+        //   return data;
+        // }
+        // else{
+        //   return '<span style="color: grey">' + data + '</span>';
+        // }
+        return data;
+      }
+    }
+  ],
+    "bSortCellsTop": true,
+    "ajax": '<%= json_url %>'
+});
+
+$('#taxonomy-table thead').on('click', '#constraints th', function(e) {
+  table.column(this.cellIndex).search("").draw();
+});
+
+$('#taxonomy-table tbody').on('click', 'td', function(e) {
+  table.column(this.cellIndex).search(this.textContent).draw()
+});
+
+table.on('preDraw', function(){
+  console.log('preDraw event')
+  $('#constraints th').each(function(index){
+    let value = table.column(index).search();
+
+    console.log(`${index}:${value}`);
+
+    let label = value == "" ? "" : `${value} <button type="button" class="close inline-button" data-dismiss="alert" aria-label="Remove constraint: ${value}"><span aria-hidden="true">&times;</span></button>`;
+
+    $(this).html(label);
+    $(`#taxon${index}`).val(value);
+  });
+});
+</script>

@@ -5,17 +5,21 @@
 
 <h2>New Search</h2>
 
+<h3>Step 1: Specify location constraint</h3>
+
 <div class="row">
 <%= bootstrap_form_tag url: searches_path, method: :post do |f| %>
   <div class="col-xs-12 col-md-6">
     <div id="mapid" style="height: 400px"></div>
+  </div>
+  <div class="col-xs-12 col-md-4">
     <%= f.text_field :southwest_corner_latitude, help: "Required" %>
     <%= f.text_field :southwest_corner_longitude, help: "Required" %>
     <%= f.text_field :northeast_corner_latitude, help: "Required" %>
     <%= f.text_field :northeast_corner_longitude, help: "Required" %>
-
-  <%= f.submit "Search", class: "btn btn-primary" %>
   </div>
+
+ </div>
 
   <script>
 var map = L.map('mapid').setView([51.505, -0.09], 1);
@@ -108,17 +112,19 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
   </script>
 
 
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <h3>Step 2: Specify taxonomic constraint</h3>
 
-  <div class="col-xs-12 col-md-4">
-    <% %w(kingdom phylum class order family).each do |taxon| %>
-      <%= f.select :"taxon_#{taxon}", Occurrence.distinct.pluck(:"taxon_#{taxon}"), { label: taxon.titleize, include_blank: true  }  %>
+    <% %w(kingdom phylum class order family genus species).each_with_index do |taxon, index| %>
+      <%= hidden_field_tag :"taxon_#{taxon}", "", :id => "taxon#{index}" %>
     <% end %>
-
-    <%# f.select :"taxon_species", Occurrence.distinct.pluck(:"taxon_species"), { label: "Species", include_blank: true, help: "Optional"} %>
-    <%= f.text_field :"taxon_genus", label: "Genus", help: "Must be exact as in db" %>
-    <%= f.text_field :"taxon_species", label: "Genus AND Species", help: "Must be exact as in db, including genus as first part of name" %> <%# FIXME: right now species name must include genus :-P; this is why searching for the option is preferable %>
+    <p>Click the taxon to select it as a constraint for the search. If you select multiple, it will filter the table.</p>
+    <br>
+    <%= render partial: 'taxonomy_control', locals: { json_url: ENV['RAILS_RELATIVE_URL_ROOT'] + '/taxon.tsv.json' } %>
   </div>
+</div>
 
-  <%# %w(kingdom phylum class order family genus).map {|t| "#{t}: " + Occurrence.distinct.pluck(:"taxon_#{t}").count.to_s } %>
-
+<hr>
+  <%= f.submit "Submit Search", class: "btn btn-primary btn-lg" %>
 <% end %>
