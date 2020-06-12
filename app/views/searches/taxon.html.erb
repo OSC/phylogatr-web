@@ -1,4 +1,12 @@
-<h1>taxon here</h1>
+<h1>Data tables</h1>
+
+<div class="tag-area">
+</div>
+
+<% %w(kingdom phylum class order family genus species).each_with_index do |taxon, index| %>
+  <%= hidden_field_tag :"taxon_#{taxon}", "", :id => "taxon#{index}" %>
+<% end %>
+
 
 <table id="taxonomy-table" class="table">
   <thead>
@@ -11,55 +19,61 @@
       <th>Genus</th>
       <th>Species</th>
     </tr>
+    <tr id="constraints" >
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   </thead>
   <tbody>
-  <% Rails.public_path.join('taxon.tsv').each_line do |line| %>
-    <tr>
-      <% line.strip.split("\t").each do |taxon| %>
-        <td><%= taxon %></td>
-      <% end %>
-    </tr>
-  <% end %>
   </tbody>
 </table>
 <script>
+
 var table = $('#taxonomy-table').DataTable({
-  select: {
-    style: 'multi',
-    items: 'cell'
-    },
-    "columns": [
-    { className: "taxon_kingdom"  },
-    { className: "taxon_phylum"  },
-    { className: "taxon_class"  },
-    { className: "taxon_order"  },
-    { className: "taxon_family"  },
-    { className: "taxon_genus"  },
-    { className: "taxon_species"  }
-    ]
-});
-
-
-table.on('user-select', function(e, dt, type, cell){
-    console.log(cell.data());
-    console.log(cell);
-    dt.cells(cell.index().row, cell.index().column).filter(function(c, index){
-        console.log(c);
-        console.log(index);
-        return dt.cell(c[0].row, c[0].column).data() == cell.data()
-    }).select();
-
-    dt.column(cell.index().column).search(cell.data());
-
-    /*
-    if(type === 'cell' && indexes.length == 1){
-      console.log(e);
-      var cell = dt.cell(indexes);
-      dt.column(indexes[0].column).search(cell.data())
-      table.cells('tr', indexes[0].column, {search: 'applied'}).select().draw();
+  columnDefs: [
+    {
+      targets: '_all',
+      render: function ( data, type, row, meta ) {
+        //TODO: add class if column search exists based on meta.col (column index)
+        //
+        // if(column(meta.col).search() == ""){
+        //   return data;
+        // }
+        // else{
+        //   return '<span style="color: grey">' + data + '</span>';
+        // }
+        return data;
+      }
     }
-    */
+  ],
+    "bSortCellsTop": true,
+    "ajax": '/taxon.tsv.json'
 });
-table.on('deselect', function(e, dt, type, indexes){
+
+$('#taxonomy-table thead').on('click', '#constraints th', function(e) {
+  table.column(this.cellIndex).search("").draw();
+});
+
+$('#taxonomy-table tbody').on('click', 'td', function(e) {
+  table.column(this.cellIndex).search(this.textContent).draw()
+});
+
+table.on('preDraw', function(){
+  console.log('preDraw event')
+  $('#constraints th').each(function(index){
+    let value = table.column(index).search();
+
+    console.log(`${index}:${value}`);
+
+    let label = value == "" ? "" : `${value} <button type="button" class="close inline-button" data-dismiss="alert" aria-label="Remove constraint: ${value}"><span aria-hidden="true">&times;</span></button>`;
+
+    $(this).html(label);
+    $(`#taxon${index}`).val(value);
+  });
 });
 </script>
