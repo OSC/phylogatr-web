@@ -16,14 +16,14 @@ class Species
     end
   end
 
-  # FIXME: this method should not exist
-  # rather, when generating and storing file data we should also store metadata in the database
-  # and keep using the database as the access point for file information; files should only be on the file system
-  # for accessing the file contents
-  #
+  def line_and_byte_count(path)
+    # much faster than wc https://gist.github.com/guilhermesimoes/d69e547884e556c3dc95
+    File.foreach(path).reduce([0, 0]) {|counts, line| [counts[0]+1, counts[1]+line.length] }
+  end
+
   def file_summaries
     @files ||= path.glob('*fa').map do |f|
-      lines, bytes = `wc -lc #{Shellwords.escape(f.to_s)}`.strip.split.map(&:to_i)
+      lines, bytes = line_and_byte_count(f)
       Fasta.new(lines/2, bytes, f.basename('.*'), f.extname)
     end
   end
