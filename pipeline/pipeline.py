@@ -5,6 +5,8 @@ import enum
 from Bio import SeqIO
 from collections import OrderedDict
 import pprint
+import functools
+from pathlib import Path
 
 
 # FIXME: changing occurrence to an object would make the code easier to read
@@ -81,6 +83,9 @@ def expand_gbif_occurrences_on_accession(gbif_file, gbif_out_file):
             for accession in accession_regex.findall(parts[0]):
                 gbif_out_file.write("\t".join([accession] + parts[1:]))
 
+@functools.lru_cache()
+def product_symbol_mappings():
+    return dict([m.split("\t") for m in Path('product_symbol_lookup.tsv').read_text().strip().split("\n")])
 
 class Gene:
     def __init__(self, feature, record, occurrence):
@@ -121,6 +126,10 @@ class Gene:
         return ((self.feature.qualifiers.get('product') or [''])[0]).replace(' ','-').replace('/','-').replace("'",'').replace(".",'')
 
     def symbol(self):
+        '''Use product mapping table first to determine symbol'''
+        return product_symbol_mappings().get(self.name(), self.original_symbol())
+
+    def original_symbol(self):
         return ((self.feature.qualifiers.get('gene') or [''])[0] or '').replace(' ','-').replace('/','-').replace("'",'').replace(".",'').upper()
 
     def sequence(self):
