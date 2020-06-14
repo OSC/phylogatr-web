@@ -50,7 +50,7 @@ class Species
 
   def update_occurrences
     Occurrence.where(taxon_species: name)
-      .update_all("species_max_seqs_per_gene = '#{max_seqs}', species_total_seqs = '#{total_seqs}', species_total_bytes = '#{total_bytes}'")
+      .update_all(species_max_seqs_per_gene: max_seqs, species_total_seqs: total_seqs, species_total_bytes: total_bytes, species_aligned: aligned?)
   end
 
   # which file has the most sequences?
