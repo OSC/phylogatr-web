@@ -19,6 +19,7 @@ cd $PBS_O_WORKDIR
 # 1. given original gbif occurrences tsv, expand on accessions column so there is 1 accession per row
 
 module load pcp
+module load ruby
 module load python/3.6-conda5.2
 source activate local
 
@@ -79,4 +80,33 @@ cut -f1 $TMPDIR/genes.tsv | sort | uniq -c | sort -n | ruby -ne 'puts $_.strip i
 invoke trim-genes-and-occurrences-by-fasta-paths $TMPDIR/genes.tsv $TMPDIR/gbif_occurrences_final.tsv $TMPDIR/genes_with_gt2_seqs
 
 cat $TMPDIR/gbif_occurrences_final.tsv.trimmed | add_incrementing_index_column_to_file > $OUTPUT_DIR/gbif_occurrences_final.tsv
-cat $TMPDIR/genes.tsv.trimmed | add_incrementing_index_column_to_file > $OUTPUT_DIR/genes.tsv
+
+# 6. create $OUTPUT/ genes/, genes.tar.gz, and genes.tsv
+
+cat $TMPDIR/genes.tsv.trimmed | add_incrementing_index_column_to_file > $TMPDIR/genes.tsv
+mkdir $TMPDIR/genes
+
+# copy cache (this is regenerated after alignments)
+cp $OUTPUT_DIR/genes.db $TMPDIR/genes.db
+
+# create the directory structure from the genes.tsv file
+# FIXME: genes.rb should use the cache to write the fa files, not the alignment
+# commands below - or have a separate script for updating alignments
+#
+cat $TMPDIR/genes.tsv | ruby genes.rb $TMPDIR/genes
+
+# add back alignments from cache
+# update alignall file for what needs aligned
+#FIXME: needs_aligned needs to have this $OUTPUT_DIR replace the $TMPDIR using sed
+ruby generate_alignment_commands.rb $TMPDIR/genes $TMPDIR/genes.db > $OUTPUT_DIR/needs_aligned
+
+# sync genes
+# create tarball for future use
+cd $TMPDIR
+tar czf genes.tar.gz genes
+cp genes.tar.gz $OUTPUT_DIR
+
+#FIXME: this previously did not work
+# rsync -a --ignore-times --delete genes $OUTPUT_DIR/genes
+
+cp genes.tsv $OUTPUT_DIR/genes.tsv
