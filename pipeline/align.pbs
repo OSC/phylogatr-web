@@ -1,6 +1,6 @@
 #!/bin/bash
-#PBS -l nodes=2:ppn=28
-#PBS -l walltime=06:00:00
+#PBS -l nodes=4:ppn=28
+#PBS -l walltime=10:00:00
 #PBS -N phylogatr_quick_alignments
 #PBS -j oe
 #PBS -A PAS1604
@@ -14,4 +14,9 @@ module load ruby
 
 # FIXME: change to find
 # fd --type f --extension .fa --absolute-path --full-path . 'scratch/genbank/genes' | xargs -I {} echo ./align_sequences.sh {} > alignall
+#
+#
+# ./align_sequences.sh /fs/scratch/PAS1604/genbank/genes/Actinopterygii/Acipenseriformes/Acipenseridae/Acipenser-ruthenus/Acipenser-ruthenus-COI.fa
+# ./align_sequences.sh /fs/scratch/PAS1604/genbank/genes/Actinopterygii/Albuliformes/Albulidae/Albula-vulpes/Albula-vulpes-COI.fa
+
 mpiexec parallel-command-processor alignall
