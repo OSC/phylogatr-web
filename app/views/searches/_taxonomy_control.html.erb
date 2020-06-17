@@ -25,21 +25,30 @@
 </table>
 <script>
 
+
+//TODO: define a model class/object with getter and setter
+// and use that for syncing the input and the column searches
+
 var table = $('#taxonomy-table').DataTable({
   language: { search: "Filter:" },
   columnDefs: [
     {
       targets: '_all',
       render: function ( data, type, row, meta ) {
-        //TODO: add class if column search exists based on meta.col (column index)
-        //
-        // if(column(meta.col).search() == ""){
-        //   return data;
-        // }
-        // else{
-        //   return '<span style="color: grey">' + data + '</span>';
-        // }
-        return data;
+      return `<button type="button" class="btn btn-default btn-block" style="text-align: left;" aria-label="Add constraint ${data}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ${data}</button>`;
+        // FIXME: more performant way would be to use an object for the model
+        // instead of the column search
+        /*
+        var api = new $.fn.dataTable.Api( meta.settings ),
+            constraint = api.column(meta.col).search(),
+            value = data;
+
+        if(constraint == ""){
+          value = `<button type="button" class="btn btn-default">${data}</button>`;
+        }
+
+        return value;
+        */
       }
     }
   ],
@@ -52,17 +61,15 @@ $('#taxonomy-table thead').on('click', '#constraints th', function(e) {
 });
 
 $('#taxonomy-table tbody').on('click', 'td', function(e) {
-  table.column(this.cellIndex).search(this.textContent).draw()
+  table.column(this.cellIndex).search(this.textContent).draw();
 });
 
+// sync search constraints with input fields on preDraw event
 table.on('preDraw', function(){
   console.log('preDraw event')
   $('#constraints th').each(function(index){
     let value = table.column(index).search();
-
-    console.log(`${index}:${value}`);
-
-    let label = value == "" ? "" : `${value} <button type="button" class="close inline-button" data-dismiss="alert" aria-label="Remove constraint: ${value}"><span aria-hidden="true">&times;</span></button>`;
+    let label = value == "" ? "" : `<button type="button" class="btn btn-default btn-block" style="text-align: left;" aria-label="Remove constraint ${value}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> ${value}</button>`;
 
     $(this).html(label);
     $(`#taxon${index}`).val(value);
