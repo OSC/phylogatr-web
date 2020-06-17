@@ -15,3 +15,26 @@
 .navbar-inverse .navbar-text {
   color: #ccc;
 }
+
+.btn-light {
+  @extend .btn-default;
+
+  border-color: #fff;
+  padding-left: 0px;
+
+  span {
+    color: #ddd;
+  }
+}
+
+// the class taxon0, taxon1 on the table controls greying-out of the clade
+// names for a rank that already has a selection
+// this was a faster way than changing the model object, though changing
+// the model object to a javascript object that
+// and using the render function for this purpose might be
+// preferable
+@for $i from 0 through 6 {
+  table.taxon#{$i} tbody > tr > td:nth-child(#{$i+1}) > button{
+    color: #ddd;
+  }
+}
