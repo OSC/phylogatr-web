@@ -119,7 +119,7 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
     <% %w(kingdom phylum class order family genus species).each_with_index do |taxon, index| %>
       <%= hidden_field_tag :"taxon_#{taxon}", "", :id => "taxon#{index}" %>
     <% end %>
-    <p>Click the taxon to select it as a constraint for the search. If you select multiple, it will filter the table.</p>
+    <p><strong>Click the clade name</strong> to select it as a constraint for the search. If you select multiple, it will filter the table.</p>
     <br>
     <%= render partial: 'taxonomy_control', locals: { json_url: ENV['RAILS_RELATIVE_URL_ROOT'].to_s + '/taxon.tsv.json' } %>
   </div>
