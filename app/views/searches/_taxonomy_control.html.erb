@@ -44,7 +44,7 @@ $('#taxonomy-table thead').on('click', '#constraints th', function(e) {
 });
 
 $('#taxonomy-table tbody').on('click', 'td', function(e) {
-  table.column(this.cellIndex).search(this.textContent).draw();
+  table.column(this.cellIndex).search(table.cell(this._DT_CellIndex).data()).draw();
 });
 
 // sync search constraints with input fields on preDraw event
