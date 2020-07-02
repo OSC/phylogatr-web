@@ -14,5 +14,6 @@
   </li>
   <% else %>
   <li><%= link_to 'Download as tarball', search_path(1234, @search_results.params.merge(format: :tgz)) %>
+  <li><%= link_to 'Download as zip', search_path(1234, @search_results.params.merge(format: :zip)) %>
   <% end %>
 </ul>

@@ -40,13 +40,28 @@ class SearchesController < ApplicationController
         response.headers["Last-Modified"] = Time.now.httpdate.to_s
         response.headers["X-Accel-Buffering"] = "no"
 
-
         stream_tarball(response, params)
+      }
+      format.zip {
+        response.headers["Content-Disposition"] = "attachment; filename=\"phylogatr_results.zip\""
+        response.headers["Cache-Control"] = "no-cache"
+        response.headers["Last-Modified"] = Time.now.httpdate.to_s
+        response.headers["X-Accel-Buffering"] = "no"
+
+        stream_zip(response, params)
       }
       format.html {
         @search_results = SearchResults.from_params(params[:search])
       }
     end
+  end
+
+  def stream_zip(response, params)
+    SearchResults.from_params(params).write_zip(
+      ZipTricks::BlockWrite.new { |chunk| response.stream.write(chunk)  }
+    )
+  ensure
+    response.stream.close
   end
 
   def stream_tarball(response, params)

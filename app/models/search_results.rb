@@ -149,4 +149,68 @@ class SearchResults
       end
     end
   end
+
+  def write_zip(file)
+    ZipTricks::Streamer.open(file) do |zip|
+      # Note: cannot use find-each because that uses primary key and limit and
+      # offset and its own sort by primary key so it ignores sort order we
+      # want
+
+      #TODO:
+      cite_yaml = {
+        gbif_doi: '10.35000/cdl.t4hfxk',
+        genbank_release: 'GenBank Flat File Release 234.0',
+        phylogatr_code_version: Configuration.app_version
+      }.stringify_keys.to_yaml
+
+      zip.write_deflated_file("phylogatr-results/cite.txt") do |io|
+        io.write(cite_yaml)
+      end
+
+      #FIXME: ask for another db to setup tests
+      #FIXME: add to metrics a json field with cached summary of file sizes
+      # for writing tarballs faster, if we continue to use Ruby
+      # FIXME: pulling everyting down in 1 query...
+
+      species_paths = Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.pluck(:species_path)
+      species_paths.each do |species_path|
+        Species.new(Configuration.genbank_root.join(species_path)).files.each do |file|
+          tar_file_path = File.join('phylogatr-results', file.relative_path_from(Configuration.genbank_root))
+          zip.write_deflated_file(tar_file_path) do |tar_file|
+            Rails.logger.debug "adding tar file: #{tar_file_path}"
+            File.open(file) do |fasta_file|
+              Rails.logger.debug "wrote to tar bytes: #{IO.copy_stream(fasta_file, tar_file)}"
+            end
+          end
+        end
+      end
+
+      # FIXME: this uses more memory but is simpler
+      # will use far less if we reduce what we write to these files
+      species_paths.each_slice(500) do |subset|
+        Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+          .where(species_path: subset)
+          .order(:species_path)
+          .group_by(&:species_path).each { |species_path, occurrences|
+
+
+            zip.write_deflated_file(File.join('phylogatr-results', species_path, 'occurrences.txt')) do |io|
+              # write headers
+              io.write(Occurrence.headers_tsv)
+              # write occurrences
+              occurrences.each do |o|
+                io.write(o.to_str)
+              end
+            end
+
+            species = occurrences.first.species
+            zip.write_deflated_file(File.join('phylogatr-results', species_path, 'genes.txt')) do |io|
+              # write headers
+              io.write(Species.genes_index_headers_tsv)
+              io.write(species.genes_index_str(occurrences.first))
+            end
+        }
+      end
+    end
+  end
 end

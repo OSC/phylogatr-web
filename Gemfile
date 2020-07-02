@@ -67,3 +67,5 @@ gem 'geokit-rails'
 
 gem 'caxlsx'
 gem 'caxlsx_rails'
+
+gem 'zip_tricks', '~> 5.3', '>= 5.3.1'
