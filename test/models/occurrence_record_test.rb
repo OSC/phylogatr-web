@@ -49,4 +49,49 @@ class OccurrenceRecordTest < ActiveSupport::TestCase
     assert_equal 35.77, o1.lat_rounded
     assert o1.duplicate?(o2)
   end
+
+  test ".each_occurrence_slice_grouped_by_accession" do
+    io = StringIO.new <<~EOF
+    KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
+    KY172637	2304695724	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
+    KY172637	2304695724	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
+    KY172638	2304695724	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
+    KY172638	2304695724	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
+
+    EOF
+
+    slices = OccurrenceRecord.each_occurrence_slice_grouped_by_accession(io).to_a
+    assert 3, slices.count
+    assert_equal %w(KY172636), slices[0].map(&:accession)
+    assert_equal %w(KY172637 KY172637), slices[1].map(&:accession)
+    assert_equal %w(KY172638 KY172638), slices[2].map(&:accession)
+  end
+
+  test ".filter" do
+    # FIXME: hard to test
+    str = "KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES"
+    result = OccurrenceRecord.filter([OccurrenceRecord.from_str(str), OccurrenceRecord.from_str(str.sub('2306662591', '2306662592')), OccurrenceRecord.from_str(str.sub('2306662591', '2306662593'))])
+    assert_equal 1, result.count
+    assert_equal "KY172636", result.first.accession
+    assert_equal "2306662593", result.first.gbif_id
+  end
+
+  test "#from_str" do
+    str = "KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES"
+    o = OccurrenceRecord.from_str(str)
+    assert_equal "KY172636", o.accession
+    assert_equal "2306662591", o.gbif_id
+    assert_equal "Animalia", o.taxon_kingdom
+    assert_equal "Marcusenius cyprinoides", o.taxon_species
+    assert_equal "MATERIAL_SAMPLE", o.basis_of_record
+    assert_equal "MATERIAL_SAMPLE", o.basis_of_record
+    assert_equal "", o.geodetic_datum.to_s
+    assert_equal "GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES", o.issue
+
+  end
+
+  test "#to_str" do
+    str = "KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES"
+    assert_equal str, OccurrenceRecord.from_str(str).to_str
+  end
 end
