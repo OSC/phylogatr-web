@@ -30,7 +30,7 @@
 /wiki
 
 # Do not version the dependencies
-/vendor/bundle
+/vendor/bundle*
 
 # hide bin dependencies
 /bin/muscle*
