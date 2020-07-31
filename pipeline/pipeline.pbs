@@ -47,7 +47,7 @@ if [[ -d $INDEXES_CACHE_DIR ]]; then
     cp -r $INDEXES_CACHE_DIR/* $TMPDIR
 else
     echo "Generating index files"
-    generate_indexes_and_occurrence_files
+    time generate_indexes_and_occurrence_files
     mkdir -p $INDEXES_CACHE_DIR
     cp $TMPDIR/*idx $TMPDIR/*idx.occurrences $INDEXES_CACHE_DIR
 fi
@@ -76,7 +76,7 @@ cat $TMPDIR/*.genes.tsv.occurrences > $TMPDIR/gbif_occurrences_final.tsv
 cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
 
 # 5. get rid of occurrences and genes that do not have 3 genes or more
-cut -f1 $TMPDIR/genes.tsv | sort | uniq -c | sort -n | ruby -ne 'puts $_.strip if($_.to_i > 2 && $_.to_i < 1000)' | cut -d ' ' -f2 | sort -k 1b,1 > $TMPDIR/genes_with_gt2_seqs
+cut -f1 $TMPDIR/genes.tsv | sort | uniq -c | sort -n | ruby -ne 'puts $_.strip if($_.to_i > 2)' | cut -d ' ' -f2 | sort -k 1b,1 > $TMPDIR/genes_with_gt2_seqs
 invoke trim-genes-and-occurrences-by-fasta-paths $TMPDIR/genes.tsv $TMPDIR/gbif_occurrences_final.tsv $TMPDIR/genes_with_gt2_seqs
 
 cat $TMPDIR/gbif_occurrences_final.tsv.trimmed | add_incrementing_index_column_to_file > $OUTPUT_DIR/gbif_occurrences_final.tsv
