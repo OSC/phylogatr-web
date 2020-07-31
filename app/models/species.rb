@@ -58,7 +58,7 @@ class Species
   end
 
   def name
-    path.basename.to_s.sub('-', ' ')
+    path.basename.to_s.gsub('-', ' ')
   end
 
   def self.update_occurrences(path)
