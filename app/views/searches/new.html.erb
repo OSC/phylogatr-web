@@ -5,7 +5,7 @@
 
 <h2>New Search</h2>
 
-<h3>Step 1: Specify location constraint</h3>
+<h3>Step 1: Specify location constraint (optional) <br><small>Skip this step if you want global data</small></h3>
 
 <div class="row">
 <%= bootstrap_form_tag url: searches_path, method: :post do |f| %>
@@ -114,7 +114,7 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
 
 <div class="row">
   <div class="col-xs-12 col-md-12">
-    <h3>Step 2: Specify taxonomic constraint</h3>
+    <h3>Step 2: Specify taxonomic constraint (optional) <br><small>Skip this step if you want all species</small></h3>
 
     <% %w(kingdom phylum class order family genus species).each_with_index do |taxon, index| %>
       <%= hidden_field_tag :"taxon_#{taxon}", "", :id => "taxon#{index}" %>
