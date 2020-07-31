@@ -28,7 +28,7 @@ Find.find(data_path) do |path|
       File.write(afapath, gdbm[key])
       $stderr.puts "cache hit for #{path}, writing afa file"
     else
-      puts "./align_sequences.sh #{path}"
+      puts %Q(time ./align_sequences.sh "#{path}")
     end
   end
 end
