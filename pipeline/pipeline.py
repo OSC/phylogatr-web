@@ -33,42 +33,6 @@ class OccurrenceRecordIndex(enum.IntEnum):
 # precedence is the value - larger is higher precendence
 VALID_BASIS = {"PRESERVED_SPECIMEN":3, "MATERIAL_SAMPLE":2, "HUMAN_OBSERVATION":1, "MACHINE_OBSERVATION":0  }
 
-class OccurrencesWriter:
-    def __init__(self):
-        self.occurrences = OrderedDict() 
-
-
-    def add_with_gene(self, occurrence, different_species):
-        path = os.path.join(occurrence[OccurrenceRecordIndex.CLASS],
-               occurrence[OccurrenceRecordIndex.ORDER],
-               occurrence[OccurrenceRecordIndex.FAMILY],
-               occurrence[OccurrenceRecordIndex.SPECIES]).replace(' ', '-')
-
-        self.occurrences[occurrence[OccurrenceRecordIndex.ACCESSION]] = (occurrence + [different_species, path])
-
-    def add(self, occurrence):
-        accession = occurrence[OccurrenceRecordIndex.ACCESSION]
-
-        if accession in self.occurrences and self.greater_than(occurrence, self.occurrences[accession]):
-            self.occurrences[accession] = occurrence + self.occurrences[accession][-2:]
-
-    def write(self, out_file):
-        for o in self.occurrences.values():
-            # pprint.pprint(o)
-            #FIXME: hack - a  newline is added to the end of occurrence, not sure where
-            out_file.write("\t".join(o).replace('\n','') + "\n")
-
-    # retur true if o1 > o2; false otherwise
-    def greater_than(self, o1, o2):
-        b1 = VALID_BASIS.get(o1[OccurrenceRecordIndex.BASIS_OF_RECORD]) or 0
-        b2 = VALID_BASIS.get(o2[OccurrenceRecordIndex.BASIS_OF_RECORD]) or 0
-
-        # TODO: add distance in meters, other metrics after refactoring to Occurrence class
-        # and improving tests
-        return b1 > b2
-        # return False
-
-
 def occurrence_without_null(occurrence):
     return ['' if x.strip() == '\\N' else x for x in occurrence]
 
@@ -183,34 +147,33 @@ class Pipeline:
     def write_genes_for_sequences_in_occurrences(self, gbif_file, db, out_genes_file, out_occurrences_file):
         """write all the gene info to a file once for each accession in gbif_file"""
 
-        # TODO: build occurrences up now throwing out duplicates for the same accession (so Occurrence, add())
-
-        accessions_processed = set()
-        occurrences = OccurrencesWriter()
+        #FIXME: below uses the occurrences writer to
+        # filter out occurrences that do not have corresponding gene sequences
+        # so if there is a simpler way to do this up front, we can avoid this
+        # part of the pipeline
 
         for line in gbif_file:
             occurrence = line.split("\t")
 
             #FIXME: Occurrence class to handle this
             accession = occurrence[OccurrenceRecordIndex.ACCESSION]
-            valid_basis = occurrence[OccurrenceRecordIndex.BASIS_OF_RECORD] in VALID_BASIS
-            valid_taxonomy = (not bool(re.search(r'\d', ''.join(occurrence[OccurrenceRecordIndex.KINGDOM:OccurrenceRecordIndex.SUBSPECIES]))))
 
-            if((not accession in accessions_processed) and valid_basis and valid_taxonomy):
-                record = db.get(accession)
-                if record:
-                    # FIXME: we will want to write out the genes without symbols to another file for debugging purposes in the future
-                    genes = genes_with_symbols(genes_for_record(record, occurrence))
-                    for gene in genes:
-                        self.write_gene_metadata_record(gene, out_genes_file)
-                    accessions_processed.add(accession)
+            record = db.get(accession)
+            if record:
+                # FIXME: we will want to write out the genes without symbols to another file for debugging purposes in the future
+                genes = genes_with_symbols(genes_for_record(record, occurrence))
+                for gene in genes:
+                    self.write_gene_metadata_record(gene, out_genes_file)
 
-                    if(len(genes) > 0):
-                        occurrences.add_with_gene(occurrence, genes[0].species_different_from_occurrence())
-            elif(valid_basis):
-                occurrences.add(occurrence)
+                if(len(genes) > 0):
+                    path = os.path.join(occurrence[OccurrenceRecordIndex.CLASS],
+                        occurrence[OccurrenceRecordIndex.ORDER],
+                        occurrence[OccurrenceRecordIndex.FAMILY],
+                        occurrence[OccurrenceRecordIndex.SPECIES]).replace(' ', '-')
+                    different_species = genes[0].species_different_from_occurrence()
+                    out_occurrence = occurrence + [different_species, path]
 
-        occurrences.write(out_occurrences_file)
+                    out_occurrences_file.write("\t".join(out_occurrence).replace('\n','') + "\n")
 
     def write_genes(self):
         db = self.make_index()
