@@ -1,0 +1,2 @@
+Occurrence.where(species_total_bytes: nil).distinct.pluck(:species_path).each {|p| Species.update_occurrences p }
+
