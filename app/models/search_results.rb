@@ -53,7 +53,7 @@ class SearchResults
   end
 
   def download_limit
-    20*1024*1024
+    1024*1024*1024
   end
 
   def num_species
