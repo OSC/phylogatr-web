@@ -7,7 +7,7 @@ if Socket.gethostname.start_with?("o")
   # Owens
   ENV['BUNDLE_IGNORE_CONFIG'] = "1"
   ENV['BUNDLE_PATH'] = "vendor/bundle-owens"
-  puts "using vendor/bundle-owens and ignoring bundle config"
+  # $stderr.puts "using vendor/bundle-owens and ignoring bundle config"
 end
 
 
