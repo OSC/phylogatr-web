@@ -1,26 +1,27 @@
 require 'test_helper'
 
 class SearchResultsTest < ActiveJob::TestCase
-  test "reduce_taxonomy_to_one_constraint handles nil" do
-    # does where({}) work?
-    assert_equal({}, SearchResults.new(nil, nil, nil).reduce_taxonomy_to_one_constraint(nil))
-  end
+  # test "reduce_taxonomy_to_one_constraint handles nil" do
+  #   # does where({}) work?
+  #   assert_equal({}, SearchResults.new(nil, nil, nil).reduce_taxonomy_to_one_constraint(nil))
+  # end
 
-  test "reduce_taxonomy_to_one_constraint handles no taxon specified" do
-    assert_equal({}, SearchResults.new(nil, nil, nil).reduce_taxonomy_to_one_constraint({taxon_kingdom: nil, taxon_class: nil}))
-  end
+  # test "reduce_taxonomy_to_one_constraint handles no taxon specified" do
+  #   assert_equal({}, SearchResults.new(nil, nil, nil).reduce_taxonomy_to_one_constraint({taxon_kingdom: nil, taxon_class: nil}))
+  # end
 
-  test "reduce_taxonomy_to_one_constraint handles empty taxon specified" do
-    assert_equal({}, SearchResults.new(nil,nil,nil).reduce_taxonomy_to_one_constraint({taxon_kingdom: '', taxon_class: ''}))
-  end
+  # test "reduce_taxonomy_to_one_constraint handles empty taxon specified" do
+  #   assert_equal({}, SearchResults.new(nil,nil,nil).reduce_taxonomy_to_one_constraint({taxon_kingdom: '', taxon_class: ''}))
+  # end
 
-  test "reduce_taxonomy_to_one_constraint reduces one" do
-    assert_equal({:taxon_class => 'Reptilia'}, SearchResults.new(nil,nil,nil).reduce_taxonomy_to_one_constraint({taxon_kingdom: nil, taxon_class: 'Reptilia'}))
-  end
+  # test "reduce_taxonomy_to_one_constraint reduces one" do
+  #   assert_equal({:taxon_class => 'Reptilia'}, SearchResults.new(nil,nil,nil).reduce_taxonomy_to_one_constraint({taxon_kingdom: nil, taxon_class: 'Reptilia'}))
+  # end
 
-  test "reduce_taxonomy_to_one_constraint reduces multiple in the right precedence" do
-    assert_equal({:taxon_class => 'Reptilia'}, SearchResults.new.reduce_taxonomy_to_one_constraint({taxon_kingdom: 'Animalia', taxon_class: 'Reptilia'}))
-  end
+  # test "reduce_taxonomy_to_one_constraint reduces multiple in the right precedence" do
+  #   assert_equal({:taxon_class => 'Reptilia'}, SearchResults.new.reduce_taxonomy_to_one_constraint({taxon_kingdom: 'Animalia', taxon_class: 'Reptilia'}))
+  # end
+
 
   # FIXME: these tests failed to catch problems when using MySQL
   # test "summary includes correct fasta lengths" do
