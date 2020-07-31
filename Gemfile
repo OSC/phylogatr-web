@@ -69,3 +69,6 @@ gem 'caxlsx'
 gem 'caxlsx_rails'
 
 gem 'zip_tricks', '~> 5.3', '>= 5.3.1'
+
+gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
+

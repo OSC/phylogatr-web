@@ -71,6 +71,7 @@ GEM
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     debug_inspector (0.0.3)
+    descriptive_statistics (2.4.0)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
@@ -229,6 +230,7 @@ DEPENDENCIES
   caxlsx
   caxlsx_rails
   coffee-rails (~> 4.1.0)
+  descriptive_statistics (~> 2.4.0)
   dotenv-rails (~> 2.1)
   font-awesome-sass (~> 4.6)
   geokit-rails

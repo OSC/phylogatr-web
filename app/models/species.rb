@@ -16,9 +16,22 @@ class Species
     end
   end
 
+  def self.line_and_byte_count(path, &block)
+    # memoize the execution of the block based on the path
+    # a gem (or ActiveSupport?) probably provides this though...
+    @line_and_byte_counts ||= {}
+    @line_and_byte_counts.fetch(path) do |path|
+      counts = block.call(path)
+      @line_and_byte_counts[path] = counts
+      counts
+    end
+  end
+
   def line_and_byte_count(path)
-    # much faster than wc https://gist.github.com/guilhermesimoes/d69e547884e556c3dc95
-    File.foreach(path).reduce([0, 0]) {|counts, line| [counts[0]+1, counts[1]+line.length] }
+    Species.line_and_byte_count(path) do |path|
+      # much faster than wc https://gist.github.com/guilhermesimoes/d69e547884e556c3dc95
+      File.foreach(path).reduce([0, 0]) {|counts, line| [counts[0]+1, counts[1]+line.length] }
+    end
   end
 
   def file_summaries
@@ -26,6 +39,10 @@ class Species
       lines, bytes = line_and_byte_count(f)
       Fasta.new(lines/2, bytes, f.basename('.*'), f.extname)
     end
+  end
+
+  def unaligned_fasta_sequence_counts
+    @unaligned_fasta_sequence_counts ||= file_summaries.select(&:unaligned?).map(&:seqs)
   end
 
   # FIXME: this method should not exist. see above.
