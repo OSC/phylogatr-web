@@ -119,6 +119,8 @@ class SearchResults
           end
         end
 
+        genes_index = StringIO.new
+
         # FIXME: this uses more memory but is simpler
         # will use far less if we reduce what we write to these files
         species_paths.each_slice(500) do |subset|
@@ -138,13 +140,13 @@ class SearchResults
                 end
               end
 
-              species = occurrences.first.species
-              tar.add_file_simple(File.join('phylogatr-results', species_path, 'genes.txt'), 0644, species.genes_index_filesize(occurrences.first)) do |io|
-                # write headers
-                io.write(Species.genes_index_headers_tsv)
-                io.write(species.genes_index_str(occurrences.first))
-              end
+              genes_index.write(Species.genes_index_headers_tsv)
+              genes_index.write(occurrences.first.species.genes_index_str(occurrences.first))
           }
+        end
+
+        tar.add_file_simple(File.join('phylogatr-results', 'genes.txt'), 0644, genes_index.size) do |io|
+          io.write(genes_index.string)
         end
       end
     end
@@ -185,6 +187,8 @@ class SearchResults
         end
       end
 
+      genes_index = StringIO.new
+
       # FIXME: this uses more memory but is simpler
       # will use far less if we reduce what we write to these files
       species_paths.each_slice(500) do |subset|
@@ -203,13 +207,13 @@ class SearchResults
               end
             end
 
-            species = occurrences.first.species
-            zip.write_deflated_file(File.join('phylogatr-results', species_path, 'genes.txt')) do |io|
-              # write headers
-              io.write(Species.genes_index_headers_tsv)
-              io.write(species.genes_index_str(occurrences.first))
-            end
+            genes_index.write(Species.genes_index_headers_tsv)
+            genes_index.write(occurrences.first.species.genes_index_str(occurrences.first))
         }
+      end
+
+      zip.write_deflated_file(File.join('phylogatr-results', 'genes.txt')) do |io|
+          io.write(genes_index.string)
       end
     end
   end
