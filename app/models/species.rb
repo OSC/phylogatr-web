@@ -105,6 +105,7 @@ class Species
   def self.genes_index_headers_tsv
     @genes_index_headers_tsv ||= %w(
       gene
+      dir
       proportion_retained
       num_seqs_unaligned
       num_seqs_aligned
@@ -124,6 +125,7 @@ class Species
     @genes_index_str ||= gene_index.map do |gene|
       [
         gene[:gene],
+        Pathname.new(path).relative_path_from(Configuration.genbank_root),
         gene[:retained].to_s,
         gene[:num_seqs].to_s,
         gene[:num_seqs_aligned].to_s,
