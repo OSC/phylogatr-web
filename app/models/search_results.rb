@@ -120,6 +120,7 @@ class SearchResults
         end
 
         genes_index = StringIO.new
+        genes_index.write(Species.genes_index_headers_tsv)
 
         # FIXME: this uses more memory but is simpler
         # will use far less if we reduce what we write to these files
@@ -140,7 +141,6 @@ class SearchResults
                 end
               end
 
-              genes_index.write(Species.genes_index_headers_tsv)
               genes_index.write(occurrences.first.species.genes_index_str(occurrences.first))
           }
         end
@@ -188,6 +188,7 @@ class SearchResults
       end
 
       genes_index = StringIO.new
+      genes_index.write(Species.genes_index_headers_tsv)
 
       # FIXME: this uses more memory but is simpler
       # will use far less if we reduce what we write to these files
@@ -207,7 +208,6 @@ class SearchResults
               end
             end
 
-            genes_index.write(Species.genes_index_headers_tsv)
             genes_index.write(occurrences.first.species.genes_index_str(occurrences.first))
         }
       end
