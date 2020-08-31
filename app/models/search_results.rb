@@ -2,9 +2,10 @@ class SearchResults
   attr_reader :swpoint, :nepoint, :taxonomy
 
   def self.from_params(params)
-    swpoint = [params['southwest_corner_latitude'], params['southwest_corner_longitude']]
-    nepoint = [params['northeast_corner_latitude'], params['northeast_corner_longitude']]
-    taxonomy = params.select {|k,v| k.starts_with?("taxon_") && v.present? }.symbolize_keys
+    params = (params || {}).symbolize_keys
+    swpoint = [params[:southwest_corner_latitude], params[:southwest_corner_longitude]]
+    nepoint = [params[:northeast_corner_latitude], params[:northeast_corner_longitude]]
+    taxonomy = params.select {|k,v| k.to_s.starts_with?("taxon_") && v.present? }
 
     self.new(swpoint, nepoint, taxonomy)
   end
