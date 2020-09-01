@@ -1,8 +1,14 @@
 class BatchSearchResults
   attr_reader :params
-  def initialize(params, jobid: nil)
-    @params = params
-    @jobid = jobid
+  def initialize(params)
+    @params = (params || {}).symbolize_keys.select do |k,v|
+      ([
+      :southwest_corner_latitude,
+      :southwest_corner_longitude,
+      :northeast_corner_latitude,
+      :northeast_corner_longitude,
+      ].include?(k) || k.to_s.starts_with?("taxon_")) && v.present?
+    end
   end
 
   # ################################################
@@ -34,59 +40,67 @@ class BatchSearchResults
     })
   end
 
+  #FIXME torque specific
   def job_script
-    <<~FOO
+    <<~EOF
     #!/bin/bash
     #PBS -j oe
-    #PBS -o #{stdout_path.to_s}
+    #PBS -o #{stdout_path('$PBS_JOBID').to_s}
+
+    set -xe
     module load ruby
 
-    #FIXME: in Slurm? or do PBS_O_WORKDIR?
-    cd #{Rails.root.to_s}
+    cd #{app_root.to_s}
 
-    # FIXME: write_tar or write_zip? need to know ahead of time (preview?)
-    time bin/rails runner 'BatchSearchResults.new(#{params.inspect}).write_tar'
-    FOO
+    TARBALL=$TMPDIR/results.tar.gz
+    ZIP=$TMPDIR/results.zip
+
+    time bin/rails runner 'BatchSearchResults.new(#{params.inspect}).write_tar("'"${TARBALL}"'")' &
+    tarpid=$!
+    time bin/rails runner 'BatchSearchResults.new(#{params.inspect}).write_zip("'"${ZIP}"'")' &
+    wait $!
+    wait $tarpid
+
+    mkdir -p #{output_path('$PBS_JOBID').to_s}
+
+    cp $TARBALL #{tar_path('$PBS_JOBID').to_s}
+    cp $ZIP #{zip_path('$PBS_JOBID').to_s}
+
+    EOF
   end
 
+  def app_root
+    Rails.root
+  end
 
   def results_root
     Pathname.new('/fs/scratch/PAS1604/results').join(cluster.id.to_s)
   end
 
-  def output_path
-    results_root.join(jobid, 'phylogatr-results')
+  def stdout_path(jobid)
+    results_root.join("#{jobid}.out")
   end
 
-  def stdout_path
-    results_root.join('$PBS_JOBID.out')
+  def output_path(jobid)
+    results_root.join(jobid)
   end
 
-  def jobid
-    id = @jobid || ENV['PBS_JOBID'] || ENV['SLURM_JOBID']
-    raise "Job id not specified" unless id
-    id
+  def tar_path(jobid)
+    output_path(jobid).join('phylogatr-results.tar.gz')
   end
 
-  def tar_path
-    output_path.sub_ext('.tar.gz')
+  def zip_path(jobid)
+    output_path(jobid).join('phylogatr-results.zip')
   end
 
-  def zip_path
-    output_path.sub_ext('.zip')
-  end
-
-  def write_tar
-    tar_path.dirname.mkpath
-    tar_path.open('wb') do |f|
+  def write_tar(path)
+    Pathname.new(path).tap { |d| d.dirname.mkpath }.open('wb') do |f|
       SearchResults.from_params(params).write_tar(f)
     end
-    # TODO: rescue exception saved
   end
 
-  def write_zip
-    zip_path.dirname.mkpath
-    zip_path.open('wb') do |f|
+  def write_zip(path)
+    Pathname.new(path).tap { |d| d.dirname.mkpath }.open('wb') do |f|
       SearchResults.from_params(params).write_zip(
         ZipTricks::BlockWrite.new { |chunk| f.write(chunk)  }
       )
