@@ -1,6 +1,8 @@
 class BatchSearchResults
-  attr_reader :params
+  attr_reader :params, :format
+
   def initialize(params)
+    @format = ["tgz", "zip"].include?(params["results_format"]) ? params["results_format"] : "tgz"
     @params = (params || {}).symbolize_keys.select do |k,v|
       ([
       :southwest_corner_latitude,
@@ -24,7 +26,7 @@ class BatchSearchResults
     # preferable cause we can utilize env vars like $PBS_JOBID
     #
     cluster.job_adapter.submit(OodCore::Job::Script.new(
-      content: job_script,
+      content: self.send("job_script_#{format}"),
       job_name: "phylogatr_search",
       wall_time: 3600,
       native: ['-l', 'nodes=1:ppn=1:owens']
@@ -40,8 +42,7 @@ class BatchSearchResults
     })
   end
 
-  #FIXME torque specific
-  def job_script
+  def job_script_tgz
     <<~EOF
     #!/bin/bash
     #PBS -j oe
@@ -52,19 +53,33 @@ class BatchSearchResults
 
     cd #{app_root.to_s}
 
-    TARBALL=$TMPDIR/results.tar.gz
-    ZIP=$TMPDIR/results.zip
-
-    time bin/rails runner 'BatchSearchResults.new(#{params.inspect}).write_tar("'"${TARBALL}"'")' &
-    tarpid=$!
-    time bin/rails runner 'BatchSearchResults.new(#{params.inspect}).write_zip("'"${ZIP}"'")' &
-    wait $!
-    wait $tarpid
+    RESULTS=$TMPDIR/results.tar
+    time bin/rails runner 'BatchSearchResults.new(#{params.inspect}).write_tar("'"${RESULTS}"'")'
 
     mkdir -p #{output_path('$PBS_JOBID').to_s}
 
-    cp $TARBALL #{tar_path('$PBS_JOBID').to_s}
-    cp $ZIP #{zip_path('$PBS_JOBID').to_s}
+    cp $RESULTS #{tar_path('$PBS_JOBID').to_s}
+
+    EOF
+  end
+
+  def job_script_zip
+    <<~EOF
+    #!/bin/bash
+    #PBS -j oe
+    #PBS -o #{stdout_path('$PBS_JOBID').to_s}
+
+    set -xe
+    module load ruby
+
+    cd #{app_root.to_s}
+
+    RESULTS=$TMPDIR/results.zip
+    time bin/rails runner 'BatchSearchResults.new(#{params.inspect}).write_zip("'"${RESULTS}"'")'
+
+    mkdir -p #{output_path('$PBS_JOBID').to_s}
+
+    cp $RESULTS #{zip_path('$PBS_JOBID').to_s}
 
     EOF
   end

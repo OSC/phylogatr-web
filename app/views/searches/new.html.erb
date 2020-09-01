@@ -122,6 +122,14 @@ var map = L.map('mapid').setView([51.505, -0.09], 1);
     <p><strong>Click the clade name</strong> to select it as a constraint for the search. If you select multiple, it will filter the table.</p>
     <br>
     <%= render partial: 'taxonomy_control', locals: { json_url: ENV['RAILS_RELATIVE_URL_ROOT'].to_s + '/taxon.tsv.json' } %>
+
+    <% if Configuration.batch_mode? %>
+      <h3>Step 3: Specify tar.gz or zip for results<br><small>Results will be provisioned in a batch job</small></h3>
+      <%= f.form_group :results_format, label: { text: "Results Format:"  } do %>
+        <%= f.radio_button :results_format, "tgz", label: "Tarball (.tar.gz)", checked: true  %>
+        <%= f.radio_button :results_format, "zip", label: "Zipfile (.zip)" %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
