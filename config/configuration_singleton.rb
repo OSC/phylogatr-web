@@ -115,6 +115,10 @@ class ConfigurationSingleton
     Pathname.new(ENV["GENBANK_ROOT"] || "/fs/scratch/PAS1604/genbank/genes")
   end
 
+  def batch_mode?
+    ENV["BATCH_MODE"]
+  end
+
   private
 
   # The environment
