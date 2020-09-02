@@ -1,0 +1,23 @@
+<% content_for :page_title, "#{@search_results.to_s} Search Results" %>
+
+<h1>Search Results</h1>
+<p class="lead"><%= @search_results.num_species %> species found for search: <%= @search_results.to_s %></p>
+
+<ul>
+  <li><%= number_to_human_size  @search_results.estimated_tar_size %> estimated uncompressed tar size, excluding metadata</li>
+  <li>Job: <%= @search_results.id %> has status: <%= @search_results.info.status.state %></li>
+  <%= content_tag(:li, link_to("Download phylogatr-results.tar.gz (#{number_to_human_size(@search_results.tar_path.size)})", search_path(@id, @search_results.params.merge(format: "tgz")))) if @search_results.tar? %>
+  <%= content_tag(:li, link_to("Download phylogatr-results.zip (#{number_to_human_size(@search_results.zip_path.size)})", search_path(@id, @search_results.params.merge(format: "zip")))) if @search_results.zip? %>
+</ul>
+
+<% if @search_results.info.status.completed? && ! (@search_results.tar? || @search_results.zip?)  %>
+  <div class="alert alert warning">
+    Job completed but results not yet available.
+
+    Either the NFS sync has not completed yet, or the job that should have produced your results failed. To help debug, debug information is below this warning.
+  </div>
+
+  Showing contents of <%= @search_results.stdout_path.to_s %>:
+
+  <%= content_tag :pre, @search_results.stdout_path.read if @search_results.stdout_path.file? %>
+<% end %>

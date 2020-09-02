@@ -1,16 +1,26 @@
 class BatchSearchResults
-  attr_reader :params, :format
+  attr_reader :params, :format, :search_results, :id
+
+  # have the same interface as SearchResults
+  delegate :to_s, :num_species, :estimated_tar_size, to: :search_results
+
+  def self.id_from_param(param)
+    param&.gsub('_', '.')
+  end
+
+  def self.to_param(id)
+    id&.gsub('.', '_')
+  end
+
+  def to_param
+    self.class.to_param(id)
+  end
 
   def initialize(params)
+    @id = self.class.id_from_param(params[:id]) if params[:id]
     @format = ["tgz", "zip"].include?(params["results_format"]) ? params["results_format"] : "tgz"
-    @params = (params || {}).symbolize_keys.select do |k,v|
-      ([
-      :southwest_corner_latitude,
-      :southwest_corner_longitude,
-      :northeast_corner_latitude,
-      :northeast_corner_longitude,
-      ].include?(k) || k.to_s.starts_with?("taxon_")) && v.present?
-    end
+    @params = SearchResults.clean_params(params)
+    @search_results = SearchResults.from_params(@params)
   end
 
   # ################################################
@@ -25,7 +35,7 @@ class BatchSearchResults
     # skip #!/bin/bash and then do that
     # preferable cause we can utilize env vars like $PBS_JOBID
     #
-    cluster.job_adapter.submit(OodCore::Job::Script.new(
+    @id = cluster.job_adapter.submit(OodCore::Job::Script.new(
       content: self.send("job_script_#{format}"),
       job_name: "phylogatr_search",
       wall_time: 3600,
@@ -42,11 +52,39 @@ class BatchSearchResults
     })
   end
 
+  def info
+    @info ||= cluster.job_adapter.info(id)
+  end
+
+  def tar?
+    output_path_template(id).open { tar_path.file? }
+  rescue
+    false
+  end
+
+  def zip?
+    output_path_template(id).open { zip_path.file? }
+  rescue
+    false
+  end
+
+  def tar_path
+    tar_path_template(id)
+  end
+
+  def zip_path
+    zip_path_template(id)
+  end
+
+  def stdout_path
+    stdout_path_template(id)
+  end
+
   def job_script_tgz
     <<~EOF
     #!/bin/bash
     #PBS -j oe
-    #PBS -o #{stdout_path('$PBS_JOBID').to_s}
+    #PBS -o #{stdout_path_template('$PBS_JOBID').to_s}
 
     set -xe
     module load ruby
@@ -56,9 +94,9 @@ class BatchSearchResults
     RESULTS=$TMPDIR/results.tar
     time bin/rails runner 'SearchResults.write_tar_to_file(#{params.inspect}, "'"${RESULTS}"'")'
 
-    mkdir -p #{output_path('$PBS_JOBID').to_s}
+    mkdir -p #{output_path_template('$PBS_JOBID').to_s}
 
-    cp $RESULTS #{tar_path('$PBS_JOBID').to_s}
+    cp $RESULTS #{tar_path_template('$PBS_JOBID').to_s}
 
     EOF
   end
@@ -67,7 +105,7 @@ class BatchSearchResults
     <<~EOF
     #!/bin/bash
     #PBS -j oe
-    #PBS -o #{stdout_path('$PBS_JOBID').to_s}
+    #PBS -o #{stdout_path_template('$PBS_JOBID').to_s}
 
     set -xe
     module load ruby
@@ -77,9 +115,9 @@ class BatchSearchResults
     RESULTS=$TMPDIR/results.zip
     time bin/rails runner 'SearchResults.write_zip_to_file(#{params.inspect}, "'"${RESULTS}"'")'
 
-    mkdir -p #{output_path('$PBS_JOBID').to_s}
+    mkdir -p #{output_path_template('$PBS_JOBID').to_s}
 
-    cp $RESULTS #{zip_path('$PBS_JOBID').to_s}
+    cp $RESULTS #{zip_path_template('$PBS_JOBID').to_s}
 
     EOF
   end
@@ -92,24 +130,19 @@ class BatchSearchResults
     Pathname.new('/fs/scratch/PAS1604/results').join(cluster.id.to_s)
   end
 
-  def stdout_path(jobid)
+  def stdout_path_template(jobid)
     results_root.join("#{jobid}.out")
   end
 
-  def output_path(jobid)
+  def output_path_template(jobid)
     results_root.join(jobid)
   end
 
-  def tar_path(jobid)
-    output_path(jobid).join('phylogatr-results.tar.gz')
+  def tar_path_template(jobid)
+    output_path_template(jobid).join('phylogatr-results.tar.gz')
   end
 
-  def zip_path(jobid)
-    output_path(jobid).join('phylogatr-results.zip')
-  end
-
-  #FIXME: isn't this routing responsibility?
-  def parameterized_id
-    id.gsub('.', '_')
+  def zip_path_template(jobid)
+    output_path_template(jobid).join('phylogatr-results.zip')
   end
 end

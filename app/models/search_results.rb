@@ -15,8 +15,22 @@ class SearchResults
     end
   end
 
+  # FIXME: filtering the key value pairs we can pass on
+  # belongs in controller...
+  def self.clean_params(params)
+    (params || {}).symbolize_keys.select do |k,v|
+      ([
+      :southwest_corner_latitude,
+      :southwest_corner_longitude,
+      :northeast_corner_latitude,
+      :northeast_corner_longitude,
+      :results_format
+      ].include?(k) || k.to_s.starts_with?("taxon_")) && v.present?
+    end
+  end
+
   def self.from_params(params)
-    params = (params || {}).symbolize_keys
+    params = clean_params(params)
     swpoint = [params[:southwest_corner_latitude], params[:southwest_corner_longitude]]
     nepoint = [params[:northeast_corner_latitude], params[:northeast_corner_longitude]]
     taxonomy = params.select {|k,v| k.to_s.starts_with?("taxon_") && v.present? }
