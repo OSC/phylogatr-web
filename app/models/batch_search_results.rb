@@ -98,6 +98,10 @@ class BatchSearchResults
 
     cp $RESULTS #{tar_path_template('$PBS_JOBID').to_s}
 
+    # FIXME: sleep for 10 seconds due to delay in writing to scratch and it
+    # accessible from web app
+    sleep 10
+
     EOF
   end
 
@@ -118,6 +122,10 @@ class BatchSearchResults
     mkdir -p #{output_path_template('$PBS_JOBID').to_s}
 
     cp $RESULTS #{zip_path_template('$PBS_JOBID').to_s}
+
+    # FIXME: sleep for 10 seconds due to delay in writing to scratch and it
+    # accessible from web app
+    sleep 10
 
     EOF
   end
