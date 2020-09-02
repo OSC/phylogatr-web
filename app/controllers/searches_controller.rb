@@ -86,6 +86,11 @@ class SearchesController < ApplicationController
           render :show_batch
         end
       }
+      format.js {
+        if ::Configuration.batch_mode?
+          render :show_batch
+        end
+      }
     end
   end
 
