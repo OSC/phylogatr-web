@@ -1,6 +1,20 @@
 class SearchResults
   attr_reader :swpoint, :nepoint, :taxonomy
 
+  def self.write_tar_to_file(params, path)
+    Pathname.new(path).tap { |d| d.dirname.mkpath }.open('wb') do |f|
+      SearchResults.from_params(params).write_tar(f)
+    end
+  end
+
+  def self.write_zip_to_file(params, path)
+    Pathname.new(path).tap { |d| d.dirname.mkpath }.open('wb') do |f|
+      SearchResults.from_params(params).write_zip(
+        ZipTricks::BlockWrite.new { |chunk| f.write(chunk)  }
+      )
+    end
+  end
+
   def self.from_params(params)
     params = (params || {}).symbolize_keys
     swpoint = [params[:southwest_corner_latitude], params[:southwest_corner_longitude]]

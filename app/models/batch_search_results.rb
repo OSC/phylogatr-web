@@ -54,7 +54,7 @@ class BatchSearchResults
     cd #{app_root.to_s}
 
     RESULTS=$TMPDIR/results.tar
-    time bin/rails runner 'BatchSearchResults.new(#{params.inspect}).write_tar("'"${RESULTS}"'")'
+    time bin/rails runner 'SearchResults.write_tar_to_file(#{params.inspect}, "'"${RESULTS}"'")'
 
     mkdir -p #{output_path('$PBS_JOBID').to_s}
 
@@ -75,7 +75,7 @@ class BatchSearchResults
     cd #{app_root.to_s}
 
     RESULTS=$TMPDIR/results.zip
-    time bin/rails runner 'BatchSearchResults.new(#{params.inspect}).write_zip("'"${RESULTS}"'")'
+    time bin/rails runner 'SearchResults.write_zip_to_file(#{params.inspect}, "'"${RESULTS}"'")'
 
     mkdir -p #{output_path('$PBS_JOBID').to_s}
 
@@ -108,17 +108,8 @@ class BatchSearchResults
     output_path(jobid).join('phylogatr-results.zip')
   end
 
-  def write_tar(path)
-    Pathname.new(path).tap { |d| d.dirname.mkpath }.open('wb') do |f|
-      SearchResults.from_params(params).write_tar(f)
-    end
-  end
-
-  def write_zip(path)
-    Pathname.new(path).tap { |d| d.dirname.mkpath }.open('wb') do |f|
-      SearchResults.from_params(params).write_zip(
-        ZipTricks::BlockWrite.new { |chunk| f.write(chunk)  }
-      )
-    end
+  #FIXME: isn't this routing responsibility?
+  def parameterized_id
+    id.gsub('.', '_')
   end
 end
