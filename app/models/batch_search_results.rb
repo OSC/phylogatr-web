@@ -86,6 +86,8 @@ class BatchSearchResults
     #PBS -j oe
     #PBS -o #{stdout_path_template('$PBS_JOBID').to_s}
 
+    umask 002
+
     set -xe
     module load ruby
 
