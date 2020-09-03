@@ -100,9 +100,9 @@ class BatchSearchResults
 
     cp $RESULTS #{tar_path_template('$PBS_JOBID').to_s}
 
-    # FIXME: sleep for 10 seconds due to delay in writing to scratch and it
+    # FIXME: sleep for 30 seconds due to delay in writing to scratch and it
     # accessible from web app
-    sleep 10
+    sleep 30
 
     EOF
   end
