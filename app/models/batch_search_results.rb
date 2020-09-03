@@ -92,7 +92,7 @@ class BatchSearchResults
     cd #{app_root.to_s}
 
     RESULTS=$TMPDIR/results.tar
-    time bin/rails runner 'SearchResults.write_tar_to_file(#{params.inspect}, "'"${RESULTS}"'")'
+    time RAILS_ENV=#{Rails.env} bin/rails runner 'SearchResults.write_tar_to_file(#{params.inspect}, "'"${RESULTS}"'")'
 
     mkdir -p #{output_path_template('$PBS_JOBID').to_s}
 
