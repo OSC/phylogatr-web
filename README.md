@@ -28,6 +28,8 @@ Compile assets
 
 Add .env.production with database connection information and chmod 600
 
+TODO: document installing mafft and trimal
+
 
 
 ### Pipeline steps
