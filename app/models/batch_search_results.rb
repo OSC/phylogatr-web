@@ -48,8 +48,7 @@ class BatchSearchResults
       adapter: "torque",
       host: "quick-batch.ten.osc.edu",
       lib: "/opt/torque/lib64",
-      bin: "/opt/torque/bin",
-      submit_host: "owens.osc.edu"
+      bin: "/opt/torque/bin"
     })
   end
 
