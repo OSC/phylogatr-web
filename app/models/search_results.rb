@@ -107,10 +107,6 @@ class SearchResults
     ).sum('subquery.species_total_bytes')
   end
 
-  def species_path(o)
-    (File.join o.taxon_class, o.taxon_order, o.taxon_family, o.taxon_species).gsub(' ', '-')
-  end
-
   # summary query (so we will group by)
   def write_tar(file)
     Zlib::GzipWriter.wrap(file) do |gz|
