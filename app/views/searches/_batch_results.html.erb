@@ -1,4 +1,6 @@
 <ul>
+  <li><%= @search_results.num_species %> species found for search</li>
+  <li><%= number_to_human_size  @search_results.estimated_tar_size %> estimated uncompressed tar size, excluding metadata</li>
   <li>Job: <%= @search_results.id %> has status: <%= @search_results.info.status.state %></li>
   <%= content_tag(:li, link_to("Download phylogatr-results.tar.gz (#{number_to_human_size(@search_results.tar_path.size)})", search_path(@id, @search_results.params.merge(format: "tgz")))) if @search_results.tar? %>
   <%= content_tag(:li, link_to("Download phylogatr-results.zip (#{number_to_human_size(@search_results.zip_path.size)})", search_path(@id, @search_results.params.merge(format: "zip")))) if @search_results.zip? %>

@@ -1,11 +1,7 @@
 <% content_for :page_title, "#{@search_results.to_s} Search Results" %>
 
 <h1>Search Results</h1>
-<p class="lead"><%= @search_results.num_species %> species found for search: <%= @search_results.to_s %></p>
-
-<ul>
-  <li><%= number_to_human_size  @search_results.estimated_tar_size %> estimated uncompressed tar size, excluding metadata</li>
-</ul>
+<p class="lead"><%= @search_results.to_s %></p>
 
 <div id="results">
 <%= render partial: 'batch_results' %>
