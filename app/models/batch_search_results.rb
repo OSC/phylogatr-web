@@ -80,7 +80,7 @@ class BatchSearchResults
     stdout_path_template(id)
   end
 
-  def job_script_tgz
+  def job_script(pkg)
     <<~EOF
     #!/bin/bash
     #PBS -j oe
@@ -94,11 +94,11 @@ class BatchSearchResults
     cd #{app_root.to_s}
 
     RESULTS=$TMPDIR/results.tar
-    time RAILS_ENV=#{Rails.env} bin/rails runner 'SearchResults.write_tar_to_file(#{params.inspect}, "'"${RESULTS}"'")'
+    time RAILS_ENV=#{Rails.env} bin/rails runner 'SearchResults.write_#{pkg}_to_file(#{params.inspect}, "'"${RESULTS}"'")'
 
     mkdir -p #{output_path_template('$PBS_JOBID').to_s}
 
-    cp $RESULTS #{tar_path_template('$PBS_JOBID').to_s}
+    cp $RESULTS #{package_path_template(pkg, '$PBS_JOBID').to_s}
 
     # FIXME: sleep for 30 seconds due to delay in writing to scratch and it
     # accessible from web app
@@ -107,29 +107,20 @@ class BatchSearchResults
     EOF
   end
 
+  def package_path_template(pkg, jobid)
+    if pkg == 'zip'
+      zip_path_template(jobid)
+    else
+      tar_path_template(jobid)
+    end
+  end
+
+  def job_script_tgz
+    job_script('tar')
+  end
+
   def job_script_zip
-    <<~EOF
-    #!/bin/bash
-    #PBS -j oe
-    #PBS -o #{stdout_path_template('$PBS_JOBID').to_s}
-
-    set -xe
-    module load ruby
-
-    cd #{app_root.to_s}
-
-    RESULTS=$TMPDIR/results.zip
-    time bin/rails runner 'SearchResults.write_zip_to_file(#{params.inspect}, "'"${RESULTS}"'")'
-
-    mkdir -p #{output_path_template('$PBS_JOBID').to_s}
-
-    cp $RESULTS #{zip_path_template('$PBS_JOBID').to_s}
-
-    # FIXME: sleep for 10 seconds due to delay in writing to scratch and it
-    # accessible from web app
-    sleep 10
-
-    EOF
+    job_script('zip')
   end
 
   def app_root
