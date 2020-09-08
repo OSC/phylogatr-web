@@ -86,27 +86,21 @@ class SearchResults
   end
 
   def num_species
-    # FIXME: species table
-    # FIXME: taxon_species is preferred to use once fixing pipeline issue
-    Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.count(:species_path)
+    info.num_species
   end
 
-  # TODO:
-  # def seqs_per_species
-  #   # FIXME: species table
-  #   Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-  #     .select(:species_path, :species_total_seqs).distinct.as_json
-  # end
 
   def estimated_tar_size
-    Occurrence.from(
-      Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-       .where.not(species_total_bytes: nil)
-       .distinct
-       .select(:species_path, :species_total_bytes)
-    ).sum('subquery.species_total_bytes')
+    info.estimated_tar_size
   end
 
+  def info
+    @info ||= SearchResultsInfo.build(swpoint, nepoint, taxonomy)
+  end
+
+  # TODO: pass block to capture progress messages (??) for progress messages
+  # yield(message, percentage)
+  #
   # summary query (so we will group by)
   def write_tar(file)
     Zlib::GzipWriter.wrap(file) do |gz|
