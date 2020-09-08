@@ -144,6 +144,10 @@ class BatchSearchResults
     results_root.join("#{jobid}.out")
   end
 
+  def json_path_template(jobid)
+    results_root.join("#{jobid}.json")
+  end
+
   def output_path_template(jobid)
     results_root.join(jobid)
   end
