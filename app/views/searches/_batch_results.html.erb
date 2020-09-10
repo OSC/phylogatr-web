@@ -1,12 +1,14 @@
 <ul>
-  <li><%= @search_results.num_species %> species found for search</li>
-  <li><%= number_to_human_size  @search_results.estimated_tar_size %> estimated uncompressed tar size, excluding metadata</li>
-  <li>Job: <%= @search_results.id %> has status: <%= @search_results.info.status.state %></li>
+  <li>Job: <%= @search_results.id %> has status: <%= @search_results.job_info.status.state %></li>
+  <% if @search_results.num_species && @search_results.estimated_tar_size %>
+  <li><%= "#{@search_results.num_species} species found for search" %></li>
+  <li><%= "#{number_to_human_size(@search_results.estimated_tar_size)} estimated uncompressed package size, excluding metadata" %></li>
+  <% end %>
   <%= content_tag(:li, link_to("Download phylogatr-results.tar.gz (#{number_to_human_size(@search_results.tar_path.size)})", search_path(@id, @search_results.params.merge(format: "tgz")))) if @search_results.tar? %>
   <%= content_tag(:li, link_to("Download phylogatr-results.zip (#{number_to_human_size(@search_results.zip_path.size)})", search_path(@id, @search_results.params.merge(format: "zip")))) if @search_results.zip? %>
 </ul>
 
-<% if @search_results.info.status.completed? && ! (@search_results.tar? || @search_results.zip?)  %>
+<% if @search_results.job_info.status.completed? && ! (@search_results.tar? || @search_results.zip?)  %>
   <div class="alert alert warning">
     Job completed but results not yet available.
 
@@ -18,7 +20,7 @@
   <%= content_tag :pre, @search_results.stdout_path.read if @search_results.stdout_path.file? %>
 <% end %>
 
-<% unless @search_results.info.status.completed? %>
+<% unless @search_results.job_info.status.completed? %>
 <script>
 //FIXME: @search_results.completed? to check info status and accomdate for gap
 setTimeout(function(){

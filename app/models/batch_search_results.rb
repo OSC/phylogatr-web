@@ -2,7 +2,8 @@ class BatchSearchResults
   attr_reader :params, :format, :search_results, :id
 
   # have the same interface as SearchResults
-  delegate :to_s, :num_species, :estimated_tar_size, to: :search_results
+  delegate :num_species, :estimated_tar_size, to: :info
+  delegate :to_s, to: :search_results
 
   def self.id_from_param(param)
     param&.gsub('_', '.')
@@ -16,8 +17,12 @@ class BatchSearchResults
     self.class.to_param(id)
   end
 
-  def initialize(params)
-    @id = self.class.id_from_param(params[:id]) if params[:id]
+  def initialize(params, id=nil)
+    if id
+      @id = id
+    else
+      @id = self.class.id_from_param(params[:id]) if params[:id]
+    end
     @format = ["tgz", "zip"].include?(params["results_format"]) ? params["results_format"] : "tgz"
     @params = SearchResults.clean_params(params)
     @search_results = SearchResults.from_params(@params)
@@ -52,8 +57,24 @@ class BatchSearchResults
     })
   end
 
+  def job_info
+    @job_info ||= cluster.job_adapter.info(id)
+  end
+
+  # batch info returns from a file
   def info
-    @info ||= cluster.job_adapter.info(id)
+    return @info if @info
+
+    json_path_template(id).parent.open {
+      p = json_path_template(id)
+      @info ||= (p.file? ? SearchResultsInfo.load(p) : SearchResultsInfo.new)
+    }
+  rescue
+    @info = SearchResultsInfo.new
+  end
+
+  def create_info
+    search_results.info.save(json_path_template(id))
   end
 
   def tar?
@@ -91,12 +112,15 @@ class BatchSearchResults
     set -xe
     module load ruby
 
+    mkdir -p #{output_path_template('$PBS_JOBID').to_s}
+
     cd #{app_root.to_s}
+
+    time RAILS_ENV=#{Rails.env} bin/rails runner 'BatchSearchResults.new(#{params.inspect}, "'"${PBS_JOBID}"'").create_info'
 
     RESULTS=$TMPDIR/results.tar
     time RAILS_ENV=#{Rails.env} bin/rails runner 'SearchResults.write_#{pkg}_to_file(#{params.inspect}, "'"${RESULTS}"'")'
 
-    mkdir -p #{output_path_template('$PBS_JOBID').to_s}
 
     cp $RESULTS #{package_path_template(pkg, '$PBS_JOBID').to_s}
 
