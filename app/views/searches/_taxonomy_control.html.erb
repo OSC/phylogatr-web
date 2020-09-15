@@ -36,7 +36,7 @@ var table = $('#taxonomy-table').DataTable({
     }
   ],
     "bSortCellsTop": true,
-    "ajax": '<%= json_url %>',
+    "ajax": { url: '<%= json_url %>', cache: true },
     "deferRender": true
 });
 
