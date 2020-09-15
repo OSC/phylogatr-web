@@ -2,7 +2,7 @@ class BatchSearchResults
   attr_reader :params, :format, :search_results, :id
 
   # have the same interface as SearchResults
-  delegate :num_species, :estimated_tar_size, to: :info
+  delegate :num_species, :estimated_tar_size, :percent_complete, :message, to: :info
   delegate :to_s, to: :search_results
 
   def self.id_from_param(param)
@@ -118,8 +118,10 @@ class BatchSearchResults
 
     time RAILS_ENV=#{Rails.env} bin/rails runner 'BatchSearchResults.new(#{params.inspect}, "'"${PBS_JOBID}"'").create_info'
 
+    INFO_FILE=#{json_path_template('$PBS_JOBID')}
+
     RESULTS=$TMPDIR/results.tar
-    time RAILS_ENV=#{Rails.env} bin/rails runner 'SearchResults.write_#{pkg}_to_file(#{params.inspect}, "'"${RESULTS}"'")'
+    time RAILS_ENV=#{Rails.env} bin/rails runner 'SearchResults.write_#{pkg}_to_file(#{params.inspect}, "'"${RESULTS}"'", "'"${INFO_FILE}"'")'
 
 
     cp $RESULTS #{package_path_template(pkg, '$PBS_JOBID').to_s}

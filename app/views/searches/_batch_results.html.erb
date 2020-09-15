@@ -4,6 +4,21 @@
   <li><%= "#{@search_results.num_species} species found for search" %></li>
   <li><%= "#{number_to_human_size(@search_results.estimated_tar_size)} estimated uncompressed package size, excluding metadata" %></li>
   <% end %>
+
+  <% if @search_results.message %>
+    <li class="bg-info">
+      <%= @search_results.message %>
+      <% if @search_results.percent_complete %>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="<% @search_results.percent_complete %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @search_results.percent_complete %>%; min-width: 2em;">
+              <%= @search_results.percent_complete %>%
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </li>
+  <% end %>
+
   <%= content_tag(:li, link_to("Download phylogatr-results.tar.gz (#{number_to_human_size(@search_results.tar_path.size)})", search_path(@id, @search_results.params.merge(format: "tgz")))) if @search_results.tar? %>
   <%= content_tag(:li, link_to("Download phylogatr-results.zip (#{number_to_human_size(@search_results.zip_path.size)})", search_path(@id, @search_results.params.merge(format: "zip")))) if @search_results.zip? %>
 </ul>

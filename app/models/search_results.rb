@@ -1,16 +1,17 @@
 class SearchResults
   attr_reader :swpoint, :nepoint, :taxonomy
 
-  def self.write_tar_to_file(params, path)
+  def self.write_tar_to_file(params, path, uinfo_path = nil)
     Pathname.new(path).tap { |d| d.dirname.mkpath }.open('wb') do |f|
-      SearchResults.from_params(params).write_tar(f)
+      SearchResults.from_params(params).write_tar(f, uinfo_path)
     end
   end
 
-  def self.write_zip_to_file(params, path)
+  def self.write_zip_to_file(params, path, uinfo_path = nil)
     Pathname.new(path).tap { |d| d.dirname.mkpath }.open('wb') do |f|
       SearchResults.from_params(params).write_zip(
-        ZipTricks::BlockWrite.new { |chunk| f.write(chunk)  }
+        ZipTricks::BlockWrite.new { |chunk| f.write(chunk)  },
+        uinfo_path
       )
     end
   end
@@ -102,7 +103,9 @@ class SearchResults
   # yield(message, percentage)
   #
   # summary query (so we will group by)
-  def write_tar(file)
+  def write_tar(file, uinfo_path = nil)
+
+
     Zlib::GzipWriter.wrap(file) do |gz|
       Gem::Package::TarWriter.new(gz) do |tar|
         # Note: cannot use find-each because that uses primary key and limit and
@@ -125,8 +128,22 @@ class SearchResults
         # for writing tarballs faster, if we continue to use Ruby
         # FIXME: pulling everyting down in 1 query...
 
+
         species_paths = Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.pluck(:species_path)
-        species_paths.each do |species_path|
+
+        uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species_paths.count)
+        uinfo.wrote_fasta_files(0)
+
+        #
+        # 50% at 5% intervals 20 species  10 groups or 189 species every 189/10
+        # -- every 18
+        # % 18
+        # but every 18 you want to increase percent by 5 :-P
+        #
+        # also need to know the "index"
+        # which is hard to know below
+        #
+        species_paths.each_with_index do |species_path, index|
           Species.new(Configuration.genbank_root.join(species_path)).files.each do |file|
             tar_file_path = File.join('phylogatr-results', file.relative_path_from(Configuration.genbank_root))
             tar.add_file_simple(tar_file_path, 0644, file.size) do |tar_file|
@@ -135,19 +152,36 @@ class SearchResults
                 Rails.logger.debug "wrote to tar bytes: #{IO.copy_stream(fasta_file, tar_file)}"
               end
             end
+
+            uinfo.wrote_fasta_files(index+1)
           end
         end
+
+        # write each species
+        #
+        # writing occurrences file (how much?)
+        #
+        # writing genes file
+        #
+        # completed! 100%
+        #
+        # ActiveModel does it have more methods for this type of thing?
+        # just how much time does each part take?
+        # write occurrences file for each species
+        #
 
         genes_index = StringIO.new
         genes_index.write(Species.genes_index_headers_tsv)
 
+        puts 'write occurrences file', Benchmark.measure {
+
         # FIXME: this uses more memory but is simpler
         # will use far less if we reduce what we write to these files
-        species_paths.each_slice(500) do |subset|
+        species_paths.each_slice(500).with_index do |subset, subset_index|
           Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
             .where(species_path: subset)
             .order(:species_path)
-            .group_by(&:species_path).each { |species_path, occurrences|
+            .group_by(&:species_path).each_with_index { |(species_path, occurrences), index|
 
 
               bytesize = occurrences.sum { |o| o.to_str.length }+Occurrence.headers_tsv.length
@@ -160,9 +194,15 @@ class SearchResults
                 end
               end
 
+              uinfo.wrote_occurrence_file(subset_index*500+index+1)
+
               genes_index.write(occurrences.first.species.genes_index_str(occurrences.first))
           }
         end
+
+        }
+
+        uinfo.done
 
         tar.add_file_simple(File.join('phylogatr-results', 'genes.txt'), 0644, genes_index.size) do |io|
           io.write(genes_index.string)
@@ -171,7 +211,7 @@ class SearchResults
     end
   end
 
-  def write_zip(file)
+  def write_zip(file, uinfo_path = nil)
     ZipTricks::Streamer.open(file) do |zip|
       # Note: cannot use find-each because that uses primary key and limit and
       # offset and its own sort by primary key so it ignores sort order we
@@ -194,7 +234,10 @@ class SearchResults
       # FIXME: pulling everyting down in 1 query...
 
       species_paths = Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.pluck(:species_path)
-      species_paths.each do |species_path|
+      uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species_paths.count)
+      uinfo.wrote_fasta_files(0)
+
+      species_paths.each_with_index do |species_path, index|
         Species.new(Configuration.genbank_root.join(species_path)).files.each do |file|
           tar_file_path = File.join('phylogatr-results', file.relative_path_from(Configuration.genbank_root))
           zip.write_deflated_file(tar_file_path) do |tar_file|
@@ -204,6 +247,8 @@ class SearchResults
             end
           end
         end
+
+        uinfo.wrote_fasta_files(index+1)
       end
 
       genes_index = StringIO.new
@@ -211,11 +256,11 @@ class SearchResults
 
       # FIXME: this uses more memory but is simpler
       # will use far less if we reduce what we write to these files
-      species_paths.each_slice(500) do |subset|
+      species_paths.each_slice(500).with_index do |subset, subset_index|
         Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
           .where(species_path: subset)
           .order(:species_path)
-          .group_by(&:species_path).each { |species_path, occurrences|
+          .group_by(&:species_path).each_with_index { |(species_path, occurrences), index|
 
 
             zip.write_deflated_file(File.join('phylogatr-results', species_path, 'occurrences.txt')) do |io|
@@ -227,9 +272,13 @@ class SearchResults
               end
             end
 
+            uinfo.wrote_occurrence_file(subset_index*500+index+1)
+
             genes_index.write(occurrences.first.species.genes_index_str(occurrences.first))
         }
       end
+
+      uinfo.done
 
       zip.write_deflated_file(File.join('phylogatr-results', 'genes.txt')) do |io|
           io.write(genes_index.string)
