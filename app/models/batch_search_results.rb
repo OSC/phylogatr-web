@@ -116,6 +116,13 @@ class BatchSearchResults
 
     cd #{app_root.to_s}
 
+    # genbank_root will have a genes_aligned.tar.gz besides it that is the tar of that dir
+    cp #{Configuration.genbank_root.parent.join('genes_aligned.tar.gz')} $TMPDIR/genes_aligned.tar.gz
+    cd $TMPDIR
+    tar xzf genes_aligned.tar.gz
+    cd $PBS_O_WORKDIR
+    export GENBANK_ROOT=$TMPDIR/genes
+
     time RAILS_ENV=#{Rails.env} bin/rails runner 'BatchSearchResults.new(#{params.inspect}, "'"${PBS_JOBID}"'").create_info'
 
     INFO_FILE=#{json_path_template('$PBS_JOBID')}
@@ -123,11 +130,9 @@ class BatchSearchResults
     RESULTS=$TMPDIR/results.tar
     time RAILS_ENV=#{Rails.env} bin/rails runner 'SearchResults.write_#{pkg}_to_file(#{params.inspect}, "'"${RESULTS}"'", "'"${INFO_FILE}"'")'
 
-
     cp $RESULTS #{package_path_template(pkg, '$PBS_JOBID').to_s}
 
-    # FIXME: sleep for 30 seconds due to delay in writing to scratch and it
-    # accessible from web app
+    # sleep for 30 seconds due to delay in writing to scratch and it accessible from web app
     sleep 30
 
     EOF
