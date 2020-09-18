@@ -116,11 +116,9 @@ class BatchSearchResults
 
     cd #{app_root.to_s}
 
-    # genbank_root will have a genes_aligned.tar.gz besides it that is the tar of that dir
-    cp #{Configuration.genbank_root.parent.join('genes_aligned.tar.gz')} $TMPDIR/genes_aligned.tar.gz
-    cd $TMPDIR
-    tar xzf genes_aligned.tar.gz
-    cd $PBS_O_WORKDIR
+    # batch job to use tar.gz of the genbank_root directory in root of the app directory
+    cp genes_aligned.tar.gz $TMPDIR
+    ( cd $TMPDIR; tar xzf genes_aligned.tar.gz )
     export GENBANK_ROOT=$TMPDIR/genes
 
     time RAILS_ENV=#{Rails.env} bin/rails runner 'BatchSearchResults.new(#{params.inspect}, "'"${PBS_JOBID}"'").create_info'
