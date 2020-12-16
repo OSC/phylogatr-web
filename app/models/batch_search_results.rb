@@ -36,24 +36,31 @@ class BatchSearchResults
   # should have added that a long very long time ago
   # ################################################
   def submit_job
+    # FIXME: protect against crash?
+    results_root.mkpath
+
     # generate headers and insert into batch script INSTEAD OF command line args
     # skip #!/bin/bash and then do that
-    # preferable cause we can utilize env vars like $PBS_JOBID
+    # preferable cause we can utilize env vars like $SLURM_JOBID
     #
     @id = cluster.job_adapter.submit(OodCore::Job::Script.new(
       content: self.send("job_script_#{format}"),
+
+      # FIXME: params as part of job name?
       job_name: "phylogatr_search",
       wall_time: 3600,
-      native: ['-l', 'nodes=1:ppn=1:owens']
+      native: [ "--partition", "quick", "--nodes", "1", "--ntasks-per-node", "1"  ]
     ))
   end
 
   def cluster
-    @cluster ||= OodCore::Cluster.new(id: 'quick', job: {
-      adapter: "torque",
-      host: "quick-batch.ten.osc.edu",
-      lib: "/opt/torque/lib64",
-      bin: "/opt/torque/bin"
+    @cluster ||= OodCore::Cluster.new(id: 'owens-quick', job: {
+      adapter: "slurm",
+      cluster: "owens",
+      host: "owens-slurm01.ten.osc.edu",
+      lib: "/usr/lib64",
+      bin: "/usr/bin",
+      conf: "/etc/slurm/slurm.conf",
     })
   end
 
@@ -104,15 +111,14 @@ class BatchSearchResults
   def job_script(pkg)
     <<~EOF
     #!/bin/bash
-    #PBS -j oe
-    #PBS -o #{stdout_path_template('$PBS_JOBID').to_s}
+    #SBATCH --output=#{stdout_path_template('%j').to_s}
 
     umask 002
 
     set -xe
     module load ruby
 
-    mkdir -p #{output_path_template('$PBS_JOBID').to_s}
+    mkdir -p #{output_path_template('$SLURM_JOBID').to_s}
 
     cd #{app_root.to_s}
 
@@ -121,14 +127,14 @@ class BatchSearchResults
     ( cd $TMPDIR; tar xzf genes_aligned.tar.gz )
     export GENBANK_ROOT=$TMPDIR/genes
 
-    time RAILS_ENV=#{Rails.env} bin/rails runner 'BatchSearchResults.new(#{params.inspect}, "'"${PBS_JOBID}"'").create_info'
+    time RAILS_ENV=#{Rails.env} bin/rails runner 'BatchSearchResults.new(#{params.inspect}, "'"${SLURM_JOBID}"'").create_info'
 
-    INFO_FILE=#{json_path_template('$PBS_JOBID')}
+    INFO_FILE=#{json_path_template('$SLURM_JOBID')}
 
     RESULTS=$TMPDIR/results.tar
     time RAILS_ENV=#{Rails.env} bin/rails runner 'SearchResults.write_#{pkg}_to_file(#{params.inspect}, "'"${RESULTS}"'", "'"${INFO_FILE}"'")'
 
-    cp $RESULTS #{package_path_template(pkg, '$PBS_JOBID').to_s}
+    cp $RESULTS #{package_path_template(pkg, '$SLURM_JOBID').to_s}
 
     # sleep for 30 seconds due to delay in writing to scratch and it accessible from web app
     sleep 30
