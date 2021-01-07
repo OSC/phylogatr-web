@@ -22,6 +22,21 @@ class SearchResultsTest < ActiveJob::TestCase
     end
   end
 
+  test "generate results zip for squamata" do
+    puts
+    Dir.mktmpdir do |dir|
+      tarpath =  File.join(dir, 'results.zip')
+      SearchResults.write_zip_to_file({'taxon_order' => 'Squamata'}, tarpath)
+      `cd #{dir}; unzip #{tarpath}`
+
+      expected = Rails.root.join('test/data/squamata_results').to_s
+      result = File.join(dir, 'phylogatr-results')
+
+      diff, s = Open3.capture2e('diff', '-r', expected, result)
+      assert_equal "", diff.strip, diff
+    end
+  end
+
   test "num species for squamata" do
     search = @search_results = SearchResults.from_params({'taxon_order' => 'Squamata'})
     assert_equal 606, search.num_species
