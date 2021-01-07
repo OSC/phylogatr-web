@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+require "thor"
+
+
+def import_cmd(db, occurrences_tsv)
+  <<~HEREDOC
+  sqlite3 #{db} <<EOF
+  .mode tabs
+  .import #{occurrences_tsv} occurrences
+  EOF
+  HEREDOC
+end
+
+class MyCLI < Thor
+  def self.exit_on_failure?
+    true
+  end
+
+  desc "populate_test", "populate test database with test data"
+  def populate_test
+    ENV['RAILS_ENV'] = 'test'
+    system('bin/rake db:reset')
+    system(import_cmd('db/test.sqlite3', 'test/data/reptilia_gbif_occurrences.tsv'))
+    system("bin/rails r 'Occurrence.where(species_total_bytes: nil).distinct.pluck(:species_path).each {|p| Species.update_occurrences p }'")
+  end
+end
+
+MyCLI.start(ARGV)
