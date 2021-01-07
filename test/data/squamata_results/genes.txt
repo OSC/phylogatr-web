@@ -1,0 +1,987 @@
+gene	dir	proportion_retained	num_seqs_unaligned	num_seqs_aligned	kingdom	phylum	class	order	family	genus	species	subspecies	different_genbank_species
+Acanthocercus-annectens-COI	Reptilia/Squamata/Agamidae/Acanthocercus-annectens	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Agamidae	Acanthocercus	Acanthocercus annectens		Acanthocercus annectans
+Acontias-gariepensis-COI	Reptilia/Squamata/Scincidae/Acontias-gariepensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Acontias	Acontias gariepensis		
+Acrantophis-dumerili-C-MOS	Reptilia/Squamata/Boidae/Acrantophis-dumerili	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Boidae	Acrantophis	Acrantophis dumerili		
+Acrantophis-dumerili-CYTB	Reptilia/Squamata/Boidae/Acrantophis-dumerili	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Boidae	Acrantophis	Acrantophis dumerili		
+Afrogecko-porphyreus-RAG1	Reptilia/Squamata/Gekkonidae/Afrogecko-porphyreus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Afrogecko	Afrogecko porphyreus		
+Afrogecko-porphyreus-ND2	Reptilia/Squamata/Gekkonidae/Afrogecko-porphyreus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Afrogecko	Afrogecko porphyreus		
+Afrogecko-porphyreus-PDC	Reptilia/Squamata/Gekkonidae/Afrogecko-porphyreus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Afrogecko	Afrogecko porphyreus		
+Afrotyphlops-elegans-BDNF	Reptilia/Squamata/Typhlopidae/Afrotyphlops-elegans	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Afrotyphlops	Afrotyphlops elegans		
+Afrotyphlops-elegans-RAG1	Reptilia/Squamata/Typhlopidae/Afrotyphlops-elegans	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Afrotyphlops	Afrotyphlops elegans		
+Afrotyphlops-elegans-AMEL	Reptilia/Squamata/Typhlopidae/Afrotyphlops-elegans	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Afrotyphlops	Afrotyphlops elegans		
+Afrotyphlops-elegans-NT3	Reptilia/Squamata/Typhlopidae/Afrotyphlops-elegans	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Afrotyphlops	Afrotyphlops elegans		
+Afrotyphlops-elegans-CYTB	Reptilia/Squamata/Typhlopidae/Afrotyphlops-elegans	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Afrotyphlops	Afrotyphlops elegans		
+Afrotyphlops-elegans-BMP2	Reptilia/Squamata/Typhlopidae/Afrotyphlops-elegans	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Afrotyphlops	Afrotyphlops elegans		
+Agama-africana-PNN	Reptilia/Squamata/Agamidae/Agama-africana	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama africana		
+Agama-africana-R35	Reptilia/Squamata/Agamidae/Agama-africana	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama africana		
+Agama-agama-R35	Reptilia/Squamata/Agamidae/Agama-agama	1.0	29	29	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama agama		Chamaeleo calcaricarens
+Agama-agama-ND4	Reptilia/Squamata/Agamidae/Agama-agama	1.0	43	43	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama agama		Chamaeleo calcaricarens
+Agama-agama-PNN	Reptilia/Squamata/Agamidae/Agama-agama	1.0	28	28	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama agama		Chamaeleo calcaricarens
+Agama-agama-COI	Reptilia/Squamata/Agamidae/Agama-agama	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama agama		Chamaeleo calcaricarens
+Agama-agama-C-MOS	Reptilia/Squamata/Agamidae/Agama-agama	1.0	46	46	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama agama		Chamaeleo calcaricarens
+Agama-agama-NT3	Reptilia/Squamata/Agamidae/Agama-agama	1.0	44	44	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama agama		Chamaeleo calcaricarens
+Agama-boensis-ND4	Reptilia/Squamata/Agamidae/Agama-boensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama boensis		
+Agama-boensis-NT3	Reptilia/Squamata/Agamidae/Agama-boensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama boensis		
+Agama-boensis-C-MOS	Reptilia/Squamata/Agamidae/Agama-boensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama boensis		
+Agama-boueti-ND4	Reptilia/Squamata/Agamidae/Agama-boueti	1.0	54	54	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama boueti		
+Agama-boueti-C-MOS	Reptilia/Squamata/Agamidae/Agama-boueti	1.0	62	62	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama boueti		
+Agama-boueti-NT3	Reptilia/Squamata/Agamidae/Agama-boueti	1.0	62	62	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama boueti		
+Agama-boulengeri-C-MOS	Reptilia/Squamata/Agamidae/Agama-boulengeri	1.0	225	225	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama boulengeri		
+Agama-boulengeri-ND4	Reptilia/Squamata/Agamidae/Agama-boulengeri	1.0	182	182	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama boulengeri		
+Agama-boulengeri-NT3	Reptilia/Squamata/Agamidae/Agama-boulengeri	1.0	168	168	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama boulengeri		
+Agama-impalearis-C-MOS	Reptilia/Squamata/Agamidae/Agama-impalearis	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama impalearis		
+Agama-impalearis-NT3	Reptilia/Squamata/Agamidae/Agama-impalearis	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama impalearis		
+Agama-lebretoni-R35	Reptilia/Squamata/Agamidae/Agama-lebretoni	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama lebretoni		
+Agama-lebretoni-PNN	Reptilia/Squamata/Agamidae/Agama-lebretoni	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama lebretoni		
+Agama-spinosa-COI	Reptilia/Squamata/Agamidae/Agama-spinosa	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama spinosa		
+Agama-tassiliensis-NT3	Reptilia/Squamata/Agamidae/Agama-tassiliensis	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama tassiliensis		
+Agama-tassiliensis-C-MOS	Reptilia/Squamata/Agamidae/Agama-tassiliensis	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama tassiliensis		
+Agama-tassiliensis-ND4	Reptilia/Squamata/Agamidae/Agama-tassiliensis	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Agamidae	Agama	Agama tassiliensis		
+Agkistrodon-contortrix-COI	Reptilia/Squamata/Viperidae/Agkistrodon-contortrix	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Viperidae	Agkistrodon	Agkistrodon contortrix		
+Agkistrodon-piscivorus-COI	Reptilia/Squamata/Viperidae/Agkistrodon-piscivorus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Agkistrodon	Agkistrodon piscivorus		
+Agkistrodon-piscivorus-CYTB	Reptilia/Squamata/Viperidae/Agkistrodon-piscivorus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Agkistrodon	Agkistrodon piscivorus		
+Ahaetulla-prasina-COI	Reptilia/Squamata/Colubridae/Ahaetulla-prasina	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Ahaetulla	Ahaetulla prasina		
+Alinea-berengerae-CYTB	Reptilia/Squamata/Scincidae/Alinea-berengerae	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Alinea	Alinea berengerae		Mabuya berengerae
+Alinea-berengerae-RAG2	Reptilia/Squamata/Scincidae/Alinea-berengerae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Alinea	Alinea berengerae		Mabuya berengerae
+Amastridium-veliferum-COI	Reptilia/Squamata/Dipsadidae/Amastridium-veliferum	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Amastridium	Amastridium veliferum		
+Ameiva-ameiva-COI	Reptilia/Squamata/Teiidae/Ameiva-ameiva	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Teiidae	Ameiva	Ameiva ameiva		
+Amphibolurus-centralis-ND2	Reptilia/Squamata/Agamidae/Amphibolurus-centralis	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Agamidae	Amphibolurus	Amphibolurus centralis		
+Amphibolurus-centralis-RAG1	Reptilia/Squamata/Agamidae/Amphibolurus-centralis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Agamidae	Amphibolurus	Amphibolurus centralis		
+Amphibolurus-muricatus-ND2	Reptilia/Squamata/Agamidae/Amphibolurus-muricatus	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Agamidae	Amphibolurus	Amphibolurus muricatus		
+Amphibolurus-muricatus-RAG1	Reptilia/Squamata/Agamidae/Amphibolurus-muricatus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Agamidae	Amphibolurus	Amphibolurus muricatus		
+Amphibolurus-norrisi-RAG1	Reptilia/Squamata/Agamidae/Amphibolurus-norrisi	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Agamidae	Amphibolurus	Amphibolurus norrisi		
+Amphibolurus-norrisi-ND2	Reptilia/Squamata/Agamidae/Amphibolurus-norrisi	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Agamidae	Amphibolurus	Amphibolurus norrisi		
+Amphiglossus-johannae-COI	Reptilia/Squamata/Scincidae/Amphiglossus-johannae	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Scincidae	Amphiglossus	Amphiglossus johannae		Flexiseps johannae
+Anguis-cephallonica-COI	Reptilia/Squamata/Anguidae/Anguis-cephallonica	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Anguidae	Anguis	Anguis cephallonica	fragilis	Anguis fragilis fragilis
+Anguis-cephallonica-ND2	Reptilia/Squamata/Anguidae/Anguis-cephallonica	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Anguidae	Anguis	Anguis cephallonica	fragilis	Anguis fragilis fragilis
+Anguis-colchica-ND2	Reptilia/Squamata/Anguidae/Anguis-colchica	1.0	22	22	Animalia	Chordata	Reptilia	Squamata	Anguidae	Anguis	Anguis colchica		
+Anguis-fragilis-COI	Reptilia/Squamata/Anguidae/Anguis-fragilis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Anguidae	Anguis	Anguis fragilis		
+Anguis-fragilis-ND2	Reptilia/Squamata/Anguidae/Anguis-fragilis	1.0	29	29	Animalia	Chordata	Reptilia	Squamata	Anguidae	Anguis	Anguis fragilis		
+Anguis-graeca-ND2	Reptilia/Squamata/Anguidae/Anguis-graeca	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Anguidae	Anguis	Anguis graeca		
+Anolis-aeneus-COI	Reptilia/Squamata/Dactyloidae/Anolis-aeneus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis aeneus		
+Anolis-ahli-COI	Reptilia/Squamata/Dactyloidae/Anolis-ahli	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis ahli		
+Anolis-allisoni-COI	Reptilia/Squamata/Dactyloidae/Anolis-allisoni	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis allisoni		
+Anolis-allogus-COI	Reptilia/Squamata/Dactyloidae/Anolis-allogus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis allogus		
+Anolis-alutaceus-COI	Reptilia/Squamata/Dactyloidae/Anolis-alutaceus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis alutaceus		
+Anolis-angusticeps-COI	Reptilia/Squamata/Dactyloidae/Anolis-angusticeps	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis angusticeps		
+Anolis-apletophallus-COI	Reptilia/Squamata/Dactyloidae/Anolis-apletophallus	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis apletophallus		
+Anolis-argenteolus-COI	Reptilia/Squamata/Dactyloidae/Anolis-argenteolus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis argenteolus		
+Anolis-auratus-COI	Reptilia/Squamata/Dactyloidae/Anolis-auratus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis auratus		
+Anolis-bahorucoensis-COI	Reptilia/Squamata/Dactyloidae/Anolis-bahorucoensis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis bahorucoensis		
+Anolis-barbouri-COI	Reptilia/Squamata/Dactyloidae/Anolis-barbouri	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis barbouri		
+Anolis-bartschi-COI	Reptilia/Squamata/Dactyloidae/Anolis-bartschi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis bartschi		
+Anolis-bimaculatus-COI	Reptilia/Squamata/Dactyloidae/Anolis-bimaculatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis bimaculatus		
+Anolis-biporcatus-COI	Reptilia/Squamata/Dactyloidae/Anolis-biporcatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis biporcatus		
+Anolis-bonairensis-CYTB	Reptilia/Squamata/Dactyloidae/Anolis-bonairensis	1.0	19	19	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis bonairensis		
+Anolis-boulengerianus-COI	Reptilia/Squamata/Dactyloidae/Anolis-boulengerianus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis boulengerianus		
+Anolis-bremeri-COI	Reptilia/Squamata/Dactyloidae/Anolis-bremeri	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis bremeri		
+Anolis-brevirostris-COI	Reptilia/Squamata/Dactyloidae/Anolis-brevirostris	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis brevirostris		
+Anolis-capito-COI	Reptilia/Squamata/Dactyloidae/Anolis-capito	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis capito		
+Anolis-carolinensis-COI	Reptilia/Squamata/Dactyloidae/Anolis-carolinensis	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis carolinensis		
+Anolis-carpenteri-COI	Reptilia/Squamata/Dactyloidae/Anolis-carpenteri	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis carpenteri		
+Anolis-chlorodius-CYTB	Reptilia/Squamata/Dactyloidae/Anolis-chlorodius	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis chlorodius		
+Anolis-chlorodius-ND2	Reptilia/Squamata/Dactyloidae/Anolis-chlorodius	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis chlorodius		
+Anolis-christophei-COI	Reptilia/Squamata/Dactyloidae/Anolis-christophei	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis christophei		
+Anolis-cristatellus-COI	Reptilia/Squamata/Dactyloidae/Anolis-cristatellus	1.0	59	59	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis cristatellus		
+Anolis-cryptolimifrons-COI	Reptilia/Squamata/Dactyloidae/Anolis-cryptolimifrons	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis cryptolimifrons		
+Anolis-cupreus-COI	Reptilia/Squamata/Dactyloidae/Anolis-cupreus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis cupreus		
+Anolis-cuvieri-COI	Reptilia/Squamata/Dactyloidae/Anolis-cuvieri	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis cuvieri		
+Anolis-dissimilis-RAG1	Reptilia/Squamata/Dactyloidae/Anolis-dissimilis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis dissimilis		
+Anolis-dissimilis-ND2	Reptilia/Squamata/Dactyloidae/Anolis-dissimilis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis dissimilis		
+Anolis-dunni-COI	Reptilia/Squamata/Dactyloidae/Anolis-dunni	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis dunni		
+Anolis-equestris-COI	Reptilia/Squamata/Dactyloidae/Anolis-equestris	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis equestris	equestris	
+Anolis-ernestwilliamsi-COI	Reptilia/Squamata/Dactyloidae/Anolis-ernestwilliamsi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis ernestwilliamsi		
+Anolis-etheridgei-COI	Reptilia/Squamata/Dactyloidae/Anolis-etheridgei	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis etheridgei		
+Anolis-extremus-COI	Reptilia/Squamata/Dactyloidae/Anolis-extremus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis extremus		
+Anolis-ferreus-COI	Reptilia/Squamata/Dactyloidae/Anolis-ferreus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis ferreus		
+Anolis-frenatus-COI	Reptilia/Squamata/Dactyloidae/Anolis-frenatus	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis frenatus		
+Anolis-gadovii-COI	Reptilia/Squamata/Dactyloidae/Anolis-gadovii	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis gadovii		
+Anolis-gaigei-COI	Reptilia/Squamata/Dactyloidae/Anolis-gaigei	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis gaigei		
+Anolis-garmani-COI	Reptilia/Squamata/Dactyloidae/Anolis-garmani	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis garmani		
+Anolis-garridoi-COI	Reptilia/Squamata/Dactyloidae/Anolis-garridoi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis garridoi		
+Anolis-gingivinus-COI	Reptilia/Squamata/Dactyloidae/Anolis-gingivinus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis gingivinus		
+Anolis-grahami-COI	Reptilia/Squamata/Dactyloidae/Anolis-grahami	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis grahami		
+Anolis-griseus-COI	Reptilia/Squamata/Dactyloidae/Anolis-griseus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis griseus		
+Anolis-gundlachi-COI	Reptilia/Squamata/Dactyloidae/Anolis-gundlachi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis gundlachi		
+Anolis-homolechis-COI	Reptilia/Squamata/Dactyloidae/Anolis-homolechis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis homolechis		
+Anolis-humilis-ND2	Reptilia/Squamata/Dactyloidae/Anolis-humilis	1.0	85	85	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis humilis		
+Anolis-humilis-COI	Reptilia/Squamata/Dactyloidae/Anolis-humilis	1.0	96	96	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis humilis		
+Anolis-immaculogularis-COI	Reptilia/Squamata/Dactyloidae/Anolis-immaculogularis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis immaculogularis		
+Anolis-leachii-COI	Reptilia/Squamata/Dactyloidae/Anolis-leachii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis leachii		
+Anolis-lemurinus-COI	Reptilia/Squamata/Dactyloidae/Anolis-lemurinus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis lemurinus		
+Anolis-limifrons-COI	Reptilia/Squamata/Dactyloidae/Anolis-limifrons	1.0	13	13	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis limifrons		
+Anolis-lineatopus-COI	Reptilia/Squamata/Dactyloidae/Anolis-lineatopus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis lineatopus		
+Anolis-liogaster-COI	Reptilia/Squamata/Dactyloidae/Anolis-liogaster	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis liogaster		
+Anolis-lionotus-COI	Reptilia/Squamata/Dactyloidae/Anolis-lionotus	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis lionotus		
+Anolis-lividus-COI	Reptilia/Squamata/Dactyloidae/Anolis-lividus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis lividus		
+Anolis-loysiana-COI	Reptilia/Squamata/Dactyloidae/Anolis-loysiana	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis loysiana		
+Anolis-luciae-COI	Reptilia/Squamata/Dactyloidae/Anolis-luciae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis luciae		
+Anolis-lucius-COI	Reptilia/Squamata/Dactyloidae/Anolis-lucius	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis lucius		
+Anolis-luteogularis-COI	Reptilia/Squamata/Dactyloidae/Anolis-luteogularis	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis luteogularis		
+Anolis-macrinii-COI	Reptilia/Squamata/Dactyloidae/Anolis-macrinii	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis macrinii		
+Anolis-magnaphallus-COI	Reptilia/Squamata/Dactyloidae/Anolis-magnaphallus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis magnaphallus		
+Anolis-marcanoi-COI	Reptilia/Squamata/Dactyloidae/Anolis-marcanoi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis marcanoi		
+Anolis-marsupialis-COI	Reptilia/Squamata/Dactyloidae/Anolis-marsupialis	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis marsupialis		
+Anolis-marsupialis-ND2	Reptilia/Squamata/Dactyloidae/Anolis-marsupialis	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis marsupialis		
+Anolis-megapholidotus-COI	Reptilia/Squamata/Dactyloidae/Anolis-megapholidotus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis megapholidotus		
+Anolis-meridionalis-ND2	Reptilia/Squamata/Dactyloidae/Anolis-meridionalis	1.0	80	80	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis meridionalis		
+Anolis-meridionalis-PRLR	Reptilia/Squamata/Dactyloidae/Anolis-meridionalis	1.0	55	55	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis meridionalis		
+Anolis-meridionalis-NKTR	Reptilia/Squamata/Dactyloidae/Anolis-meridionalis	1.0	28	28	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis meridionalis		
+Anolis-meridionalis-NGFB	Reptilia/Squamata/Dactyloidae/Anolis-meridionalis	1.0	36	36	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis meridionalis		
+Anolis-mestrei-COI	Reptilia/Squamata/Dactyloidae/Anolis-mestrei	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis mestrei		
+Anolis-microlepidotus-COI	Reptilia/Squamata/Dactyloidae/Anolis-microlepidotus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis microlepidotus		
+Anolis-nebuloides-COI	Reptilia/Squamata/Dactyloidae/Anolis-nebuloides	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis nebuloides		
+Anolis-nietoi-COI	Reptilia/Squamata/Dactyloidae/Anolis-nietoi	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis nietoi		
+Anolis-noblei-COI	Reptilia/Squamata/Dactyloidae/Anolis-noblei	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis noblei		
+Anolis-occultus-COI	Reptilia/Squamata/Dactyloidae/Anolis-occultus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis occultus		
+Anolis-olssoni-COI	Reptilia/Squamata/Dactyloidae/Anolis-olssoni	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis olssoni		
+Anolis-omiltemanus-COI	Reptilia/Squamata/Dactyloidae/Anolis-omiltemanus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis omiltemanus		
+Anolis-opalinus-COI	Reptilia/Squamata/Dactyloidae/Anolis-opalinus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis opalinus		
+Anolis-ortonii-SNCAIP	Reptilia/Squamata/Dactyloidae/Anolis-ortonii	1.0	34	34	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis ortonii		
+Anolis-ortonii-DNAH3	Reptilia/Squamata/Dactyloidae/Anolis-ortonii	1.0	33	33	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis ortonii		
+Anolis-ortonii-ND2	Reptilia/Squamata/Dactyloidae/Anolis-ortonii	1.0	34	34	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis ortonii		
+Anolis-ortonii-NGFB	Reptilia/Squamata/Dactyloidae/Anolis-ortonii	1.0	31	31	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis ortonii		
+Anolis-ortonii-RAG1	Reptilia/Squamata/Dactyloidae/Anolis-ortonii	1.0	34	34	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis ortonii		
+Anolis-oxylophus-COI	Reptilia/Squamata/Dactyloidae/Anolis-oxylophus	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis oxylophus		
+Anolis-peucephilus-COI	Reptilia/Squamata/Dactyloidae/Anolis-peucephilus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis peucephilus		
+Anolis-phyllorhinus-RAG1	Reptilia/Squamata/Dactyloidae/Anolis-phyllorhinus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis phyllorhinus		
+Anolis-phyllorhinus-ND2	Reptilia/Squamata/Dactyloidae/Anolis-phyllorhinus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis phyllorhinus		
+Anolis-poecilopus-COI	Reptilia/Squamata/Dactyloidae/Anolis-poecilopus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis poecilopus		
+Anolis-polylepis-COI	Reptilia/Squamata/Dactyloidae/Anolis-polylepis	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis polylepis		
+Anolis-porcatus-ND2	Reptilia/Squamata/Dactyloidae/Anolis-porcatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis porcatus		
+Anolis-porcatus-COI	Reptilia/Squamata/Dactyloidae/Anolis-porcatus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis porcatus		
+Anolis-porcus-COI	Reptilia/Squamata/Dactyloidae/Anolis-porcus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis porcus		
+Anolis-pulchellus-COI	Reptilia/Squamata/Dactyloidae/Anolis-pulchellus	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis pulchellus		
+Anolis-punctatus-DNAH3	Reptilia/Squamata/Dactyloidae/Anolis-punctatus	1.0	98	98	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis punctatus		
+Anolis-punctatus-RAG1	Reptilia/Squamata/Dactyloidae/Anolis-punctatus	1.0	100	100	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis punctatus		
+Anolis-punctatus-NGFB	Reptilia/Squamata/Dactyloidae/Anolis-punctatus	1.0	98	98	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis punctatus		
+Anolis-punctatus-SNCAIP	Reptilia/Squamata/Dactyloidae/Anolis-punctatus	1.0	98	98	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis punctatus		
+Anolis-punctatus-ND2	Reptilia/Squamata/Dactyloidae/Anolis-punctatus	1.0	101	101	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis punctatus		
+Anolis-quadriocellifer-COI	Reptilia/Squamata/Dactyloidae/Anolis-quadriocellifer	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis quadriocellifer		
+Anolis-quaggulus-COI	Reptilia/Squamata/Dactyloidae/Anolis-quaggulus	1.0	55	55	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis quaggulus		
+Anolis-quaggulus-ND2	Reptilia/Squamata/Dactyloidae/Anolis-quaggulus	1.0	54	54	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis quaggulus		
+Anolis-quercorum-COI	Reptilia/Squamata/Dactyloidae/Anolis-quercorum	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis quercorum		
+Anolis-rejectus-COI	Reptilia/Squamata/Dactyloidae/Anolis-rejectus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis rejectus		
+Anolis-richardii-COI	Reptilia/Squamata/Dactyloidae/Anolis-richardii	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis richardii		
+Anolis-roquet-COI	Reptilia/Squamata/Dactyloidae/Anolis-roquet	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis roquet		
+Anolis-sacamecatensis-COI	Reptilia/Squamata/Dactyloidae/Anolis-sacamecatensis	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis sacamecatensis		
+Anolis-sagrei-COI	Reptilia/Squamata/Dactyloidae/Anolis-sagrei	1.0	22	22	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis sagrei		
+Anolis-stevepoei-COI	Reptilia/Squamata/Dactyloidae/Anolis-stevepoei	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis stevepoei		
+Anolis-stratulus-COI	Reptilia/Squamata/Dactyloidae/Anolis-stratulus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis stratulus		
+Anolis-subocularis-COI	Reptilia/Squamata/Dactyloidae/Anolis-subocularis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis subocularis		
+Anolis-taylori-COI	Reptilia/Squamata/Dactyloidae/Anolis-taylori	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis taylori		
+Anolis-trinitatis-COI	Reptilia/Squamata/Dactyloidae/Anolis-trinitatis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis trinitatis		
+Anolis-tropidogaster-COI	Reptilia/Squamata/Dactyloidae/Anolis-tropidogaster	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis tropidogaster		
+Anolis-tropidonotus-COI	Reptilia/Squamata/Dactyloidae/Anolis-tropidonotus	1.0	21	21	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis tropidonotus		
+Anolis-tropidonotus-ND2	Reptilia/Squamata/Dactyloidae/Anolis-tropidonotus	1.0	22	22	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis tropidonotus		
+Anolis-uniformis-COI	Reptilia/Squamata/Dactyloidae/Anolis-uniformis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis uniformis		
+Anolis-uniformis-ND2	Reptilia/Squamata/Dactyloidae/Anolis-uniformis	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis uniformis		
+Anolis-valencienni-COI	Reptilia/Squamata/Dactyloidae/Anolis-valencienni	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis valencienni		
+Anolis-vanidicus-COI	Reptilia/Squamata/Dactyloidae/Anolis-vanidicus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis vanidicus		
+Anolis-vermiculatus-COI	Reptilia/Squamata/Dactyloidae/Anolis-vermiculatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis vermiculatus		
+Anolis-viridius-CYTB	Reptilia/Squamata/Dactyloidae/Anolis-viridius	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis viridius		
+Anolis-vittigerus-COI	Reptilia/Squamata/Dactyloidae/Anolis-vittigerus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis vittigerus		
+Anolis-wattsii-COI	Reptilia/Squamata/Dactyloidae/Anolis-wattsii	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis wattsii		
+Anolis-zapotecorum-COI	Reptilia/Squamata/Dactyloidae/Anolis-zapotecorum	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dactyloidae	Anolis	Anolis zapotecorum		
+Arizona-elegans-ND4	Reptilia/Squamata/Colubridae/Arizona-elegans	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Arizona	Arizona elegans		
+Arizona-elegans-COI	Reptilia/Squamata/Colubridae/Arizona-elegans	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Colubridae	Arizona	Arizona elegans		
+Asaccus-elisae-RAG1	Reptilia/Squamata/Phyllodactylidae/Asaccus-elisae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phyllodactylidae	Asaccus	Asaccus elisae		
+Asaccus-elisae-ND2	Reptilia/Squamata/Phyllodactylidae/Asaccus-elisae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phyllodactylidae	Asaccus	Asaccus elisae		
+Aspidoscelis-angusticeps-CYTB	Reptilia/Squamata/Teiidae/Aspidoscelis-angusticeps	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis angusticeps		
+Aspidoscelis-angusticeps-ND4	Reptilia/Squamata/Teiidae/Aspidoscelis-angusticeps	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis angusticeps		
+Aspidoscelis-cozumelae-CYTB	Reptilia/Squamata/Teiidae/Aspidoscelis-cozumelae	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis cozumelae		Aspidoscelis cozumelus
+Aspidoscelis-cozumelae-ND4	Reptilia/Squamata/Teiidae/Aspidoscelis-cozumelae	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis cozumelae		Aspidoscelis cozumelus
+Aspidoscelis-deppii-ND4	Reptilia/Squamata/Teiidae/Aspidoscelis-deppii	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis deppii		
+Aspidoscelis-deppii-CYTB	Reptilia/Squamata/Teiidae/Aspidoscelis-deppii	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis deppii		
+Aspidoscelis-maslini-CYTB	Reptilia/Squamata/Teiidae/Aspidoscelis-maslini	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis maslini		
+Aspidoscelis-maslini-ND4	Reptilia/Squamata/Teiidae/Aspidoscelis-maslini	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis maslini		
+Aspidoscelis-rodecki-CYTB	Reptilia/Squamata/Teiidae/Aspidoscelis-rodecki	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis rodecki		
+Aspidoscelis-rodecki-ND4	Reptilia/Squamata/Teiidae/Aspidoscelis-rodecki	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis rodecki		
+Aspidoscelis-sexlineata-COI	Reptilia/Squamata/Teiidae/Aspidoscelis-sexlineata	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Teiidae	Aspidoscelis	Aspidoscelis sexlineata		Aspidoscelis sexlineatus
+Aspronema-dorsivittatum-CYTB	Reptilia/Squamata/Scincidae/Aspronema-dorsivittatum	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Aspronema	Aspronema dorsivittatum		
+Basiliscus-galeritus-COI	Reptilia/Squamata/Corytophanidae/Basiliscus-galeritus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Basiliscus	Basiliscus galeritus		
+Basiliscus-plumifrons-ND1	Reptilia/Squamata/Corytophanidae/Basiliscus-plumifrons	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Basiliscus	Basiliscus plumifrons		
+Basiliscus-plumifrons-ND2	Reptilia/Squamata/Corytophanidae/Basiliscus-plumifrons	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Basiliscus	Basiliscus plumifrons		
+Basiliscus-plumifrons-COI	Reptilia/Squamata/Corytophanidae/Basiliscus-plumifrons	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Basiliscus	Basiliscus plumifrons		
+Basiliscus-vittatus-ND1	Reptilia/Squamata/Corytophanidae/Basiliscus-vittatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Basiliscus	Basiliscus vittatus		
+Basiliscus-vittatus-ND2	Reptilia/Squamata/Corytophanidae/Basiliscus-vittatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Basiliscus	Basiliscus vittatus		
+Basiliscus-vittatus-COI	Reptilia/Squamata/Corytophanidae/Basiliscus-vittatus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Basiliscus	Basiliscus vittatus		
+Bipes-biporus-COI	Reptilia/Squamata/Bipedidae/Bipes-biporus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes biporus		
+Bipes-biporus-ND4	Reptilia/Squamata/Bipedidae/Bipes-biporus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes biporus		
+Bipes-tridactylus-ND2	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-ND6	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-ND4	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-COI	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-ND5	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-ATP8	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-ND1	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-ND3	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-COIII	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-ATP6	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-COII	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bipes-tridactylus-CYTB	Reptilia/Squamata/Bipedidae/Bipes-tridactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Bipedidae	Bipes	Bipes tridactylus		
+Bitis-nasicornis-CYTB	Reptilia/Squamata/Viperidae/Bitis-nasicornis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Bitis	Bitis nasicornis		
+Boa-constrictor-COI	Reptilia/Squamata/Boidae/Boa-constrictor	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Boidae	Boa	Boa constrictor		
+Boa-constrictor-CYTB	Reptilia/Squamata/Boidae/Boa-constrictor	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Boidae	Boa	Boa constrictor		
+Boaedon-lineatus-COI	Reptilia/Squamata/Lamprophiidae/Boaedon-lineatus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Boaedon	Boaedon lineatus		
+Boiga-irregularis-COI	Reptilia/Squamata/Colubridae/Boiga-irregularis	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Colubridae	Boiga	Boiga irregularis		
+Bothriechis-schlegelii-COI	Reptilia/Squamata/Viperidae/Bothriechis-schlegelii	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Viperidae	Bothriechis	Bothriechis schlegelii		
+Bothrophthalmus-lineatus-C-MOS	Reptilia/Squamata/Lamprophiidae/Bothrophthalmus-lineatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Bothrophthalmus	Bothrophthalmus lineatus		
+Bothrops-asper-COI	Reptilia/Squamata/Viperidae/Bothrops-asper	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Viperidae	Bothrops	Bothrops asper		
+Bothrops-asper-CYTB	Reptilia/Squamata/Viperidae/Bothrops-asper	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Viperidae	Bothrops	Bothrops asper		
+Bothrops-brazili-COI	Reptilia/Squamata/Viperidae/Bothrops-brazili	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Bothrops	Bothrops brazili		
+Bronchocela-cristatella-COI	Reptilia/Squamata/Agamidae/Bronchocela-cristatella	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Agamidae	Bronchocela	Bronchocela cristatella		Bronchocela cf. cristatella
+Bronchocela-cristatella-ND2	Reptilia/Squamata/Agamidae/Bronchocela-cristatella	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Agamidae	Bronchocela	Bronchocela cristatella		Bronchocela cf. cristatella
+Bungarus-magnimaculatus-COI	Reptilia/Squamata/Elapidae/Bungarus-magnimaculatus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Elapidae	Bungarus	Bungarus magnimaculatus		
+Bungarus-multicinctus-COI	Reptilia/Squamata/Elapidae/Bungarus-multicinctus	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Elapidae	Bungarus	Bungarus multicinctus		
+Bunopus-tuberculatus-COI	Reptilia/Squamata/Gekkonidae/Bunopus-tuberculatus	1.0	38	38	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Bunopus	Bunopus tuberculatus		
+Caledoniscincus-atropunctatus-ND2	Reptilia/Squamata/Scincidae/Caledoniscincus-atropunctatus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Scincidae	Caledoniscincus	Caledoniscincus atropunctatus		
+Caledoniscincus-austrocaledonicus-ND2	Reptilia/Squamata/Scincidae/Caledoniscincus-austrocaledonicus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Caledoniscincus	Caledoniscincus austrocaledonicus		
+Callisaurus-draconoides-COI	Reptilia/Squamata/Phrynosomatidae/Callisaurus-draconoides	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Callisaurus	Callisaurus draconoides		
+Calotes-chincollium-ND2	Reptilia/Squamata/Agamidae/Calotes-chincollium	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Calotes	Calotes chincollium		
+Calotes-chincollium-COI	Reptilia/Squamata/Agamidae/Calotes-chincollium	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Calotes	Calotes chincollium		
+Calotes-chincollium-ND1	Reptilia/Squamata/Agamidae/Calotes-chincollium	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Calotes	Calotes chincollium		
+Calotes-emma-COI	Reptilia/Squamata/Agamidae/Calotes-emma	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Agamidae	Calotes	Calotes emma		Calotes mystaceus
+Calotes-mystaceus-COI	Reptilia/Squamata/Agamidae/Calotes-mystaceus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Agamidae	Calotes	Calotes mystaceus		
+Calotes-versicolor-ND2	Reptilia/Squamata/Agamidae/Calotes-versicolor	1.0	219	219	Animalia	Chordata	Reptilia	Squamata	Agamidae	Calotes	Calotes versicolor		Calotes irawadi
+Calotes-versicolor-COI	Reptilia/Squamata/Agamidae/Calotes-versicolor	1.0	224	224	Animalia	Chordata	Reptilia	Squamata	Agamidae	Calotes	Calotes versicolor		Calotes irawadi
+Calotes-versicolor-ND1	Reptilia/Squamata/Agamidae/Calotes-versicolor	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Agamidae	Calotes	Calotes versicolor		Calotes irawadi
+Candoia-bibroni-COI	Reptilia/Squamata/Boidae/Candoia-bibroni	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Boidae	Candoia	Candoia bibroni		
+Candoia-paulsoni-COI	Reptilia/Squamata/Boidae/Candoia-paulsoni	1.0	23	23	Animalia	Chordata	Reptilia	Squamata	Boidae	Candoia	Candoia paulsoni		
+Candoia-superciliosa-COI	Reptilia/Squamata/Boidae/Candoia-superciliosa	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Boidae	Candoia	Candoia superciliosa		
+Carlia-ailanpalai-COI	Reptilia/Squamata/Scincidae/Carlia-ailanpalai	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia ailanpalai		
+Carlia-amax-ND4	Reptilia/Squamata/Scincidae/Carlia-amax	1.0	221	221	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia amax		
+Carlia-gracilis-ND4	Reptilia/Squamata/Scincidae/Carlia-gracilis	1.0	55	55	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia gracilis		
+Carlia-munda-COI	Reptilia/Squamata/Scincidae/Carlia-munda	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia munda		
+Carlia-munda-ND4	Reptilia/Squamata/Scincidae/Carlia-munda	1.0	141	141	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia munda		
+Carlia-rostralis-COI	Reptilia/Squamata/Scincidae/Carlia-rostralis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia rostralis		
+Carlia-rubrigularis-COI	Reptilia/Squamata/Scincidae/Carlia-rubrigularis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia rubrigularis		
+Carlia-rufilatus-ND4	Reptilia/Squamata/Scincidae/Carlia-rufilatus	1.0	34	34	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia rufilatus		
+Carlia-schmeltzii-COI	Reptilia/Squamata/Scincidae/Carlia-schmeltzii	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia schmeltzii		
+Carlia-vivax-COI	Reptilia/Squamata/Scincidae/Carlia-vivax	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Carlia	Carlia vivax		
+Cemophora-coccinea-ND4	Reptilia/Squamata/Colubridae/Cemophora-coccinea	1.0	64	64	Animalia	Chordata	Reptilia	Squamata	Colubridae	Cemophora	Cemophora coccinea		
+Cemophora-coccinea-COI	Reptilia/Squamata/Colubridae/Cemophora-coccinea	1.0	61	61	Animalia	Chordata	Reptilia	Squamata	Colubridae	Cemophora	Cemophora coccinea		
+Cerrophidion-godmani-CYTB	Reptilia/Squamata/Viperidae/Cerrophidion-godmani	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Cerrophidion	Cerrophidion godmani		
+Chalcides-bedriagai-CYTB	Reptilia/Squamata/Scincidae/Chalcides-bedriagai	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Scincidae	Chalcides	Chalcides bedriagai		
+Chalcides-ragazzii-COI	Reptilia/Squamata/Scincidae/Chalcides-ragazzii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Chalcides	Chalcides ragazzii		
+Chamaeleo-africanus-ND4	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-africanus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo africanus		
+Chamaeleo-arabicus-ND4	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-arabicus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo arabicus		
+Chamaeleo-chamaeleon-ND2	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-ND6	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-ATP6	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-ND3	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-COII	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-ND4	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-ATP8	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-ND5	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-COI	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-COIII	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-ND1	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Chamaeleo-chamaeleon-CYTB	Reptilia/Squamata/Chamaeleonidae/Chamaeleo-chamaeleon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Chamaeleo	Chamaeleo chamaeleon		
+Charina-bottae-ND4	Reptilia/Squamata/Boidae/Charina-bottae	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Boidae	Charina	Charina bottae		
+Charina-bottae-SCN4A	Reptilia/Squamata/Boidae/Charina-bottae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Boidae	Charina	Charina bottae		
+Chilomeniscus-stramineus-COI	Reptilia/Squamata/Colubridae/Chilomeniscus-stramineus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Chilomeniscus	Chilomeniscus stramineus		Sonora straminea
+Chionactis-occipitalis-COI	Reptilia/Squamata/Colubridae/Chionactis-occipitalis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Chionactis	Chionactis occipitalis		Sonora occipitalis
+Chironius-exoletus-COI	Reptilia/Squamata/Colubridae/Chironius-exoletus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Chironius	Chironius exoletus		
+Chironius-grandisquamis-COI	Reptilia/Squamata/Colubridae/Chironius-grandisquamis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Chironius	Chironius grandisquamis		
+Chlamydosaurus-kingii-ND2	Reptilia/Squamata/Agamidae/Chlamydosaurus-kingii	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Agamidae	Chlamydosaurus	Chlamydosaurus kingii		
+Chlamydosaurus-kingii-RAG1	Reptilia/Squamata/Agamidae/Chlamydosaurus-kingii	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Agamidae	Chlamydosaurus	Chlamydosaurus kingii		
+Clonophis-kirtlandii-SCN4A	Reptilia/Squamata/Natricidae/Clonophis-kirtlandii	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Clonophis	Clonophis kirtlandii		
+Coleonyx-brevis-COI	Reptilia/Squamata/Eublepharidae/Coleonyx-brevis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Eublepharidae	Coleonyx	Coleonyx brevis		
+Coleonyx-switaki-COI	Reptilia/Squamata/Eublepharidae/Coleonyx-switaki	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Eublepharidae	Coleonyx	Coleonyx switaki		
+Coleonyx-variegatus-COI	Reptilia/Squamata/Eublepharidae/Coleonyx-variegatus	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Eublepharidae	Coleonyx	Coleonyx variegatus		
+Coluber-anthonyi-R35	Reptilia/Squamata/Colubridae/Coluber-anthonyi	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber anthonyi		Masticophis anthonyi
+Coluber-anthonyi-COI	Reptilia/Squamata/Colubridae/Coluber-anthonyi	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber anthonyi		Masticophis anthonyi
+Coluber-anthonyi-DNAH3	Reptilia/Squamata/Colubridae/Coluber-anthonyi	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber anthonyi		Masticophis anthonyi
+Coluber-anthonyi-NT3	Reptilia/Squamata/Colubridae/Coluber-anthonyi	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber anthonyi		Masticophis anthonyi
+Coluber-anthonyi-CYTB	Reptilia/Squamata/Colubridae/Coluber-anthonyi	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber anthonyi		Masticophis anthonyi
+Coluber-anthonyi-CMOS	Reptilia/Squamata/Colubridae/Coluber-anthonyi	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber anthonyi		Masticophis anthonyi
+Coluber-bilineatus-DNAH3	Reptilia/Squamata/Colubridae/Coluber-bilineatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber bilineatus		Masticophis bilineatus
+Coluber-bilineatus-COI	Reptilia/Squamata/Colubridae/Coluber-bilineatus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber bilineatus		Masticophis bilineatus
+Coluber-bilineatus-R35	Reptilia/Squamata/Colubridae/Coluber-bilineatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber bilineatus		Masticophis bilineatus
+Coluber-bilineatus-NT3	Reptilia/Squamata/Colubridae/Coluber-bilineatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber bilineatus		Masticophis bilineatus
+Coluber-constrictor-COI	Reptilia/Squamata/Colubridae/Coluber-constrictor	1.0	41	41	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber constrictor		Coluber constrictor priapus
+Coluber-constrictor-DNAH3	Reptilia/Squamata/Colubridae/Coluber-constrictor	1.0	28	28	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber constrictor		Coluber constrictor priapus
+Coluber-constrictor-SCN4A	Reptilia/Squamata/Colubridae/Coluber-constrictor	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber constrictor		Coluber constrictor priapus
+Coluber-constrictor-R35	Reptilia/Squamata/Colubridae/Coluber-constrictor	1.0	31	31	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber constrictor		Coluber constrictor priapus
+Coluber-constrictor-CYTB	Reptilia/Squamata/Colubridae/Coluber-constrictor	1.0	69	69	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber constrictor		Coluber constrictor priapus
+Coluber-constrictor-NT3	Reptilia/Squamata/Colubridae/Coluber-constrictor	1.0	31	31	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber constrictor		Coluber constrictor priapus
+Coluber-constrictor-CMOS	Reptilia/Squamata/Colubridae/Coluber-constrictor	1.0	33	33	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber constrictor		Coluber constrictor priapus
+Coluber-flagellum-CYTB	Reptilia/Squamata/Colubridae/Coluber-flagellum	1.0	34	34	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber flagellum		Masticophis flagellum flagellum
+Coluber-flagellum-NT3	Reptilia/Squamata/Colubridae/Coluber-flagellum	1.0	55	55	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber flagellum		Masticophis flagellum flagellum
+Coluber-flagellum-R35	Reptilia/Squamata/Colubridae/Coluber-flagellum	1.0	42	42	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber flagellum		Masticophis flagellum flagellum
+Coluber-flagellum-CMOS	Reptilia/Squamata/Colubridae/Coluber-flagellum	1.0	51	51	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber flagellum		Masticophis flagellum flagellum
+Coluber-flagellum-COI	Reptilia/Squamata/Colubridae/Coluber-flagellum	1.0	52	52	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber flagellum		Masticophis flagellum flagellum
+Coluber-flagellum-DNAH3	Reptilia/Squamata/Colubridae/Coluber-flagellum	1.0	41	41	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber flagellum		Masticophis flagellum flagellum
+Coluber-lateralis-R35	Reptilia/Squamata/Colubridae/Coluber-lateralis	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber lateralis	lateralis	Masticophis lateralis
+Coluber-lateralis-CYTB	Reptilia/Squamata/Colubridae/Coluber-lateralis	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber lateralis	lateralis	Masticophis lateralis
+Coluber-lateralis-COI	Reptilia/Squamata/Colubridae/Coluber-lateralis	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber lateralis	lateralis	Masticophis lateralis
+Coluber-lateralis-CMOS	Reptilia/Squamata/Colubridae/Coluber-lateralis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber lateralis	lateralis	Masticophis lateralis
+Coluber-lateralis-NT3	Reptilia/Squamata/Colubridae/Coluber-lateralis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber lateralis	lateralis	Masticophis lateralis
+Coluber-lateralis-ND4	Reptilia/Squamata/Colubridae/Coluber-lateralis	1.0	55	55	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber lateralis	lateralis	Masticophis lateralis
+Coluber-lateralis-DNAH3	Reptilia/Squamata/Colubridae/Coluber-lateralis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber lateralis	lateralis	Masticophis lateralis
+Coluber-mentovarius-NT3	Reptilia/Squamata/Colubridae/Coluber-mentovarius	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber mentovarius		Masticophis mentovarius
+Coluber-mentovarius-CYTB	Reptilia/Squamata/Colubridae/Coluber-mentovarius	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber mentovarius		Masticophis mentovarius
+Coluber-mentovarius-DNAH3	Reptilia/Squamata/Colubridae/Coluber-mentovarius	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber mentovarius		Masticophis mentovarius
+Coluber-mentovarius-CMOS	Reptilia/Squamata/Colubridae/Coluber-mentovarius	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber mentovarius		Masticophis mentovarius
+Coluber-mentovarius-R35	Reptilia/Squamata/Colubridae/Coluber-mentovarius	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber mentovarius		Masticophis mentovarius
+Coluber-schotti-CYTB	Reptilia/Squamata/Colubridae/Coluber-schotti	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber schotti		Masticophis schotti
+Coluber-schotti-NT3	Reptilia/Squamata/Colubridae/Coluber-schotti	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber schotti		Masticophis schotti
+Coluber-schotti-DNAH3	Reptilia/Squamata/Colubridae/Coluber-schotti	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber schotti		Masticophis schotti
+Coluber-schotti-CMOS	Reptilia/Squamata/Colubridae/Coluber-schotti	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber schotti		Masticophis schotti
+Coluber-schotti-COI	Reptilia/Squamata/Colubridae/Coluber-schotti	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber schotti		Masticophis schotti
+Coluber-schotti-R35	Reptilia/Squamata/Colubridae/Coluber-schotti	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber schotti		Masticophis schotti
+Coluber-taeniatus-CMOS	Reptilia/Squamata/Colubridae/Coluber-taeniatus	1.0	13	13	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber taeniatus		Masticophis taeniatus
+Coluber-taeniatus-DNAH3	Reptilia/Squamata/Colubridae/Coluber-taeniatus	1.0	13	13	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber taeniatus		Masticophis taeniatus
+Coluber-taeniatus-CYTB	Reptilia/Squamata/Colubridae/Coluber-taeniatus	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber taeniatus		Masticophis taeniatus
+Coluber-taeniatus-NT3	Reptilia/Squamata/Colubridae/Coluber-taeniatus	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber taeniatus		Masticophis taeniatus
+Coluber-taeniatus-R35	Reptilia/Squamata/Colubridae/Coluber-taeniatus	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber taeniatus		Masticophis taeniatus
+Coluber-taeniatus-COI	Reptilia/Squamata/Colubridae/Coluber-taeniatus	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coluber	Coluber taeniatus		Masticophis taeniatus
+Contia-longicaudae-CYTB	Reptilia/Squamata/Dipsadidae/Contia-longicaudae	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Contia	Contia longicaudae		Contia tenuis
+Contia-longicaudae-BDNF	Reptilia/Squamata/Dipsadidae/Contia-longicaudae	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Contia	Contia longicaudae		Contia tenuis
+Contia-longicaudae-ND4	Reptilia/Squamata/Dipsadidae/Contia-longicaudae	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Contia	Contia longicaudae		Contia tenuis
+Contia-tenuis-BDNF	Reptilia/Squamata/Dipsadidae/Contia-tenuis	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Contia	Contia tenuis		
+Contia-tenuis-CYTB	Reptilia/Squamata/Dipsadidae/Contia-tenuis	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Contia	Contia tenuis		
+Contia-tenuis-ND4	Reptilia/Squamata/Dipsadidae/Contia-tenuis	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Contia	Contia tenuis		
+Cophosaurus-texanus-COI	Reptilia/Squamata/Phrynosomatidae/Cophosaurus-texanus	1.0	21	21	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Cophosaurus	Cophosaurus texanus		
+Cordylus-namakuiyus-RAG1	Reptilia/Squamata/Cordylidae/Cordylus-namakuiyus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Cordylidae	Cordylus	Cordylus namakuiyus		
+Cordylus-namakuiyus-C-MOS	Reptilia/Squamata/Cordylidae/Cordylus-namakuiyus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Cordylidae	Cordylus	Cordylus namakuiyus		
+Cordylus-namakuiyus-PRLR	Reptilia/Squamata/Cordylidae/Cordylus-namakuiyus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Cordylidae	Cordylus	Cordylus namakuiyus		
+Cordylus-namakuiyus-MHY2	Reptilia/Squamata/Cordylidae/Cordylus-namakuiyus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Cordylidae	Cordylus	Cordylus namakuiyus		
+Cordylus-namakuiyus-R35	Reptilia/Squamata/Cordylidae/Cordylus-namakuiyus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Cordylidae	Cordylus	Cordylus namakuiyus		
+Cordylus-namakuiyus-ND2	Reptilia/Squamata/Cordylidae/Cordylus-namakuiyus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Cordylidae	Cordylus	Cordylus namakuiyus		
+Cordylus-namakuiyus-NKTR	Reptilia/Squamata/Cordylidae/Cordylus-namakuiyus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Cordylidae	Cordylus	Cordylus namakuiyus		
+Cordylus-namakuiyus-BDNF	Reptilia/Squamata/Cordylidae/Cordylus-namakuiyus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Cordylidae	Cordylus	Cordylus namakuiyus		
+Cordylus-namakuiyus-KIF24	Reptilia/Squamata/Cordylidae/Cordylus-namakuiyus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Cordylidae	Cordylus	Cordylus namakuiyus		
+Coronella-austriaca-COI	Reptilia/Squamata/Colubridae/Coronella-austriaca	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Coronella	Coronella austriaca		
+Correlophus-sarasinorum-ND2	Reptilia/Squamata/Diplodactylidae/Correlophus-sarasinorum	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Diplodactylidae	Correlophus	Correlophus sarasinorum		
+Corytophanes-cristatus-ND1	Reptilia/Squamata/Corytophanidae/Corytophanes-cristatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Corytophanes	Corytophanes cristatus		
+Corytophanes-cristatus-COI	Reptilia/Squamata/Corytophanidae/Corytophanes-cristatus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Corytophanes	Corytophanes cristatus		
+Corytophanes-cristatus-ND2	Reptilia/Squamata/Corytophanidae/Corytophanes-cristatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Corytophanidae	Corytophanes	Corytophanes cristatus		
+Crotalus-atrox-COI	Reptilia/Squamata/Viperidae/Crotalus-atrox	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus atrox		
+Crotalus-cerastes-COI	Reptilia/Squamata/Viperidae/Crotalus-cerastes	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus cerastes		
+Crotalus-durissus-COI	Reptilia/Squamata/Viperidae/Crotalus-durissus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus durissus		
+Crotalus-mitchellii-COI	Reptilia/Squamata/Viperidae/Crotalus-mitchellii	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus mitchellii		
+Crotalus-molossus-COI	Reptilia/Squamata/Viperidae/Crotalus-molossus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus molossus		
+Crotalus-oreganus-ND2	Reptilia/Squamata/Viperidae/Crotalus-oreganus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus oreganus	oreganus	Crotalus oreganus oreganus
+Crotalus-ornatus-ATP6	Reptilia/Squamata/Viperidae/Crotalus-ornatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus ornatus		Crotalus molossus
+Crotalus-ornatus-CYTB	Reptilia/Squamata/Viperidae/Crotalus-ornatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus ornatus		Crotalus molossus
+Crotalus-ornatus-ND4	Reptilia/Squamata/Viperidae/Crotalus-ornatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus ornatus		Crotalus molossus
+Crotalus-ruber-COI	Reptilia/Squamata/Viperidae/Crotalus-ruber	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus ruber		
+Crotalus-scutulatus-COI	Reptilia/Squamata/Viperidae/Crotalus-scutulatus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus scutulatus		
+Crotalus-simus-CYTB	Reptilia/Squamata/Viperidae/Crotalus-simus	1.0	53	53	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus simus		
+Crotalus-tigris-COI	Reptilia/Squamata/Viperidae/Crotalus-tigris	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus tigris		
+Crotalus-viridis-ND2	Reptilia/Squamata/Viperidae/Crotalus-viridis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus viridis	nuntius	Crotalus viridis nuntius
+Crotalus-viridis-COI	Reptilia/Squamata/Viperidae/Crotalus-viridis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus viridis	nuntius	Crotalus viridis nuntius
+Crotalus-willardi-COI	Reptilia/Squamata/Viperidae/Crotalus-willardi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Crotalus	Crotalus willardi		
+Crotaphytus-bicinctores-COI	Reptilia/Squamata/Crotaphytidae/Crotaphytus-bicinctores	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Crotaphytidae	Crotaphytus	Crotaphytus bicinctores		
+Crotaphytus-collaris-COI	Reptilia/Squamata/Crotaphytidae/Crotaphytus-collaris	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Crotaphytidae	Crotaphytus	Crotaphytus collaris		
+Crotaphytus-vestigium-COI	Reptilia/Squamata/Crotaphytidae/Crotaphytus-vestigium	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Crotaphytidae	Crotaphytus	Crotaphytus vestigium		
+Cryptoblepharus-boutonii-COI	Reptilia/Squamata/Scincidae/Cryptoblepharus-boutonii	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Scincidae	Cryptoblepharus	Cryptoblepharus boutonii		
+Cryptoblepharus-plagiocephalus-COI	Reptilia/Squamata/Scincidae/Cryptoblepharus-plagiocephalus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Cryptoblepharus	Cryptoblepharus plagiocephalus		
+Cryptoblepharus-virgatus-COI	Reptilia/Squamata/Scincidae/Cryptoblepharus-virgatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Cryptoblepharus	Cryptoblepharus virgatus		
+Ctenophorus-caudicinctus-PRLR	Reptilia/Squamata/Agamidae/Ctenophorus-caudicinctus	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Agamidae	Ctenophorus	Ctenophorus caudicinctus	infans	Ctenophorus caudicinctus infans
+Ctenophorus-caudicinctus-G3PDH	Reptilia/Squamata/Agamidae/Ctenophorus-caudicinctus	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Agamidae	Ctenophorus	Ctenophorus caudicinctus	infans	Ctenophorus caudicinctus infans
+Ctenophorus-caudicinctus-BACH1	Reptilia/Squamata/Agamidae/Ctenophorus-caudicinctus	1.0	19	19	Animalia	Chordata	Reptilia	Squamata	Agamidae	Ctenophorus	Ctenophorus caudicinctus	infans	Ctenophorus caudicinctus infans
+Ctenophorus-caudicinctus-BDNF	Reptilia/Squamata/Agamidae/Ctenophorus-caudicinctus	1.0	19	19	Animalia	Chordata	Reptilia	Squamata	Agamidae	Ctenophorus	Ctenophorus caudicinctus	infans	Ctenophorus caudicinctus infans
+Ctenophorus-caudicinctus-NT3	Reptilia/Squamata/Agamidae/Ctenophorus-caudicinctus	1.0	19	19	Animalia	Chordata	Reptilia	Squamata	Agamidae	Ctenophorus	Ctenophorus caudicinctus	infans	Ctenophorus caudicinctus infans
+Cubophis-cantherigerus-COI	Reptilia/Squamata/Dipsadidae/Cubophis-cantherigerus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Cubophis	Cubophis cantherigerus		
+Cyrtodactylus-bidoupimontis-COI	Reptilia/Squamata/Gekkonidae/Cyrtodactylus-bidoupimontis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Cyrtodactylus	Cyrtodactylus bidoupimontis		
+Cyrtodactylus-cattienensis-COI	Reptilia/Squamata/Gekkonidae/Cyrtodactylus-cattienensis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Cyrtodactylus	Cyrtodactylus cattienensis		Gekkota sp. BOLD:AAF7905
+Cyrtodactylus-lateralis-COI	Reptilia/Squamata/Gekkonidae/Cyrtodactylus-lateralis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Cyrtodactylus	Cyrtodactylus lateralis		
+Cyrtodactylus-lateralis-ND2	Reptilia/Squamata/Gekkonidae/Cyrtodactylus-lateralis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Cyrtodactylus	Cyrtodactylus lateralis		
+Cyrtodactylus-lenya-COI	Reptilia/Squamata/Gekkonidae/Cyrtodactylus-lenya	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Cyrtodactylus	Cyrtodactylus lenya		
+Cyrtodactylus-payarhtanensis-COI	Reptilia/Squamata/Gekkonidae/Cyrtodactylus-payarhtanensis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Cyrtodactylus	Cyrtodactylus payarhtanensis		
+Cyrtodactylus-ziegleri-COI	Reptilia/Squamata/Gekkonidae/Cyrtodactylus-ziegleri	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Cyrtodactylus	Cyrtodactylus ziegleri		
+Cyrtopodion-scabrum-COI	Reptilia/Squamata/Gekkonidae/Cyrtopodion-scabrum	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Cyrtopodion	Cyrtopodion scabrum		
+Dasypeltis-scabra-COI	Reptilia/Squamata/Colubridae/Dasypeltis-scabra	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Dasypeltis	Dasypeltis scabra		
+Deinagkistrodon-acutus-COI	Reptilia/Squamata/Viperidae/Deinagkistrodon-acutus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Deinagkistrodon	Deinagkistrodon acutus		
+Dendrelaphis-caudolineatus-COI	Reptilia/Squamata/Colubridae/Dendrelaphis-caudolineatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Dendrelaphis	Dendrelaphis caudolineatus		
+Dendrophidion-percarinatum-COI	Reptilia/Squamata/Colubridae/Dendrophidion-percarinatum	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Dendrophidion	Dendrophidion percarinatum		
+Diadophis-punctatus-CYTB	Reptilia/Squamata/Dipsadidae/Diadophis-punctatus	1.0	61	61	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Diadophis	Diadophis punctatus		Diadophis punctatus occidentalis
+Diadophis-punctatus-ND4	Reptilia/Squamata/Dipsadidae/Diadophis-punctatus	1.0	39	39	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Diadophis	Diadophis punctatus		Diadophis punctatus occidentalis
+Diadophis-punctatus-COI	Reptilia/Squamata/Dipsadidae/Diadophis-punctatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Diadophis	Diadophis punctatus		Diadophis punctatus occidentalis
+Diporiphora-bilineata-ND2	Reptilia/Squamata/Agamidae/Diporiphora-bilineata	1.0	19	19	Animalia	Chordata	Reptilia	Squamata	Agamidae	Diporiphora	Diporiphora bilineata		
+Diporiphora-bilineata-RAG1	Reptilia/Squamata/Agamidae/Diporiphora-bilineata	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Agamidae	Diporiphora	Diporiphora bilineata		
+Diporiphora-lalliae-RAG1	Reptilia/Squamata/Agamidae/Diporiphora-lalliae	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Agamidae	Diporiphora	Diporiphora lalliae		
+Diporiphora-lalliae-ND2	Reptilia/Squamata/Agamidae/Diporiphora-lalliae	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Agamidae	Diporiphora	Diporiphora lalliae		
+Diporiphora-magna-RAG1	Reptilia/Squamata/Agamidae/Diporiphora-magna	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Agamidae	Diporiphora	Diporiphora magna		
+Diporiphora-magna-ND2	Reptilia/Squamata/Agamidae/Diporiphora-magna	1.0	63	63	Animalia	Chordata	Reptilia	Squamata	Agamidae	Diporiphora	Diporiphora magna		
+Diporiphora-winneckei-RAG1	Reptilia/Squamata/Agamidae/Diporiphora-winneckei	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Agamidae	Diporiphora	Diporiphora winneckei		
+Diporiphora-winneckei-ND2	Reptilia/Squamata/Agamidae/Diporiphora-winneckei	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Agamidae	Diporiphora	Diporiphora winneckei		
+Dipsas-temporalis-COI	Reptilia/Squamata/Dipsadidae/Dipsas-temporalis	1.0	25	25	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Dipsas	Dipsas temporalis		Dipsas sp.
+Dipsosaurus-dorsalis-ND4	Reptilia/Squamata/Iguanidae/Dipsosaurus-dorsalis	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Iguanidae	Dipsosaurus	Dipsosaurus dorsalis		
+Dipsosaurus-dorsalis-COI	Reptilia/Squamata/Iguanidae/Dipsosaurus-dorsalis	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Iguanidae	Dipsosaurus	Dipsosaurus dorsalis		
+Draco-blanfordii-COI	Reptilia/Squamata/Agamidae/Draco-blanfordii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Draco	Draco blanfordii		
+Drymarchon-couperi-CYTB	Reptilia/Squamata/Colubridae/Drymarchon-couperi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Drymarchon	Drymarchon couperi	couperi	Drymarchon corais
+Ebenavia-inunguis-COI	Reptilia/Squamata/Gekkonidae/Ebenavia-inunguis	1.0	63	63	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Ebenavia	Ebenavia inunguis		
+Echis-carinatus-COI	Reptilia/Squamata/Viperidae/Echis-carinatus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Viperidae	Echis	Echis carinatus		
+Egernia-saxatilis-COI	Reptilia/Squamata/Scincidae/Egernia-saxatilis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Egernia	Egernia saxatilis		
+Elaphe-sauromates-CMOS	Reptilia/Squamata/Colubridae/Elaphe-sauromates	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Elaphe	Elaphe sauromates		
+Elaphe-sauromates-RAG1	Reptilia/Squamata/Colubridae/Elaphe-sauromates	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Colubridae	Elaphe	Elaphe sauromates		
+Elaphe-sauromates-PRLR	Reptilia/Squamata/Colubridae/Elaphe-sauromates	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Colubridae	Elaphe	Elaphe sauromates		
+Elaphe-sauromates-COI	Reptilia/Squamata/Colubridae/Elaphe-sauromates	1.0	42	42	Animalia	Chordata	Reptilia	Squamata	Colubridae	Elaphe	Elaphe sauromates		
+Elaphe-sauromates-ND4	Reptilia/Squamata/Colubridae/Elaphe-sauromates	1.0	35	35	Animalia	Chordata	Reptilia	Squamata	Colubridae	Elaphe	Elaphe sauromates		
+Elaphe-sauromates-MC1R	Reptilia/Squamata/Colubridae/Elaphe-sauromates	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Colubridae	Elaphe	Elaphe sauromates		
+Elgaria-multicarinata-CYTB	Reptilia/Squamata/Anguidae/Elgaria-multicarinata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Anguidae	Elgaria	Elgaria multicarinata		
+Emoia-atrocostata-COI	Reptilia/Squamata/Scincidae/Emoia-atrocostata	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia atrocostata		
+Emoia-caeruleocauda-COI	Reptilia/Squamata/Scincidae/Emoia-caeruleocauda	1.0	25	25	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia caeruleocauda		
+Emoia-concolor-COI	Reptilia/Squamata/Scincidae/Emoia-concolor	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia concolor		
+Emoia-cyanogaster-COI	Reptilia/Squamata/Scincidae/Emoia-cyanogaster	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia cyanogaster		
+Emoia-cyanura-SELT	Reptilia/Squamata/Scincidae/Emoia-cyanura	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia cyanura		
+Emoia-cyanura-BZW1	Reptilia/Squamata/Scincidae/Emoia-cyanura	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia cyanura		
+Emoia-cyanura-COI	Reptilia/Squamata/Scincidae/Emoia-cyanura	1.0	25	25	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia cyanura		
+Emoia-impar-COI	Reptilia/Squamata/Scincidae/Emoia-impar	1.0	25	25	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia impar		
+Emoia-nigra-COI	Reptilia/Squamata/Scincidae/Emoia-nigra	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia nigra		
+Emoia-ponapea-COI	Reptilia/Squamata/Scincidae/Emoia-ponapea	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia ponapea		
+Emoia-sanfordi-COI	Reptilia/Squamata/Scincidae/Emoia-sanfordi	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia sanfordi		
+Emoia-tongana-COI	Reptilia/Squamata/Scincidae/Emoia-tongana	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Scincidae	Emoia	Emoia tongana		
+Enulius-flavitorques-COI	Reptilia/Squamata/Dipsadidae/Enulius-flavitorques	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Enulius	Enulius flavitorques		
+Enyalioides-heterolepis-COI	Reptilia/Squamata/Hoplocercidae/Enyalioides-heterolepis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Hoplocercidae	Enyalioides	Enyalioides heterolepis		
+Enyalioides-laticeps-ND1	Reptilia/Squamata/Hoplocercidae/Enyalioides-laticeps	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Hoplocercidae	Enyalioides	Enyalioides laticeps		
+Enyalioides-laticeps-ND2	Reptilia/Squamata/Hoplocercidae/Enyalioides-laticeps	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Hoplocercidae	Enyalioides	Enyalioides laticeps		
+Enyalioides-laticeps-COI	Reptilia/Squamata/Hoplocercidae/Enyalioides-laticeps	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Hoplocercidae	Enyalioides	Enyalioides laticeps		
+Enyalioides-oshaughnessyi-ND1	Reptilia/Squamata/Hoplocercidae/Enyalioides-oshaughnessyi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Hoplocercidae	Enyalioides	Enyalioides oshaughnessyi		
+Enyalioides-oshaughnessyi-COI	Reptilia/Squamata/Hoplocercidae/Enyalioides-oshaughnessyi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Hoplocercidae	Enyalioides	Enyalioides oshaughnessyi		
+Enyalioides-oshaughnessyi-ND2	Reptilia/Squamata/Hoplocercidae/Enyalioides-oshaughnessyi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Hoplocercidae	Enyalioides	Enyalioides oshaughnessyi		
+Enyalius-catenatus-ND4	Reptilia/Squamata/Leiosauridae/Enyalius-catenatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Leiosauridae	Enyalius	Enyalius catenatus		
+Epicrates-maurus-COI	Reptilia/Squamata/Boidae/Epicrates-maurus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Boidae	Epicrates	Epicrates maurus		
+Erythrolamprus-bizona-COI	Reptilia/Squamata/Dipsadidae/Erythrolamprus-bizona	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Erythrolamprus	Erythrolamprus bizona		
+Erythrolamprus-epinephelus-COI	Reptilia/Squamata/Dipsadidae/Erythrolamprus-epinephelus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Erythrolamprus	Erythrolamprus epinephelus		
+Erythrolamprus-reginae-COI	Reptilia/Squamata/Dipsadidae/Erythrolamprus-reginae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Erythrolamprus	Erythrolamprus reginae		
+Eugongylus-albofasciolatus-COI	Reptilia/Squamata/Scincidae/Eugongylus-albofasciolatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Eugongylus	Eugongylus albofasciolatus		
+Eulamprus-tympanum-COI	Reptilia/Squamata/Scincidae/Eulamprus-tympanum	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Eulamprus	Eulamprus tympanum		
+Eunectes-notaeus-CYTB	Reptilia/Squamata/Boidae/Eunectes-notaeus	1.0	182	182	Animalia	Chordata	Reptilia	Squamata	Boidae	Eunectes	Eunectes notaeus		
+Eunectes-notaeus-ND4	Reptilia/Squamata/Boidae/Eunectes-notaeus	1.0	181	181	Animalia	Chordata	Reptilia	Squamata	Boidae	Eunectes	Eunectes notaeus		
+Euprepiophis-perlacea-ND4	Reptilia/Squamata/Colubridae/Euprepiophis-perlacea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Euprepiophis	Euprepiophis perlacea		
+Eurydactylodes-agricolae-ND2	Reptilia/Squamata/Diplodactylidae/Eurydactylodes-agricolae	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Diplodactylidae	Eurydactylodes	Eurydactylodes agricolae		
+Eurydactylodes-symmetricus-ND2	Reptilia/Squamata/Diplodactylidae/Eurydactylodes-symmetricus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Diplodactylidae	Eurydactylodes	Eurydactylodes symmetricus		
+Eurydactylodes-vieillardi-ND2	Reptilia/Squamata/Diplodactylidae/Eurydactylodes-vieillardi	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Diplodactylidae	Eurydactylodes	Eurydactylodes vieillardi		
+Eurylepis-taeniolata-ND1	Reptilia/Squamata/Scincidae/Eurylepis-taeniolata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Eurylepis	Eurylepis taeniolata		
+Eutropis-multifasciata-COI	Reptilia/Squamata/Scincidae/Eutropis-multifasciata	1.0	13	13	Animalia	Chordata	Reptilia	Squamata	Scincidae	Eutropis	Eutropis multifasciata		
+Gambelia-wislizenii-COI	Reptilia/Squamata/Crotaphytidae/Gambelia-wislizenii	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Crotaphytidae	Gambelia	Gambelia wislizenii		
+Geckolepis-maculata-ND4	Reptilia/Squamata/Gekkonidae/Geckolepis-maculata	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Geckolepis	Geckolepis maculata		
+Geckolepis-maculata-COI	Reptilia/Squamata/Gekkonidae/Geckolepis-maculata	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Geckolepis	Geckolepis maculata		
+Gehyra-brevipalmata-COI	Reptilia/Squamata/Gekkonidae/Gehyra-brevipalmata	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Gehyra	Gehyra brevipalmata		
+Gehyra-mutilata-COI	Reptilia/Squamata/Gekkonidae/Gehyra-mutilata	1.0	20	20	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Gehyra	Gehyra mutilata		
+Gehyra-oceanica-COI	Reptilia/Squamata/Gekkonidae/Gehyra-oceanica	1.0	55	55	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Gehyra	Gehyra oceanica		
+Gekko-gecko-ND2	Reptilia/Squamata/Gekkonidae/Gekko-gecko	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Gekko	Gekko gecko		
+Gekko-vittatus-COI	Reptilia/Squamata/Gekkonidae/Gekko-vittatus	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Gekko	Gekko vittatus		
+Goggia-lineata-ND2	Reptilia/Squamata/Gekkonidae/Goggia-lineata	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Goggia	Goggia lineata		Goggia incognita
+Goggia-lineata-RAG1	Reptilia/Squamata/Gekkonidae/Goggia-lineata	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Goggia	Goggia lineata		Goggia incognita
+Goggia-lineata-PDC	Reptilia/Squamata/Gekkonidae/Goggia-lineata	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Goggia	Goggia lineata		Goggia incognita
+Gonatodes-albogularis-COI	Reptilia/Squamata/Sphaerodactylidae/Gonatodes-albogularis	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Gonatodes	Gonatodes albogularis		
+Gonionotophis-poensis-CYTB	Reptilia/Squamata/Lamprophiidae/Gonionotophis-poensis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Gonionotophis	Gonionotophis poensis		
+Gonionotophis-stenophthalmus-CYTB	Reptilia/Squamata/Lamprophiidae/Gonionotophis-stenophthalmus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Gonionotophis	Gonionotophis stenophthalmus		
+Gonionotophis-stenophthalmus-CMOS	Reptilia/Squamata/Lamprophiidae/Gonionotophis-stenophthalmus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Gonionotophis	Gonionotophis stenophthalmus		
+Gowidon-longirostris-ND2	Reptilia/Squamata/Agamidae/Gowidon-longirostris	1.0	30	30	Animalia	Chordata	Reptilia	Squamata	Agamidae	Gowidon	Gowidon longirostris		
+Gowidon-longirostris-RAG1	Reptilia/Squamata/Agamidae/Gowidon-longirostris	1.0	25	25	Animalia	Chordata	Reptilia	Squamata	Agamidae	Gowidon	Gowidon longirostris		
+Gowidon-temporalis-RAG1	Reptilia/Squamata/Agamidae/Gowidon-temporalis	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Agamidae	Gowidon	Gowidon temporalis		
+Gowidon-temporalis-ND2	Reptilia/Squamata/Agamidae/Gowidon-temporalis	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Agamidae	Gowidon	Gowidon temporalis		
+Hapsidophrys-lineatus-SCN4A	Reptilia/Squamata/Colubridae/Hapsidophrys-lineatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Hapsidophrys	Hapsidophrys lineatus		
+Hapsidophrys-smaragdinus-COI	Reptilia/Squamata/Colubridae/Hapsidophrys-smaragdinus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Hapsidophrys	Hapsidophrys smaragdinus		
+Hebius-bitaeniatum-SCN4A	Reptilia/Squamata/Natricidae/Hebius-bitaeniatum	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Hebius	Hebius bitaeniatum		
+Hemidactylus-biokoensis-BDNF	Reptilia/Squamata/Gekkonidae/Hemidactylus-biokoensis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus biokoensis		Hemidactylus eniangii
+Hemidactylus-biokoensis-NGFB	Reptilia/Squamata/Gekkonidae/Hemidactylus-biokoensis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus biokoensis		Hemidactylus eniangii
+Hemidactylus-biokoensis-PNN	Reptilia/Squamata/Gekkonidae/Hemidactylus-biokoensis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus biokoensis		Hemidactylus eniangii
+Hemidactylus-flaviviridis-COI	Reptilia/Squamata/Gekkonidae/Hemidactylus-flaviviridis	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus flaviviridis		
+Hemidactylus-frenatus-COI	Reptilia/Squamata/Gekkonidae/Hemidactylus-frenatus	1.0	64	64	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus frenatus		
+Hemidactylus-garnotii-COI	Reptilia/Squamata/Gekkonidae/Hemidactylus-garnotii	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus garnotii		
+Hemidactylus-hajarensis-CYTB	Reptilia/Squamata/Gekkonidae/Hemidactylus-hajarensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus hajarensis		Hemidactylus persicus
+Hemidactylus-kurdicus-CYTB	Reptilia/Squamata/Gekkonidae/Hemidactylus-kurdicus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus kurdicus		
+Hemidactylus-mabouia-COI	Reptilia/Squamata/Gekkonidae/Hemidactylus-mabouia	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus mabouia		
+Hemidactylus-mercatorius-COI	Reptilia/Squamata/Gekkonidae/Hemidactylus-mercatorius	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus mercatorius		
+Hemidactylus-platycephalus-COI	Reptilia/Squamata/Gekkonidae/Hemidactylus-platycephalus	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus platycephalus		
+Hemidactylus-robustus-COI	Reptilia/Squamata/Gekkonidae/Hemidactylus-robustus	1.0	40	40	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus robustus		
+Hemidactylus-tenkatei-CYTB	Reptilia/Squamata/Gekkonidae/Hemidactylus-tenkatei	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus tenkatei		Hemidactylus brookii
+Hemidactylus-tenkatei-ND2	Reptilia/Squamata/Gekkonidae/Hemidactylus-tenkatei	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus tenkatei		Hemidactylus brookii
+Hemidactylus-tenkatei-RAG1	Reptilia/Squamata/Gekkonidae/Hemidactylus-tenkatei	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus tenkatei		Hemidactylus brookii
+Hemidactylus-turcicus-COI	Reptilia/Squamata/Gekkonidae/Hemidactylus-turcicus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemidactylus	Hemidactylus turcicus		
+Hemiphyllodactylus-ganoklonis-COI	Reptilia/Squamata/Gekkonidae/Hemiphyllodactylus-ganoklonis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemiphyllodactylus	Hemiphyllodactylus ganoklonis		
+Hemiphyllodactylus-typus-COI	Reptilia/Squamata/Gekkonidae/Hemiphyllodactylus-typus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Hemiphyllodactylus	Hemiphyllodactylus typus		
+Heterodon-platirhinos-COI	Reptilia/Squamata/Dipsadidae/Heterodon-platirhinos	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Heterodon	Heterodon platirhinos		
+Holbrookia-elegans-COI	Reptilia/Squamata/Phrynosomatidae/Holbrookia-elegans	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Holbrookia	Holbrookia elegans		
+Holbrookia-lacerata-COI	Reptilia/Squamata/Phrynosomatidae/Holbrookia-lacerata	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Holbrookia	Holbrookia lacerata		
+Holbrookia-maculata-COI	Reptilia/Squamata/Phrynosomatidae/Holbrookia-maculata	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Holbrookia	Holbrookia maculata		Holbrookia elegans thermophila
+Holbrookia-propinqua-COI	Reptilia/Squamata/Phrynosomatidae/Holbrookia-propinqua	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Holbrookia	Holbrookia propinqua		
+Holcosus-festivus-COI	Reptilia/Squamata/Teiidae/Holcosus-festivus	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Teiidae	Holcosus	Holcosus festivus		
+Homonota-darwinii-CYTB	Reptilia/Squamata/Phyllodactylidae/Homonota-darwinii	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Phyllodactylidae	Homonota	Homonota darwinii		
+Hydrosaurus-amboinensis-COI	Reptilia/Squamata/Agamidae/Hydrosaurus-amboinensis	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Agamidae	Hydrosaurus	Hydrosaurus amboinensis		Hydrosaurus cf. amboinensis
+Hydrosaurus-pustulatus-COI	Reptilia/Squamata/Agamidae/Hydrosaurus-pustulatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Hydrosaurus	Hydrosaurus pustulatus		
+Hypsiglena-chlorophaea-ATP8	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-ND1	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-ND2	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-COI	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-ND3	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-ND6	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-ND4	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-ND5	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-COIII	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-ATP6	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-CYTB	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-chlorophaea-COII	Reptilia/Squamata/Dipsadidae/Hypsiglena-chlorophaea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena chlorophaea	chlorophaea	Hypsiglena chlorophaea chlorophaea
+Hypsiglena-jani-COI	Reptilia/Squamata/Dipsadidae/Hypsiglena-jani	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena jani		Hypsiglena jani texana
+Hypsiglena-jani-ND4	Reptilia/Squamata/Dipsadidae/Hypsiglena-jani	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena jani		Hypsiglena jani texana
+Hypsiglena-ochrorhyncha-ATP6	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-ND5	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-COI	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-COII	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-ATP8	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-ND4	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-ND6	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-COIII	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-ND3	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-ND2	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-ND1	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-ochrorhyncha-CYTB	Reptilia/Squamata/Dipsadidae/Hypsiglena-ochrorhyncha	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena ochrorhyncha	ochrorhyncha	Hypsiglena ochrorhyncha ochrorhyncha
+Hypsiglena-unaocularus-COI	Reptilia/Squamata/Dipsadidae/Hypsiglena-unaocularus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena unaocularus		
+Hypsiglena-unaocularus-ND4	Reptilia/Squamata/Dipsadidae/Hypsiglena-unaocularus	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena unaocularus		
+Hypsiglena-unaocularus-ND5	Reptilia/Squamata/Dipsadidae/Hypsiglena-unaocularus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Hypsiglena	Hypsiglena unaocularus		
+Hypsiscopus-plumbea-COI	Reptilia/Squamata/Homalopsidae/Hypsiscopus-plumbea	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Homalopsidae	Hypsiscopus	Hypsiscopus plumbea		
+Ichnotropis-capensis-KIAA-2018	Reptilia/Squamata/Lacertidae/Ichnotropis-capensis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Ichnotropis	Ichnotropis capensis		
+Ichnotropis-capensis-ND4	Reptilia/Squamata/Lacertidae/Ichnotropis-capensis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Ichnotropis	Ichnotropis capensis		
+Imantodes-cenchoa-COI	Reptilia/Squamata/Dipsadidae/Imantodes-cenchoa	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Imantodes	Imantodes cenchoa		
+Indotyphlops-braminus-COI	Reptilia/Squamata/Typhlopidae/Indotyphlops-braminus	1.0	33	33	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Indotyphlops	Indotyphlops braminus		
+Kinyongia-adolfifriderici-ND2	Reptilia/Squamata/Chamaeleonidae/Kinyongia-adolfifriderici	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Kinyongia	Kinyongia adolfifriderici		
+Kinyongia-adolfifriderici-RAG1	Reptilia/Squamata/Chamaeleonidae/Kinyongia-adolfifriderici	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Kinyongia	Kinyongia adolfifriderici		
+Kinyongia-boehmei-RAG1	Reptilia/Squamata/Chamaeleonidae/Kinyongia-boehmei	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Kinyongia	Kinyongia boehmei		
+Kinyongia-boehmei-ND2	Reptilia/Squamata/Chamaeleonidae/Kinyongia-boehmei	1.0	23	23	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Kinyongia	Kinyongia boehmei		
+Kinyongia-boehmei-PDC	Reptilia/Squamata/Chamaeleonidae/Kinyongia-boehmei	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Kinyongia	Kinyongia boehmei		
+Kinyongia-matschiei-ND2	Reptilia/Squamata/Chamaeleonidae/Kinyongia-matschiei	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Kinyongia	Kinyongia matschiei		
+Lacerta-agilis-COI	Reptilia/Squamata/Lacertidae/Lacerta-agilis	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Lacerta	Lacerta agilis	agilis	Lacerta agilis agilis
+Lacerta-viridis-COI	Reptilia/Squamata/Lacertidae/Lacerta-viridis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Lacerta	Lacerta viridis	viridis	Lacerta viridis viridis
+Lamprolepis-smaragdina-COI	Reptilia/Squamata/Scincidae/Lamprolepis-smaragdina	1.0	42	42	Animalia	Chordata	Reptilia	Squamata	Scincidae	Lamprolepis	Lamprolepis smaragdina		Lamprolepis cf. smaragdina
+Lampropeltis-calligaster-COI	Reptilia/Squamata/Colubridae/Lampropeltis-calligaster	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Lampropeltis	Lampropeltis calligaster		
+Lampropeltis-getula-COI	Reptilia/Squamata/Colubridae/Lampropeltis-getula	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Colubridae	Lampropeltis	Lampropeltis getula		
+Lampropeltis-pyromelana-PRLR	Reptilia/Squamata/Colubridae/Lampropeltis-pyromelana	1.0	41	41	Animalia	Chordata	Reptilia	Squamata	Colubridae	Lampropeltis	Lampropeltis pyromelana		
+Lampropeltis-pyromelana-CYTB	Reptilia/Squamata/Colubridae/Lampropeltis-pyromelana	1.0	45	45	Animalia	Chordata	Reptilia	Squamata	Colubridae	Lampropeltis	Lampropeltis pyromelana		
+Lampropeltis-triangulum-COI	Reptilia/Squamata/Colubridae/Lampropeltis-triangulum	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Lampropeltis	Lampropeltis triangulum		
+Lampropeltis-zonata-ND4	Reptilia/Squamata/Colubridae/Lampropeltis-zonata	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Colubridae	Lampropeltis	Lampropeltis zonata		Lampropeltis zonata multicincta
+Lampropholis-delicata-COI	Reptilia/Squamata/Scincidae/Lampropholis-delicata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Lampropholis	Lampropholis delicata		
+Lampropholis-guichenoti-COI	Reptilia/Squamata/Scincidae/Lampropholis-guichenoti	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Lampropholis	Lampropholis guichenoti		
+Laticauda-colubrina-COI	Reptilia/Squamata/Elapidae/Laticauda-colubrina	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Elapidae	Laticauda	Laticauda colubrina		
+Leiocephalus-carinatus-COI	Reptilia/Squamata/Leiocephalidae/Leiocephalus-carinatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Leiocephalidae	Leiocephalus	Leiocephalus carinatus		
+Leiocephalus-macropus-COI	Reptilia/Squamata/Leiocephalidae/Leiocephalus-macropus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Leiocephalidae	Leiocephalus	Leiocephalus macropus		
+Leiocephalus-raviceps-COI	Reptilia/Squamata/Leiocephalidae/Leiocephalus-raviceps	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Leiocephalidae	Leiocephalus	Leiocephalus raviceps		
+Lepidoblepharis-xanthostigma-COI	Reptilia/Squamata/Sphaerodactylidae/Lepidoblepharis-xanthostigma	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Lepidoblepharis	Lepidoblepharis xanthostigma		
+Lepidodactylus-lugubris-COI	Reptilia/Squamata/Gekkonidae/Lepidodactylus-lugubris	1.0	58	58	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Lepidodactylus	Lepidodactylus lugubris		
+Lepidodactylus-moestus-COI	Reptilia/Squamata/Gekkonidae/Lepidodactylus-moestus	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Lepidodactylus	Lepidodactylus moestus		
+Lepidodactylus-vanuatuensis-COI	Reptilia/Squamata/Gekkonidae/Lepidodactylus-vanuatuensis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Lepidodactylus	Lepidodactylus vanuatuensis		
+Lepidothyris-fernandi-COI	Reptilia/Squamata/Scincidae/Lepidothyris-fernandi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Lepidothyris	Lepidothyris fernandi		
+Leposoma-scincoides-ND4	Reptilia/Squamata/Gymnophthalmidae/Leposoma-scincoides	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Gymnophthalmidae	Leposoma	Leposoma scincoides		
+Leptodeira-annulata-COI	Reptilia/Squamata/Dipsadidae/Leptodeira-annulata	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Leptodeira	Leptodeira annulata		
+Leptodeira-septentrionalis-COI	Reptilia/Squamata/Dipsadidae/Leptodeira-septentrionalis	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Leptodeira	Leptodeira septentrionalis		
+Leptophis-ahaetulla-COI	Reptilia/Squamata/Colubridae/Leptophis-ahaetulla	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Leptophis	Leptophis ahaetulla		
+Leptophis-coeruleodorsus-CYTB	Reptilia/Squamata/Colubridae/Leptophis-coeruleodorsus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Leptophis	Leptophis coeruleodorsus		Leptophis ahaetulla
+Leptophis-depressirostris-COI	Reptilia/Squamata/Colubridae/Leptophis-depressirostris	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Leptophis	Leptophis depressirostris		
+Lerista-kalumburu-ND4	Reptilia/Squamata/Scincidae/Lerista-kalumburu	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Scincidae	Lerista	Lerista kalumburu		
+Lerista-rochfordensis-ND4	Reptilia/Squamata/Scincidae/Lerista-rochfordensis	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Scincidae	Lerista	Lerista rochfordensis		
+Lerista-rochfordensis-ATPSB	Reptilia/Squamata/Scincidae/Lerista-rochfordensis	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Scincidae	Lerista	Lerista rochfordensis		
+Letheobia-feae-AMEL	Reptilia/Squamata/Typhlopidae/Letheobia-feae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Letheobia	Letheobia feae		
+Letheobia-feae-CYTB	Reptilia/Squamata/Typhlopidae/Letheobia-feae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Letheobia	Letheobia feae		
+Letheobia-feae-BDNF	Reptilia/Squamata/Typhlopidae/Letheobia-feae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Letheobia	Letheobia feae		
+Letheobia-feae-NT3	Reptilia/Squamata/Typhlopidae/Letheobia-feae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Letheobia	Letheobia feae		
+Letheobia-feae-RAG1	Reptilia/Squamata/Typhlopidae/Letheobia-feae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Letheobia	Letheobia feae		
+Letheobia-feae-BMP2	Reptilia/Squamata/Typhlopidae/Letheobia-feae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Letheobia	Letheobia feae		
+Liburnascincus-coensis-COI	Reptilia/Squamata/Scincidae/Liburnascincus-coensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Liburnascincus	Liburnascincus coensis		
+Liburnascincus-scirtetis-COI	Reptilia/Squamata/Scincidae/Liburnascincus-scirtetis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Liburnascincus	Liburnascincus scirtetis		
+Liotyphlops-albirostris-COI	Reptilia/Squamata/Anomalepididae/Liotyphlops-albirostris	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Anomalepididae	Liotyphlops	Liotyphlops albirostris		
+Lipinia-leptosoma-COI	Reptilia/Squamata/Scincidae/Lipinia-leptosoma	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Lipinia	Lipinia leptosoma		
+Lipinia-noctua-COI	Reptilia/Squamata/Scincidae/Lipinia-noctua	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Scincidae	Lipinia	Lipinia noctua		
+Lophognathus-burnsi-ND2	Reptilia/Squamata/Agamidae/Lophognathus-burnsi	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Agamidae	Lophognathus	Lophognathus burnsi		Amphibolurus burnsi
+Lophognathus-burnsi-RAG1	Reptilia/Squamata/Agamidae/Lophognathus-burnsi	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Agamidae	Lophognathus	Lophognathus burnsi		Amphibolurus burnsi
+Lophognathus-gilberti-RAG1	Reptilia/Squamata/Agamidae/Lophognathus-gilberti	1.0	31	31	Animalia	Chordata	Reptilia	Squamata	Agamidae	Lophognathus	Lophognathus gilberti		
+Lophognathus-gilberti-ND2	Reptilia/Squamata/Agamidae/Lophognathus-gilberti	1.0	44	44	Animalia	Chordata	Reptilia	Squamata	Agamidae	Lophognathus	Lophognathus gilberti		
+Lycodon-rufozonatus-COI	Reptilia/Squamata/Colubridae/Lycodon-rufozonatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Colubridae	Lycodon	Lycodon rufozonatus		
+Lycophidion-laterale-COI	Reptilia/Squamata/Lamprophiidae/Lycophidion-laterale	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Lycophidion	Lycophidion laterale		
+Lygodactylus-klugei-ND2	Reptilia/Squamata/Gekkonidae/Lygodactylus-klugei	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Lygodactylus	Lygodactylus klugei		
+Lygodactylus-klugei-RAG1	Reptilia/Squamata/Gekkonidae/Lygodactylus-klugei	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Lygodactylus	Lygodactylus klugei		
+Madatyphlops-comorensis-COI	Reptilia/Squamata/Typhlopidae/Madatyphlops-comorensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Madatyphlops	Madatyphlops comorensis		
+Maracaiba-meridensis-R35	Reptilia/Squamata/Scincidae/Maracaiba-meridensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Maracaiba	Maracaiba meridensis		Mabuya meridensis
+Maracaiba-meridensis-CYTB	Reptilia/Squamata/Scincidae/Maracaiba-meridensis	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Scincidae	Maracaiba	Maracaiba meridensis		Mabuya meridensis
+Marisora-falconensis-CYTB	Reptilia/Squamata/Scincidae/Marisora-falconensis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Scincidae	Marisora	Marisora falconensis		
+Marisora-falconensis-RAG2	Reptilia/Squamata/Scincidae/Marisora-falconensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Marisora	Marisora falconensis		
+Marisora-unimarginata-NGFB	Reptilia/Squamata/Scincidae/Marisora-unimarginata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Marisora	Marisora unimarginata		
+Marisora-unimarginata-R35	Reptilia/Squamata/Scincidae/Marisora-unimarginata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Marisora	Marisora unimarginata		
+Marisora-unimarginata-COI	Reptilia/Squamata/Scincidae/Marisora-unimarginata	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Marisora	Marisora unimarginata		
+Marisora-unimarginata-RAG2	Reptilia/Squamata/Scincidae/Marisora-unimarginata	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Marisora	Marisora unimarginata		
+Marisora-unimarginata-CYTB	Reptilia/Squamata/Scincidae/Marisora-unimarginata	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Scincidae	Marisora	Marisora unimarginata		
+Mastigodryas-melanolomus-CMOS	Reptilia/Squamata/Colubridae/Mastigodryas-melanolomus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Mastigodryas	Mastigodryas melanolomus		
+Mastigodryas-melanolomus-NT3	Reptilia/Squamata/Colubridae/Mastigodryas-melanolomus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Mastigodryas	Mastigodryas melanolomus		
+Mastigodryas-melanolomus-R35	Reptilia/Squamata/Colubridae/Mastigodryas-melanolomus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Mastigodryas	Mastigodryas melanolomus		
+Mastigodryas-melanolomus-COI	Reptilia/Squamata/Colubridae/Mastigodryas-melanolomus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Mastigodryas	Mastigodryas melanolomus		
+Mastigodryas-melanolomus-CYTB	Reptilia/Squamata/Colubridae/Mastigodryas-melanolomus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Mastigodryas	Mastigodryas melanolomus		
+Mastigodryas-melanolomus-DNAH3	Reptilia/Squamata/Colubridae/Mastigodryas-melanolomus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Mastigodryas	Mastigodryas melanolomus		
+Meroles-ctenodactylus-RAG-1	Reptilia/Squamata/Lacertidae/Meroles-ctenodactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles ctenodactylus		
+Meroles-ctenodactylus-ND4	Reptilia/Squamata/Lacertidae/Meroles-ctenodactylus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles ctenodactylus		
+Meroles-cuneirostris-KIAA-2018	Reptilia/Squamata/Lacertidae/Meroles-cuneirostris	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles cuneirostris		
+Meroles-cuneirostris-ND4	Reptilia/Squamata/Lacertidae/Meroles-cuneirostris	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles cuneirostris		
+Meroles-cuneirostris-RAG-1	Reptilia/Squamata/Lacertidae/Meroles-cuneirostris	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles cuneirostris		
+Meroles-knoxii-ND4	Reptilia/Squamata/Lacertidae/Meroles-knoxii	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles knoxii		
+Meroles-knoxii-RAG-1	Reptilia/Squamata/Lacertidae/Meroles-knoxii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles knoxii		
+Meroles-reticulatus-ND4	Reptilia/Squamata/Lacertidae/Meroles-reticulatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles reticulatus		
+Meroles-reticulatus-KIAA-2018	Reptilia/Squamata/Lacertidae/Meroles-reticulatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles reticulatus		
+Meroles-squamulosus-ND4	Reptilia/Squamata/Lacertidae/Meroles-squamulosus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles squamulosus		
+Meroles-squamulosus-KIAA-2018	Reptilia/Squamata/Lacertidae/Meroles-squamulosus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles squamulosus		
+Meroles-squamulosus-RAG-1	Reptilia/Squamata/Lacertidae/Meroles-squamulosus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles squamulosus		
+Meroles-suborbitalis-ND4	Reptilia/Squamata/Lacertidae/Meroles-suborbitalis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Meroles	Meroles suborbitalis		
+Micrurus-nigrocinctus-COI	Reptilia/Squamata/Elapidae/Micrurus-nigrocinctus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Elapidae	Micrurus	Micrurus nigrocinctus		
+Micrurus-stewarti-COI	Reptilia/Squamata/Elapidae/Micrurus-stewarti	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Elapidae	Micrurus	Micrurus stewarti		
+Monopeltis-guentheri-COI	Reptilia/Squamata/Amphisbaenidae/Monopeltis-guentheri	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Amphisbaenidae	Monopeltis	Monopeltis guentheri		
+Nactus-cheverti-COI	Reptilia/Squamata/Gekkonidae/Nactus-cheverti	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Nactus	Nactus cheverti		
+Nactus-eboracensis-COI	Reptilia/Squamata/Gekkonidae/Nactus-eboracensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Nactus	Nactus eboracensis		
+Nactus-galgajuga-COI	Reptilia/Squamata/Gekkonidae/Nactus-galgajuga	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Nactus	Nactus galgajuga		
+Nactus-multicarinatus-COI	Reptilia/Squamata/Gekkonidae/Nactus-multicarinatus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Nactus	Nactus multicarinatus		
+Nactus-pelagicus-COI	Reptilia/Squamata/Gekkonidae/Nactus-pelagicus	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Nactus	Nactus pelagicus		
+Nactus-pelagicus-RAG1	Reptilia/Squamata/Gekkonidae/Nactus-pelagicus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Nactus	Nactus pelagicus		
+Nactus-pelagicus-ND2	Reptilia/Squamata/Gekkonidae/Nactus-pelagicus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Nactus	Nactus pelagicus		
+Naja-annulata-COI	Reptilia/Squamata/Elapidae/Naja-annulata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Elapidae	Naja	Naja annulata		
+Naja-atra-COI	Reptilia/Squamata/Elapidae/Naja-atra	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Elapidae	Naja	Naja atra		
+Naja-melanoleuca-COI	Reptilia/Squamata/Elapidae/Naja-melanoleuca	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Elapidae	Naja	Naja melanoleuca		
+Natriciteres-fuliginoides-COI	Reptilia/Squamata/Natricidae/Natriciteres-fuliginoides	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Natricidae	Natriciteres	Natriciteres fuliginoides		
+Natrix-maura-CYTB	Reptilia/Squamata/Natricidae/Natrix-maura	1.0	29	29	Animalia	Chordata	Reptilia	Squamata	Natricidae	Natrix	Natrix maura		
+Natrix-natrix-COI	Reptilia/Squamata/Natricidae/Natrix-natrix	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Natricidae	Natrix	Natrix natrix		
+Natrix-natrix-ND1	Reptilia/Squamata/Natricidae/Natrix-natrix	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Natrix	Natrix natrix		
+Natrix-natrix-SCN4A	Reptilia/Squamata/Natricidae/Natrix-natrix	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Natricidae	Natrix	Natrix natrix		
+Natrix-tessellata-COI	Reptilia/Squamata/Natricidae/Natrix-tessellata	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Natricidae	Natrix	Natrix tessellata		
+Natrix-tessellata-ND1	Reptilia/Squamata/Natricidae/Natrix-tessellata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Natricidae	Natrix	Natrix tessellata		
+Natrix-tessellata-SCN4A	Reptilia/Squamata/Natricidae/Natrix-tessellata	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Natrix	Natrix tessellata		
+Nerodia-cyclopion-COI	Reptilia/Squamata/Natricidae/Nerodia-cyclopion	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Nerodia	Nerodia cyclopion		
+Nerodia-erythrogaster-COI	Reptilia/Squamata/Natricidae/Nerodia-erythrogaster	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Natricidae	Nerodia	Nerodia erythrogaster		
+Nerodia-fasciata-COI	Reptilia/Squamata/Natricidae/Nerodia-fasciata	1.0	19	19	Animalia	Chordata	Reptilia	Squamata	Natricidae	Nerodia	Nerodia fasciata		
+Nerodia-rhombifer-COI	Reptilia/Squamata/Natricidae/Nerodia-rhombifer	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Natricidae	Nerodia	Nerodia rhombifer		
+Nerodia-sipedon-COI	Reptilia/Squamata/Natricidae/Nerodia-sipedon	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Natricidae	Nerodia	Nerodia sipedon		
+Ninia-maculata-COI	Reptilia/Squamata/Dipsadidae/Ninia-maculata	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Ninia	Ninia maculata		
+Opheodrys-aestivus-COI	Reptilia/Squamata/Colubridae/Opheodrys-aestivus	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Colubridae	Opheodrys	Opheodrys aestivus		
+Ophisaurus-attenuatus-COI	Reptilia/Squamata/Anguidae/Ophisaurus-attenuatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Anguidae	Ophisaurus	Ophisaurus attenuatus		
+Ovophis-monticola-CYTB	Reptilia/Squamata/Viperidae/Ovophis-monticola	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Viperidae	Ovophis	Ovophis monticola		
+Ovophis-monticola-ND4	Reptilia/Squamata/Viperidae/Ovophis-monticola	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Viperidae	Ovophis	Ovophis monticola		
+Oxybelis-aeneus-COI	Reptilia/Squamata/Colubridae/Oxybelis-aeneus	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Colubridae	Oxybelis	Oxybelis aeneus		
+Oxyrhopus-guibei-COI	Reptilia/Squamata/Dipsadidae/Oxyrhopus-guibei	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Oxyrhopus	Oxyrhopus guibei		
+Oxyrhopus-petolarius-COI	Reptilia/Squamata/Dipsadidae/Oxyrhopus-petolarius	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Oxyrhopus	Oxyrhopus petolarius		
+Pachydactylus-carinatus-CYTB	Reptilia/Squamata/Gekkonidae/Pachydactylus-carinatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Pachydactylus	Pachydactylus carinatus		
+Pachydactylus-monicae-CYTB	Reptilia/Squamata/Gekkonidae/Pachydactylus-monicae	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Pachydactylus	Pachydactylus monicae		
+Pachydactylus-montanus-CYTB	Reptilia/Squamata/Gekkonidae/Pachydactylus-montanus	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Pachydactylus	Pachydactylus montanus		Pachydactylus serval
+Pachydactylus-weberi-CYTB	Reptilia/Squamata/Gekkonidae/Pachydactylus-weberi	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Pachydactylus	Pachydactylus weberi		
+Panaspis-cabindae-PDC	Reptilia/Squamata/Scincidae/Panaspis-cabindae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Panaspis	Panaspis cabindae		
+Panaspis-cabindae-CYTB	Reptilia/Squamata/Scincidae/Panaspis-cabindae	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Panaspis	Panaspis cabindae		
+Panaspis-togoensis-CYTB	Reptilia/Squamata/Scincidae/Panaspis-togoensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Panaspis	Panaspis togoensis		
+Panaspis-togoensis-PDC	Reptilia/Squamata/Scincidae/Panaspis-togoensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Panaspis	Panaspis togoensis		
+Panaspis-wahlbergii-CYTB	Reptilia/Squamata/Scincidae/Panaspis-wahlbergii	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Scincidae	Panaspis	Panaspis wahlbergii		Panaspis wahlbergi
+Panaspis-wahlbergii-PDC	Reptilia/Squamata/Scincidae/Panaspis-wahlbergii	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Scincidae	Panaspis	Panaspis wahlbergii		Panaspis wahlbergi
+Panaspis-wahlbergii-RAG1	Reptilia/Squamata/Scincidae/Panaspis-wahlbergii	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Scincidae	Panaspis	Panaspis wahlbergii		Panaspis wahlbergi
+Pantherophis-guttatus-COI	Reptilia/Squamata/Colubridae/Pantherophis-guttatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Pantherophis	Pantherophis guttatus		
+Pantherophis-obsoletus-COI	Reptilia/Squamata/Colubridae/Pantherophis-obsoletus	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Colubridae	Pantherophis	Pantherophis obsoletus		
+Paralaudakia-caucasia-ND1	Reptilia/Squamata/Agamidae/Paralaudakia-caucasia	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Agamidae	Paralaudakia	Paralaudakia caucasia		
+Paralaudakia-caucasia-ND2	Reptilia/Squamata/Agamidae/Paralaudakia-caucasia	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Agamidae	Paralaudakia	Paralaudakia caucasia		
+Paralaudakia-caucasia-COI	Reptilia/Squamata/Agamidae/Paralaudakia-caucasia	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Agamidae	Paralaudakia	Paralaudakia caucasia		
+Paralaudakia-lehmanni-ND2	Reptilia/Squamata/Agamidae/Paralaudakia-lehmanni	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Agamidae	Paralaudakia	Paralaudakia lehmanni		
+Pedioplanis-lineoocellata-ND4	Reptilia/Squamata/Lacertidae/Pedioplanis-lineoocellata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Pedioplanis	Pedioplanis lineoocellata	lineoocellata	Pedioplanis lineoocellata lineoocellata
+Pedioplanis-lineoocellata-KIAA-2018	Reptilia/Squamata/Lacertidae/Pedioplanis-lineoocellata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Pedioplanis	Pedioplanis lineoocellata	lineoocellata	Pedioplanis lineoocellata lineoocellata
+Pedioplanis-namaquensis-KIAA-2018	Reptilia/Squamata/Lacertidae/Pedioplanis-namaquensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Pedioplanis	Pedioplanis namaquensis		
+Pedioplanis-namaquensis-ND4	Reptilia/Squamata/Lacertidae/Pedioplanis-namaquensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Pedioplanis	Pedioplanis namaquensis		
+Petrosaurus-mearnsi-COI	Reptilia/Squamata/Phrynosomatidae/Petrosaurus-mearnsi	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Petrosaurus	Petrosaurus mearnsi		
+Petrosaurus-thalassinus-COI	Reptilia/Squamata/Phrynosomatidae/Petrosaurus-thalassinus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Petrosaurus	Petrosaurus thalassinus		
+Phelsuma-dubia-COI	Reptilia/Squamata/Gekkonidae/Phelsuma-dubia	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Phelsuma	Phelsuma dubia		
+Phelsuma-laticauda-COI	Reptilia/Squamata/Gekkonidae/Phelsuma-laticauda	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Phelsuma	Phelsuma laticauda		
+Phelsuma-spec-COI	Reptilia/Squamata/Gekkonidae/Phelsuma-spec	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Phelsuma	Phelsuma spec		Phelsuma v-nigra
+Phrynocephalus-erythrurus-ND2	Reptilia/Squamata/Agamidae/Phrynocephalus-erythrurus	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus erythrurus		Phrynocephalus erythrurus parva
+Phrynocephalus-guttatus-RAG1	Reptilia/Squamata/Agamidae/Phrynocephalus-guttatus	1.0	22	22	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus guttatus	melanurus	Phrynocephalus guttatus melanurus
+Phrynocephalus-guttatus-ND2	Reptilia/Squamata/Agamidae/Phrynocephalus-guttatus	1.0	27	27	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus guttatus	melanurus	Phrynocephalus guttatus melanurus
+Phrynocephalus-helioscopus-COI	Reptilia/Squamata/Agamidae/Phrynocephalus-helioscopus	1.0	54	54	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus helioscopus		
+Phrynocephalus-helioscopus-ND2	Reptilia/Squamata/Agamidae/Phrynocephalus-helioscopus	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus helioscopus		
+Phrynocephalus-helioscopus-RAG1	Reptilia/Squamata/Agamidae/Phrynocephalus-helioscopus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus helioscopus		
+Phrynocephalus-mystaceus-RAG1	Reptilia/Squamata/Agamidae/Phrynocephalus-mystaceus	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus mystaceus	aurantiacaudatus	Phrynocephalus mystaceus aurantiacaudatus
+Phrynocephalus-mystaceus-ND2	Reptilia/Squamata/Agamidae/Phrynocephalus-mystaceus	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus mystaceus	aurantiacaudatus	Phrynocephalus mystaceus aurantiacaudatus
+Phrynocephalus-persicus-COI	Reptilia/Squamata/Agamidae/Phrynocephalus-persicus	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus persicus		Pyrisitia dina westwoodi
+Phrynocephalus-putjatai-ND2	Reptilia/Squamata/Agamidae/Phrynocephalus-putjatai	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus putjatai		
+Phrynocephalus-theobaldi-ND2	Reptilia/Squamata/Agamidae/Phrynocephalus-theobaldi	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus theobaldi		
+Phrynocephalus-vlangalii-ND2	Reptilia/Squamata/Agamidae/Phrynocephalus-vlangalii	1.0	42	42	Animalia	Chordata	Reptilia	Squamata	Agamidae	Phrynocephalus	Phrynocephalus vlangalii	pylzowi	Phrynocephalus vlangalii pylzowi
+Phrynonax-poecilonotus-COI	Reptilia/Squamata/Colubridae/Phrynonax-poecilonotus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Phrynonax	Phrynonax poecilonotus		
+Phrynosoma-blainvillii-ND2	Reptilia/Squamata/Phrynosomatidae/Phrynosoma-blainvillii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Phrynosoma	Phrynosoma blainvillii	blainvillii	
+Phrynosoma-blainvillii-ND1	Reptilia/Squamata/Phrynosomatidae/Phrynosoma-blainvillii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Phrynosoma	Phrynosoma blainvillii	blainvillii	
+Phrynosoma-cornutum-COI	Reptilia/Squamata/Phrynosomatidae/Phrynosoma-cornutum	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Phrynosoma	Phrynosoma cornutum		
+Phrynosoma-goodei-ND4	Reptilia/Squamata/Phrynosomatidae/Phrynosoma-goodei	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Phrynosoma	Phrynosoma goodei	goodei	
+Phrynosoma-mcallii-ND4	Reptilia/Squamata/Phrynosomatidae/Phrynosoma-mcallii	1.0	95	95	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Phrynosoma	Phrynosoma mcallii		
+Phrynosoma-mcallii-COI	Reptilia/Squamata/Phrynosomatidae/Phrynosoma-mcallii	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Phrynosoma	Phrynosoma mcallii		
+Phrynosoma-platyrhinos-COI	Reptilia/Squamata/Phrynosomatidae/Phrynosoma-platyrhinos	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Phrynosoma	Phrynosoma platyrhinos		
+Phrynosoma-platyrhinos-ND4	Reptilia/Squamata/Phrynosomatidae/Phrynosoma-platyrhinos	1.0	51	51	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Phrynosoma	Phrynosoma platyrhinos		
+Phyllorhynchus-decurtatus-COI	Reptilia/Squamata/Colubridae/Phyllorhynchus-decurtatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Phyllorhynchus	Phyllorhynchus decurtatus		
+Phymaturus-calcogaster-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-calcogaster	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus calcogaster		
+Phymaturus-camilae-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-camilae	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus camilae		
+Phymaturus-castillensis-CYTB	Reptilia/Squamata/Liolaemidae/Phymaturus-castillensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus castillensis		
+Phymaturus-castillensis-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-castillensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus castillensis		
+Phymaturus-etheridgei-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-etheridgei	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus etheridgei		
+Phymaturus-excelsus-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-excelsus	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus excelsus		
+Phymaturus-felixi-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-felixi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus felixi		
+Phymaturus-indistinctus-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-indistinctus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus indistinctus		
+Phymaturus-nevadoi-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-nevadoi	1.0	13	13	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus nevadoi		
+Phymaturus-patagonicus-CYTB	Reptilia/Squamata/Liolaemidae/Phymaturus-patagonicus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus patagonicus		
+Phymaturus-patagonicus-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-patagonicus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus patagonicus		
+Phymaturus-payuniae-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-payuniae	1.0	27	27	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus payuniae		
+Phymaturus-sinervoi-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-sinervoi	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus sinervoi		
+Phymaturus-sinervoi-CYTB	Reptilia/Squamata/Liolaemidae/Phymaturus-sinervoi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus sinervoi		
+Phymaturus-somuncurensis-CYTB	Reptilia/Squamata/Liolaemidae/Phymaturus-somuncurensis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus somuncurensis		
+Phymaturus-spectabilis-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-spectabilis	1.0	19	19	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus spectabilis		Phymaturus agilis
+Phymaturus-spurcus-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-spurcus	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus spurcus		
+Phymaturus-tenebrosus-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-tenebrosus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus tenebrosus		
+Phymaturus-videlai-COI	Reptilia/Squamata/Liolaemidae/Phymaturus-videlai	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus videlai		
+Phymaturus-videlai-CYTB	Reptilia/Squamata/Liolaemidae/Phymaturus-videlai	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Liolaemidae	Phymaturus	Phymaturus videlai		
+Pinoyscincus-abdictus-ND2	Reptilia/Squamata/Scincidae/Pinoyscincus-abdictus	1.0	91	91	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pinoyscincus	Pinoyscincus abdictus	abdictus	Pinoyscincus abdictus abdictus
+Pinoyscincus-coxi-ND2	Reptilia/Squamata/Scincidae/Pinoyscincus-coxi	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pinoyscincus	Pinoyscincus coxi	coxi	Pinoyscincus coxi coxi
+Pinoyscincus-jagori-ND2	Reptilia/Squamata/Scincidae/Pinoyscincus-jagori	1.0	50	50	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pinoyscincus	Pinoyscincus jagori	jagori	Pinoyscincus jagori jagori
+Pituophis-catenifer-ND4	Reptilia/Squamata/Colubridae/Pituophis-catenifer	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Colubridae	Pituophis	Pituophis catenifer		Pituophis catenifer annectens
+Pituophis-catenifer-COI	Reptilia/Squamata/Colubridae/Pituophis-catenifer	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Colubridae	Pituophis	Pituophis catenifer		Pituophis catenifer annectens
+Pituophis-melanoleucus-COI	Reptilia/Squamata/Colubridae/Pituophis-melanoleucus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Pituophis	Pituophis melanoleucus		
+Placosoma-glabellum-ND4	Reptilia/Squamata/Gymnophthalmidae/Placosoma-glabellum	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gymnophthalmidae	Placosoma	Placosoma glabellum		
+Platyceps-rhodorachis-COI	Reptilia/Squamata/Colubridae/Platyceps-rhodorachis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Platyceps	Platyceps rhodorachis		
+Plestiodon-fasciatus-COI	Reptilia/Squamata/Scincidae/Plestiodon-fasciatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Plestiodon	Plestiodon fasciatus		
+Plestiodon-multivirgatus-COI	Reptilia/Squamata/Scincidae/Plestiodon-multivirgatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Plestiodon	Plestiodon multivirgatus		
+Pliocercus-euryzonus-COI	Reptilia/Squamata/Colubridae/Pliocercus-euryzonus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Pliocercus	Pliocercus euryzonus		
+Podarcis-muralis-ND4	Reptilia/Squamata/Lacertidae/Podarcis-muralis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Podarcis	Podarcis muralis		
+Podarcis-muralis-COI	Reptilia/Squamata/Lacertidae/Podarcis-muralis	1.0	34	34	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Podarcis	Podarcis muralis		
+Podarcis-muralis-CYTB	Reptilia/Squamata/Lacertidae/Podarcis-muralis	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Podarcis	Podarcis muralis		
+Polychrus-acutirostris-PRLR	Reptilia/Squamata/Polychrotidae/Polychrus-acutirostris	1.0	65	65	Animalia	Chordata	Reptilia	Squamata	Polychrotidae	Polychrus	Polychrus acutirostris		
+Polychrus-acutirostris-KIF24	Reptilia/Squamata/Polychrotidae/Polychrus-acutirostris	1.0	67	67	Animalia	Chordata	Reptilia	Squamata	Polychrotidae	Polychrus	Polychrus acutirostris		
+Polychrus-acutirostris-CASC5	Reptilia/Squamata/Polychrotidae/Polychrus-acutirostris	1.0	67	67	Animalia	Chordata	Reptilia	Squamata	Polychrotidae	Polychrus	Polychrus acutirostris		
+Polychrus-acutirostris-CYTB	Reptilia/Squamata/Polychrotidae/Polychrus-acutirostris	1.0	68	68	Animalia	Chordata	Reptilia	Squamata	Polychrotidae	Polychrus	Polychrus acutirostris		
+Polychrus-marmoratus-SNCAIP	Reptilia/Squamata/Polychrotidae/Polychrus-marmoratus	1.0	22	22	Animalia	Chordata	Reptilia	Squamata	Polychrotidae	Polychrus	Polychrus marmoratus		
+Polychrus-marmoratus-NGFB	Reptilia/Squamata/Polychrotidae/Polychrus-marmoratus	1.0	23	23	Animalia	Chordata	Reptilia	Squamata	Polychrotidae	Polychrus	Polychrus marmoratus		
+Polychrus-marmoratus-RAG1	Reptilia/Squamata/Polychrotidae/Polychrus-marmoratus	1.0	18	18	Animalia	Chordata	Reptilia	Squamata	Polychrotidae	Polychrus	Polychrus marmoratus		
+Polychrus-marmoratus-ND2	Reptilia/Squamata/Polychrotidae/Polychrus-marmoratus	1.0	23	23	Animalia	Chordata	Reptilia	Squamata	Polychrotidae	Polychrus	Polychrus marmoratus		
+Polychrus-marmoratus-DNAH3	Reptilia/Squamata/Polychrotidae/Polychrus-marmoratus	1.0	19	19	Animalia	Chordata	Reptilia	Squamata	Polychrotidae	Polychrus	Polychrus marmoratus		
+Pristurus-carteri-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-carteri	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus carteri		
+Pristurus-carteri-RAG2	Reptilia/Squamata/Sphaerodactylidae/Pristurus-carteri	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus carteri		
+Pristurus-carteri-C-MOS	Reptilia/Squamata/Sphaerodactylidae/Pristurus-carteri	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus carteri		
+Pristurus-carteri-ACM4	Reptilia/Squamata/Sphaerodactylidae/Pristurus-carteri	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus carteri		
+Pristurus-celerrimus-C-MOS	Reptilia/Squamata/Sphaerodactylidae/Pristurus-celerrimus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus celerrimus		
+Pristurus-celerrimus-ACM4	Reptilia/Squamata/Sphaerodactylidae/Pristurus-celerrimus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus celerrimus		
+Pristurus-celerrimus-RAG2	Reptilia/Squamata/Sphaerodactylidae/Pristurus-celerrimus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus celerrimus		
+Pristurus-celerrimus-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-celerrimus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus celerrimus		
+Pristurus-collaris-ACM4	Reptilia/Squamata/Sphaerodactylidae/Pristurus-collaris	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus collaris		
+Pristurus-crucifer-C-MOS	Reptilia/Squamata/Sphaerodactylidae/Pristurus-crucifer	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus crucifer		
+Pristurus-crucifer-ACM4	Reptilia/Squamata/Sphaerodactylidae/Pristurus-crucifer	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus crucifer		
+Pristurus-crucifer-RAG2	Reptilia/Squamata/Sphaerodactylidae/Pristurus-crucifer	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus crucifer		
+Pristurus-crucifer-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-crucifer	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus crucifer		
+Pristurus-flavipunctatus-RAG2	Reptilia/Squamata/Sphaerodactylidae/Pristurus-flavipunctatus	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus flavipunctatus		
+Pristurus-flavipunctatus-COI	Reptilia/Squamata/Sphaerodactylidae/Pristurus-flavipunctatus	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus flavipunctatus		
+Pristurus-flavipunctatus-C-MOS	Reptilia/Squamata/Sphaerodactylidae/Pristurus-flavipunctatus	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus flavipunctatus		
+Pristurus-flavipunctatus-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-flavipunctatus	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus flavipunctatus		
+Pristurus-gallagheri-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-gallagheri	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus gallagheri		
+Pristurus-insignis-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-insignis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus insignis		
+Pristurus-minimus-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-minimus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus minimus		
+Pristurus-minimus-RAG2	Reptilia/Squamata/Sphaerodactylidae/Pristurus-minimus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus minimus		
+Pristurus-minimus-ACM4	Reptilia/Squamata/Sphaerodactylidae/Pristurus-minimus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus minimus		
+Pristurus-minimus-C-MOS	Reptilia/Squamata/Sphaerodactylidae/Pristurus-minimus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus minimus		
+Pristurus-rupestris-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-rupestris	1.0	10	10	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus rupestris		
+Pristurus-rupestris-RAG2	Reptilia/Squamata/Sphaerodactylidae/Pristurus-rupestris	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus rupestris		
+Pristurus-rupestris-ND2	Reptilia/Squamata/Sphaerodactylidae/Pristurus-rupestris	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus rupestris		
+Pristurus-rupestris-C-MOS	Reptilia/Squamata/Sphaerodactylidae/Pristurus-rupestris	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus rupestris		
+Pristurus-sokotranus-RAG2	Reptilia/Squamata/Sphaerodactylidae/Pristurus-sokotranus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus sokotranus		
+Pristurus-sokotranus-ACM4	Reptilia/Squamata/Sphaerodactylidae/Pristurus-sokotranus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus sokotranus		
+Pristurus-sokotranus-C-MOS	Reptilia/Squamata/Sphaerodactylidae/Pristurus-sokotranus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus sokotranus		
+Pristurus-sokotranus-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-sokotranus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus sokotranus		
+Pristurus-somalicus-RAG1	Reptilia/Squamata/Sphaerodactylidae/Pristurus-somalicus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus somalicus		
+Pristurus-somalicus-C-MOS	Reptilia/Squamata/Sphaerodactylidae/Pristurus-somalicus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus somalicus		
+Pristurus-somalicus-ACM4	Reptilia/Squamata/Sphaerodactylidae/Pristurus-somalicus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus somalicus		
+Pristurus-somalicus-RAG2	Reptilia/Squamata/Sphaerodactylidae/Pristurus-somalicus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Pristurus	Pristurus somalicus		
+Proctoporus-chasqui-CMOS	Reptilia/Squamata/Gymnophthalmidae/Proctoporus-chasqui	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gymnophthalmidae	Proctoporus	Proctoporus chasqui		
+Proctoporus-chasqui-CYTB	Reptilia/Squamata/Gymnophthalmidae/Proctoporus-chasqui	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gymnophthalmidae	Proctoporus	Proctoporus chasqui		
+Protobothrops-elegans-ND4	Reptilia/Squamata/Viperidae/Protobothrops-elegans	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Viperidae	Protobothrops	Protobothrops elegans		
+Protobothrops-jerdonii-CYTB	Reptilia/Squamata/Viperidae/Protobothrops-jerdonii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Protobothrops	Protobothrops jerdonii		
+Protobothrops-jerdonii-ND4	Reptilia/Squamata/Viperidae/Protobothrops-jerdonii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Protobothrops	Protobothrops jerdonii		
+Psammophis-mossambicus-ND4	Reptilia/Squamata/Lamprophiidae/Psammophis-mossambicus	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Psammophis	Psammophis mossambicus		
+Psammophis-phillipsii-COI	Reptilia/Squamata/Lamprophiidae/Psammophis-phillipsii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Psammophis	Psammophis phillipsii		
+Psammophis-phillipsii-ND4	Reptilia/Squamata/Lamprophiidae/Psammophis-phillipsii	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Psammophis	Psammophis phillipsii		
+Psammophis-rukwae-ND4	Reptilia/Squamata/Lamprophiidae/Psammophis-rukwae	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Psammophis	Psammophis rukwae		
+Psammophis-sibilans-ND4	Reptilia/Squamata/Lamprophiidae/Psammophis-sibilans	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Lamprophiidae	Psammophis	Psammophis sibilans		
+Pseudemoia-baudini-ND4	Reptilia/Squamata/Scincidae/Pseudemoia-baudini	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pseudemoia	Pseudemoia baudini		
+Pseudemoia-cryodroma-ND4	Reptilia/Squamata/Scincidae/Pseudemoia-cryodroma	1.0	153	153	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pseudemoia	Pseudemoia cryodroma		
+Pseudemoia-entrecasteauxii-ND4	Reptilia/Squamata/Scincidae/Pseudemoia-entrecasteauxii	1.0	112	112	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pseudemoia	Pseudemoia entrecasteauxii		
+Pseudemoia-entrecasteauxii-COI	Reptilia/Squamata/Scincidae/Pseudemoia-entrecasteauxii	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pseudemoia	Pseudemoia entrecasteauxii		
+Pseudemoia-pagenstecheri-ND4	Reptilia/Squamata/Scincidae/Pseudemoia-pagenstecheri	1.0	114	114	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pseudemoia	Pseudemoia pagenstecheri		
+Pseudemoia-rawlinsoni-ND4	Reptilia/Squamata/Scincidae/Pseudemoia-rawlinsoni	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pseudemoia	Pseudemoia rawlinsoni		
+Pseudemoia-spenceri-ND4	Reptilia/Squamata/Scincidae/Pseudemoia-spenceri	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Pseudemoia	Pseudemoia spenceri		
+Ptychozoon-lionotum-ND2	Reptilia/Squamata/Gekkonidae/Ptychozoon-lionotum	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Ptychozoon	Ptychozoon lionotum		
+Ptyodactylus-ragazzii-COI	Reptilia/Squamata/Phyllodactylidae/Ptyodactylus-ragazzii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phyllodactylidae	Ptyodactylus	Ptyodactylus ragazzii		
+Quedenfeldtia-moerens-MC1R	Reptilia/Squamata/Sphaerodactylidae/Quedenfeldtia-moerens	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Quedenfeldtia	Quedenfeldtia moerens		
+Quedenfeldtia-moerens-ND4	Reptilia/Squamata/Sphaerodactylidae/Quedenfeldtia-moerens	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Quedenfeldtia	Quedenfeldtia moerens		
+Quedenfeldtia-trachyblepharus-ND4	Reptilia/Squamata/Sphaerodactylidae/Quedenfeldtia-trachyblepharus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Quedenfeldtia	Quedenfeldtia trachyblepharus		
+Quedenfeldtia-trachyblepharus-MC1R	Reptilia/Squamata/Sphaerodactylidae/Quedenfeldtia-trachyblepharus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Quedenfeldtia	Quedenfeldtia trachyblepharus		
+Rankinia-diemensis-COI	Reptilia/Squamata/Agamidae/Rankinia-diemensis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Agamidae	Rankinia	Rankinia diemensis		
+Rena-dulcis-COI	Reptilia/Squamata/Leptotyphlopidae/Rena-dulcis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Leptotyphlopidae	Rena	Rena dulcis		
+Rena-humilis-COI	Reptilia/Squamata/Leptotyphlopidae/Rena-humilis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Leptotyphlopidae	Rena	Rena humilis		
+Rhabdophis-himalayanus-SCN4A	Reptilia/Squamata/Natricidae/Rhabdophis-himalayanus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Rhabdophis	Rhabdophis himalayanus		
+Rhabdophis-spilogaster-COI	Reptilia/Squamata/Natricidae/Rhabdophis-spilogaster	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Natricidae	Rhabdophis	Rhabdophis spilogaster		
+Rhabdophis-subminiatus-SCN4A	Reptilia/Squamata/Natricidae/Rhabdophis-subminiatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Rhabdophis	Rhabdophis subminiatus		
+Rhacodactylus-auriculatus-ND2	Reptilia/Squamata/Diplodactylidae/Rhacodactylus-auriculatus	1.0	23	23	Animalia	Chordata	Reptilia	Squamata	Diplodactylidae	Rhacodactylus	Rhacodactylus auriculatus		
+Rhacodactylus-auriculatus-RAG1	Reptilia/Squamata/Diplodactylidae/Rhacodactylus-auriculatus	1.0	21	21	Animalia	Chordata	Reptilia	Squamata	Diplodactylidae	Rhacodactylus	Rhacodactylus auriculatus		
+Rhacodactylus-leachianus-ND2	Reptilia/Squamata/Diplodactylidae/Rhacodactylus-leachianus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Diplodactylidae	Rhacodactylus	Rhacodactylus leachianus		
+Rhacodactylus-leachianus-RAG1	Reptilia/Squamata/Diplodactylidae/Rhacodactylus-leachianus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Diplodactylidae	Rhacodactylus	Rhacodactylus leachianus		
+Rhampholeon-spectrum-RAG1	Reptilia/Squamata/Chamaeleonidae/Rhampholeon-spectrum	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Chamaeleonidae	Rhampholeon	Rhampholeon spectrum		
+Rhineura-floridana-ND4	Reptilia/Squamata/Rhineuridae/Rhineura-floridana	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Rhineuridae	Rhineura	Rhineura floridana		
+Rhinocheilus-lecontei-COI	Reptilia/Squamata/Colubridae/Rhinocheilus-lecontei	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Rhinocheilus	Rhinocheilus lecontei		
+Salvadora-hexalepis-NT3	Reptilia/Squamata/Colubridae/Salvadora-hexalepis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Salvadora	Salvadora hexalepis		
+Salvadora-hexalepis-CMOS	Reptilia/Squamata/Colubridae/Salvadora-hexalepis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Salvadora	Salvadora hexalepis		
+Salvadora-hexalepis-COI	Reptilia/Squamata/Colubridae/Salvadora-hexalepis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Salvadora	Salvadora hexalepis		
+Salvadora-hexalepis-CYTB	Reptilia/Squamata/Colubridae/Salvadora-hexalepis	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Salvadora	Salvadora hexalepis		
+Sauromalus-ater-COI	Reptilia/Squamata/Iguanidae/Sauromalus-ater	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Iguanidae	Sauromalus	Sauromalus ater		
+Sceloporus-clarkii-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-clarkii	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus clarkii		
+Sceloporus-cowlesi-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-cowlesi	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus cowlesi		
+Sceloporus-cowlesi-ND1	Reptilia/Squamata/Phrynosomatidae/Sceloporus-cowlesi	1.0	98	98	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus cowlesi		
+Sceloporus-graciosus-CYTB	Reptilia/Squamata/Phrynosomatidae/Sceloporus-graciosus	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus graciosus	graciosus	
+Sceloporus-graciosus-ND1	Reptilia/Squamata/Phrynosomatidae/Sceloporus-graciosus	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus graciosus	graciosus	
+Sceloporus-graciosus-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-graciosus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus graciosus	graciosus	
+Sceloporus-graciosus-R35	Reptilia/Squamata/Phrynosomatidae/Sceloporus-graciosus	1.0	17	17	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus graciosus	graciosus	
+Sceloporus-graciosus-RAG1	Reptilia/Squamata/Phrynosomatidae/Sceloporus-graciosus	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus graciosus	graciosus	
+Sceloporus-graciosus-PNN	Reptilia/Squamata/Phrynosomatidae/Sceloporus-graciosus	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus graciosus	graciosus	
+Sceloporus-hunsakeri-ND4	Reptilia/Squamata/Phrynosomatidae/Sceloporus-hunsakeri	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus hunsakeri		
+Sceloporus-hunsakeri-BDNF	Reptilia/Squamata/Phrynosomatidae/Sceloporus-hunsakeri	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus hunsakeri		
+Sceloporus-jarrovii-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-jarrovii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus jarrovii		
+Sceloporus-magister-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-magister	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus magister		
+Sceloporus-magister-BDNF	Reptilia/Squamata/Phrynosomatidae/Sceloporus-magister	1.0	55	55	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus magister		
+Sceloporus-magister-RAG1	Reptilia/Squamata/Phrynosomatidae/Sceloporus-magister	1.0	54	54	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus magister		
+Sceloporus-magister-ND2	Reptilia/Squamata/Phrynosomatidae/Sceloporus-magister	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus magister		
+Sceloporus-magister-ND1	Reptilia/Squamata/Phrynosomatidae/Sceloporus-magister	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus magister		
+Sceloporus-magister-ND4	Reptilia/Squamata/Phrynosomatidae/Sceloporus-magister	1.0	61	61	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus magister		
+Sceloporus-malachiticus-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-malachiticus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus malachiticus		
+Sceloporus-occidentalis-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-occidentalis	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus occidentalis		
+Sceloporus-orcutti-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-orcutti	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus orcutti		
+Sceloporus-tristichus-ND1	Reptilia/Squamata/Phrynosomatidae/Sceloporus-tristichus	1.0	442	442	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus tristichus		
+Sceloporus-undulatus-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-undulatus	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus undulatus		
+Sceloporus-variabilis-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-variabilis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus variabilis		
+Sceloporus-virgatus-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-virgatus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus virgatus		
+Sceloporus-woodi-COI	Reptilia/Squamata/Phrynosomatidae/Sceloporus-woodi	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus woodi		
+Sceloporus-zosteromus-BDNF	Reptilia/Squamata/Phrynosomatidae/Sceloporus-zosteromus	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus zosteromus		
+Sceloporus-zosteromus-ND4	Reptilia/Squamata/Phrynosomatidae/Sceloporus-zosteromus	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus zosteromus		
+Sceloporus-zosteromus-RAG1	Reptilia/Squamata/Phrynosomatidae/Sceloporus-zosteromus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Sceloporus	Sceloporus zosteromus		
+Scelotes-sexlineatus-CYTB	Reptilia/Squamata/Scincidae/Scelotes-sexlineatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Scelotes	Scelotes sexlineatus		
+Scincella-lateralis-CYTB	Reptilia/Squamata/Scincidae/Scincella-lateralis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Scincella	Scincella lateralis		
+Scincella-lateralis-COI	Reptilia/Squamata/Scincidae/Scincella-lateralis	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Scincidae	Scincella	Scincella lateralis		
+Selvasaura-brava-CYTB	Reptilia/Squamata/Gymnophthalmidae/Selvasaura-brava	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gymnophthalmidae	Selvasaura	Selvasaura brava		
+Selvasaura-brava-CMOS	Reptilia/Squamata/Gymnophthalmidae/Selvasaura-brava	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Gymnophthalmidae	Selvasaura	Selvasaura brava		
+Sibon-annulatus-COI	Reptilia/Squamata/Dipsadidae/Sibon-annulatus	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Sibon	Sibon annulatus		
+Sibon-argus-COI	Reptilia/Squamata/Dipsadidae/Sibon-argus	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Sibon	Sibon argus		
+Sibon-lamari-COI	Reptilia/Squamata/Dipsadidae/Sibon-lamari	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Sibon	Sibon lamari		
+Sibon-nebulatus-COI	Reptilia/Squamata/Dipsadidae/Sibon-nebulatus	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Sibon	Sibon nebulatus		
+Sibynophis-collaris-CYTB	Reptilia/Squamata/Colubridae/Sibynophis-collaris	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Sibynophis	Sibynophis collaris		
+Sibynophis-collaris-C-MOS	Reptilia/Squamata/Colubridae/Sibynophis-collaris	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Sibynophis	Sibynophis collaris		
+Sibynophis-collaris-ND2	Reptilia/Squamata/Colubridae/Sibynophis-collaris	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Sibynophis	Sibynophis collaris		
+Sibynophis-collaris-RAG1	Reptilia/Squamata/Colubridae/Sibynophis-collaris	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Sibynophis	Sibynophis collaris		
+Sistrurus-catenatus-COI	Reptilia/Squamata/Viperidae/Sistrurus-catenatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Viperidae	Sistrurus	Sistrurus catenatus		
+Sonora-semiannulata-COI	Reptilia/Squamata/Colubridae/Sonora-semiannulata	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Colubridae	Sonora	Sonora semiannulata		
+Spalerosophis-diadema-COI	Reptilia/Squamata/Colubridae/Spalerosophis-diadema	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Colubridae	Spalerosophis	Spalerosophis diadema		
+Sphaerodactylus-nigropunctatus-COI	Reptilia/Squamata/Sphaerodactylidae/Sphaerodactylus-nigropunctatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Sphaerodactylus	Sphaerodactylus nigropunctatus		
+Sphaerodactylus-notatus-COI	Reptilia/Squamata/Sphaerodactylidae/Sphaerodactylus-notatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Sphaerodactylus	Sphaerodactylus notatus		
+Sphenomorphus-scutatus-COI	Reptilia/Squamata/Scincidae/Sphenomorphus-scutatus	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Scincidae	Sphenomorphus	Sphenomorphus scutatus		
+Sphenomorphus-solomonis-COI	Reptilia/Squamata/Scincidae/Sphenomorphus-solomonis	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Scincidae	Sphenomorphus	Sphenomorphus solomonis		
+Spilotes-pullatus-COI	Reptilia/Squamata/Colubridae/Spilotes-pullatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Spilotes	Spilotes pullatus		
+Spondylurus-sloanii-CYTB	Reptilia/Squamata/Scincidae/Spondylurus-sloanii	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Spondylurus	Spondylurus sloanii		
+Stegonotus-batjanensis-COI	Reptilia/Squamata/Colubridae/Stegonotus-batjanensis	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Colubridae	Stegonotus	Stegonotus batjanensis		
+Storeria-dekayi-COI	Reptilia/Squamata/Natricidae/Storeria-dekayi	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Natricidae	Storeria	Storeria dekayi		
+Tantilla-relicta-COI	Reptilia/Squamata/Colubridae/Tantilla-relicta	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Colubridae	Tantilla	Tantilla relicta		
+Tarentola-americana-COI	Reptilia/Squamata/Phyllodactylidae/Tarentola-americana	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phyllodactylidae	Tarentola	Tarentola americana		
+Tarentola-annularis-COI	Reptilia/Squamata/Phyllodactylidae/Tarentola-annularis	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Phyllodactylidae	Tarentola	Tarentola annularis		
+Telescopus-dhara-ND4	Reptilia/Squamata/Colubridae/Telescopus-dhara	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Colubridae	Telescopus	Telescopus dhara		
+Telescopus-dhara-CMOS	Reptilia/Squamata/Colubridae/Telescopus-dhara	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Colubridae	Telescopus	Telescopus dhara		
+Telescopus-dhara-RAG1	Reptilia/Squamata/Colubridae/Telescopus-dhara	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Colubridae	Telescopus	Telescopus dhara		
+Telescopus-dhara-CYTB	Reptilia/Squamata/Colubridae/Telescopus-dhara	1.0	7	7	Animalia	Chordata	Reptilia	Squamata	Colubridae	Telescopus	Telescopus dhara		
+Telescopus-dhara-ND2	Reptilia/Squamata/Colubridae/Telescopus-dhara	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Colubridae	Telescopus	Telescopus dhara		
+Telescopus-dhara-NT3	Reptilia/Squamata/Colubridae/Telescopus-dhara	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Colubridae	Telescopus	Telescopus dhara		
+Tenuidactylus-caspius-COI	Reptilia/Squamata/Gekkonidae/Tenuidactylus-caspius	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Tenuidactylus	Tenuidactylus caspius		
+Tenuidactylus-longipes-PDC	Reptilia/Squamata/Gekkonidae/Tenuidactylus-longipes	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Tenuidactylus	Tenuidactylus longipes		
+Teratoscincus-scincus-ND1	Reptilia/Squamata/Sphaerodactylidae/Teratoscincus-scincus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Sphaerodactylidae	Teratoscincus	Teratoscincus scincus		
+Thamnophis-atratus-SCN4A	Reptilia/Squamata/Natricidae/Thamnophis-atratus	1.0	72	72	Animalia	Chordata	Reptilia	Squamata	Natricidae	Thamnophis	Thamnophis atratus		
+Thamnophis-couchii-SCN4A	Reptilia/Squamata/Natricidae/Thamnophis-couchii	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Natricidae	Thamnophis	Thamnophis couchii		
+Thamnophis-cyrtopsis-SCN4A	Reptilia/Squamata/Natricidae/Thamnophis-cyrtopsis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Natricidae	Thamnophis	Thamnophis cyrtopsis		
+Thamnophis-melanogaster-ND1	Reptilia/Squamata/Natricidae/Thamnophis-melanogaster	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Natricidae	Thamnophis	Thamnophis melanogaster		
+Thamnophis-proximus-COI	Reptilia/Squamata/Natricidae/Thamnophis-proximus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Thamnophis	Thamnophis proximus		
+Thamnophis-radix-SCN4A	Reptilia/Squamata/Natricidae/Thamnophis-radix	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Natricidae	Thamnophis	Thamnophis radix		
+Thamnophis-sirtalis-SCN4A	Reptilia/Squamata/Natricidae/Thamnophis-sirtalis	1.0	150	150	Animalia	Chordata	Reptilia	Squamata	Natricidae	Thamnophis	Thamnophis sirtalis		
+Thamnophis-sirtalis-NAV14	Reptilia/Squamata/Natricidae/Thamnophis-sirtalis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Thamnophis	Thamnophis sirtalis		
+Thamnophis-valida-COI	Reptilia/Squamata/Natricidae/Thamnophis-valida	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Natricidae	Thamnophis	Thamnophis valida		Thamnophis validus validus
+Thecadactylus-rapicauda-COI	Reptilia/Squamata/Phyllodactylidae/Thecadactylus-rapicauda	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Phyllodactylidae	Thecadactylus	Thecadactylus rapicauda		
+Tiliqua-gigas-ND2	Reptilia/Squamata/Scincidae/Tiliqua-gigas	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tiliqua	Tiliqua gigas		
+Tiliqua-gigas-C-MOS	Reptilia/Squamata/Scincidae/Tiliqua-gigas	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tiliqua	Tiliqua gigas		
+Tiliqua-gigas-CYTB	Reptilia/Squamata/Scincidae/Tiliqua-gigas	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tiliqua	Tiliqua gigas		
+Tiliqua-gigas-PDC	Reptilia/Squamata/Scincidae/Tiliqua-gigas	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tiliqua	Tiliqua gigas		
+Timon-lepidus-CYTB	Reptilia/Squamata/Lacertidae/Timon-lepidus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Timon	Timon lepidus		
+Trachylepis-albilabris-COI	Reptilia/Squamata/Scincidae/Trachylepis-albilabris	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Trachylepis	Trachylepis albilabris		
+Trachylepis-brevicollis-COI	Reptilia/Squamata/Scincidae/Trachylepis-brevicollis	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Trachylepis	Trachylepis brevicollis		
+Trachylepis-sulcata-KIF24	Reptilia/Squamata/Scincidae/Trachylepis-sulcata	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Trachylepis	Trachylepis sulcata		
+Trachylepis-sulcata-ND2	Reptilia/Squamata/Scincidae/Trachylepis-sulcata	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Trachylepis	Trachylepis sulcata		
+Trachylepis-sulcata-RAG1	Reptilia/Squamata/Scincidae/Trachylepis-sulcata	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Trachylepis	Trachylepis sulcata		
+Trachylepis-sulcata-EXPH5	Reptilia/Squamata/Scincidae/Trachylepis-sulcata	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Scincidae	Trachylepis	Trachylepis sulcata		
+Trapelus-agilis-COI	Reptilia/Squamata/Agamidae/Trapelus-agilis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Agamidae	Trapelus	Trapelus agilis		
+Trapelus-sanguinolentus-ND2	Reptilia/Squamata/Agamidae/Trapelus-sanguinolentus	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Agamidae	Trapelus	Trapelus sanguinolentus		
+Tribolonotus-brongersmai-ND2	Reptilia/Squamata/Scincidae/Tribolonotus-brongersmai	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus brongersmai		
+Tribolonotus-brongersmai-CYTB	Reptilia/Squamata/Scincidae/Tribolonotus-brongersmai	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus brongersmai		
+Tribolonotus-brongersmai-C-MOS	Reptilia/Squamata/Scincidae/Tribolonotus-brongersmai	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus brongersmai		
+Tribolonotus-brongersmai-PDC	Reptilia/Squamata/Scincidae/Tribolonotus-brongersmai	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus brongersmai		
+Tribolonotus-gracilis-CYTB	Reptilia/Squamata/Scincidae/Tribolonotus-gracilis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus gracilis		
+Tribolonotus-gracilis-PDC	Reptilia/Squamata/Scincidae/Tribolonotus-gracilis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus gracilis		
+Tribolonotus-gracilis-C-MOS	Reptilia/Squamata/Scincidae/Tribolonotus-gracilis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus gracilis		
+Tribolonotus-gracilis-ND2	Reptilia/Squamata/Scincidae/Tribolonotus-gracilis	1.0	9	9	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus gracilis		
+Tribolonotus-pseudoponceleti-CYTB	Reptilia/Squamata/Scincidae/Tribolonotus-pseudoponceleti	1.0	13	13	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus pseudoponceleti		
+Tribolonotus-pseudoponceleti-PDC	Reptilia/Squamata/Scincidae/Tribolonotus-pseudoponceleti	1.0	13	13	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus pseudoponceleti		
+Tribolonotus-pseudoponceleti-C-MOS	Reptilia/Squamata/Scincidae/Tribolonotus-pseudoponceleti	1.0	13	13	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus pseudoponceleti		
+Tribolonotus-pseudoponceleti-ND2	Reptilia/Squamata/Scincidae/Tribolonotus-pseudoponceleti	1.0	13	13	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus pseudoponceleti		
+Tribolonotus-schmidti-CYTB	Reptilia/Squamata/Scincidae/Tribolonotus-schmidti	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus schmidti		
+Tribolonotus-schmidti-C-MOS	Reptilia/Squamata/Scincidae/Tribolonotus-schmidti	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus schmidti		
+Tribolonotus-schmidti-PDC	Reptilia/Squamata/Scincidae/Tribolonotus-schmidti	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus schmidti		
+Tribolonotus-schmidti-ND2	Reptilia/Squamata/Scincidae/Tribolonotus-schmidti	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus schmidti		
+Tribolonotus-schmidti-COI	Reptilia/Squamata/Scincidae/Tribolonotus-schmidti	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tribolonotus	Tribolonotus schmidti		
+Trimeresurus-albolabris-NT3	Reptilia/Squamata/Viperidae/Trimeresurus-albolabris	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Viperidae	Trimeresurus	Trimeresurus albolabris		
+Trimeresurus-albolabris-CYTB	Reptilia/Squamata/Viperidae/Trimeresurus-albolabris	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Viperidae	Trimeresurus	Trimeresurus albolabris		
+Trimeresurus-albolabris-RAG1	Reptilia/Squamata/Viperidae/Trimeresurus-albolabris	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Viperidae	Trimeresurus	Trimeresurus albolabris		
+Trimeresurus-albolabris-SCN4A	Reptilia/Squamata/Viperidae/Trimeresurus-albolabris	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Trimeresurus	Trimeresurus albolabris		
+Trimeresurus-albolabris-ND4	Reptilia/Squamata/Viperidae/Trimeresurus-albolabris	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Viperidae	Trimeresurus	Trimeresurus albolabris		
+Trimeresurus-popeiorum-CYTB	Reptilia/Squamata/Viperidae/Trimeresurus-popeiorum	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Trimeresurus	Trimeresurus popeiorum		
+Trimeresurus-popeiorum-ND4	Reptilia/Squamata/Viperidae/Trimeresurus-popeiorum	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Viperidae	Trimeresurus	Trimeresurus popeiorum		
+Trimeresurus-sabahi-ND4	Reptilia/Squamata/Viperidae/Trimeresurus-sabahi	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Viperidae	Trimeresurus	Trimeresurus sabahi		
+Trimeresurus-sabahi-CYTB	Reptilia/Squamata/Viperidae/Trimeresurus-sabahi	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Viperidae	Trimeresurus	Trimeresurus sabahi		
+Tropidophis-melanurus-COI	Reptilia/Squamata/Tropidophiidae/Tropidophis-melanurus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Tropidophiidae	Tropidophis	Tropidophis melanurus		
+Tropidophorus-grayi-COI	Reptilia/Squamata/Scincidae/Tropidophorus-grayi	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Tropidophorus	Tropidophorus grayi		
+Tropiocolotes-somalicus-COI	Reptilia/Squamata/Gekkonidae/Tropiocolotes-somalicus	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Gekkonidae	Tropiocolotes	Tropiocolotes somalicus		
+Tupinambis-teguixin-ND4	Reptilia/Squamata/Teiidae/Tupinambis-teguixin	1.0	96	96	Animalia	Chordata	Reptilia	Squamata	Teiidae	Tupinambis	Tupinambis teguixin		
+Tupinambis-teguixin-CYTB	Reptilia/Squamata/Teiidae/Tupinambis-teguixin	1.0	96	96	Animalia	Chordata	Reptilia	Squamata	Teiidae	Tupinambis	Tupinambis teguixin		
+Tympanocryptis-condaminensis-ND2	Reptilia/Squamata/Agamidae/Tympanocryptis-condaminensis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Agamidae	Tympanocryptis	Tympanocryptis condaminensis		
+Tympanocryptis-condaminensis-RAG1	Reptilia/Squamata/Agamidae/Tympanocryptis-condaminensis	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Agamidae	Tympanocryptis	Tympanocryptis condaminensis		
+Tympanocryptis-pentalineata-ND2	Reptilia/Squamata/Agamidae/Tympanocryptis-pentalineata	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Tympanocryptis	Tympanocryptis pentalineata		
+Tympanocryptis-tetraporophora-RAG1	Reptilia/Squamata/Agamidae/Tympanocryptis-tetraporophora	1.0	26	26	Animalia	Chordata	Reptilia	Squamata	Agamidae	Tympanocryptis	Tympanocryptis tetraporophora		
+Tympanocryptis-tetraporophora-ND2	Reptilia/Squamata/Agamidae/Tympanocryptis-tetraporophora	1.0	88	88	Animalia	Chordata	Reptilia	Squamata	Agamidae	Tympanocryptis	Tympanocryptis tetraporophora		
+Tympanocryptis-wilsoni-RAG1	Reptilia/Squamata/Agamidae/Tympanocryptis-wilsoni	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Agamidae	Tympanocryptis	Tympanocryptis wilsoni		
+Tympanocryptis-wilsoni-ND2	Reptilia/Squamata/Agamidae/Tympanocryptis-wilsoni	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Agamidae	Tympanocryptis	Tympanocryptis wilsoni		
+Typhlosaurus-caecus-RAG1	Reptilia/Squamata/Scincidae/Typhlosaurus-caecus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Typhlosaurus	Typhlosaurus caecus		
+Typhlosaurus-caecus-COI	Reptilia/Squamata/Scincidae/Typhlosaurus-caecus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Typhlosaurus	Typhlosaurus caecus		
+Typhlosaurus-caecus-CYTB	Reptilia/Squamata/Scincidae/Typhlosaurus-caecus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Scincidae	Typhlosaurus	Typhlosaurus caecus		
+Uma-exsul-COI	Reptilia/Squamata/Phrynosomatidae/Uma-exsul	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Uma	Uma exsul		
+Uma-paraphygas-COI	Reptilia/Squamata/Phrynosomatidae/Uma-paraphygas	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Uma	Uma paraphygas		
+Uma-rufopunctata-COI	Reptilia/Squamata/Phrynosomatidae/Uma-rufopunctata	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Uma	Uma rufopunctata		
+Uma-scoparia-COI	Reptilia/Squamata/Phrynosomatidae/Uma-scoparia	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Uma	Uma scoparia		
+Urosaurus-graciosus-COI	Reptilia/Squamata/Phrynosomatidae/Urosaurus-graciosus	1.0	8	8	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Urosaurus	Urosaurus graciosus		
+Urosaurus-graciosus-CYTB	Reptilia/Squamata/Phrynosomatidae/Urosaurus-graciosus	1.0	73	73	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Urosaurus	Urosaurus graciosus		
+Urosaurus-graciosus-ND2	Reptilia/Squamata/Phrynosomatidae/Urosaurus-graciosus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Urosaurus	Urosaurus graciosus		
+Urosaurus-graciosus-ND1	Reptilia/Squamata/Phrynosomatidae/Urosaurus-graciosus	1.0	89	89	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Urosaurus	Urosaurus graciosus		
+Urosaurus-nigricaudus-COI	Reptilia/Squamata/Phrynosomatidae/Urosaurus-nigricaudus	1.0	6	6	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Urosaurus	Urosaurus nigricaudus		
+Urosaurus-ornatus-COI	Reptilia/Squamata/Phrynosomatidae/Urosaurus-ornatus	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Urosaurus	Urosaurus ornatus		
+Urosaurus-ornatus-CYTB	Reptilia/Squamata/Phrynosomatidae/Urosaurus-ornatus	1.0	40	40	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Urosaurus	Urosaurus ornatus		
+Urosaurus-ornatus-ND2	Reptilia/Squamata/Phrynosomatidae/Urosaurus-ornatus	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Urosaurus	Urosaurus ornatus		
+Urosaurus-ornatus-ND1	Reptilia/Squamata/Phrynosomatidae/Urosaurus-ornatus	1.0	48	48	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Urosaurus	Urosaurus ornatus		
+Uta-stansburiana-COI	Reptilia/Squamata/Phrynosomatidae/Uta-stansburiana	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Uta	Uta stansburiana		
+Uta-stansburiana-CYTB	Reptilia/Squamata/Phrynosomatidae/Uta-stansburiana	1.0	15	15	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Uta	Uta stansburiana		
+Uta-stansburiana-ND2	Reptilia/Squamata/Phrynosomatidae/Uta-stansburiana	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Uta	Uta stansburiana		
+Uta-stansburiana-ND1	Reptilia/Squamata/Phrynosomatidae/Uta-stansburiana	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Phrynosomatidae	Uta	Uta stansburiana		
+Varanus-indicus-COI	Reptilia/Squamata/Varanidae/Varanus-indicus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Varanidae	Varanus	Varanus indicus		
+Varzea-altamazonica-CYTB	Reptilia/Squamata/Scincidae/Varzea-altamazonica	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Scincidae	Varzea	Varzea altamazonica		
+Vipera-berus-COI	Reptilia/Squamata/Viperidae/Vipera-berus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Viperidae	Vipera	Vipera berus	berus	Vipera berus berus
+Xantusia-henshawi-COI	Reptilia/Squamata/Xantusiidae/Xantusia-henshawi	1.0	14	14	Animalia	Chordata	Reptilia	Squamata	Xantusiidae	Xantusia	Xantusia henshawi		
+Xantusia-jaycolei-COI	Reptilia/Squamata/Xantusiidae/Xantusia-jaycolei	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Xantusiidae	Xantusia	Xantusia jaycolei		
+Xantusia-vigilis-COI	Reptilia/Squamata/Xantusiidae/Xantusia-vigilis	1.0	12	12	Animalia	Chordata	Reptilia	Squamata	Xantusiidae	Xantusia	Xantusia vigilis		
+Xenagama-taylori-ND4	Reptilia/Squamata/Agamidae/Xenagama-taylori	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Agamidae	Xenagama	Xenagama taylori		
+Xenochrophis-flavipunctatus-COI	Reptilia/Squamata/Natricidae/Xenochrophis-flavipunctatus	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Xenochrophis	Xenochrophis flavipunctatus		
+Xenochrophis-piscator-SCN4A	Reptilia/Squamata/Natricidae/Xenochrophis-piscator	1.0	4	4	Animalia	Chordata	Reptilia	Squamata	Natricidae	Xenochrophis	Xenochrophis piscator		
+Xenochrophis-piscator-COI	Reptilia/Squamata/Natricidae/Xenochrophis-piscator	1.0	3	3	Animalia	Chordata	Reptilia	Squamata	Natricidae	Xenochrophis	Xenochrophis piscator		
+Xenodon-rabdocephalus-COI	Reptilia/Squamata/Dipsadidae/Xenodon-rabdocephalus	1.0	5	5	Animalia	Chordata	Reptilia	Squamata	Dipsadidae	Xenodon	Xenodon rabdocephalus		
+Zamenis-longissimus-COI	Reptilia/Squamata/Colubridae/Zamenis-longissimus	1.0	16	16	Animalia	Chordata	Reptilia	Squamata	Colubridae	Zamenis	Zamenis longissimus		
+Zootoca-vivipara-COI	Reptilia/Squamata/Lacertidae/Zootoca-vivipara	1.0	11	11	Animalia	Chordata	Reptilia	Squamata	Lacertidae	Zootoca	Zootoca vivipara		Zootoca vivipara vivipara
