@@ -112,7 +112,10 @@ class ConfigurationSingleton
   end
 
   def genbank_root
-    Pathname.new(ENV["GENBANK_ROOT"] || "/fs/scratch/PAS1604/genbank/genes")
+    raise "need to set GENBANK_ROOT when running in production" if rails_env == "production" && ENV["GENBANK_ROOT"].nil?
+
+    # default to test data if not in production
+    Pathname.new(ENV["GENBANK_ROOT"] || Rails.root.join('test/data/reptilia_genes'))
   end
 
   def batch_mode?

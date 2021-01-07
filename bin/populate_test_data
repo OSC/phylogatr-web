@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ -z "$RAILS_ENV" ]]; then
+    echo "Must set RAILS_ENV" 1>&2
+    exit 1
+fi
+
+# import data
+sqlite3 db/$RAILS_ENV.sqlite3 <<EOF
+.mode tabs
+.import test/data/reptilia_gbif_occurrences.tsv occurrences
+EOF
+
+# update species metrics
+time bin/rails r 'Occurrence.where(species_total_bytes: nil).distinct.pluck(:species_path).each {|p| Species.update_occurrences p }'
