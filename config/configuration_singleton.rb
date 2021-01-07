@@ -23,7 +23,11 @@ class ConfigurationSingleton
 
   # @return [String] memoized version string
   def app_version
-    @app_version ||= (version_from_file(Rails.root) || version_from_git(Rails.root) || "Unknown").strip
+    if ENV['RAILS_ENV'] == "test"
+      "test"
+    else
+      @app_version ||= (version_from_file(Rails.root) || version_from_git(Rails.root) || "Unknown").strip
+    end
   end
 
   # @return [String, nil] version string from git describe, or nil if not git repo

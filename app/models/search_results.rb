@@ -1,3 +1,5 @@
+require 'rubygems/package'
+
 class SearchResults
   attr_reader :swpoint, :nepoint, :taxonomy
 
@@ -173,7 +175,7 @@ class SearchResults
         genes_index = StringIO.new
         genes_index.write(Species.genes_index_headers_tsv)
 
-        puts 'write occurrences file', Benchmark.measure {
+        # puts 'write occurrences file', Benchmark.measure {
 
         # FIXME: this uses more memory but is simpler
         # will use far less if we reduce what we write to these files
@@ -200,7 +202,7 @@ class SearchResults
           }
         end
 
-        }
+        # } # Benchmark.measure {
 
         uinfo.done
 
