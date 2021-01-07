@@ -1,6 +1,10 @@
 class Occurrence < ActiveRecord::Base
   acts_as_mappable
 
+  def self.update_all_species_metrics
+    where(species_total_bytes: nil).distinct.pluck(:species_path).each {|p| Species.update_occurrences p }
+  end
+
   def species
     Species.new(Configuration.genbank_root.join(species_path))
   end

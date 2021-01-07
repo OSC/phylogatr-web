@@ -16,12 +16,17 @@ class MyCLI < Thor
     true
   end
 
-  desc "populate_test", "populate test database with test data"
+  desc "populate_test", "reset and populate test database with test data"
   def populate_test
-    ENV['RAILS_ENV'] = 'test'
+    invoke :populate, ['test', 'test/data/reptilia_gbif_occurrences.tsv']
+  end
+
+  desc "populate_db RAILS_ENV OCCURRENCES_TSV_PATH", "reset and populate specified database with data"
+  def populate(rails_env, occurrences_tsv_path)
+    ENV['RAILS_ENV'] = rails_env
     system('bin/rake db:reset')
-    system(import_cmd('db/test.sqlite3', 'test/data/reptilia_gbif_occurrences.tsv'))
-    system("bin/rails r 'Occurrence.where(species_total_bytes: nil).distinct.pluck(:species_path).each {|p| Species.update_occurrences p }'")
+    system(import_cmd("db/#{rails_env}.sqlite3", occurrences_tsv_path))
+    system("bin/rails r 'Occurrence.update_all_species_metrics'")
   end
 end
 
