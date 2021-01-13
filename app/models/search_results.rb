@@ -172,8 +172,7 @@ class SearchResults
         # write occurrences file for each species
         #
 
-        genes_index = StringIO.new
-        genes_index.write(Species.genes_index_headers_tsv)
+        genes_index = []
 
         # puts 'write occurrences file', Benchmark.measure {
 
@@ -198,7 +197,7 @@ class SearchResults
 
               uinfo.wrote_occurrence_file(subset_index*500+index+1)
 
-              genes_index.write(occurrences.first.species.genes_index_str(occurrences.first))
+              genes_index << occurrences.first.species.genes_index_str(occurrences.first)
           }
         end
 
@@ -206,8 +205,10 @@ class SearchResults
 
         uinfo.done
 
-        tar.add_file_simple(File.join('phylogatr-results', 'genes.txt'), 0644, genes_index.size) do |io|
-          io.write(genes_index.string)
+        genes_index_str = Species.genes_index_headers_tsv + genes_index.sort.join
+
+        tar.add_file_simple(File.join('phylogatr-results', 'genes.txt'), 0644, genes_index_str.length) do |io|
+          io.write(genes_index_str)
         end
       end
     end
@@ -253,8 +254,7 @@ class SearchResults
         uinfo.wrote_fasta_files(index+1)
       end
 
-      genes_index = StringIO.new
-      genes_index.write(Species.genes_index_headers_tsv)
+      genes_index = []
 
       # FIXME: this uses more memory but is simpler
       # will use far less if we reduce what we write to these files
@@ -276,14 +276,15 @@ class SearchResults
 
             uinfo.wrote_occurrence_file(subset_index*500+index+1)
 
-            genes_index.write(occurrences.first.species.genes_index_str(occurrences.first))
+            genes_index << occurrences.first.species.genes_index_str(occurrences.first)
         }
       end
 
       uinfo.done
 
       zip.write_deflated_file(File.join('phylogatr-results', 'genes.txt')) do |io|
-          io.write(genes_index.string)
+        io.write(Species.genes_index_headers_tsv)
+        io.write(genes_index.sort.join)
       end
     end
   end

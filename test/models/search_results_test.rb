@@ -1,6 +1,23 @@
 require 'test_helper'
+require 'fileutils'
 
 class SearchResultsTest < ActiveJob::TestCase
+  def compare_file_sorted(a, b)
+    # copy impl of FileUtils.copmare_file with addition of sorting
+    return false unless File.size(a) == File.size(b)
+    File.open(a, 'rb') {|fa|
+      File.open(b, 'rb') {|fb|
+        return fa.readlines.sort.join("\n") == fb.readlines.sort.join("\n")
+      }
+    }
+  end
+
+  def assert_files_same(a, b)
+    a = a.to_s
+    b = b.to_s
+    assert FileUtils.compare_file(a, b), (compare_file_sorted(a, b) ? "#{a} and #{b} sort order differs" : "#{a} and #{b} content differs")
+  end
+
   # test below use
   #
   # - test/data/reptilia_genes
@@ -9,17 +26,20 @@ class SearchResultsTest < ActiveJob::TestCase
   #
   test "generate results tar for squamata" do
     puts
-    Dir.mktmpdir do |dir|
+    # Dir.mktmpdir do |dir|
+    dir = Dir.mktmpdir
       tarpath =  File.join(dir, 'results.tar.gz')
       SearchResults.write_tar_to_file({'taxon_order' => 'Squamata'}, tarpath)
       `cd #{dir}; tar xzf #{tarpath}`
 
-      expected = Rails.root.join('test/data/squamata_results').to_s
-      result = File.join(dir, 'phylogatr-results')
+      expected = Rails.root.join('test/data/squamata_results')
+      result = Pathname.new(dir).join('phylogatr-results')
 
-      diff, s = Open3.capture2e('diff', '-r', expected, result)
+      assert_files_same expected.join('genes.txt'), result.join('genes.txt')
+
+      diff, s = Open3.capture2e('diff', '-rq', expected.to_s, result.to_s)
       assert_equal "", diff.strip, diff
-    end
+    # end
   end
 
   test "generate results zip for squamata" do
@@ -29,10 +49,12 @@ class SearchResultsTest < ActiveJob::TestCase
       SearchResults.write_zip_to_file({'taxon_order' => 'Squamata'}, tarpath)
       `cd #{dir}; unzip #{tarpath}`
 
-      expected = Rails.root.join('test/data/squamata_results').to_s
-      result = File.join(dir, 'phylogatr-results')
+      expected = Rails.root.join('test/data/squamata_results')
+      result = Pathname.new(dir).join('phylogatr-results')
 
-      diff, s = Open3.capture2e('diff', '-r', expected, result)
+      assert_files_same expected.join('genes.txt'), result.join('genes.txt')
+
+      diff, s = Open3.capture2e('diff', '-rq', expected.to_s, result.to_s)
       assert_equal "", diff.strip, diff
     end
   end

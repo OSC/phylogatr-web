@@ -140,7 +140,7 @@ class Species < ActiveRecord::Base
         occurrence.taxon_subspecies,
         occurrence.different_genbank_species
       ].join("\t")
-    end.join("\n")+"\n"
+    end.sort.join("\n")+"\n"
   end
 
   def genes_index_filesize(occurrence)
