@@ -1,11 +1,7 @@
 require 'shellwords'
 
-class Species
-  attr_reader :path
-
-  def initialize(path)
-    @path = path
-  end
+class Species < ActiveRecord::Base
+  has_many :occurrences
 
   Fasta = Struct.new(:seqs, :bytes, :prefix, :extension) do
     def aligned?
@@ -14,6 +10,10 @@ class Species
     def unaligned?
       ! aligned?
     end
+  end
+
+  def absolute_path
+    Configuration.genbank_root.join(path)
   end
 
   def self.line_and_byte_count(path, &block)
@@ -35,7 +35,7 @@ class Species
   end
 
   def file_summaries
-    @files ||= path.glob('*fa').map do |f|
+    @files ||= absolute_path.glob('*fa').map do |f|
       lines, bytes = line_and_byte_count(f)
       Fasta.new(lines/2, bytes, f.basename('.*'), f.extname)
     end
@@ -49,38 +49,39 @@ class Species
   def aligned?
     # for every fa file there is a corresponding afa file
     # means that chopping off the extensions there will be 2 of every file
-    (path.glob('*.fa').map {|f| f.basename('.fa')} - path.glob('*.afa').map {|f| f.basename('.afa')}).empty?
+    (absolute_path.glob('*.fa').map {|f| f.basename('.fa')} - absolute_path.glob('*.afa').map {|f| f.basename('.afa')}).empty?
   end
 
   def files
     # both fa and afa files
-    path.glob('*fa')
+    absolute_path.glob('*fa')
   end
 
   def name
-    path.basename.to_s.gsub('-', ' ')
+    absolute_path.basename.to_s.gsub('-', ' ')
   end
 
   def self.update_occurrences(path)
-    Species.new(Configuration.genbank_root.join(path)).update_occurrences
-  end
+    species = Species.find_or_create_by(path: path) do |species|
+      species.total_seqs = species.calculate_total_seqs
+      species.total_bytes = species.calculate_total_bytes
+      species.aligned = species.aligned?
+    end
 
-  def update_occurrences
-    Occurrence.where(taxon_species: name)
-      .update_all(species_max_seqs_per_gene: max_seqs, species_total_seqs: total_seqs, species_total_bytes: total_bytes, species_aligned: aligned?)
+    Occurrence.where(species_path: path).update_all(species_id: species.id)
   end
 
   # which file has the most sequences?
-  def max_seqs
+  def calculate_max_seqs
     file_summaries.map(&:seqs).max
   end
 
   # total number of sequences
-  def total_seqs
+  def calculate_total_seqs
     file_summaries.sum(&:seqs)
   end
 
-  def total_bytes
+  def calculate_total_bytes
     file_summaries.sum(&:bytes)
   end
 
@@ -125,7 +126,7 @@ class Species
     @genes_index_str ||= gene_index.map do |gene|
       [
         gene[:gene],
-        Pathname.new(path).relative_path_from(Configuration.genbank_root),
+        path,
         gene[:retained].to_s,
         gene[:num_seqs].to_s,
         gene[:num_seqs_aligned].to_s,

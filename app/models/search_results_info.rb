@@ -36,12 +36,10 @@ class SearchResultsInfo
   end
 
   def self.estimated_tar_size(swpoint, nepoint, taxonomy)
-    Occurrence.from(
+    Species.where(id:
       Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-       .where.not(species_total_bytes: nil)
-       .distinct
-       .select(:species_path, :species_total_bytes)
-    ).sum('subquery.species_total_bytes')
+       .where.not(species_id: nil).pluck(:species_id).sort.uniq
+    ).sum(:total_bytes)
   end
 
   # TODO:

@@ -1,12 +1,9 @@
 class Occurrence < ActiveRecord::Base
+  belongs_to :species
   acts_as_mappable
 
   def self.update_all_species_metrics
-    where(species_total_bytes: nil).distinct.pluck(:species_path).each {|p| Species.update_occurrences p }
-  end
-
-  def species
-    Species.new(Configuration.genbank_root.join(species_path))
+    where(species_id: nil).distinct.pluck(:species_path).each {|p| Species.update_occurrences p }
   end
 
   def self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)

@@ -131,9 +131,9 @@ class SearchResults
         # FIXME: pulling everyting down in 1 query...
 
 
-        species_paths = Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.pluck(:species_path)
+        species = Species.find(Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).pluck(:species_id).sort.uniq)
 
-        uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species_paths.count)
+        uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species.count)
         uinfo.wrote_fasta_files(0)
 
         #
@@ -145,8 +145,8 @@ class SearchResults
         # also need to know the "index"
         # which is hard to know below
         #
-        species_paths.each_with_index do |species_path, index|
-          Species.new(Configuration.genbank_root.join(species_path)).files.each do |file|
+        species.each_with_index do |s, index|
+          s.files.each do |file|
             tar_file_path = File.join('phylogatr-results', file.relative_path_from(Configuration.genbank_root))
             tar.add_file_simple(tar_file_path, 0644, file.size) do |tar_file|
               Rails.logger.debug "adding tar file: #{tar_file_path}"
@@ -179,7 +179,7 @@ class SearchResults
 
         # FIXME: this uses more memory but is simpler
         # will use far less if we reduce what we write to these files
-        species_paths.each_slice(500).with_index do |subset, subset_index|
+        species.map(&:path).each_slice(500).with_index do |subset, subset_index|
           Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
             .where(species_path: subset)
             .order(:species_path)
@@ -235,12 +235,12 @@ class SearchResults
       # for writing tarballs faster, if we continue to use Ruby
       # FIXME: pulling everyting down in 1 query...
 
-      species_paths = Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.pluck(:species_path)
-      uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species_paths.count)
+      species = Species.find(Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).pluck(:species_id).sort.uniq)
+      uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species.count)
       uinfo.wrote_fasta_files(0)
 
-      species_paths.each_with_index do |species_path, index|
-        Species.new(Configuration.genbank_root.join(species_path)).files.each do |file|
+      species.each_with_index do |s, index|
+        s.files.each do |file|
           tar_file_path = File.join('phylogatr-results', file.relative_path_from(Configuration.genbank_root))
           zip.write_deflated_file(tar_file_path) do |tar_file|
             Rails.logger.debug "adding tar file: #{tar_file_path}"
@@ -258,7 +258,7 @@ class SearchResults
 
       # FIXME: this uses more memory but is simpler
       # will use far less if we reduce what we write to these files
-      species_paths.each_slice(500).with_index do |subset, subset_index|
+      species.map(&:path).each_slice(500).with_index do |subset, subset_index|
         Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
           .where(species_path: subset)
           .order(:species_path)

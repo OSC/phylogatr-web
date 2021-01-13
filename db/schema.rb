@@ -11,24 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200607013731) do
+ActiveRecord::Schema.define(version: 20210107164308) do
 
-  create_table "genes", force: :cascade do |t|
-    t.string "accession",                limit: 255
-    t.string "symbol",                   limit: 255
-    t.string "name",                     limit: 255
-    t.string "fasta_file_prefix",        limit: 255
-    t.string "taxon_genbank_species",    limit: 255
-    t.string "genbank_source_file",      limit: 255
-    t.text   "sequence",                 limit: 16777215
-    t.text   "sequence_aligned",         limit: 16777215
-    t.string "taxon_occurrence_species", limit: 255
-    t.string "species_path",             limit: 255
+  create_table "files", force: :cascade do |t|
+    t.integer "species_id"
+    t.string  "name"
+    t.text    "content",    limit: 4294967295
+    t.integer "num_seqs"
+    t.integer "num_bytes"
+    t.string  "gene"
   end
 
-  add_index "genes", ["accession"], name: "index_genes_on_accession", using: :btree
-  add_index "genes", ["fasta_file_prefix", "accession"], name: "index_genes_on_fasta_file_prefix_and_accession", using: :btree
-  add_index "genes", ["taxon_occurrence_species"], name: "index_genes_on_taxon_occurrence_species", using: :btree
+  add_index "files", ["species_id"], name: "index_files_on_species_id"
 
   create_table "occurrences", force: :cascade do |t|
     t.string  "accession",                        limit: 255
@@ -49,24 +43,27 @@ ActiveRecord::Schema.define(version: 20200607013731) do
     t.string  "issue",                            limit: 255
     t.string  "different_genbank_species",        limit: 255
     t.string  "species_path",                     limit: 255
-    t.integer "species_max_seqs_per_gene",        limit: 4
-    t.integer "species_total_seqs",               limit: 4
-    t.integer "species_total_bytes",              limit: 4
-    t.boolean "species_aligned"
+    t.integer "species_id"
   end
 
-  add_index "occurrences", ["accession"], name: "index_occurrences_on_accession", using: :btree
-  add_index "occurrences", ["lat"], name: "index_occurrences_on_lat", using: :btree
-  add_index "occurrences", ["lng"], name: "index_occurrences_on_lng", using: :btree
-  add_index "occurrences", ["species_aligned"], name: "index_occurrences_on_species_aligned", using: :btree
-  add_index "occurrences", ["species_max_seqs_per_gene"], name: "index_occurrences_on_species_max_seqs_per_gene", using: :btree
-  add_index "occurrences", ["species_path"], name: "index_occurrences_on_species_path", using: :btree
-  add_index "occurrences", ["taxon_class"], name: "index_occurrences_on_taxon_class", using: :btree
-  add_index "occurrences", ["taxon_family"], name: "index_occurrences_on_taxon_family", using: :btree
-  add_index "occurrences", ["taxon_genus"], name: "index_occurrences_on_taxon_genus", using: :btree
-  add_index "occurrences", ["taxon_kingdom"], name: "index_occurrences_on_taxon_kingdom", using: :btree
-  add_index "occurrences", ["taxon_order"], name: "index_occurrences_on_taxon_order", using: :btree
-  add_index "occurrences", ["taxon_phylum"], name: "index_occurrences_on_taxon_phylum", using: :btree
-  add_index "occurrences", ["taxon_species"], name: "index_occurrences_on_taxon_species", using: :btree
+  add_index "occurrences", ["accession"], name: "index_occurrences_on_accession"
+  add_index "occurrences", ["lat"], name: "index_occurrences_on_lat"
+  add_index "occurrences", ["lng"], name: "index_occurrences_on_lng"
+  add_index "occurrences", ["species_id"], name: "index_occurrences_on_species_id"
+  add_index "occurrences", ["species_path"], name: "index_occurrences_on_species_path"
+  add_index "occurrences", ["taxon_class"], name: "index_occurrences_on_taxon_class"
+  add_index "occurrences", ["taxon_family"], name: "index_occurrences_on_taxon_family"
+  add_index "occurrences", ["taxon_genus"], name: "index_occurrences_on_taxon_genus"
+  add_index "occurrences", ["taxon_kingdom"], name: "index_occurrences_on_taxon_kingdom"
+  add_index "occurrences", ["taxon_order"], name: "index_occurrences_on_taxon_order"
+  add_index "occurrences", ["taxon_phylum"], name: "index_occurrences_on_taxon_phylum"
+  add_index "occurrences", ["taxon_species"], name: "index_occurrences_on_taxon_species"
+
+  create_table "species", force: :cascade do |t|
+    t.string  "path"
+    t.integer "total_seqs"
+    t.integer "total_bytes"
+    t.boolean "aligned"
+  end
 
 end
