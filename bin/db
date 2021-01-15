@@ -138,11 +138,12 @@ class MyCLI < Thor
     invoke :populate, ['test', 'test/data/reptilia_gbif_occurrences.tsv']
   end
 
-  desc "populate_db RAILS_ENV OCCURRENCES_TSV_PATH", "reset and populate specified database with data"
+  desc "populate RAILS_ENV OCCURRENCES_TSV_PATH", "reset and populate specified database with data"
   def populate(rails_env, occurrences_tsv_path)
     ENV['RAILS_ENV'] = rails_env
+    db_path = `bin/rails r 'puts ActiveRecord::Base.connection.instance_variable_get(:@config)[:database]'`.strip
     system('bin/rake db:reset')
-    system(import_cmd("db/#{rails_env}.sqlite3", occurrences_tsv_path))
+    system(import_cmd(db_path, occurrences_tsv_path))
     system("bin/rails r 'Occurrence.update_all_species_metrics'")
   end
 
