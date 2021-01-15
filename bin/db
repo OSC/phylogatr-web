@@ -1,6 +1,123 @@
 #!/usr/bin/env ruby
 require "thor"
 
+# copied from
+# https://www.boldsystems.org/index.php/TaxBrowser_Home
+#
+# Animals:
+# Acanthocephala [2285]
+# Acoelomorpha [20]
+# Annelida [101275]
+# Arthropoda [9897054]
+# Brachiopoda [302]
+# Bryozoa [4049]
+# Chaetognatha [1740]
+# Chordata [828360]
+# Cnidaria [29125]
+# Ctenophora [501]
+# Cycliophora [326]
+# Echinodermata [56221]
+# Entoprocta [64]
+# Gastrotricha [1350]
+# Gnathostomulida [24]
+# Hemichordata [231]
+# Kinorhyncha [719]
+# Mollusca [237180]
+# Nematoda [33851]
+# Nematomorpha [394]
+# Nemertea [5587]
+# Onychophora [1279]
+# Phoronida [157]
+# Placozoa [20]
+# Platyhelminthes [37650]
+# Porifera [7561]
+# Priapulida [148]
+# Rhombozoa [48]
+# Rotifera [12569]
+# Sipuncula [1304]
+# Tardigrada [2812]
+# Xenacoelomorpha [18]
+# Plants:
+# Bryophyta [21899]
+# Chlorophyta [14513]
+# Lycopodiophyta [1215]
+# Magnoliophyta [365823]
+# Pinophyta [7068]
+# Pteridophyta [11386]
+# Rhodophyta [54382]
+# Fungi:
+# Ascomycota [98294]
+# Basidiomycota [66383]
+# Chytridiomycota [293]
+# Glomeromycota [3529]
+# Myxomycota [235]
+# Zygomycota [3273]
+# Protists:
+# Chlorarachniophyta [67]
+# Ciliophora [788]
+# Heterokontophyta [7209]
+# Pyrrophycophyta [2337]
+#
+# copied Jan 15, 2021
+BOLD_PHYLA = %w(
+Acanthocephala
+Acoelomorpha
+Annelida
+Arthropoda
+Brachiopoda
+Bryozoa
+Chaetognatha
+Chordata
+Cnidaria
+Ctenophora
+Cycliophora
+Echinodermata
+Entoprocta
+Gastrotricha
+Gnathostomulida
+Hemichordata
+Kinorhyncha
+Mollusca
+Nematoda
+Nematomorpha
+Nemertea
+Onychophora
+Phoronida
+Placozoa
+Platyhelminthes
+Porifera
+Priapulida
+Rhombozoa
+Rotifera
+Sipuncula
+Tardigrada
+Xenacoelomorpha
+Bryophyta
+Chlorophyta
+Lycopodiophyta
+Magnoliophyta
+Pinophyta
+Pteridophyta
+Rhodophyta
+Ascomycota
+Basidiomycota
+Chytridiomycota
+Glomeromycota
+Myxomycota
+Zygomycota
+Chlorarachniophyta
+Ciliophora
+Heterokontophyta
+Pyrrophycophyta
+)
+#
+# `curl https://www.boldsystems.org/index.php/TaxBrowser_Home | egrep -o '\w+ \[\d+\]' | awk '{ print $1 }'`.split also works but is brittle
+
+def download_bold_phylum(phylum, dir)
+  Dir.chdir(dir) do
+    system("curl 'http://www.boldsystems.org/index.php/API_Public/combined?taxon=#{phylum}&format=tsv' -o #{phylum.downcase}.tsv")
+  end
+end
 
 def import_cmd(db, occurrences_tsv)
   <<~HEREDOC
@@ -27,6 +144,25 @@ class MyCLI < Thor
     system('bin/rake db:reset')
     system(import_cmd("db/#{rails_env}.sqlite3", occurrences_tsv_path))
     system("bin/rails r 'Occurrence.update_all_species_metrics'")
+  end
+
+  desc "download_bold PHYLUM DIR", "download bold phylum to specified location"
+  def download_bold(phylum, dir)
+    puts "download bold data for #{phylum}"
+    download_bold_phylum phylum, dir
+  end
+
+  desc "download_all_bold DIR", "download all bold data to dir"
+  def download_all_bold(dir)
+    BOLD_PHYLA.each do |phylum|
+      puts "download bold data for #{phylum}"
+      download_bold_phylum phylum, dir
+    end
+  end
+
+  desc "list_bold_phyla", "list bold phyla"
+  def list_bold_phyla
+    puts BOLD_PHYLA
   end
 end
 
