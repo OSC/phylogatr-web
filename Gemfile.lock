@@ -116,7 +116,6 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.0)
     mocha (1.11.2)
-    mysql2 (0.4.10)
     nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     ood_appkit (1.1.5)
@@ -237,7 +236,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mocha
-  mysql2 (~> 0.4.1)
   ood_appkit (~> 1.0)
   ood_support (~> 0.0.2)
   paperclip (~> 4.3)
