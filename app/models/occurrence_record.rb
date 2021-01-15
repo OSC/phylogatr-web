@@ -20,24 +20,14 @@ class OccurrenceRecord
   end
 
   # read the file line by line, processing
-  def self.each_occurrence_slice_grouped_by_accession(occurrences_tsv_file)
-    return to_enum(:each_occurrence_slice_grouped_by_accession, occurrences_tsv_file) unless block_given?
+  def self.each_occurrence_slice_grouped_by_accession(tsv_file)
+    return to_enum(:each_occurrence_slice_grouped_by_accession, tsv_file) unless block_given?
 
-    occurrences = []
-
-    occurrences_tsv_file.each_line do |line|
-      o = OccurrenceRecord.from_str(line)
-
-      if occurrences.empty? || occurrences.first.accession == o.accession
-        occurrences << o
-      else
-        yield occurrences
-
-        occurrences = [o]
-      end
-    end
-
-    yield occurrences unless occurrences.empty?
+    tsv_file.each_line.lazy.map {|line|
+      OccurrenceRecord.from_str(line)
+    }.chunk_while {|i, j| i.accession == j.accession }.each { |chunk|
+      yield chunk
+    }
   end
 
   def to_str
