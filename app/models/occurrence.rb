@@ -2,22 +2,6 @@ class Occurrence < ActiveRecord::Base
   belongs_to :species
   acts_as_mappable
 
-  def self.update_all_species_metrics
-    where(species_id: nil).distinct.pluck(:species_path).each {|p| Species.update_occurrences p }
-  end
-
-  def self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-    if swpoint.all?(&:present?) && nepoint.all?(&:present?) && taxonomy.present?
-      Occurrence.in_bounds([swpoint, nepoint]).where(taxonomy).order(:taxon_species, :accession)
-    elsif swpoint.all?(&:present?) && nepoint.all?(&:present?)
-      Occurrence.in_bounds([swpoint, nepoint]).order(:taxon_species, :accession)
-    elsif taxonomy.present?
-      Occurrence.where(taxonomy).order(:taxon_species, :accession)
-    else
-      Occurrence.all
-    end
-  end
-
   def latitude
     read_attribute_before_type_cast(:lat)
   end

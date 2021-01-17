@@ -25,7 +25,6 @@ class SearchResultsTest < ActiveJob::TestCase
   # - test/data/squamata_results
   #
   test "generate results tar for squamata" do
-    puts
     # Dir.mktmpdir do |dir|
     dir = Dir.mktmpdir
       tarpath =  File.join(dir, 'results.tar.gz')
@@ -43,8 +42,8 @@ class SearchResultsTest < ActiveJob::TestCase
   end
 
   test "generate results zip for squamata" do
-    puts
-    Dir.mktmpdir do |dir|
+    # Dir.mktmpdir do |dir|
+    dir = Dir.mktmpdir
       tarpath =  File.join(dir, 'results.zip')
       SearchResults.write_zip_to_file({'taxon_order' => 'Squamata'}, tarpath)
       `cd #{dir}; unzip #{tarpath}`
@@ -56,7 +55,7 @@ class SearchResultsTest < ActiveJob::TestCase
 
       diff, s = Open3.capture2e('diff', '-rq', expected.to_s, result.to_s)
       assert_equal "", diff.strip, diff
-    end
+    # end
   end
 
   test "num species for squamata" do

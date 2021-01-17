@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require "thor"
+require "open3"
 
 # copied from
 # https://www.boldsystems.org/index.php/TaxBrowser_Home
@@ -142,9 +143,12 @@ class MyCLI < Thor
   def populate(rails_env, occurrences_tsv_path)
     ENV['RAILS_ENV'] = rails_env
     db_path = `bin/rails r 'puts ActiveRecord::Base.connection.instance_variable_get(:@config)[:database]'`.strip
+
+    puts "using database: #{db_path}"
     system('bin/rake db:reset')
-    system(import_cmd(db_path, occurrences_tsv_path))
-    system("bin/rails r 'Occurrence.update_all_species_metrics'")
+    puts "add occurrences and species to database from #{occurrences_tsv_path}"
+    system("bin/rake pipeline:add_occurrences < #{occurrences_tsv_path}")
+    system("bin/rails r 'Species.find_each(&:update_metrics!)'")
   end
 
   desc "download_bold PHYLUM DIR", "download bold phylum to specified location"

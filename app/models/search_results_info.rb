@@ -30,16 +30,11 @@ class SearchResultsInfo
   end
 
   def self.num_species(swpoint, nepoint, taxonomy)
-    # FIXME: species table
-    # FIXME: taxon_species is preferred to use once fixing pipeline issue
-    Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.count(:species_path)
+    Species.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.count
   end
 
   def self.estimated_tar_size(swpoint, nepoint, taxonomy)
-    Species.where(id:
-      Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-       .where.not(species_id: nil).pluck(:species_id).sort.uniq
-    ).sum(:total_bytes)
+    Species.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).distinct.sum(:total_bytes)
   end
 
   # TODO:

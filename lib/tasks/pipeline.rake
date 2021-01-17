@@ -1,3 +1,5 @@
+require 'csv'
+
 namespace :pipeline do
   desc "filter out invalid or duplicate occurrences"
   task filter_occurrences: :environment do
@@ -6,6 +8,51 @@ namespace :pipeline do
         puts occurrence.to_str
       end
     end
+  end
+
+  desc "add occurrences to database"
+  task add_occurrences: :environment do
+
+    CSV.new(STDIN, col_sep: "\t").each.lazy.chunk_while {|i, j|
+      # first columns are the same i.e. path
+      i[0] == j[0]
+    }.each { |chunk|
+      # rows for a single file
+      row = chunk.first
+
+      species_path = row[0]
+      species = Species.find_or_create_by(path: species_path) do |species|
+        species.taxon_kingdom = row[5]
+        species.taxon_phylum = row[6]
+        species.taxon_class = row[7]
+        species.taxon_order = row[8]
+        species.taxon_family = row[9]
+        species.taxon_genus = row[10]
+        species.taxon_species = row[11]
+        species.taxon_subspecies = row[12]
+
+        # FIXME: move different_genbank_species to species
+        # species.different_genbank_species = row[17]
+      end
+
+      # ha we need path to add files (but can avoid it right now :-P)
+      chunk.each do |row|
+        #FIXME: faster way to do this :-P
+        species.occurrences.create(
+          accession: row[1],
+          gbif_id: row[2],
+          lat: row[3],
+          lng:  row[4],
+          basis_of_record: row[13],
+          geodetic_datum: row[14],
+          # FIXME: .to_s.to_i => check to see if we should coerce to 0 or nil or if
+          # these were accidentally all coerced to 0 previously
+          coordinate_uncertainty_in_meters: row[15].to_s.to_i,
+          issue: row[16],
+          different_genbank_species: row[17]
+        )
+      end
+    }
   end
 
   fasta_files = Rake::FileList[Configuration.genbank_root.join('**/*\.fa')]

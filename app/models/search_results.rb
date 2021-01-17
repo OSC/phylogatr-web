@@ -130,8 +130,7 @@ class SearchResults
         # for writing tarballs faster, if we continue to use Ruby
         # FIXME: pulling everyting down in 1 query...
 
-
-        species = Species.find(Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).pluck(:species_id).sort.uniq)
+        species = Species.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
 
         uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species.count)
         uinfo.wrote_fasta_files(0)
@@ -171,33 +170,29 @@ class SearchResults
         # just how much time does each part take?
         # write occurrences file for each species
         #
-
-        genes_index = []
-
         # puts 'write occurrences file', Benchmark.measure {
 
         # FIXME: this uses more memory but is simpler
         # will use far less if we reduce what we write to these files
-        species.map(&:path).each_slice(500).with_index do |subset, subset_index|
-          Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-            .where(species_path: subset)
-            .order(:species_path)
-            .group_by(&:species_path).each_with_index { |(species_path, occurrences), index|
+        species.each_slice(500).with_index do |subset, subset_index|
+          if swpoint.all?(&:present?) && nepoint.all?(&:present?)
+            occurrences = Occurrence.joins(:species).where(species_id: subset.map(&:id)).in_bounds([swpoint, nepoint]).select('occurrences.*, species.path').order('species.path')
+          else
+            occurrences = Occurrence.joins(:species).where(species_id: subset.map(&:id)).select('occurrences.*, species.path').order('species.path')
+          end
 
-
-              bytesize = occurrences.sum { |o| o.to_str.length }+Occurrence.headers_tsv.length
-              tar.add_file_simple(File.join('phylogatr-results', species_path, 'occurrences.txt'), 0644, bytesize) do |io|
-                # write headers
-                io.write(Occurrence.headers_tsv)
-                # write occurrences
-                occurrences.each do |o|
-                  io.write(o.to_str)
-                end
+          occurrences.group_by(&:path).each_with_index { |(species_path, occurrences), index|
+            bytesize = occurrences.sum { |o| o.to_str.length }+Occurrence.headers_tsv.length
+            tar.add_file_simple(File.join('phylogatr-results', species_path, 'occurrences.txt'), 0644, bytesize) do |io|
+              # write headers
+              io.write(Occurrence.headers_tsv)
+              # write occurrences
+              occurrences.each do |o|
+                io.write(o.to_str)
               end
+            end
 
-              uinfo.wrote_occurrence_file(subset_index*500+index+1)
-
-              genes_index << occurrences.first.species.genes_index_str(occurrences.first)
+            uinfo.wrote_occurrence_file(subset_index*500+index+1)
           }
         end
 
@@ -205,7 +200,7 @@ class SearchResults
 
         uinfo.done
 
-        genes_index_str = Species.genes_index_headers_tsv + genes_index.sort.join
+        genes_index_str = Species.genes_index_headers_tsv + species.map(&:genes_index_str).sort.join
 
         tar.add_file_simple(File.join('phylogatr-results', 'genes.txt'), 0644, genes_index_str.length) do |io|
           io.write(genes_index_str)
@@ -236,7 +231,12 @@ class SearchResults
       # for writing tarballs faster, if we continue to use Ruby
       # FIXME: pulling everyting down in 1 query...
 
-      species = Species.find(Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).pluck(:species_id).sort.uniq)
+      #
+      # we used to have a search Occurrence.in_bounds_with_taxonomy
+      # thats why we put the taxonomy duplicates in Occurrences
+      # otherwise the joins was expensive
+      #
+      species = Species.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).order(:path)
       uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species.count)
       uinfo.wrote_fasta_files(0)
 
@@ -254,29 +254,26 @@ class SearchResults
         uinfo.wrote_fasta_files(index+1)
       end
 
-      genes_index = []
-
       # FIXME: this uses more memory but is simpler
       # will use far less if we reduce what we write to these files
-      species.map(&:path).each_slice(500).with_index do |subset, subset_index|
-        Occurrence.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
-          .where(species_path: subset)
-          .order(:species_path)
-          .group_by(&:species_path).each_with_index { |(species_path, occurrences), index|
+      species.each_slice(500).with_index do |subset, subset_index|
+        if swpoint.all?(&:present?) && nepoint.all?(&:present?)
+          occurrences = Occurrence.joins(:species).where(species_id: subset.map(&:id)).in_bounds([swpoint, nepoint]).select('occurrences.*, species.path').order('species.path')
+        else
+          occurrences = Occurrence.joins(:species).where(species_id: subset.map(&:id)).select('occurrences.*, species.path').order('species.path')
+        end
 
-
-            zip.write_deflated_file(File.join('phylogatr-results', species_path, 'occurrences.txt')) do |io|
-              # write headers
-              io.write(Occurrence.headers_tsv)
-              # write occurrences
-              occurrences.each do |o|
-                io.write(o.to_str)
-              end
+        occurrences.group_by(&:path).each_with_index { |(species_path, occurrences), index|
+          zip.write_deflated_file(File.join('phylogatr-results', species_path, 'occurrences.txt')) do |io|
+            # write headers
+            io.write(Occurrence.headers_tsv)
+            # write occurrences
+            occurrences.each do |o|
+              io.write(o.to_str)
             end
+          end
 
-            uinfo.wrote_occurrence_file(subset_index*500+index+1)
-
-            genes_index << occurrences.first.species.genes_index_str(occurrences.first)
+          uinfo.wrote_occurrence_file(subset_index*500+index+1)
         }
       end
 
@@ -284,7 +281,7 @@ class SearchResults
 
       zip.write_deflated_file(File.join('phylogatr-results', 'genes.txt')) do |io|
         io.write(Species.genes_index_headers_tsv)
-        io.write(genes_index.sort.join)
+        io.write(species.map(&:genes_index_str).sort.join)
       end
     end
   end

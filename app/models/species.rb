@@ -3,6 +3,14 @@ require 'shellwords'
 class Species < ActiveRecord::Base
   has_many :occurrences
 
+  def self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+    if swpoint.all?(&:present?) && nepoint.all?(&:present?)
+      Species.joins(:occurrences).merge(Occurrence.in_bounds([swpoint, nepoint])).where(taxonomy).distinct.order(&:path)
+    else
+      Species.where(taxonomy).order(:path)
+    end
+  end
+
   Fasta = Struct.new(:seqs, :bytes, :prefix, :extension) do
     def aligned?
       extension == ".afa"
@@ -61,14 +69,12 @@ class Species < ActiveRecord::Base
     absolute_path.basename.to_s.gsub('-', ' ')
   end
 
-  def self.update_occurrences(path)
-    species = Species.find_or_create_by(path: path) do |species|
-      species.total_seqs = species.calculate_total_seqs
-      species.total_bytes = species.calculate_total_bytes
-      species.aligned = species.aligned?
-    end
+  def update_metrics!
+    self.total_seqs = calculate_total_seqs
+    self.total_bytes = calculate_total_bytes
+    self.aligned = aligned?
 
-    Occurrence.where(species_path: path).update_all(species_id: species.id)
+    save
   end
 
   # which file has the most sequences?
@@ -122,7 +128,7 @@ class Species < ActiveRecord::Base
     ).join("\t") + "\n"
   end
 
-  def genes_index_str(occurrence)
+  def genes_index_str
     @genes_index_str ||= gene_index.map do |gene|
       [
         gene[:gene],
@@ -130,15 +136,16 @@ class Species < ActiveRecord::Base
         gene[:retained].to_s,
         gene[:num_seqs].to_s,
         gene[:num_seqs_aligned].to_s,
-        occurrence.taxon_kingdom,
-        occurrence.taxon_phylum,
-        occurrence.taxon_class,
-        occurrence.taxon_order,
-        occurrence.taxon_family,
-        occurrence.taxon_genus,
-        occurrence.taxon_species,
-        occurrence.taxon_subspecies,
-        occurrence.different_genbank_species
+        taxon_kingdom,
+        taxon_phylum,
+        taxon_class,
+        taxon_order,
+        taxon_family,
+        taxon_genus,
+        taxon_species,
+        taxon_subspecies,
+        # move to species table :-P
+        occurrences.first.different_genbank_species
       ].join("\t")
     end.sort.join("\n")+"\n"
   end
