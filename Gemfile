@@ -66,3 +66,5 @@ gem 'zip_tricks', '~> 5.3', '>= 5.3.1'
 
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 
+# FIXME: after Rails 6 upgrade, you don't need this
+gem 'activerecord-import'

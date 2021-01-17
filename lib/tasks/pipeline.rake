@@ -1,4 +1,5 @@
 require 'csv'
+require 'activerecord-import'
 
 namespace :pipeline do
   desc "filter out invalid or duplicate occurrences"
@@ -36,9 +37,9 @@ namespace :pipeline do
       end
 
       # ha we need path to add files (but can avoid it right now :-P)
-      chunk.each do |row|
-        #FIXME: faster way to do this :-P
-        species.occurrences.create(
+      Occurrence.import(chunk.map { |row|
+        {
+          species_id: species.id,
           accession: row[1],
           gbif_id: row[2],
           lat: row[3],
@@ -50,8 +51,8 @@ namespace :pipeline do
           coordinate_uncertainty_in_meters: row[15].to_s.to_i,
           issue: row[16],
           different_genbank_species: row[17]
-        )
-      end
+        }
+      })
     }
   end
 

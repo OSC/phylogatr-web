@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require "thor"
 require "open3"
+require "benchmark"
 
 # copied from
 # https://www.boldsystems.org/index.php/TaxBrowser_Home
@@ -147,8 +148,11 @@ class MyCLI < Thor
     puts "using database: #{db_path}"
     system('bin/rake db:reset')
     puts "add occurrences and species to database from #{occurrences_tsv_path}"
-    system("bin/rake pipeline:add_occurrences < #{occurrences_tsv_path}")
-    system("bin/rails r 'Species.find_each(&:update_metrics!)'")
+
+    Benchmark.bm(26) do |x|
+      x.report("pipeline:add_occurrences:") { system("bin/rake pipeline:add_occurrences < #{occurrences_tsv_path}") }
+      x.report("update Species metrics:") { system("bin/rails r 'Species.find_each(&:update_metrics!)'") }
+    end
   end
 
   desc "download_bold PHYLUM DIR", "download bold phylum to specified location"
