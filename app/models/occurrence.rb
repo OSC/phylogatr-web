@@ -3,10 +3,10 @@ class Occurrence < ActiveRecord::Base
   acts_as_mappable
 
   def latitude
-    read_attribute_before_type_cast(:lat)
+    read_attribute_before_type_cast(:lat).round(10)
   end
   def longitude
-    read_attribute_before_type_cast(:lng)
+    read_attribute_before_type_cast(:lng).round(10)
   end
 
   def self.headers
