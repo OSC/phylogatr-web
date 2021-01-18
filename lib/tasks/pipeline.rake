@@ -1,6 +1,15 @@
 require 'csv'
 require 'activerecord-import'
 
+def sqlite3_table_import_cmd(db, occurrences_tsv)
+  <<~HEREDOC
+  sqlite3 #{db} <<EOF
+  .mode tabs
+  .import #{occurrences_tsv} occurrences
+  EOF
+  HEREDOC
+end
+
 namespace :pipeline do
   desc "filter out invalid or duplicate occurrences"
   task filter_occurrences: :environment do
@@ -13,9 +22,14 @@ namespace :pipeline do
 
   desc "add occurrences to database"
   task add_occurrences: :environment do
-    chunks = 0
+    # chunks = 0
 
     species_hash = {}
+
+    tsv = Tempfile.new
+    csv = CSV.new(tsv, col_sep: "\t")
+
+    idx = 0
 
     OccurrenceRecord.each_occurrence_slice_grouped_by_path(STDIN) do |chunk|
       row = chunk.first
@@ -41,26 +55,37 @@ namespace :pipeline do
         species = species_hash[species_path]
       end
 
-      # ha we need path to add files (but can avoid it right now :-P)
-      Occurrence.import(chunk.map { |row|
-        {
-          species_id: species.id,
-          accession: row[1],
-          gbif_id: row[2],
-          lat: row[3],
-          lng:  row[4],
-          basis_of_record: row[13],
-          geodetic_datum: row[14],
-          # FIXME: .to_s.to_i => check to see if we should coerce to 0 or nil or if
-          # these were accidentally all coerced to 0 previously
-          coordinate_uncertainty_in_meters: row[15].to_s.to_i,
-          issue: row[16],
-          different_genbank_species: row[17]
-        }
-      })
+      chunk.each do |row|
+        idx += 1
+        csv << [idx, row[1], row[2], row[3], row[4], row[13], row[14], row[15].to_s.to_i, row[16], row[17], species.id]
+      end
 
-      chunks += 1
+      # # ha we need path to add files (but can avoid it right now :-P)
+      # Occurrence.import(chunk.map { |row|
+      #   {
+      #     species_id: species.id,
+      #     accession: row[1],
+      #     gbif_id: row[2],
+      #     lat: row[3],
+      #     lng:  row[4],
+      #     basis_of_record: row[13],
+      #     geodetic_datum: row[14],
+      #     # FIXME: .to_s.to_i => check to see if we should coerce to 0 or nil or if
+      #     # these were accidentally all coerced to 0 previously
+      #     coordinate_uncertainty_in_meters: row[15].to_s.to_i,
+      #     issue: row[16],
+      #     different_genbank_species: row[17]
+      #   }
+      # })
+
+      # chunks += 1
     end
+
+    # now do import
+    system(sqlite3_table_import_cmd(ActiveRecord::Base.connection.instance_variable_get(:@config)[:database], tsv.path))
+  ensure
+    tsv.close
+    tsv.unlink
   end
 
 #TODO:
