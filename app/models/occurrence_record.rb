@@ -56,6 +56,31 @@ class OccurrenceRecord
     end
   end
 
+
+  # argument comparator (lambda) - otherwise compare first column
+  # or just column comparison (0,1,2,3, etc.)
+  def self.each_occurrence_slice_grouped_by_path(occurrences_tsv_file)
+    return to_enum(:each_occurrence_slice_grouped_by_path, occurrences_tsv_file) unless block_given?
+
+    occurrences = []
+
+    occurrences_tsv_file.each_line do |line|
+      #FIXME: CSV?
+      o = line.chomp.split("\t")
+
+      if occurrences.empty? || occurrences.first[0] == o[0]
+        occurrences << o
+      else
+        yield occurrences
+
+        occurrences = [o]
+      end
+    end
+
+    yield occurrences unless occurrences.empty?
+  end
+
+
   # TODO:
   # OccurrenceRecord.each_occurrence_slice_grouped_by_accession(STDIN) do |occurrences|
   #   OccurrenceRecord.filter(occurrences).each do |occurrence|
