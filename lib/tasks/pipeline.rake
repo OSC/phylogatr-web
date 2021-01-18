@@ -13,54 +13,60 @@ namespace :pipeline do
 
   desc "add occurrences to database"
   task add_occurrences: :environment do
-    chunks = 0
-
     species_hash = {}
 
-    OccurrenceRecord.each_occurrence_slice_grouped_by_path(STDIN) do |chunk|
-      row = chunk.first
-      species_path = row[0]
+    queries = 0
 
-      if species_hash.has_key?(species_path)
-        species = species_hash[species_path]
-      else
-        species_hash[species_path] = Species.find_or_create_by(path: species_path) do |species|
-          species.taxon_kingdom = row[5]
-          species.taxon_phylum = row[6]
-          species.taxon_class = row[7]
-          species.taxon_order = row[8]
-          species.taxon_family = row[9]
-          species.taxon_genus = row[10]
-          species.taxon_species = row[11]
-          species.taxon_subspecies = row[12]
+    OccurrenceRecord.each_occurrence_slice_grouped_by_path(STDIN).lazy.each_slice(100) do |chunks|
+      import_chunks = []
 
-          # FIXME: move different_genbank_species to species
-          # species.different_genbank_species = row[17]
+      chunks.each do |chunk|
+        row = chunk.first
+        species_path = row[0]
+
+        if species_hash.has_key?(species_path)
+          species = species_hash[species_path]
+        else
+          species_hash[species_path] = Species.find_or_create_by(path: species_path) do |species|
+            species.taxon_kingdom = row[5]
+            species.taxon_phylum = row[6]
+            species.taxon_class = row[7]
+            species.taxon_order = row[8]
+            species.taxon_family = row[9]
+            species.taxon_genus = row[10]
+            species.taxon_species = row[11]
+            species.taxon_subspecies = row[12]
+
+            # FIXME: move different_genbank_species to species
+            # species.different_genbank_species = row[17]
+          end
+
+          species = species_hash[species_path]
         end
 
-        species = species_hash[species_path]
+        import_chunks.concat chunk.map { |row|
+          {
+            species_id: species.id,
+            accession: row[1],
+            gbif_id: row[2],
+            lat: row[3],
+            lng:  row[4],
+            basis_of_record: row[13],
+            geodetic_datum: row[14],
+            # FIXME: .to_s.to_i => check to see if we should coerce to 0 or nil or if
+            # these were accidentally all coerced to 0 previously
+            coordinate_uncertainty_in_meters: row[15].to_s.to_i,
+            issue: row[16],
+            different_genbank_species: row[17]
+          }
+        }
       end
 
-      # ha we need path to add files (but can avoid it right now :-P)
-      Occurrence.import(chunk.map { |row|
-        {
-          species_id: species.id,
-          accession: row[1],
-          gbif_id: row[2],
-          lat: row[3],
-          lng:  row[4],
-          basis_of_record: row[13],
-          geodetic_datum: row[14],
-          # FIXME: .to_s.to_i => check to see if we should coerce to 0 or nil or if
-          # these were accidentally all coerced to 0 previously
-          coordinate_uncertainty_in_meters: row[15].to_s.to_i,
-          issue: row[16],
-          different_genbank_species: row[17]
-        }
-      })
-
-      chunks += 1
+      Occurrence.import(import_chunks)
+      queries += 1
     end
+
+    print "(insert queries #{queries})"
   end
 
 #TODO:
