@@ -2,13 +2,11 @@
 #SBATCH --tasks=28
 #SBATCH -t 10:00:00
 #SBATCH --job-name="filter_phylogatr"
+#SBATCH --gres=pfsdir
 
 # this took 1:07 to process 1.7T of data
 # run on occurrence.txt from 0147211-200613084148143.zip
 set -xe
-
-#FIXME: how do we request a job so this is handled automatically 
-mkdir -p $PFSDIR
 
 cd $SLURM_SUBMIT_DIR
 time split -d -n 28 occurrence.txt $PFSDIR/x
@@ -26,7 +24,3 @@ done
 wait "${pids[@]}"
 
 cat filtered.x* > $SLURM_SUBMIT_DIR/occurrence_filtered.txt
-
-#FIXME: clean up $PFSDIR
-rm filtered.x*
-rm x*
