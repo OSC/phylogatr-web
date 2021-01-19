@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --tasks=1
+#SBATCH -t 20:00:00
+#SBATCH --job-name="unzip_phylogatr"
+
+# this took 03:25:13 to unzip occurrence.txt a 1.7T file
+
+set -xe
+
+cd $SLURM_SUBMIT_DIR
+time unzip 0147211-200613084148143.zip occurrence.txt
+# cp 0147211-200613084148143.zip $TMPDIR/gbif.zip
+
+# cd $TMPDIR
+# time unzip gbif.zip citations.txt metadata.xml meta.xml rights.txt occurrence.txt
+
+# cp citations.txt metadata.xml meta.xml rights.txt occurrence.txt $SLURM_SUBMIT_DIR
