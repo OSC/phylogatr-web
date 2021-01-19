@@ -57,9 +57,11 @@ namespace :pipeline do
 
       chunk.each do |row|
         idx += 1
-        csv << [idx, row[1], row[2], row[3], row[4], row[13], row[14], row[15].to_s.to_i, row[16], row[17], species.id]
+        # 0 is last argument for source gbif
+        csv << [idx, row[1], row[2], row[3], row[4], row[13], row[14], row[15].to_s.to_i, row[16], row[17], species.id, 0]
       end
 
+      # TODO:
       # # ha we need path to add files (but can avoid it right now :-P)
       # Occurrence.import(chunk.map { |row|
       #   {

@@ -2,6 +2,8 @@ class Occurrence < ActiveRecord::Base
   belongs_to :species
   acts_as_mappable
 
+  enum source: [:gbif, :bold]
+
   def latitude
     read_attribute_before_type_cast(:lat).round(10)
   end

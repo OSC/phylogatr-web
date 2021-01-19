@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210115215723) do
+ActiveRecord::Schema.define(version: 20210119155152) do
 
   create_table "files", force: :cascade do |t|
     t.integer "species_id"
@@ -35,11 +35,13 @@ ActiveRecord::Schema.define(version: 20210115215723) do
     t.string  "issue"
     t.string  "different_genbank_species"
     t.integer "species_id"
+    t.integer "source",                                                               default: 0
   end
 
   add_index "occurrences", ["accession"], name: "index_occurrences_on_accession"
   add_index "occurrences", ["lat"], name: "index_occurrences_on_lat"
   add_index "occurrences", ["lng"], name: "index_occurrences_on_lng"
+  add_index "occurrences", ["source"], name: "index_occurrences_on_source"
   add_index "occurrences", ["species_id"], name: "index_occurrences_on_species_id"
 
   create_table "species", force: :cascade do |t|
