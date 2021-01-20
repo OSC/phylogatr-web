@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 KJ492296	2306400315	12.56	-81.72	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 KJ492297	2304815064	12.56	-81.71	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 KJ492298	2250853593	12.545	-81.708	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84

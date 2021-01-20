@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 JX024454	543505233	-22.226089	166.994975	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 JX024460	543558286	-22.168406	166.517078	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 JX024461	543558287	-22.168406	166.517078	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED

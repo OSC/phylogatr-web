@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 HM901975	2304437561	48.2	12.4	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 HQ563330	1414925918	48.655	13.37	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84
 HQ563330	2304855197	48.5	13.7	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES

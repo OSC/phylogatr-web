@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 KR858096	543521578	-17.489131	168.497272	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 KR858099	543521398	-13.701242	-172.201292	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 KR858100	543534454	6.940511	158.261	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED

@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 KX879647	2309345884	32.5	58.9	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 KX879648	2311059464	32.5	58.9	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 KX879649	2308142169	32.5	58.9	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES

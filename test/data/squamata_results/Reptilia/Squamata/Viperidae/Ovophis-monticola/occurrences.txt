@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 DQ305462	543568985	26.002167	98.659667	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 DQ305480	543568985	26.002167	98.659667	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 HQ325176	543579400	27.7275	97.877111	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED

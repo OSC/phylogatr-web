@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 HM212509	543572420	36.862433	39.034283	PRESERVED_SPECIMEN		0	COORDINATE_ROUNDEDGEODETIC_DATUM_ASSUMED_WGS84
 HM212510	543572421	36.862433	39.034283	PRESERVED_SPECIMEN		0	COORDINATE_ROUNDEDGEODETIC_DATUM_ASSUMED_WGS84
 HM212511	1145546047	32.848667	48.264167	PRESERVED_SPECIMEN	World Geodetic System 1984	100	COORDINATE_ROUNDED

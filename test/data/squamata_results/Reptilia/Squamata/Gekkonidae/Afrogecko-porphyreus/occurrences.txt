@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 EF490697	543560033	-34.3825	18.8285	PRESERVED_SPECIMEN	WGS84	880	EF490723
 KF666771	543552244	-33.982	25.575333	PRESERVED_SPECIMEN	WGS84	320	COORDINATE_ROUNDED
 KF666773	543552398	-34.3825	18.8285	PRESERVED_SPECIMEN	WGS84	880	KF666821

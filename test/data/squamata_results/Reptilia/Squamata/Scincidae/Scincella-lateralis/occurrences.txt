@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 GQ450669	894786493	35.87746	-99.68006	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84
 GQ450670	894787012	35.87679	-99.69897	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84
 GQ450671	894787066	35.87679	-99.69897	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84

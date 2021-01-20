@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 MF402087	2250863430	18.3621	-114.735	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84
 MF402087	2306415375	18.36	-114.73	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 MF402088	2307094718	18.36	-114.7	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES

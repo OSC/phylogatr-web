@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 AY607276	543534995	37.203825	59.547728	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 JQ344313	543584048	35.976806	56.038556	PRESERVED_SPECIMEN		0	COORDINATE_ROUNDEDGEODETIC_DATUM_ASSUMED_WGS84TAXON_MATCH_HIGHERRANK
 JQ344314	543587979	25.363408	67.834172	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED

@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 KF604752	2308522212	-12.36	43.73	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 KF604753	2305191520	-12.36	43.73	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 KF604754	2248712975	-12.377	43.845	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84

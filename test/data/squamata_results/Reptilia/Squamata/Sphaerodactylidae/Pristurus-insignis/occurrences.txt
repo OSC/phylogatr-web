@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 GU256891	1145548557	12.516167	53.986	PRESERVED_SPECIMEN	World Geodetic System 1984	25	COORDINATE_ROUNDED
 KJ850068	2309999236	12.54	54.38	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES
 KJ850069	2310651869	12.51	53.42	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES

@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 AF114249	1145524926	7.9	98.3	PRESERVED_SPECIMEN	World Geodetic System 1984	4603	AY526157
 EU054288	543557764	16.277556	94.759028	PRESERVED_SPECIMEN		0	COORDINATE_ROUNDEDGEODETIC_DATUM_ASSUMED_WGS84
 JN019052	543557764	16.277556	94.759028	PRESERVED_SPECIMEN		0	COORDINATE_ROUNDEDGEODETIC_DATUM_ASSUMED_WGS84

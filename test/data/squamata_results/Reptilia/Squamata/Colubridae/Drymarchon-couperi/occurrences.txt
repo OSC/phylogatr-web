@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 AF471064	543550402	28.9967	-82.4432	PRESERVED_SPECIMEN	WGS84	0	AF471137
 KM386549	543530843	26.5143	-81.2248	PRESERVED_SPECIMEN	WGS84	0	KP099116
 KM386614	543510568	29.6794	-82.3598	PRESERVED_SPECIMEN	WGS84	0	KP099180

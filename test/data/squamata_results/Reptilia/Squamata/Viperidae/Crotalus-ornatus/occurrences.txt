@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 JN620835	2234835251	30.7787443182	-105.0181188423	PRESERVED_SPECIMEN	North American Datum 1927	0	COORDINATE_ROUNDEDCOORDINATE_REPROJECTED
 JN620836	2234835536	32.4501	-107.6913	PRESERVED_SPECIMEN	World Geodetic System 1984	17554	JN620877
 JN620839	2234840148	30.29703	-103.45428	PRESERVED_SPECIMEN	World Geodetic System 1984	5	JN620880

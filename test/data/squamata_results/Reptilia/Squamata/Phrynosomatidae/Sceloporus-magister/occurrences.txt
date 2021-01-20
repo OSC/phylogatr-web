@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 AY730533	1145485891	35.8769638165	-111.4112948576	PRESERVED_SPECIMEN	North American Datum 1927	94	COORDINATE_REPROJECTED
 AY730534	1145485991	31.8432724105	-111.8455708997	PRESERVED_SPECIMEN	North American Datum 1927	4842	COORDINATE_REPROJECTED
 AY730535	1145544096	33.627333	-111.102	PRESERVED_SPECIMEN	unknown	116	COORDINATE_ROUNDEDGEODETIC_DATUM_INVALIDGEODETIC_DATUM_ASSUMED_WGS84

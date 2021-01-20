@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 GU902314	543573619	1.599333	7.354222	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 GU902391	543573619	1.599333	7.354222	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 GU902471	543573619	1.599333	7.354222	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED

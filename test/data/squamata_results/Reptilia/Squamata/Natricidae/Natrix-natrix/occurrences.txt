@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 AY873751	543574406	42.217406	27.232958	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 AY873757	543525458	55.056042	37.562506	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 HM901941	2311118722	47.91	12.97	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES

@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 AY123409	543525875	-27.6665	18.196333	PRESERVED_SPECIMEN	WGS84	2880	COORDINATE_ROUNDED
 DQ349139	543525875	-27.6665	18.196333	PRESERVED_SPECIMEN	WGS84	2880	COORDINATE_ROUNDED
 DQ349140	543554336	-28.473333	17.964722	PRESERVED_SPECIMEN		0	COORDINATE_ROUNDEDGEODETIC_DATUM_ASSUMED_WGS84

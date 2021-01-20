@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 AF258887	543558709	37.219567	-122.223717	PRESERVED_SPECIMEN		574	COORDINATE_ROUNDEDGEODETIC_DATUM_ASSUMED_WGS84
 DQ364666	543576552	40.541117	-124.0611	PRESERVED_SPECIMEN		0	COORDINATE_ROUNDEDGEODETIC_DATUM_ASSUMED_WGS84
 GU112365	543579169	42.7552239991	-123.581944	PRESERVED_SPECIMEN	NAD83	2338	COORDINATE_REPROJECTED

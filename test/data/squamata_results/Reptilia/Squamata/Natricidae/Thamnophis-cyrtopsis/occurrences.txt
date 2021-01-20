@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 FJ570830	543593486	33.109803	-107.658047	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 FJ570881	543593486	33.109803	-107.658047	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 FJ570932	543593486	33.109803	-107.658047	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED

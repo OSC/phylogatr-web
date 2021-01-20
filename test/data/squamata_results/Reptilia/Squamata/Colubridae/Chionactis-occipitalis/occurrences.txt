@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 KU985841	1414874053	32.671	-115.89	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84
 KU985889	1414874044	32.671	-115.89	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84
 KU986106	1414874016	32.671	-115.89	MATERIAL_SAMPLE		0	GEODETIC_DATUM_ASSUMED_WGS84

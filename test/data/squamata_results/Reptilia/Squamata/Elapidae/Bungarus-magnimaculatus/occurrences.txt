@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 KY769768	543563958	22.074361	94.898611	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 KY769769	543564146	21.58725	95.096	PRESERVED_SPECIMEN	WGS84	0	HM591515
 KY769770	543569423	22.073889	94.850139	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED

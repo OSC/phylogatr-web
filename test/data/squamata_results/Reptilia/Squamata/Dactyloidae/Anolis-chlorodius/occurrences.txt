@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 KJ566804	1320211391	18.1488306038	-71.7475530198	PRESERVED_SPECIMEN	NAD27	3543	COORDINATE_REPROJECTED
 KJ566805	1319929324	18.1488306038	-71.7475530198	PRESERVED_SPECIMEN	NAD27	3543	COORDINATE_REPROJECTED
 KJ566824	1317701481	18.2324	-72.5389	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84

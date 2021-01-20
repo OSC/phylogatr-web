@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 HE867025	2310546301	10.04	84.92	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84
 HE867027	2311069166	10.04	84.92	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84
 HE867028	2308140628	10.04	84.92	PRESERVED_SPECIMEN		0	GEODETIC_DATUM_ASSUMED_WGS84

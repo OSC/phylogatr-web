@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 KT941155	890184350	-15.0165	12.642028	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 KT941156	1062024408	-15.015917	12.642389	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED
 KT941157	890184201	-15.475889	12.462694	PRESERVED_SPECIMEN	WGS84	0	COORDINATE_ROUNDED

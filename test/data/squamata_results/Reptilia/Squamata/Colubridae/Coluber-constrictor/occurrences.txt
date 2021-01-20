@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 AY486913	543553932	24.76439	-80.9486	PRESERVED_SPECIMEN	WGS84	0	AY486937
 AY486914	543566440	39.1603934081	-122.6688853215	PRESERVED_SPECIMEN	NAD27	0	COORDINATE_ROUNDEDCOORDINATE_REPROJECTED
 EU180284	894775475	35.020954	-99.832779	PRESERVED_SPECIMEN	WGS84	4718	COORDINATE_ROUNDED

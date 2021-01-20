@@ -1,4 +1,4 @@
-accession	gbif_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
+accession	source_id	latitude	longitude	basis_of_record	geodetic_datum	coordinate_uncertainty_in_meters	issue
 AF302945	1145541138	36.1013629663	-121.6203041183	PRESERVED_SPECIMEN	North American Datum 1927	1784	COORDINATE_ROUNDEDCOORDINATE_REPROJECTED
 AF302946	543558708	37.211117	-122.211	PRESERVED_SPECIMEN		1218	COORDINATE_ROUNDEDGEODETIC_DATUM_ASSUMED_WGS84
 AF302948	1145468961	37.874393362	-122.2568955482	PRESERVED_SPECIMEN	North American Datum 1927	45	COORDINATE_ROUNDEDCOORDINATE_REPROJECTED

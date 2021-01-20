@@ -14,7 +14,7 @@ class Occurrence < ActiveRecord::Base
   def self.headers
     %w(
       accession
-      gbif_id
+      source_id
       latitude
       longitude
       basis_of_record
