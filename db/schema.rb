@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210119155152) do
+ActiveRecord::Schema.define(version: 20210120032223) do
 
   create_table "files", force: :cascade do |t|
     t.integer "species_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20210119155152) do
 
   create_table "occurrences", force: :cascade do |t|
     t.string  "accession"
-    t.integer "gbif_id",                          limit: 8
+    t.integer "source_id",                        limit: 8
     t.decimal "lat",                                        precision: 15, scale: 10
     t.decimal "lng",                                        precision: 15, scale: 10
     t.string  "basis_of_record"
@@ -36,9 +36,16 @@ ActiveRecord::Schema.define(version: 20210119155152) do
     t.string  "different_genbank_species"
     t.integer "species_id"
     t.integer "source",                                                               default: 0
+    t.string  "field_number"
+    t.string  "catalog_number"
+    t.string  "identifier"
+    t.date    "event_date"
   end
 
   add_index "occurrences", ["accession"], name: "index_occurrences_on_accession"
+  add_index "occurrences", ["catalog_number"], name: "index_occurrences_on_catalog_number"
+  add_index "occurrences", ["field_number"], name: "index_occurrences_on_field_number"
+  add_index "occurrences", ["identifier"], name: "index_occurrences_on_identifier"
   add_index "occurrences", ["lat"], name: "index_occurrences_on_lat"
   add_index "occurrences", ["lng"], name: "index_occurrences_on_lng"
   add_index "occurrences", ["source"], name: "index_occurrences_on_source"
