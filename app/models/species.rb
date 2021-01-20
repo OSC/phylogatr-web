@@ -1,4 +1,6 @@
 require 'shellwords'
+require 'gdbm'
+require 'digest'
 
 class Species < ActiveRecord::Base
   has_many :occurrences
@@ -54,7 +56,7 @@ class Species < ActiveRecord::Base
   end
 
   # FIXME: this method should not exist. see above.
-  def aligned?
+  def all_files_aligned?
     # for every fa file there is a corresponding afa file
     # means that chopping off the extensions there will be 2 of every file
     (absolute_path.glob('*.fa').map {|f| f.basename('.fa')} - absolute_path.glob('*.afa').map {|f| f.basename('.afa')}).empty?
@@ -65,6 +67,14 @@ class Species < ActiveRecord::Base
     absolute_path.glob('*fa')
   end
 
+  def unaligned_files
+    absolute_path.glob('*.fa')
+  end
+
+  def aligned_files
+    absolute_path.glob('*.afa')
+  end
+
   def name
     absolute_path.basename.to_s.gsub('-', ' ')
   end
@@ -72,7 +82,7 @@ class Species < ActiveRecord::Base
   def update_metrics!
     self.total_seqs = calculate_total_seqs
     self.total_bytes = calculate_total_bytes
-    self.aligned = aligned?
+    self.aligned = all_files_aligned?
 
     save
   end
@@ -152,5 +162,54 @@ class Species < ActiveRecord::Base
 
   def genes_index_filesize(occurrence)
     genes_index_str(occurrence).length + self.class.genes_index_headers_tsv.length
+  end
+
+  #FIXME: if we have a Genes instead of Files table, this would be the place to move these
+  # so you get all the Genes that need realigned, then you align_from_cache, then align otherwise
+  #
+  def self.files_needing_alignment
+    Species.where(aligned: false).select(:path).to_a.map(&:unaligned_files).flatten.compact
+  end
+
+  def self.write_alignment_files_from_cache(fasta_files)
+    return fasta_files unless Configuration.alignments_cache_path.present? && Configuration.alignments_cache_path.file?
+
+    gdbm = GDBM.new(cache_path, 0666, GDBM::READER)
+
+    fasta_files.reduce([]) do |remaining, path|
+      afapath = path.sub(/fa$/, 'afa')
+
+      #TODO: refactor to AlignmentCache class
+
+      # checksum of file is the key for the alignment
+      key = Digest::SHA256.hexdigest(File.read(path))
+
+      if gdbm.has_key?(key)
+        File.write(afapath, gdbm[key])
+      else
+        remaining << path
+      end
+    end
+  ensure
+    gdbm.close
+  end
+
+  def self.align_file(path)
+    afapath = path.sub(/fa$/, 'afa')
+
+    tmpfile = ENV['TMPDIR'] ? File.join(ENV['TMPDIR'], path.basename.to_s) : Tempfile.new.path
+
+    o,e,s = Open3.capture3("bin/mafft --adjustdirection --auto --inputorder --quiet #{path.to_s} > #{tmpfile}")
+    raise "bin/mafft exited with status #{s} and output #{o} and error #{e}" unless s.success?
+    o,e,s = Open3.capture3("bin/trimal -in #{tmpfile} -resoverlap 0.85 -seqoverlap 50 -gt 0.15")
+
+    raise "bin/trimal exited with status #{s} and output #{o} and error #{e}" unless s.success?
+    raise "empty alignment produced for #{t.source}" if o.blank?
+
+    afapath.write o.split("\n").map { |l| l[0] == ">" ? "\n" + l.split.first : l }.join("").strip + "\n"
+  rescue => e
+    STDERR.puts "error when trying to align #{t.source}: #{e.message}"
+  ensure
+    File.unlink tmpfile
   end
 end
