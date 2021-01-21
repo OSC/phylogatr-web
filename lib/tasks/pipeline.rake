@@ -32,6 +32,9 @@ namespace :pipeline do
 
     idx = 0
 
+    using_mysql_adapter = ActiveRecord::Base.connection.adapter_name == 'Mysql2'
+    using_sqlite_adapter = ActiveRecord::Base.connection.adapter_name == 'SQLite'
+
     OccurrenceRecord.each_occurrence_slice_grouped_by_path(STDIN) do |chunk|
       row = chunk.first
       species_path = row[0]
@@ -59,7 +62,13 @@ namespace :pipeline do
       chunk.each do |row|
         idx += 1
         # 0 is last argument for source gbif
-        csv << [idx, row[1], row[2], row[3], row[4], row[13], row[14], row[15].to_s.to_i, row[16], row[17], species.id, 0]
+        #
+        #FIXME: row[14] is geodetic_datum which is dropped in the future for now...
+        if(using_mysql_adapter)
+          csv << [idx, row[1], row[2], row[3], row[4], row[13], row[14].presence || '\N', row[15].to_s.to_i, row[16], row[17], species.id, 0]
+        else
+          csv << [idx, row[1], row[2], row[3], row[4], row[13], row[14], row[15].to_s.to_i, row[16], row[17], species.id, 0]
+        end
       end
 
       # TODO:
@@ -85,7 +94,13 @@ namespace :pipeline do
     end
 
     # now do import
-    system(sqlite3_table_import_cmd(ActiveRecord::Base.connection.instance_variable_get(:@config)[:database], tsv.path))
+    if(using_sqlite_adapter)
+      system(sqlite3_table_import_cmd(ActiveRecord::Base.connection.instance_variable_get(:@config)[:database], tsv.path))
+    elsif(using_mysql_adapter)
+      ActiveRecord::Base.connection.execute(%Q[load data local infile "#{tsv.path}" into table occurrences;])
+    else
+      raise "Unkown adapter for importing occurrences"
+    end
   ensure
     tsv.close
     tsv.unlink

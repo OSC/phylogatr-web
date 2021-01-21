@@ -121,15 +121,6 @@ def download_bold_phylum(phylum, dir)
   end
 end
 
-def import_cmd(db, occurrences_tsv)
-  <<~HEREDOC
-  sqlite3 #{db} <<EOF
-  .mode tabs
-  .import #{occurrences_tsv} occurrences
-  EOF
-  HEREDOC
-end
-
 class MyCLI < Thor
   def self.exit_on_failure?
     true
