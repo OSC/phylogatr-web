@@ -9,7 +9,9 @@ set -xe
 
 cd $PBS_O_WORKDIR
 
-GENBANK_ROOT=/fs/project/PAS1604/pipeline/dev/genes ALIGNMENTS_CACHE_PATH=/fs/project/PAS1604/pipeline/dev/genes.db bin/rake pipeline:align
+module load ruby
+module load pcp
+GENBANK_ROOT=/fs/project/PAS1604/pipeline/dev/genes ALIGNMENTS_CACHE_PATH=/fs/project/PAS1604/pipeline/dev/genes.db bin/rake pipeline:alignpcp
 
 # TODO: will need to rsync back if we do this
 # cp /fs/project/PAS1604/pipeline/dev/genes.db $TMPDIR

@@ -174,9 +174,11 @@ class Species < ActiveRecord::Base
   def self.write_alignment_files_from_cache(fasta_files)
     return fasta_files unless Configuration.alignments_cache_path.present? && Configuration.alignments_cache_path.file?
 
-    gdbm = GDBM.new(cache_path, 0666, GDBM::READER)
+    gdbm = GDBM.new(Configuration.alignments_cache_path.to_s, 0666, GDBM::READER)
 
-    fasta_files.reduce([]) do |remaining, path|
+    remaining = []
+
+    fasta_files.each do |path|
       afapath = path.sub(/fa$/, 'afa')
 
       #TODO: refactor to AlignmentCache class
@@ -190,8 +192,10 @@ class Species < ActiveRecord::Base
         remaining << path
       end
     end
+
+    remaining
   ensure
-    gdbm.close
+    gdbm.close if gdbm
   end
 
   def self.align_file(path)

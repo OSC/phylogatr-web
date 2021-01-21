@@ -97,15 +97,24 @@ namespace :pipeline do
   end
 
   desc "align fasta files"
-  task :align do
+  task align: :environment do
+    #FIXME: this currently does not parallelize the work and instead does all the work sequentially
     files = Species.write_alignment_files_from_cache(Species.files_needing_alignment)
 
-    workers = files.count >= 27 ? Parallel.processor_count-1 : 0
+    workers = files.count >= 27 ? Parallel.physical_processor_count-1 : 0
+    puts "Parallel.each over files with in_processes: #{workers}"
 
     Parallel.each(files, in_processes: workers) do |file|
       puts "aligning #{file}"
       Species.align_file file
     end
+  end
+
+  desc "align fasta files using parallel command processor"
+  task alignpcp: :environment do
+    files = Species.write_alignment_files_from_cache(Species.files_needing_alignment)
+    commands = files.map {|f| "./align_sequences.sh #{f.to_s}"}.join("\n") + "\n"
+    puts Open3.capture2('mpiexec','parallel-command-processor', stdin_data: commands)
   end
 
   desc "delete all fasta alignment files"
@@ -114,7 +123,14 @@ namespace :pipeline do
   end
 
   desc "update Species metrics"
-  task :update_species_metrics do
+  task update_species_metrics: :environment do
+    # Species.where(aligned: false).each(&:update_metrics!)
+    Species.find_each(&:update_metrics!)
+  end
+
+  desc "update Species metrics that are flagged as not aligned"
+  task update_unaligned_species_metrics: :environment do
     Species.where(aligned: false).each(&:update_metrics!)
   end
+
 end
