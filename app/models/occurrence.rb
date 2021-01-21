@@ -5,10 +5,12 @@ class Occurrence < ActiveRecord::Base
   enum source: [:gbif, :bold]
 
   def latitude
-    read_attribute_before_type_cast(:lat).round(10)
+    # read_attribute_before_type_cast(:lat).round(10).to_f
+    lat
   end
   def longitude
-    read_attribute_before_type_cast(:lng).round(10)
+    # read_attribute_before_type_cast(:lng).round(10).to_f
+    lng
   end
 
   def self.headers
