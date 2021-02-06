@@ -130,7 +130,7 @@ class SearchResults
         # for writing tarballs faster, if we continue to use Ruby
         # FIXME: pulling everyting down in 1 query...
 
-        species = Species.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
+        species = Species.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).where(aligned: true).order(:path)
 
         uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species.count)
         uinfo.wrote_fasta_files(0)
@@ -236,7 +236,7 @@ class SearchResults
       # thats why we put the taxonomy duplicates in Occurrences
       # otherwise the joins was expensive
       #
-      species = Species.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).order(:path)
+      species = Species.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy).where(aligned: true).order(:path)
       uinfo = SearchResultsInfo::FileUpdater.load(uinfo_path, species.count)
       uinfo.wrote_fasta_files(0)
 
