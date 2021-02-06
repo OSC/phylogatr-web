@@ -108,7 +108,134 @@ namespace :pipeline do
 
   desc "add bold records to database"
   task add_bold_records: :environment do
+    #
+    # FIXME: could use BoldRecord class
+
     # STDIN has all the bold records
+    # markercode is understood to be gene_symbol
+    # nucleotides is understood to be sequence
+    csv = CSV.new(STDIN, col_sep: "\t")
+    bold_headers = %i(
+      process_id
+      record_id
+      catalog_number
+      field_number
+      taxon_phylum
+      taxon_class
+      taxon_order
+      taxon_family
+      taxon_genus
+      taxon_species
+      taxon_subspecies
+      lat
+      lng
+      gene_symbol
+      accession
+      sequence
+    )
+
+
+    BoldRecord = Struct.new(*bold_headers)
+
+    kingdoms = {
+      "Acanthocephala"=>"Animalia",
+      "Annelida"=>"Animalia",
+      "Arthropoda"=>"Animalia",
+      "Ascomycota"=>"Fungi",
+      "Basidiomycota"=>"Fungi",
+      "Brachiopoda"=>"Animalia",
+      "Bryophyta"=>"Plantae",
+      "Bryozoa"=>"Animalia",
+      "Chaetognatha"=>"Animalia",
+      "Chlorophyta"=>"Plantae",
+      "Chordata"=>"Animalia",
+      "Ciliophora"=>"Chromista",
+      "Cnidaria"=>"Animalia",
+      "Ctenophora"=>"Animalia",
+      "Echinodermata"=>"Animalia",
+      "Mollusca"=>"Animalia",
+      "Nematoda"=>"Animalia",
+      "Nematomorpha"=>"Animalia",
+      "Nemertea"=>"Animalia",
+      "Platyhelminthes"=>"Animalia",
+      "Porifera"=>"Animalia",
+      "Rhodophyta"=>"Plantae",
+      "Rotifera"=>"Animalia",
+      "Sipuncula"=>"Animalia",
+      "Tardigrada"=>"Animalia",
+      "Zygomycota"=>"Fungi",
+
+      "Chytridiomycota"=> 'Fungi',
+      "Entoprocta"=> 'Animalia',
+      "Gastrotricha"=> 'Animalia',
+      "Glomeromycota"=> 'Fungi',
+      "Kinorhyncha"=> 'Animalia',
+      "Lycopodiophyta"=> 'Plantae',
+      "Magnoliophyta"=> 'Plantae',
+      "Phoronida"=>'Animalia',
+      "Pinophyta"=>'Plantae',
+      "Priapulida"=> 'Animalia',
+      "Pteridophyta"=>'Plantae'
+    }
+
+    phylums_ignore = Set.new(%w(Chlorarachniophyta Heterokontophyta Lycopodiophyta Myxomycota Onychophora Pyrrophycophyta))
+
+    # we need taxon_species => [id, path]
+    # TODO:
+    # after you confirm it works...
+    # species_names = Set.new(Species.pluck(:taxon_species))
+    # could cache the few species we get, by "species" so we don't do another query...
+
+    csv.each do |row|
+      record = BoldRecord.new(*row)
+      next unless record.gene_symbol.present? && record.sequence.present?
+
+      # FIXME: be careful of case issues
+      species = Species.find_by(taxon_species: record.taxon_species)
+      taxons_set = %w(phylum class order family genus species).all? {|t| record.send(:"taxon_#{t}").present? }
+
+      if species || (taxons_set && kingdoms.include?(record.taxon_phylum))
+        if species.nil?
+          species = Species.create(
+            path: File.join(record.taxon_class, record.taxon_order, record.taxon_family, record.taxon_species.gsub(' ', '-')),
+            taxon_kingdom: kingdoms[record.taxon_phylum],
+            taxon_phylum: record.taxon_phylum,
+            taxon_class: record.taxon_class,
+            taxon_order: record.taxon_order,
+            taxon_family: record.taxon_family,
+            taxon_genus: record.taxon_genus,
+            taxon_species: record.taxon_species,
+            aligned: false
+          )
+        end
+
+        occurrence = Occurrence.new(
+          source: :bold,
+          source_id: record.process_id,
+          catalog_number: record.catalog_number.presence,
+          field_number: record.field_number.presence,
+          accession: record.accession.presence,
+          lat: record.lat,
+          lng: record.lng,
+          species_id: species.id
+        )
+
+        if ! occurrence.duplicate? && occurrence.save
+          # Reptilia/Squamata/Agamidae/Phrynocephalus-persicus/Phrynocephalus-persicus-COI
+          fasta_path = Configuration.genbank_root.join(species.path, "#{record.taxon_species}-#{record.gene_symbol.upcase}").to_s.gsub(' ', '-')
+
+          # occurrence saved, now write gene data
+          FileUtils.mkdir_p(File.dirname(fasta_path))
+          accession = record.accession.presence || '00000000'
+          File.write(fasta_path + ".fa", ">#{accession}_#{record.process_id}\n#{record.sequence}\n", mode: "a+")
+
+          species.update(aligned: false) if species.aligned
+        end
+      end # if species || (taxons_set && kingdoms.include?(record.taxon_phylum))
+    # else
+      #TODO: species not found and taxons not set - make note of this - as we could fill in taxonomy if we had more info
+
+    end
   end
 
   desc "align fasta files"
