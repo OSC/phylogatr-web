@@ -114,28 +114,8 @@ namespace :pipeline do
     # STDIN has all the bold records
     # markercode is understood to be gene_symbol
     # nucleotides is understood to be sequence
-    csv = CSV.new(STDIN, col_sep: "\t")
-    bold_headers = %i(
-      process_id
-      record_id
-      catalog_number
-      field_number
-      taxon_phylum
-      taxon_class
-      taxon_order
-      taxon_family
-      taxon_genus
-      taxon_species
-      taxon_subspecies
-      lat
-      lng
-      gene_symbol
-      accession
-      sequence
-    )
+    csv = CSV.new(STDIN, col_sep: "\t", headers: BoldRecord::HEADERS)
 
-
-    BoldRecord = Struct.new(*bold_headers)
 
     kingdoms = {
       "Acanthocephala"=>"Animalia",
@@ -187,8 +167,8 @@ namespace :pipeline do
     # could cache the few species we get, by "species" so we don't do another query...
 
     csv.each do |row|
-      record = BoldRecord.new(*row)
-      next unless record.gene_symbol.present? && record.sequence.present?
+      record = BoldRecord.new(**row.to_h)
+      next unless record.gene_symbol_mapped.present? && record.sequence.present?
 
       # FIXME: be careful of case issues
       species = Species.find_by(taxon_species: record.taxon_species)
@@ -222,7 +202,7 @@ namespace :pipeline do
 
         if ! occurrence.duplicate? && occurrence.save
           # Reptilia/Squamata/Agamidae/Phrynocephalus-persicus/Phrynocephalus-persicus-COI
-          fasta_path = Configuration.genbank_root.join(species.path, "#{record.taxon_species}-#{record.gene_symbol.upcase}").to_s.gsub(' ', '-')
+          fasta_path = Configuration.genbank_root.join(species.path, "#{record.taxon_species}-#{record.gene_symbol_mapped.upcase}").to_s.gsub(' ', '-')
 
           # occurrence saved, now write gene data
           FileUtils.mkdir_p(File.dirname(fasta_path))
