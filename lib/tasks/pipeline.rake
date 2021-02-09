@@ -166,6 +166,8 @@ namespace :pipeline do
     # species_names = Set.new(Species.pluck(:taxon_species))
     # could cache the few species we get, by "species" so we don't do another query...
 
+    fasta_files_updated = Set.new
+
     csv.each do |row|
       record = BoldRecord.new(**row.to_h)
       next unless record.gene_symbol_mapped.present? && record.sequence.present?
@@ -202,19 +204,31 @@ namespace :pipeline do
 
         if ! occurrence.duplicate? && occurrence.save
           # Reptilia/Squamata/Agamidae/Phrynocephalus-persicus/Phrynocephalus-persicus-COI
-          fasta_path = Configuration.genbank_root.join(species.path, "#{record.taxon_species}-#{record.gene_symbol_mapped.upcase}").to_s.gsub(' ', '-')
+          fasta_path = Configuration.genbank_root.join(species.path, "#{record.taxon_species}-#{record.gene_symbol_mapped.upcase}").to_s.gsub(' ', '-') + ".fa"
 
           # occurrence saved, now write gene data
           FileUtils.mkdir_p(File.dirname(fasta_path))
-          accession = record.accession.presence || '00000000'
-          File.write(fasta_path + ".fa", ">#{accession}_#{record.process_id}\n#{record.sequence}\n", mode: "a+")
+          File.write(fasta_path, record.fasta_sequence, mode: "a+")
+
+          fasta_files_updated << fasta_path
 
           species.update(aligned: false) if species.aligned
         end
       end # if species || (taxons_set && kingdoms.include?(record.taxon_phylum))
     # else
       #TODO: species not found and taxons not set - make note of this - as we could fill in taxonomy if we had more info
+    end
 
+    # remove and print to stderr the fasta_files that have fewer than 3 sequences
+    # the number of sequences is == number lines / 2
+    fasta_files_updated.each do |path|
+      # FIXME: 3 is this magic threshold
+      count = BoldRecord.line_count(path)
+      if(BoldRecord.line_count(path) < 3)
+        $stderr.puts "#{path} has only #{count} lines"
+
+        File.unlink path
+      end
     end
   end
 

@@ -30,6 +30,15 @@ class BoldRecord
     @gene_symbol_mapped ||= lookup_gene_symbol(self.gene_symbol)
   end
 
+  def fasta_sequence
+    accession = self.accession.presence || '00000000'
+    ">#{accession}_#{self.process_id}\n#{self.sequence}\n"
+  end
+
+  def self.line_count(path)
+    File.foreach(path).reduce(0) {|count, line| count+1 }
+  end
+
   private
 
   GENE_SYMBOL_LOOKUP = {
