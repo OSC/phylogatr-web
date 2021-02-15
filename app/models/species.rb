@@ -7,7 +7,7 @@ class Species < ActiveRecord::Base
 
   def self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
     if swpoint.all?(&:present?) && nepoint.all?(&:present?)
-      Species.joins(:occurrences).merge(Occurrence.in_bounds([swpoint, nepoint])).where(taxonomy).distinct.order(&:path)
+      Species.joins(:occurrences).merge(Occurrence.in_bounds([swpoint, nepoint])).where(taxonomy).distinct.order(:path)
     else
       Species.where(taxonomy).order(:path)
     end
