@@ -47,6 +47,7 @@ class BatchSearchResults
       content: self.send("job_script_#{format}"),
 
       # FIXME: params as part of job name?
+      accounting_id: "PAS1604",
       job_name: "phylogatr_search",
       wall_time: 3600,
       native: [ "--partition", "quick", "--nodes", "1", "--ntasks-per-node", "1"  ]
