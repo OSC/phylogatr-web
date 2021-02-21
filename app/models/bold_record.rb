@@ -31,12 +31,18 @@ class BoldRecord
   #
   # =>
   #
-  Taxonomy = Struct.new(:name, :count, :url)
+  Taxonomy = Struct.new(:name, :count, :url, :category)
   def self.taxonomy(uri)
     # //a[starts-with(@href, '/index.php/Taxbrowser_Taxonpage?taxid=')]
     #
     uri = URI.parse(uri)
     doc = Nokogiri::HTML(URI.open(uri.scheme == 'file' ? uri.path : uri))
+
+    # get category
+    first_lh = doc.css('lh').first
+    category = first_lh ? first_lh.content.split('(').first.strip.downcase.singularize : "phylum"
+
+
     # doc.css('a[href^="/index.php/Taxbrowser_Taxonpage?taxid="').map do |link|
     doc.xpath("//a[starts-with(@href, '/index.php/Taxbrowser_Taxonpage?taxid=')]").map do |link|
       n, c = link.content.split('[')
@@ -50,7 +56,7 @@ class BoldRecord
 
       c = c.chomp(']').strip
 
-      Taxonomy.new(n.strip, c, link.attr('href'))
+      Taxonomy.new(n.strip, c, link.attr('href'), category)
     end.compact
   end
 
