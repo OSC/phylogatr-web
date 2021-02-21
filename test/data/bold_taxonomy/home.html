@@ -1,0 +1,675 @@
+<!DOCTYPE HTML>
+<!--
+Animalia	Acanthocephala
+Animalia	Annelida
+Animalia	Arthropoda
+Animalia	Brachiopoda
+Animalia	Bryozoa
+Animalia	Chaetognatha
+Animalia	Chordata
+Animalia	Cnidaria
+Animalia	Cycliophora
+Animalia	Echinodermata
+Animalia	Echiura
+Animalia	Gnathostomulida
+Animalia	Hemichordata
+Animalia	Mollusca
+Animalia	Nematoda
+Animalia	Nematomorpha
+Animalia	Nemertea
+Animalia	Onychophora
+Animalia	Platyhelminthes
+Animalia	Pogonophora
+Animalia	Porifera
+Animalia	Priapulida
+Animalia	Rotifera
+Animalia	Sipuncula
+Animalia	Tardigrada
+Fungi	Basidiomycota
+Fungi	Eumycota
+Fungi	Glomeromycota
+Fungi	Ascomycota
+Fungi	Zygomycota
+Fungi	Chytridiomycota
+Plantae	Magnoliophyta
+Plantae	Rhodophyta
+Plantae	Pteridophyta
+Plantae	Pinophyta
+Plantae	Chlorophyta
+Plantae	Lycopodiophyta
+Plantae	Bryophyta
+Protista	Heterokontophyta
+Protista	Ciliophora
+Protista	Opalozoa
+Fungi	Myxomycota
+Protista	Pyrrophycophyta
+Protista	Chlorarachniophyta
+Animalia	Gastrotricha
+Animalia	Phoronida
+Animalia	Rhombozoa
+Animalia	Ctenophora
+Animalia	Entoprocta
+Animalia	Placozoa
+Animalia	Acoelomorpha
+Animalia	Kinorhyncha
+Animalia	Xenacoelomorpha
+
+--><html>
+    <head>
+		<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>Kingdoms of Life Being Barcoded | BOLDSYSTEMS</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicons/apple-icon.png"/>
+<link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png"/>
+<link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png"/>
+<link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png"/>
+<link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-icon-76x76.png"/>
+<link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-icon-114x114.png"/>
+<link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-icon-120x120.png"/>
+<link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-icon-144x144.png"/>
+<link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-icon-152x152.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-icon-180x180.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+
+<link href="/libhtml_v4/css/bootstrap.css" rel="stylesheet" />
+<link href="/libhtml_v4/css/style.css" rel="stylesheet" />
+<link href="/libhtml_v4/css/animate.css" rel="stylesheet" />
+<link href="/libhtml_v4/css/ionicons.min.css" rel="stylesheet" />
+<!--<link href="/libhtml_v4/css/font-awesome.min.css" rel="stylesheet" />-->
+<link href="/libhtml_v3/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800&amp;subset=latin,latin-ext" rel="stylesheet" />
+<link href="/libhtml_v4/css/print.css" rel="stylesheet" />
+
+<script src="/libhtml_v4/js/modernizr-custom.min.js"></script>
+<script src="/libhtml_v4/js/jquery-2.1.0.min.js"></script>
+<script src="/libhtml_v4/js/bootstrap.js"></script>
+<script src="/libhtml_v4/js/plugins/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="/libhtml_v3/js/modalWaitingBox.js"></script>
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-372370-4', 'auto');
+	ga('send', 'pageview');
+
+</script>
+<script language="javascript">
+	// Loading page complete
+$(window).load(function()
+{
+	checkHero(); // Check hero height is correct
+	animateWhenVisible();  // Activate animation when visible
+});
+
+
+// Page ready
+$(document).ready(function()
+{
+	if (Modernizr.mq('(min-width: 768px)')) {
+		$('#promo').animate({ height: '408px' }, 600);
+		$('#lead-in').animate({ height: '220px' }, 800);
+	}
+
+	$('.hero').css('height', $(window).height()+'px'); // Set initial hero height
+	$('#scroll-hero').click(function()
+	{
+		$('html,body').animate({scrollTop: $("#hero-bloc").height()}, 'slow');
+	});
+
+	setUpLightBox(); // Add lightbox Support
+
+	$("button#printBtn").click(function (e){
+		window.print();
+	});
+
+});
+
+// Window resize
+$(window).resize(function()
+{
+	$('.hero').css('height',getHeroHeight()+'px'); // Refresh hero height
+});
+
+// Get Hero Height
+function getHeroHeight()
+{
+	var H = $(window).height(); // Window height
+	if (window.hasOwnProperty('heroBodyH')){
+		if(H < heroBodyH) {// If window height is less than content height
+			H = heroBodyH+100;
+		}
+	}
+	return H
+}
+
+// Check hero height
+function checkHero()
+{
+	if($('#hero-bloc').length)
+	{
+		P = parseInt($('.hero-nav').css('padding-top'))*2
+		window.heroBodyH = $('.hero-nav').outerHeight()+P+$('.vc-content').outerHeight()+50; // Set hero body height
+		$('.hero').css('height', getHeroHeight() + 'px'); // Set hero to fill page height
+	}
+}
+
+// Scroll to target
+function scrollToTarget(D)
+{
+	if(D == 1) // Top of page
+	{
+		D = 0;
+	}
+	else if(D == 2) // Bottom of page
+	{
+		D = $(document).height();
+	}
+	else // Specific Bloc
+	{
+		D = $(D).offset().top;
+		if($('.sticky-nav').length) // Sticky Nav in use
+		{
+			D = D-100;
+		}
+	}
+
+	$('html,body').animate({scrollTop:D}, 'slow');
+}
+
+// Initial tooltips
+$(function()
+{
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+
+// Animate when visible
+function animateWhenVisible()
+{
+	hideAll(); // Hide all animation elements
+	inViewCheck(); // Initail check on page load
+
+	$(window).scroll(function()
+	{
+		inViewCheck(); // Check object visability on page scroll
+		scrollToTopView(); // ScrollToTop button visability toggle
+		stickyNavToggle(); // Sticky nav toggle
+	});
+};
+
+// Hide all animation elements
+function stickyNavToggle()
+{
+	var V = 0; // offset Value
+	var C = "sticky"; // Classes
+
+	if($('.sticky-nav').parent().is('#hero-bloc')) // If nav is in hero animate in
+	{
+		V = $('.sticky-nav').height();
+		C = "sticky animated fadeInDown";
+	}
+
+	if($(window).scrollTop() > V)
+	{
+		$('.sticky-nav').addClass(C);
+
+		if(C == "sticky")
+		{
+			$('.page-container').css('padding-top',$('.sticky-nav').height());
+		}
+	}
+	else
+	{
+		$('.sticky-nav').removeClass(C);
+		$('.page-container').removeAttr('style');
+	}
+}
+
+// Hide all animation elements
+function hideAll()
+{
+	$('.animated').each(function(i)
+	{
+		if(!$(this).closest('.hero').length) // Dont hide hero object
+		{
+			$(this).removeClass('animated').addClass('hideMe');
+		}
+	});
+}
+
+// Check if object is inView
+function inViewCheck()
+{
+	$($(".hideMe").get().reverse()).each(function(i)
+	{
+		var target = jQuery(this);
+		var a = target.offset().top + target.height();
+		var b = $(window).scrollTop() + $(window).height();
+
+		if(target.height() > $(window).height()) // If object height is greater than window height
+		{
+			a = target.offset().top;
+		}
+
+		if (a < b)
+		{
+			var objectClass = target.attr('class').replace('hideMe' , 'animated');
+			target.css('visibility','hidden').removeAttr('class');
+			setTimeout(function(){target.attr('class',objectClass).css('visibility','visible');},0.01);
+		}
+	});
+};
+
+// ScrollToTop button toggle
+function scrollToTopView()
+{
+	if($(window).scrollTop() > $(window).height()/3)
+	{
+		if(!$('.scrollToTop').hasClass('showScrollTop'))
+		{
+			$('.scrollToTop').addClass('showScrollTop');
+		}
+	}
+	else
+	{
+		$('.scrollToTop').removeClass('showScrollTop');
+	}
+};
+
+// Light box support
+function setUpLightBox()
+{
+	window.targetLightbox;
+
+	$(document).on('click', '[data-lightbox]', function(e) // Create Lightbox Modal
+	{
+		e.preventDefault();
+		targetLightbox = $(this);
+		var captionData ='<p class="lightbox-caption">'+$(this).attr('data-caption')+'</p>';
+		if(!$(this).attr('data-caption')) // No caption caption data
+		{
+			captionData = '';
+		}
+
+		var customModal = $('<div id="lightbox-modal" class="modal fade"><div class="modal-dialog"><div class="modal-content '+$(this).attr('data-frame')+'"><button type="button" class="close close-lightbox" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div class="modal-body"><a href="#" class="prev-lightbox" aria-label="prev"></a><a href="#" class="next-lightbox" aria-label="next"></a><img id="lightbox-image" class="img-responsive" src="'+$(this).attr('data-lightbox')+'">'+captionData+'</div></div></div></div>');
+		$('body').append(customModal);
+		$('#lightbox-modal').modal('show');
+
+		// Handle navigation buttons (next - prev)
+		if($('a[data-lightbox]').index(targetLightbox) == 0)
+		{
+			$('.prev-lightbox').hide();
+		}
+		if($('a[data-lightbox]').index(targetLightbox) == $('a[data-lightbox]').length-1)
+		{
+			$('.next-lightbox').hide();
+		}
+	}
+	).on('hidden.bs.modal', '#lightbox-modal', function () // Handle destroy modal
+	{
+		$('#lightbox-modal').remove();
+	})
+
+	$(document).on('click', '.next-lightbox, .prev-lightbox', function(e)
+	{
+		e.preventDefault();
+		var idx = $('a[data-lightbox]').index(targetLightbox);
+		var next = $('a[data-lightbox]').eq(idx+1) // Next
+
+		if($(this).hasClass('prev-lightbox'))
+		{
+			next = $('a[data-lightbox]').eq(idx-1) // Prev
+		}
+		$('#lightbox-image').attr('src',next.attr('data-lightbox'));
+		$('.lightbox-caption').html(next.attr('data-caption'));
+		targetLightbox = next;
+
+		// Handle navigation buttons (next - prev)
+		$('.next-lightbox, .prev-lightbox').hide();
+
+		if($('a[data-lightbox]').index(next) != $('a[data-lightbox]').length-1)
+		{
+			$('.next-lightbox').show();
+		}
+		if($('a[data-lightbox]').index(next) > 0)
+		{
+			$('.prev-lightbox').show();
+		}
+	});
+}
+
+function submitSearch(){
+	//search box
+
+		if (document.searchForm.searchMenu.value=="taxonomy") {
+			document.searchForm.taxon.value = document.searchForm.query.value;  //temp fix for now.
+			document.searchForm.action="/index.php/Taxbrowser_Taxonpage?taxon="+document.searchForm.query.value+"&debug=1";
+		} else if (document.searchForm.searchMenu.value=="records") {
+			document.searchForm.action="/index.php/Public_SearchTerms?";
+		} else if (document.searchForm.searchMenu.value=="bins") {
+			document.searchForm.action="/index.php/Public_BINSearch?";
+		}
+
+}
+
+</script>
+<style>
+	.ui-autocomplete {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 1000;
+		float: left;
+		display: none;
+		min-width: 160px;
+		_width: 160px;
+		padding: 4px 0;
+		margin: 2px 0 0 0;
+		list-style: none;
+		background-color: #ffffff;
+		border-color: #ccc;
+		border-color: rgba(0, 0, 0, 0.2);
+		border-style: solid;
+		border-width: 1px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		-webkit-background-clip: padding-box;
+		-moz-background-clip: padding;
+		background-clip: padding-box;
+		*border-right-width: 2px;
+		*border-bottom-width: 2px;
+
+		.ui-menu-item > a.ui-corner-all {
+			display: block;
+			padding: 3px 15px;
+			clear: both;
+			font-weight: normal;
+			line-height: 18px;
+			color: #555555;
+			white-space: nowrap;
+
+			&.ui-state-hover, &.ui-state-active &.ui-state-focus{
+				color: #ffffff;
+				text-decoration: none;
+				background-color: #0088cc !important;
+				border-radius: 0px;
+				-webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				background-image: none;
+			}
+		}
+	}
+	.ui-helper-hidden-accessible{
+		display:none;
+	}
+</style>		<style>
+			.l-bloc a.link{
+					color: #337ab7 ;
+				}
+		</style>
+	</head>
+	<body>
+		<div class="page-container">
+		<div class="bloc sticky-nav bgc-dark-jungle-green d-bloc">
+			<div class="container bloc-xs">
+				<nav class="navbar row">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/index.php">
+							<img src="/libhtml_v4/images/BOLDlogo.png" alt="logo" />
+						</a>
+
+						<button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+						<a href="#" class="search-toggle" data-toggle="collapse" data-target=".search-wrap">
+							<span class="fa fa-search fa-lg"></span>
+						</a>
+					</div>
+
+					<div class="collapse navbar-collapse navbar-1">
+						<ul class="site-navigation nav navbar-nav">
+							<li><a href="/index.php/databases">Databases</a></li>
+							<li><a href="/index.php/IDS_OpenIdEngine">Identification</a></li>
+							<li><a href="/index.php/TaxBrowser_Home">Taxonomy</a></li>
+							<li><a href="/index.php/MAS_Management_UserConsole">Workbench</a></li>
+							<li><a href="/index.php/Resources">Resources</a></li>
+														<li><a href="/index.php/MAS_Management_UserConsole">Login</a></li>
+														<li class="nav-search">
+								<a href="#" data-toggle="collapse" data-target=".search-wrap">
+									<span class="fa fa-search icon-sm"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+
+			<div class="search-wrap collapse">
+				<form id="site-search" name ="searchForm" onSubmit="submitSearch();">
+					<div class="col-sm-3 col-md-2">
+						<label class="sr-only" for="search_type">Type</label>
+						<select id="search_type" class="form-control" name="searchMenu">
+							<option value="taxonomy">Taxonomy</option>
+							<option value="records">Public Data</option>
+							<option value="bins">BINs</option>
+						</select>
+					</div>
+
+					<div class="col-sm-9 col-md-10">
+						<label class="sr-only" for="search_keyword">Keyword</label>
+						<input id="query" class="form-control" name="query"  placeholder="Search" />
+						<input type="hidden" name="taxon"/>
+					</div>
+				</form>
+			</div>
+		</div><!-- /.sticky-nav -->
+		<div class="bloc bgc-cadet-blue d-bloc" id="lead-in">
+			<div class="container bloc-md">
+				<div class="row">
+					<div class="col-sm-12">
+						<h3>TAXONOMY</h3>
+						<p>Kingdoms of Life Being Barcoded</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="bloc l-bloc bgc-white">
+			<div class="container bloc-md">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 mg-md">
+						<form action="/index.php/Taxbrowser_Taxonpage" method="GET">  <!-- to allow "Enter" to submit form -->
+							<div class="input-group">
+								<input type="text" name="taxon" class="form-control" />
+								<span class="input-group-btn">
+									<input name="searchTax" type="submit" value="Search Taxonomy" class="btn btn-primary">
+								</span>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 text-center mg-md">
+							<h1 class="no-margins">12,187,122</h1>
+							<smaller>Specimen Records</smaller>
+					</div>
+					<div class="col-sm-4 text-center mg-md">
+							<h1 class="no-margins">9,204,846</h1>
+							<smaller>Specimens with Barcodes</smaller>
+					</div>
+					<div class="col-sm-4 text-center mg-md">
+							<h1 class="no-margins">321,200</h1>
+							<smaller>Species with Barcodes</smaller>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 mg-md">
+						<div class="col-md-6">
+							<div id="AnimalDiv">
+								<strong>Animals:</strong><br>
+								<ul>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=11">Acanthocephala [2306]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=296140">Acoelomorpha [20]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=2">Annelida [102966]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=20">Arthropoda [10058285]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=9">Brachiopoda [310]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=7">Bryozoa [4133]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=13">Chaetognatha [1743]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=18">Chordata [839204]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=3">Cnidaria [29865]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=249225">Ctenophora [511]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=79455">Cycliophora [326]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=4">Echinodermata [57293]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=299518">Entoprocta [65]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=392665">Gastrotricha [1351]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=78956">Gnathostomulida [24]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=21">Hemichordata [234]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=392666">Kinorhyncha [720]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=23">Mollusca [243013]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=19">Nematoda [34770]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=261851">Nematomorpha [401]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=497163">Nemertea [5669]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=10">Onychophora [1393]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=370374">Phoronida [160]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=321215">Placozoa [20]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=5">Platyhelminthes [38589]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=24818">Porifera [7808]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=392644">Priapulida [148]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=531453">Rhombozoa [48]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=16">Rotifera [12761]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=15">Sipuncula [1318]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=26033">Tardigrada [2908]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=531452">Xenacoelomorpha [18]</a></li>
+</ul>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div id="PlantDiv">
+								<strong>Plants:</strong>
+								<ul>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=176192">Bryophyta [21899]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=112296">Chlorophyta [14519]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=38696">Lycopodiophyta [1215]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=12">Magnoliophyta [366736]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=251587">Pinophyta [7068]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=38074">Pteridophyta [11393]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=48327">Rhodophyta [54630]</a></li>
+</ul>
+							</div>
+							<div id="FungiDiv" >
+								<strong>Fungi:</strong><br>
+								<ul>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=34">Ascomycota [98397]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=23675">Basidiomycota [66488]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=23691">Chytridiomycota [293]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=85867">Glomeromycota [3529]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=83947">Myxomycota [235]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=23738">Zygomycota [3273]</a></li>
+</ul>
+							</div>
+							<div id="ProtistDiv">
+								<strong>Protists:</strong><br>
+								<ul>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=316986">Chlorarachniophyta [67]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=72834">Ciliophora [788]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=53944">Heterokontophyta [7209]</a></li>
+<li><a class="link" href="/index.php/Taxbrowser_Taxonpage?taxid=317010">Pyrrophycophyta [2337]</a></li>
+</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mg-md">
+						<img src="/index.php/TaxBrowser_Maps_CollectionSites?taxid=1" class="img-responsive">
+					</div>
+				</div>
+			</div>
+		</div>
+				<div class="bloc bgc-platinum l-bloc" id="footer">
+			<div class="container bloc-md">
+				<div class="row">
+					<div class="col-sm-3">
+						<h3 class="mg-md">Databases</h3>
+						<ul class="list-unstyled">
+							<li><a href="/index.php/Public_BINSearch?searchtype=records">Public Data Portal</a></li>
+							<li><a href="/index.php/TaxBrowser_Home">Taxonomy Browser</a></li>
+							<li><a href="/index.php/Public_Publication_BibliographySearch">Publications</a></li>
+							<li><a href="/index.php/Public_Primer_PrimerSearch">Primers</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h3 class="mg-md">Resources</h3>
+						<ul class="list-unstyled">
+						  <!--<li><a href="/index.php/resources/handbook?chapter=1_gettingstarted.html">Documentation</a></li>-->
+						  <li><a href="/libhtml/docs/bold.pdf">Citing BOLD</a></li>
+						  <li><a href="/index.php/NewsFeed">News and Events</a></li>
+						  <li><a href="/index.php/datarelease">Data Releases</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h3 class="mg-md">Organization</h3>
+						<ul class="list-unstyled">
+						  <li><a href="/index.php/Resources/whatIsBOLD">About Us</a></li>
+						  <li><a href="/index.php/Resources/ContactUs">Contact Us</a></li>
+						  <li><a href="/index.php/NewsFeed">News &amp; Events</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h3 class="mg-md">Partners</h3>
+						<ul class="list-unstyled">
+						  <li><a href="http://www.ibol.org">iBOL</a></li>
+						  <li><a href="http://biodiversitygenomics.net/">CBG</a></li>
+						  <li><a href="http://ccdb.ca">CCDB</a></li>
+						  <li><a href="http://www.ncbi.nlm.nih.gov">GenBank</a></li>
+						  <li><a href="http://www.eol.org">EOL</a></li>
+						  <li><a href="http://www.gbif.org">GBIF</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="bloc bgc-floral-white l-bloc" id="affiliates">
+			<div class="container bloc-md">
+				<div class="row">
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" style="margin-top:20px" src="/libhtml_v4/img/ibol-50v.png" />
+					</div>
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" style="margin-top:20px" src="/libhtml_v4/img/CFREF.png" />
+					</div>
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" src="/libhtml_v4/img/MRI_logo.png" />
+					</div>
+					<div class="col-sm-2">
+						<img  class="img-responsive center-block" style="margin-top:20px" src="/libhtml_v4/img/CFINN.png"/>
+					</div>
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" style="margin-top:20px" src="/libhtml_v4/img/NSERC.png" />
+					</div>
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" src="/libhtml_v4/img/UoGuelph_image18-100x100.png" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12"><br/><h5><small><strong>Copyright</strong> BOLD &copy; 2014-2021</small></h5></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

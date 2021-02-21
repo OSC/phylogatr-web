@@ -1,0 +1,1077 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>Arthropoda | Taxonomy Browser | BOLDSYSTEMS</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicons/apple-icon.png"/>
+<link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png"/>
+<link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png"/>
+<link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png"/>
+<link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-icon-76x76.png"/>
+<link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-icon-114x114.png"/>
+<link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-icon-120x120.png"/>
+<link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-icon-144x144.png"/>
+<link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-icon-152x152.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-icon-180x180.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+
+<link href="/libhtml_v4/css/bootstrap.css" rel="stylesheet" />
+<link href="/libhtml_v4/css/style.css" rel="stylesheet" />
+<link href="/libhtml_v4/css/animate.css" rel="stylesheet" />
+<link href="/libhtml_v4/css/ionicons.min.css" rel="stylesheet" />
+<!--<link href="/libhtml_v4/css/font-awesome.min.css" rel="stylesheet" />-->
+<link href="/libhtml_v3/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800&amp;subset=latin,latin-ext" rel="stylesheet" />
+<link href="/libhtml_v4/css/print.css" rel="stylesheet" />
+
+<script src="/libhtml_v4/js/modernizr-custom.min.js"></script>
+<script src="/libhtml_v4/js/jquery-2.1.0.min.js"></script>
+<script src="/libhtml_v4/js/bootstrap.js"></script>
+<script src="/libhtml_v4/js/plugins/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="/libhtml_v3/js/modalWaitingBox.js"></script>
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-372370-4', 'auto');
+	ga('send', 'pageview');
+
+</script>
+<script language="javascript">
+	// Loading page complete
+$(window).load(function()
+{
+	checkHero(); // Check hero height is correct
+	animateWhenVisible();  // Activate animation when visible
+});
+
+
+// Page ready
+$(document).ready(function()
+{
+	if (Modernizr.mq('(min-width: 768px)')) {
+		$('#promo').animate({ height: '408px' }, 600);
+		$('#lead-in').animate({ height: '220px' }, 800);
+	}
+
+	$('.hero').css('height', $(window).height()+'px'); // Set initial hero height
+	$('#scroll-hero').click(function()
+	{
+		$('html,body').animate({scrollTop: $("#hero-bloc").height()}, 'slow');
+	});
+
+	setUpLightBox(); // Add lightbox Support
+
+	$("button#printBtn").click(function (e){
+		window.print();
+	});
+
+});
+
+// Window resize
+$(window).resize(function()
+{
+	$('.hero').css('height',getHeroHeight()+'px'); // Refresh hero height
+});
+
+// Get Hero Height
+function getHeroHeight()
+{
+	var H = $(window).height(); // Window height
+	if (window.hasOwnProperty('heroBodyH')){
+		if(H < heroBodyH) {// If window height is less than content height
+			H = heroBodyH+100;
+		}
+	}
+	return H
+}
+
+// Check hero height
+function checkHero()
+{
+	if($('#hero-bloc').length)
+	{
+		P = parseInt($('.hero-nav').css('padding-top'))*2
+		window.heroBodyH = $('.hero-nav').outerHeight()+P+$('.vc-content').outerHeight()+50; // Set hero body height
+		$('.hero').css('height', getHeroHeight() + 'px'); // Set hero to fill page height
+	}
+}
+
+// Scroll to target
+function scrollToTarget(D)
+{
+	if(D == 1) // Top of page
+	{
+		D = 0;
+	}
+	else if(D == 2) // Bottom of page
+	{
+		D = $(document).height();
+	}
+	else // Specific Bloc
+	{
+		D = $(D).offset().top;
+		if($('.sticky-nav').length) // Sticky Nav in use
+		{
+			D = D-100;
+		}
+	}
+
+	$('html,body').animate({scrollTop:D}, 'slow');
+}
+
+// Initial tooltips
+$(function()
+{
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+
+// Animate when visible
+function animateWhenVisible()
+{
+	hideAll(); // Hide all animation elements
+	inViewCheck(); // Initail check on page load
+
+	$(window).scroll(function()
+	{
+		inViewCheck(); // Check object visability on page scroll
+		scrollToTopView(); // ScrollToTop button visability toggle
+		stickyNavToggle(); // Sticky nav toggle
+	});
+};
+
+// Hide all animation elements
+function stickyNavToggle()
+{
+	var V = 0; // offset Value
+	var C = "sticky"; // Classes
+
+	if($('.sticky-nav').parent().is('#hero-bloc')) // If nav is in hero animate in
+	{
+		V = $('.sticky-nav').height();
+		C = "sticky animated fadeInDown";
+	}
+
+	if($(window).scrollTop() > V)
+	{
+		$('.sticky-nav').addClass(C);
+
+		if(C == "sticky")
+		{
+			$('.page-container').css('padding-top',$('.sticky-nav').height());
+		}
+	}
+	else
+	{
+		$('.sticky-nav').removeClass(C);
+		$('.page-container').removeAttr('style');
+	}
+}
+
+// Hide all animation elements
+function hideAll()
+{
+	$('.animated').each(function(i)
+	{
+		if(!$(this).closest('.hero').length) // Dont hide hero object
+		{
+			$(this).removeClass('animated').addClass('hideMe');
+		}
+	});
+}
+
+// Check if object is inView
+function inViewCheck()
+{
+	$($(".hideMe").get().reverse()).each(function(i)
+	{
+		var target = jQuery(this);
+		var a = target.offset().top + target.height();
+		var b = $(window).scrollTop() + $(window).height();
+
+		if(target.height() > $(window).height()) // If object height is greater than window height
+		{
+			a = target.offset().top;
+		}
+
+		if (a < b)
+		{
+			var objectClass = target.attr('class').replace('hideMe' , 'animated');
+			target.css('visibility','hidden').removeAttr('class');
+			setTimeout(function(){target.attr('class',objectClass).css('visibility','visible');},0.01);
+		}
+	});
+};
+
+// ScrollToTop button toggle
+function scrollToTopView()
+{
+	if($(window).scrollTop() > $(window).height()/3)
+	{
+		if(!$('.scrollToTop').hasClass('showScrollTop'))
+		{
+			$('.scrollToTop').addClass('showScrollTop');
+		}
+	}
+	else
+	{
+		$('.scrollToTop').removeClass('showScrollTop');
+	}
+};
+
+// Light box support
+function setUpLightBox()
+{
+	window.targetLightbox;
+
+	$(document).on('click', '[data-lightbox]', function(e) // Create Lightbox Modal
+	{
+		e.preventDefault();
+		targetLightbox = $(this);
+		var captionData ='<p class="lightbox-caption">'+$(this).attr('data-caption')+'</p>';
+		if(!$(this).attr('data-caption')) // No caption caption data
+		{
+			captionData = '';
+		}
+
+		var customModal = $('<div id="lightbox-modal" class="modal fade"><div class="modal-dialog"><div class="modal-content '+$(this).attr('data-frame')+'"><button type="button" class="close close-lightbox" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div class="modal-body"><a href="#" class="prev-lightbox" aria-label="prev"></a><a href="#" class="next-lightbox" aria-label="next"></a><img id="lightbox-image" class="img-responsive" src="'+$(this).attr('data-lightbox')+'">'+captionData+'</div></div></div></div>');
+		$('body').append(customModal);
+		$('#lightbox-modal').modal('show');
+
+		// Handle navigation buttons (next - prev)
+		if($('a[data-lightbox]').index(targetLightbox) == 0)
+		{
+			$('.prev-lightbox').hide();
+		}
+		if($('a[data-lightbox]').index(targetLightbox) == $('a[data-lightbox]').length-1)
+		{
+			$('.next-lightbox').hide();
+		}
+	}
+	).on('hidden.bs.modal', '#lightbox-modal', function () // Handle destroy modal
+	{
+		$('#lightbox-modal').remove();
+	})
+
+	$(document).on('click', '.next-lightbox, .prev-lightbox', function(e)
+	{
+		e.preventDefault();
+		var idx = $('a[data-lightbox]').index(targetLightbox);
+		var next = $('a[data-lightbox]').eq(idx+1) // Next
+
+		if($(this).hasClass('prev-lightbox'))
+		{
+			next = $('a[data-lightbox]').eq(idx-1) // Prev
+		}
+		$('#lightbox-image').attr('src',next.attr('data-lightbox'));
+		$('.lightbox-caption').html(next.attr('data-caption'));
+		targetLightbox = next;
+
+		// Handle navigation buttons (next - prev)
+		$('.next-lightbox, .prev-lightbox').hide();
+
+		if($('a[data-lightbox]').index(next) != $('a[data-lightbox]').length-1)
+		{
+			$('.next-lightbox').show();
+		}
+		if($('a[data-lightbox]').index(next) > 0)
+		{
+			$('.prev-lightbox').show();
+		}
+	});
+}
+
+function submitSearch(){
+	//search box
+
+		if (document.searchForm.searchMenu.value=="taxonomy") {
+			document.searchForm.taxon.value = document.searchForm.query.value;  //temp fix for now.
+			document.searchForm.action="/index.php/Taxbrowser_Taxonpage?taxon="+document.searchForm.query.value+"&debug=1";
+		} else if (document.searchForm.searchMenu.value=="records") {
+			document.searchForm.action="/index.php/Public_SearchTerms?";
+		} else if (document.searchForm.searchMenu.value=="bins") {
+			document.searchForm.action="/index.php/Public_BINSearch?";
+		}
+
+}
+
+</script>
+<style>
+	.ui-autocomplete {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 1000;
+		float: left;
+		display: none;
+		min-width: 160px;
+		_width: 160px;
+		padding: 4px 0;
+		margin: 2px 0 0 0;
+		list-style: none;
+		background-color: #ffffff;
+		border-color: #ccc;
+		border-color: rgba(0, 0, 0, 0.2);
+		border-style: solid;
+		border-width: 1px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		-webkit-background-clip: padding-box;
+		-moz-background-clip: padding;
+		background-clip: padding-box;
+		*border-right-width: 2px;
+		*border-bottom-width: 2px;
+
+		.ui-menu-item > a.ui-corner-all {
+			display: block;
+			padding: 3px 15px;
+			clear: both;
+			font-weight: normal;
+			line-height: 18px;
+			color: #555555;
+			white-space: nowrap;
+
+			&.ui-state-hover, &.ui-state-active &.ui-state-focus{
+				color: #ffffff;
+				text-decoration: none;
+				background-color: #0088cc !important;
+				border-radius: 0px;
+				-webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				background-image: none;
+			}
+		}
+	}
+	.ui-helper-hidden-accessible{
+		display:none;
+	}
+</style>	<link rel="stylesheet" type="text/css" href="/libhtml/highslide/highslide.css" />
+	<script type="text/javascript" src="/libhtml/highslide/highslide-full.js"></script>
+	<!-- ChartJS-->
+	<script src="/libhtml_v4/js/plugins/chartjs/Chart.js"></script>
+	<script src="/libhtml_v3/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+<!-- SCRIPT FROM TAXONPAGENEW -->
+<script type="text/javascript">
+			maxColWidth = 2250;
+			maxColHeight = 1125;
+			hs.graphicsDir = '/libhtml/highslide/graphics/';
+			hs.showCredits = false;
+			hs.captionEval= 'this.thumb.title';
+			hs.enableKeyListener = false;
+			hs.width = 400;
+			hs.height = 360;
+			hs.allowMultipleInstances = false;
+			hs.useBox = true;
+			hs.enableKeyListener = true;
+			hs.dimmingOpacity=0.1;
+			hs.outlineType = 'custom';
+			hs.align='center';
+			hs.registerOverlay({
+					html: '<div class="closebutton" onclick="return hs.close(this)" title="Close"></div>',
+					position: 'top right',
+					useOnHtml: true,
+					fade: 2 // fading the semi-transparent overlay looks bad in IE
+			});
+
+</script>
+	<script language="javascript">
+			var allCountriesData = {"Canada":2400384,"Sao Tome and Principe":39,"Turkmenistan":88,"Malta":121,"Caribbean Sea":18,"Lithuania":42,"Cambodia":737,"Republic of the Congo":666,"Ethiopia":4575,"Swaziland":13,"Argentina":123504,"Bolivia":11764,"Cameroon":33709,"Burkina Faso":4,"Ghana":2520,"Saudi Arabia":14618,"Cape Verde":9,"Northern Mariana Islands":224,"Slovenia":225,"Guatemala":4222,"Bosnia and Herzegovina":28,"Jordan":415,"Spain":20598,"Liberia":483,"Netherlands":17475,"Paraguay":2346,"Jamaica":194,"Oman":215,"Tanzania":10495,"United States Virgin Islands":30,"Albania":47,"Gabon":64261,"New Zealand":62449,"Yemen":477,"Pakistan":64470,"Greenland":344,"North Atlantic Ocean":143,"Uruguay":246,"India":23648,"Azerbaijan":38,"Lesotho":17,"Saint Vincent and the Grenadines":36,"United Arab Emirates":1726,"Kenya":75797,"South Korea":4560,"Tajikistan":111,"Turkey":12404,"Afghanistan":77,"Bangladesh":68512,"Andorra":4,"Solomon Islands":1207,"Saint Lucia":5,"Hungary":957,"Pacific Ocean":7,"French Polynesia":779,"France":32929,"Rwanda":33,"Slovakia":172,"Peru":41440,"Laos":1698,"Southern Ocean":303,"Cyprus":206,"Seychelles":99,"Norway":113242,"Faeroe Islands":26,"Cook Islands":11,"Benin":42,"Cuba":2287,"Botswana":109,"Montenegro":266,"Saint Kitts and Nevis":1,"Togo":9,"China":144343,"Armenia":254,"Timor-Leste":963,"Dominican Republic":3496,"Ukraine":801,"Tonga":14,"Finland":23132,"Libya":2,"Indonesia":115634,"Central African Republic":269,"Mauritius":103,"Sweden":8697,"Vietnam":9664,"British Virgin Islands":162,"Russia":27650,"Bulgaria":38102,"United States":545471,"Romania":2870,"Angola":1079,"Portugal":8882,"South Africa":441883,"Fiji":1012,"South Georgia and the South Sandwich Islands":8,"Malaysia":175081,"Austria":20176,"Mozambique":296,"Uganda":3088,"Japan":7994,"Niger":1,"Brazil":46069,"Guinea":730,"Panama":36218,"Costa Rica":1951935,"Luxembourg":63,"Bahamas":2292,"Ireland":115,"Syria":41,"Palau":251,"Nigeria":1606,"Ecuador":34519,"Czech Republic":2248,"Brunei":276,"Australia":368110,"Iran":4091,"Algeria":208,"El Salvador":78,"Marshall Islands":3,"Chile":9024,"Puerto Rico":22211,"Belgium":1709,"Thailand":43798,"Haiti":28,"Belize":1221,"Sierra Leone":97,"Georgia":6693,"Denmark":699,"Philippines":37177,"French Guiana":6515,"Morocco":1249,"Namibia":1096,"Mongolia":1873,"Guinea-Bissau":30,"Kiribati":7,"Switzerland":8935,"Iraq":926,"Estonia":85,"Kosovo":9,"Equatorial Guinea":411,"Lebanon":4630,"Uzbekistan":130,"Egypt":20085,"Bermuda":44,"Antigua and Barbuda":13,"Colombia":41477,"Burundi":10,"Taiwan":7095,"Nicaragua":1220,"Cote d'Ivoire":663,"Madagascar":60295,"Italy":26020,"Bhutan":754,"Sudan":49,"Vanuatu":1422,"Micronesia":205,"Democratic Republic of the Congo":4550,"Suriname":846,"Cayman Islands":23,"Venezuela":6387,"Saint Helena Ascension and Tristan da Cunha":41,"Israel":26552,"Iceland":152,"Zambia":2186,"Senegal":121,"Papua New Guinea":75023,"Malawi":536,"Zimbabwe":932,"Germany":252389,"Kazakhstan":1312,"Poland":728,"Kyrgyzstan":881,"New Caledonia":648,"Macedonia":37,"North Korea":86,"Trinidad and Tobago":46,"Latvia":61,"Guyana":69,"Belarus":17052,"Guadeloupe":66,"Nepal":779,"Honduras":66650,"Myanmar":2109,"Mexico":96707,"Tunisia":667,"Serbia":149,"Indian Ocean":4,"United Kingdom":13399,"Antarctica":907,"Greece":5146,"Sri Lanka":650,"Croatia":1519,"Comoros":1222};
+
+			$(document).ready(function() {
+				//Taxonomy Search event handler
+				$('button[name="searchTax"]').click(function () {
+					window.location = "/index.php/Taxbrowser_Taxonpage?taxon="+ $('input[name="taxon"]').val();
+				});
+				//Species Summary event handler
+				$('button[name="speciesSummaryOpen"]').on("click",function () {
+					openSpeciesSummary();
+				});
+				//Access Published & Released Data event handler
+				$('button[name="accessPublishedData"]').on("click",function () {
+					window.location = "/index.php/Public_SearchTerms?query=Arthropoda[tax]";
+				});
+
+				$('a.popup-medium').click(function (ev) {
+					window.open(this.href,'popup', 'scrollbars=yes,width=780,height=690');
+					ev.preventDefault();
+				});
+
+				wikiRetrieve('Arthropoda', '2');
+
+				//setup breadcrumbs
+				var taxonBreadcrumbs = ["Arthropoda"];
+				setupBreadcrumbs(taxonBreadcrumbs);
+
+
+				var selector = "#countries-summary";
+				countriesRepresentation(selector, allCountriesData);
+
+				$('form[name="searchForm"]').submit(function (e) {
+					if (document.searchForm.searchMenu.value=="taxonomy") {
+						document.searchForm.taxon.value = document.searchForm.query.value;  //temp fix for now.
+						document.searchForm.action="/index.php/Taxbrowser_Taxonpage?taxon="+document.searchForm.query.value+"&debug=1";
+					} else if (document.searchForm.searchMenu.value=="records") {
+						document.searchForm.action="/index.php/Public_SearchTerms?";
+					} else if (document.searchForm.searchMenu.value=="bins") {
+						document.searchForm.action="/index.php/Public_BINSearch?";
+					}
+				});
+
+			});
+
+			function setupBreadcrumbs(taxonBreadcrumbs) {
+				var selector = "#taxonBreadcrumbs";
+				for (var i = 0; i < taxonBreadcrumbs.length; i++) {
+					var crumb;
+					if (i == taxonBreadcrumbs.length - 1) {
+						crumb = $("<li>", {class:"active"}).append(taxonBreadcrumbs[i]);
+					} else {
+						crumb = $("<li>").append(taxonBreadcrumbs[i]);
+					}
+					$(selector).append(crumb);
+				}
+			}
+
+			function openSpeciesSummary(ev) {
+				var page="speciesSummary";
+				Popup=window.open('/index.php/Working',page,'scrollbars=yes,resizable=yes,width=900,height=700');
+				setTimeout(function(){
+								$('form[name="actionRequest"]').attr('target', page);
+								$('form[name="actionRequest"]').submit();
+								Popup.focus();},
+								450);
+
+				ev.preventDefault();
+
+			}
+
+			function countriesRepresentation(selector,data){
+				var totalSpecimenCount = Object.keys(data)
+					.reduce(function(sum, key) {
+						return sum + data[key];
+					}, 0);
+
+				 //sort countries
+				var sortedCountries = sortCountries();
+
+				//only draw 5
+				var globalCounter = 0;
+				var countrySelectorID = 1;
+				for (var j =0; j < 6 ; j++) {
+
+					var countrySelector = "country-summary" + countrySelectorID;
+					$(selector).append($("<div>", {class:"col-lg-2 col-md-6"}).append(
+								$("<div>", {class:"ibox"}
+								).append(
+									$("<div>", {class:"ibox-content"})
+								).append(
+									$("<div>", {id:countrySelector})
+								)
+							));
+					var counter = 1;
+					for (globalCounter; globalCounter < sortedCountries.length; globalCounter++) {
+						var newWidth = progressValue(sortedCountries[globalCounter][1],totalSpecimenCount);
+						$("#"+countrySelector).append($("<div>").append(
+								$("<span>").text(sortedCountries[globalCounter][0]+":")
+							).append(
+								$("<span>",{class:"pull-right"}).text(sortedCountries[globalCounter][1] )
+							).append(
+								$("<div>",{class:"progress progress-small"}).append(
+									$("<div>",{class:"progress-bar",width:newWidth+"%"})
+								)
+							)
+						);
+						if (counter == 2){
+							break;
+						}
+						if (globalCounter == 12){
+							break;
+						}
+						counter++;
+					}
+					globalCounter++;
+
+					countrySelectorID++;
+				}
+
+			}
+
+
+			function sortCountries(){
+				var sortedCountries=[];
+				//transform object to array
+				Object.keys(allCountriesData)
+				   .map(function( key) {
+					   sortedCountries.push([key, allCountriesData[key]]);
+				   });
+				//sort items by value
+				sortedCountries = sortedCountries.sort(function(a, b){
+					return b[1] - a[1];
+				});
+				return sortedCountries;
+			}
+
+
+			function populateAllCountries(){
+				var sortedCountries = sortCountries();
+				var i,j;
+				var temparray=[];
+				var chunk = Math.ceil(sortedCountries.length / 4);
+				for (i=0,j = sortedCountries.length; i < j; i+=chunk) {
+					temparray.push(sortedCountries.slice(i, i+chunk));
+				}
+
+				var table = $("#dialogTable");
+				$("#dialogTable tr").remove();
+				for (var i =0; i < temparray[0].length; i++) {
+					var newRow = $("<tr>");
+
+					//code will be cleaned up
+					newRow.append($("<td>", {style: "width='10px'"}).text(temparray[0][i][0]));
+					newRow.append($("<td>", {style: "width='10px'"}).text(temparray[0][i][1]));
+					if (1 in temparray && temparray[1][i] != undefined) {
+						newRow.append($("<td>", {style: "width='10px'"}).text(temparray[1][i][0]));
+						newRow.append($("<td>", {style: "width='10px'"}).text(temparray[1][i][1]));
+					}
+					if (2 in temparray && temparray[2][i] != undefined) {
+						newRow.append($("<td>", {style: "width='10px'"}).text(temparray[2][i][0]));
+						newRow.append($("<td>", {style: "width='10px'"}).text(temparray[2][i][1]));
+					}
+					if (3 in temparray && temparray[3][i] != undefined) {
+						newRow.append($("<td>", {style: "width='10px'"}).text(temparray[3][i][0]));
+						newRow.append($("<td>", {style: "width='10px'"}).text(temparray[3][i][1]));
+					}
+					table.append(newRow);
+				}
+				table.show();
+				$("#alldatadialog").modal('show');
+			}
+
+
+			function progressValue(dividend, divisor) {
+				if (dividend <= 0) {
+					return 0;
+				} else {
+					quotient = (dividend / parseFloat(divisor)) * 100.0 ;
+					return Math.max(1, parseInt(quotient));
+				}
+			}
+
+			function wikiRetrieve(name, rank) {
+				var url = "/index.php/MAS_Ajax_WikiRetriever?name=" + name + '&url=true';
+				$.ajax({
+					type:"GET",
+					url: url,
+					data: {rank: rank},
+					dataType: 'json',
+					success: function(data){
+
+						if(data && data['text']) {
+							$('#rowTaxon').show();
+							$('#pTaxon').prepend(data['text']);
+							if(data['url']) {
+								$('#pTaxon a').attr('href', 'http://en.wikipedia.org/wiki/' + data['url']);
+							}
+						} else {
+							$('#rowTaxon').hide();
+						}
+					},
+					error: function(){
+						$('#rowTaxon').hide();
+					}
+				});
+			}
+
+
+			function buildChart(url,suffix){
+				$.get(url,{"taxid":"20"}).done(function(data){
+					var doughnutOptions = {
+						segmentShowStroke: true,
+						segmentStrokeColor: "#fff",
+						segmentStrokeWidth: 2,
+						percentageInnerCutout: 45, // This is 0 for Pie charts
+						animationSteps: 100,
+						animationEasing: "easeOutBounce",
+						animateRotate: true,
+						animateScale: false,
+						responsive: true,
+						legendTemplate : '<ul class="list-unstyled">'+'<% for (var i=0; i<segments.length; i++) { %>'+'<li>'+'<span style="-moz-border-radius:7px 7px 7px 7px; border-radius:7px 7px 7px 7px; margin-right:10px;width:15px;height:15px;display:inline-block;background-color:<%=segments[i].fillColor%>"> </span>'+'<% if (segments[i].label) { %><%= segments[i].label %><% } %>'+'</li>'+'<% } %>'+'</ul>'
+					};
+					jsonObj = JSON.parse(data);
+					chartColours = ["#93C3DE","#A2E6C6","#A8EF8D","#F0E287","#DEB483","#DE9E93","#DAA1DE","#BCB2F4","#DEDEDE","#B4B4B4"];
+					highlightColour = "#1ab394";
+					chartData = [];
+					chartColourIndex = 0;
+
+					for (i=jsonObj.data.length-1;i>=0;i--){
+						chartLabel = jsonObj.labels[i];
+						chartVal = jsonObj.data[i];
+						chartData.push({
+							value:chartVal,
+							color:chartColours[chartColourIndex],
+							highlight: highlightColour,
+							label:chartLabel
+						});
+						chartColourIndex += 1;
+						if (chartColourIndex == chartColours.length){//for now ;loop through the colour
+							chartColourIndex = 0;
+						}
+					}
+					var ctx = document.getElementById("chart"+suffix).getContext("2d");
+					var tgChart = new Chart(ctx).Doughnut(chartData, doughnutOptions);
+					$("#legend"+suffix).html(tgChart.generateLegend());
+				});
+			}
+
+			$(document).ready(function() {
+								buildChart('/index.php/TaxBrowser_Charts_institutionsrcdata','Depositry');
+												buildChart('/index.php/TaxBrowser_Charts_institutionsrcdata/sequencinglabs','Sequence');
+							});
+	</script>
+
+	<style type="text/css">
+
+		.highslide-heading {
+			color:#dedede;
+		}
+		.highslide-caption{
+			font-size:10pt !important;
+		}
+		.imagegallery_preview {
+			background-color: #FFFFFF;
+			margin: 8px;
+			border: 1px solid #111111;
+			padding: 0px;
+			width:400px;
+			text-align: center;
+			float:right;
+		}
+
+		.alignTop, .alignTop td{
+			vertical-align: top;
+		}
+		.legendFont {
+			font-size: 12px;
+		}
+		.scrollPortlet{
+			max-height: 400px;
+			overflow-y: auto;
+		}
+		.progress {
+			height: 10px;
+		}
+		.modal-dialog  {width:1000px;}
+
+		.breadcrumb {
+			padding: 0px;
+			padding-left:15px;
+			background-color: transparent;
+		}
+		.l-bloc a.link{
+			color: #337ab7 ;
+		}
+		.highslide-caption a {
+			color: #ff9400;
+			font-size: 10pt !important;
+			font-weight: bold;
+			padding: 2px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="page-container">
+		<div class="bloc sticky-nav bgc-dark-jungle-green d-bloc">
+			<div class="container bloc-xs">
+				<nav class="navbar row">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/index.php">
+							<img src="/libhtml_v4/images/BOLDlogo.png" alt="logo" />
+						</a>
+
+						<button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+						<a href="#" class="search-toggle" data-toggle="collapse" data-target=".search-wrap">
+							<span class="fa fa-search fa-lg"></span>
+						</a>
+					</div>
+
+					<div class="collapse navbar-collapse navbar-1">
+						<ul class="site-navigation nav navbar-nav">
+							<li><a href="/index.php/databases">Databases</a></li>
+							<li><a href="/index.php/IDS_OpenIdEngine">Identification</a></li>
+							<li><a href="/index.php/TaxBrowser_Home">Taxonomy</a></li>
+							<li><a href="/index.php/MAS_Management_UserConsole">Workbench</a></li>
+							<li><a href="/index.php/Resources">Resources</a></li>
+														<li><a href="/index.php/MAS_Management_UserConsole">Login</a></li>
+														<li class="nav-search">
+								<a href="#" data-toggle="collapse" data-target=".search-wrap">
+									<span class="fa fa-search icon-sm"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+
+			<div class="search-wrap collapse">
+				<form id="site-search" name ="searchForm" onSubmit="submitSearch();">
+					<div class="col-sm-3 col-md-2">
+						<label class="sr-only" for="search_type">Type</label>
+						<select id="search_type" class="form-control" name="searchMenu">
+							<option value="taxonomy">Taxonomy</option>
+							<option value="records">Public Data</option>
+							<option value="bins">BINs</option>
+						</select>
+					</div>
+
+					<div class="col-sm-9 col-md-10">
+						<label class="sr-only" for="search_keyword">Keyword</label>
+						<input id="query" class="form-control" name="query"  placeholder="Search" />
+						<input type="hidden" name="taxon"/>
+					</div>
+				</form>
+			</div>
+		</div><!-- /.sticky-nav -->
+
+<div class="bloc bgc-cadet-blue d-bloc" id="lead-in">
+    <div class="container bloc-md">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>TAXONOMY BROWSER: Arthropoda</h3>
+				 <p>Phylum : Arthropoda</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bloc l-bloc bgc-white">
+    <div class="container bloc-md" style="padding:10px;">
+        <div class="row">
+			 <ol class="breadcrumb" id="taxonBreadcrumbs">
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6">
+				<div class="ibox">
+					<div class="ibox-content">
+						<div class="ibox float-e-margins">
+												<div class="row">
+							<div class="col-xs-12 text-left" style="margin-top:0px;margin-bottom:0px;"><img class="img-responsive" src="/pics/BLPDV/10-SRNP-111757_DHJ656632%2B1309875036.jpg"  border="0" title="sample id:10-SRNP-111757"></div>
+							<div class="col-xs-12 text-right" style="margin-top:0px;margin-bottom:0px;">								<div class="row">
+									<div class="col-xs-8 text-left" style="margin-top:0px;margin-bottom:0px;"><i class="fa fa-creative-commons" aria-hidden="true"></i> CC BY-NC-SA																					<i class="fa fa-user" aria-hidden="true"></i> Daniel H. Janzen																															<i class="fa fa-calendar-o" aria-hidden="true"></i> 2010																</div>
+																			<div class="col-xs-4 text-right" style="margin-top:0px;margin-bottom:0px;">
+											Image of  <a class="link" href="/index.php/TaxBrowser_Taxonpage?taxid=82">Insecta</a> 										</div>
+																	</div>
+
+							</div>
+
+						</div><!-- END OF ROW -->
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6">
+			<div class="ibox">
+					<div class="ibox-title">
+						<h2>Taxon Description (Wikipedia)</h2>
+					</div>
+					<div class="ibox-content">
+					<div class="ibox float-e-margins">
+						<p id="pTaxon">
+							<a class="link popup-medium" href="http://en.wikipedia.org/wiki/Arthropoda">full article at Wikipedia</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+	</div> <!-- End of 1st row -->
+
+	<div class ="row">
+
+
+		<div class="col-lg-4 col-md-6">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h2>Statistics</h2>
+				</div>
+				<div class="ibox-content">
+				<div class="ibox float-e-margins">
+					<table class="table table-striped noborder">
+						<tr>
+							<td width="41%">Specimen Records:</td>
+							<td width="17%">10,058,285</td>
+						</tr>
+						<tr>
+							<td>Specimens with Sequences:</td>
+							<td>8,236,507</td>
+						</tr>
+						<tr>
+							<td>Specimens with Barcodes:</td>
+							<td><specimendataforlivestats/>7,670,265<specimendataforlivestats/></td>
+						</tr>
+												<tr>
+							<td>Species:</td>
+							<td>325,803</td>
+													</tr>
+						<tr>
+							<td>Species With Barcodes:</td>
+							<td>254,183</td>
+													</tr>
+																		<tr>
+							<td width="60%">Public Records:</td>
+							<td width="40%">5,885,031</td>
+						</tr>
+												<tr>
+							<td>Public Species:</td>
+							<td>224,925</td>
+						</tr>
+												<tr>
+							<td>Public BINs:</td>
+							<td>467,912</td>
+						</tr>
+												<tr>
+							<td><button class="btn btn-sm btn-info" name="speciesSummaryOpen"> Species List  </button></td>
+							<td><button class="btn btn-sm btn-info" name="accessPublishedData">Public Data</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+
+		<div class="col-lg-4 col-md-6">
+			<div class="ibox">
+					<div class="ibox-title">
+						<h2>Specimen Depositories</h2>
+					</div>
+					<div class="ibox-content">
+					<div class="ibox float-e-margins">
+												<div id="divDepositry"><canvas id="chartDepositry"></canvas></div>
+						<div id="legendDepositry" class="legendFont"></div>
+														<div id="institutionsList2"></div>
+							<script language="javascript">
+							var institutionsReduced=true;
+							function institutionsExpandReduce() {
+								if (institutionsReduced==true) {
+									document.getElementById('institutionsList').innerHTML="";
+									document.getElementById('institutionsExpandReduceLink').innerHTML="Collapse";
+									institutionsReduced=false;
+								} else {
+									document.getElementById('institutionsList').innerHTML="";
+									document.getElementById('institutionsExpandReduceLink').innerHTML="Expand";
+									institutionsReduced=true;
+								}
+							}
+
+							</script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-6">
+			<div class="ibox">
+					<div class="ibox-title">
+						<h2>Sequencing Labs</h2>
+					</div>
+					<div class="ibox-content">
+					<div class="ibox float-e-margins">
+												<div id="divSequence"><canvas id="chartSequence" height="140"></canvas></div>
+						<div id="legendSequence" class="legendFont"></div>
+											</div>
+				</div>
+			</div>
+		</div>
+	</div> <!--END OF third ROW --->
+
+
+	<div class="row">
+		<div class="col-lg-12 col-md-6">
+			<div class="ibox">
+					<div class="ibox-title">
+						<h2>Collection Sites</h2>
+					</div>
+					<div class="ibox-content">
+														<a class="highslide" onclick="return hs.expand(this,{width:maxColWidth,height:maxColHeight})" href="/index.php/TaxBrowser_Maps_CollectionSites?taxid=20" ><img border="0" width="100%" src="/index.php/TaxBrowser_Maps_CollectionSites?taxid=20"></img></a>
+								</br>
+								<img src="/libhtml/icons/mapScale_BOLD.png">
+							
+											</div>
+			</div>
+		</div>
+
+	</div> <!-- END OF FIFTH ROW -->
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h2>Countries</h2>
+					<span>Collected from <strong>193</strong> countries. </span> <a class="link" onClick = "populateAllCountries();"> Show all countries</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class ="row" id ="countries-summary">
+
+	</div><!--END OF ROW-->
+
+
+	<div class ="row">
+				<div class="col-md-6">
+			<div class="ibox">
+					<div class="ibox-title">
+						<h2>Sub-Taxa</h2>
+					</div>
+					<div class="ibox-content">
+					<!-- Left Menu START-->
+					<div class="ibox float-e-margins">
+
+							<lh>Classes (23) </lh><ol><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=987854">Acrothoracica [4]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=63">Arachnida [460142]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=68">Branchiopoda [19994]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=73">Cephalocarida [27]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=75">Chilopoda [4662]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=372">Collembola [193826]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=979181">Copepoda [33198]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=85">Diplopoda [8732]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=734358">Diplura [338]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=765970">Hexanauplia [194]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=889450">Ichthyostraca [226]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=82">Insecta [8862241]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=69">Malacostraca [195322]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=74">Merostomata [181]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=889452">Oligostraca_class_incertae_sedis [1]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=80">Ostracoda [7265]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=493944">Pauropoda [136]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=83">Pentastomida [4]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=734357">Protura [225]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=26059">Pycnogonida [4610]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=84">Remipedia [36]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=80390">Symphyla [233]</a></li><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=981579">Thecostraca [17856]</a></li></ol><lh>Genera (1) </lh><br/><ol><li><a href="/index.php/Taxbrowser_Taxonpage?taxid=981350">Metatiron [1]</a></li></ol>					</div>
+
+					</div>
+				</div>
+		</div>
+		 <!-- Left Menu END -->
+		<div class="col-md-6">
+								<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h2>Imagery</h2>
+						</div>
+						<div class="ibox-content">
+						<i> Images representing subtaxa of Arthropoda</i> <div class="row"><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:335} )" href="//www.boldsystems.org/pics/LIMC/hlc-26353%2B1228162712.JPG"><img title=" (Acrothoracica - HLC-26353)  CC BY-NC-SA (2008) CBG Photography Group <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Acrothoracica - HLC-26353)  @15 [ ] CC BY-NC-SA (2008) CBG Photography Group Centre for Biodiversity Genomics"  src="//www.boldsystems.org/pics/_w300/LIMC/hlc-26353%2B1228162712.JPG"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=987854">Acrothoracica</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:376} )" href="//www.boldsystems.org/pics/SSPAA/bioug06270-g05%2B1399921636.jpg"><img title=" (Arachnida - BIOUG06270-G05)  Unspecified (default): All Rights Reserved (2014) CBG Photography Group " alt=" (Arachnida - BIOUG06270-G05)  @16 [ ] Unspecified (default): All Rights Reserved (2014) CBG Photography Group Centre for Biodiversity Genomics"  src="//www.boldsystems.org/pics/_w300/SSPAA/bioug06270-g05%2B1399921636.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=63">Arachnida</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:376} )" href="//www.boldsystems.org/pics/ASCLR/asclr-057%2B1231266626.JPG"><img title=" (Branchiopoda - IPEEivz_AYS-2008-05e-01)  Unspecified (default): All Rights Reserved   " alt=" (Branchiopoda - IPEEivz_AYS-2008-05e-01)  @15 [ ] Unspecified (default): All Rights Reserved  Unspecified Unspecified"  src="//www.boldsystems.org/pics/_w300/ASCLR/asclr-057%2B1231266626.JPG"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=68">Branchiopoda</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:334} )" href="//www.boldsystems.org/pics/LIMC/position_0008%2B1214317064.JPG"><img title=" (Cephalocarida - HLC-25389)  CC BY-NC-SA (2008) CBG Photography Group <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Cephalocarida - HLC-25389)  @11 [ ] CC BY-NC-SA (2008) CBG Photography Group Centre for Biodiversity Genomics"  src="//www.boldsystems.org/pics/_w300/LIMC/position_0008%2B1214317064.JPG"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=73">Cephalocarida</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:376} )" href="//www.boldsystems.org/pics/JINII/BIOUG52156-C02%2B1608136438.jpg"><img title=" (Chilopoda - BIOUG52156-C02)  CC BY-NC-SA (2020) CBG Photography Group <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Chilopoda - BIOUG52156-C02)  @15 [ ] CC BY-NC-SA (2020) CBG Photography Group Centre for Biodiversity Genomics"  src="//www.boldsystems.org/pics/_w300/JINII/BIOUG52156-C02%2B1608136438.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=75">Chilopoda</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:376} )" href="//www.boldsystems.org/pics/MHCLM/E03%2B1241650622.jpg"><img title=" (Collembola - CHU06-COL-0585)  Unspecified (default): All Rights Reserved (2010) CBG Photography Group " alt=" (Collembola - CHU06-COL-0585)  @16 [ ] Unspecified (default): All Rights Reserved (2010) CBG Photography Group Centre for Biodiversity Genomics"  src="//www.boldsystems.org/pics/_w300/MHCLM/E03%2B1241650622.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=372">Collembola</a></div></div></div><div class="row"><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:376} )" href="//www.boldsystems.org/pics/NJCGS/NJPEL-00003%2B1300741854.jpg"><img title=" (Copepoda - NJPEL-00003)  CC BY-NC-SA (2011) CBG Photography Group <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Copepoda - NJPEL-00003)  @15 [ ] CC BY-NC-SA (2011) CBG Photography Group Centre for Biodiversity Genomics"  src="//www.boldsystems.org/pics/_w300/NJCGS/NJPEL-00003%2B1300741854.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=979181">Copepoda</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:333} )" href="//www.boldsystems.org/pics/MYFBA/BC_ZSM_MYR_00315_Craspedosoma_alsaticum_JSP101101013_DSC_0709_best%2B1288610842.JPG"><img title=" (Diplopoda - BC ZSM MYR 00315)  CC BY-NC-SA (2010) Joerg Spelda <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Diplopoda - BC ZSM MYR 00315)  @15 [ ] CC BY-NC-SA (2010) Joerg Spelda SNSB, Zoologische Staatssammlung Muenchen"  src="//www.boldsystems.org/pics/_w300/MYFBA/BC_ZSM_MYR_00315_Craspedosoma_alsaticum_JSP101101013_DSC_0709_best%2B1288610842.JPG"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=85">Diplopoda</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:374} )" href="//www.boldsystems.org/pics/SSWLA/BIOUG09581-E05%2B1434047314.jpg"><img title=" (Diplura - BIOUG09581-E05)  Unspecified (default): All Rights Reserved (2015) CBG Photography Group " alt=" (Diplura - BIOUG09581-E05)  @12 [ ] Unspecified (default): All Rights Reserved (2015) CBG Photography Group Centre for Biodiversity Genomics"  src="//www.boldsystems.org/pics/_w300/SSWLA/BIOUG09581-E05%2B1434047314.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=734358">Diplura</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:334} )" href="//www.boldsystems.org/pics/QHAK/QHAK-00214_02%2B1604959674.jpg"><img title=" (Hexanauplia - QHAK-00214)  CC BY-NC (2020) Hakai Institute <br/><img src='/libhtml/icons/creativecommons/by-nc_80x15.png'/>" alt=" (Hexanauplia - QHAK-00214)  @11 [ ] CC BY-NC (2020) Hakai Institute Hakai Institute"  src="//www.boldsystems.org/pics/_w300/QHAK/QHAK-00214_02%2B1604959674.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=765970">Hexanauplia</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:376} )" href="//www.boldsystems.org/pics/EINVA/507B_A_stizostethii_Dorsal%2B1476194542.jpg"><img title=" (Ichthyostraca - 507G_COI)  No Rights Reserved / Public Domain (2016)  " alt=" (Ichthyostraca - 507G_COI)  @11 [ ] No Rights Reserved / Public Domain (2016) Unspecified Environmental Protection Agency, Office of Research and Development, Duluth, MN"  src="//www.boldsystems.org/pics/_w300/EINVA/507B_A_stizostethii_Dorsal%2B1476194542.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=889450">Ichthyostraca</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:334} )" href="//www.boldsystems.org/pics/BLPDV/10-SRNP-111757_DHJ656632%2B1309875036.jpg"><img title=" (Insecta - 10-SRNP-111757)  CC BY-NC-SA (2010) Daniel H. Janzen <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Insecta - 10-SRNP-111757)  @17 [ ] CC BY-NC-SA (2010) Daniel H. Janzen Guanacaste Dry Forest Conservation Fund"  src="//www.boldsystems.org/pics/_w300/BLPDV/10-SRNP-111757_DHJ656632%2B1309875036.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=82">Insecta</a></div></div></div><div class="row"><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:319} )" href="//www.boldsystems.org/pics/MBMIA/MBIO2557_1%2B1240293402.jpg"><img title=" (Malacostraca - MBIO2557.1)  Unspecified (default): All Rights Reserved   " alt=" (Malacostraca - MBIO2557.1)  @16 [ ] Unspecified (default): All Rights Reserved  Unspecified Unspecified"  src="//www.boldsystems.org/pics/_w300/MBMIA/MBIO2557_1%2B1240293402.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=69">Malacostraca</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:334} )" href="//www.boldsystems.org/pics/AQINP/IMG_1451%2B1335453478.jpg"><img title=" (Merostomata - AINV-019)  CC BY-NC-SA (2012) CBG Photography Group <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Merostomata - AINV-019)  @14 [ ] CC BY-NC-SA (2012) CBG Photography Group Centre for Biodiversity Genomics"  src="//www.boldsystems.org/pics/_w300/AQINP/IMG_1451%2B1335453478.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=74">Merostomata</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:382} )" href="//www.boldsystems.org/pics/FBOST/BC_ZSM_BavOst-64%2B1342624220.JPG"><img title=" (Ostracoda - BC ZSM BavOst-64)  CC BY-NC-SA (2012) SNSB, Zoologische Staatssammlung Muenchen <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Ostracoda - BC ZSM BavOst-64)  @15 [ ] CC BY-NC-SA (2012) SNSB, Zoologische Staatssammlung Muenchen SNSB, Zoologische Staatssammlung Muenchen"  src="//www.boldsystems.org/pics/_w300/FBOST/BC_ZSM_BavOst-64%2B1342624220.JPG"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=80">Ostracoda</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:271} )" href="//www.boldsystems.org/pics/GBMYR/GBOL14766%2B1438292134.jpg"><img title=" (Pauropoda - GBOL14766)  CC BY-NC-SA (2015) Joerg Spelda <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Pauropoda - GBOL14766)  @11 [ ] CC BY-NC-SA (2015) Joerg Spelda SNSB, Zoologische Staatssammlung Muenchen"  src="//www.boldsystems.org/pics/_w300/GBMYR/GBOL14766%2B1438292134.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=493944">Pauropoda</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:374} )" href="//www.boldsystems.org/pics/PUBLC/testimage%2B1574966820.jpg"><img title=" (Pentastomida - public01)  No Rights Reserved / Public Domain (2019) LifeScanner " alt=" (Pentastomida - public01)  @11 [ ] No Rights Reserved / Public Domain (2019) LifeScanner LifeScanner"  src="//www.boldsystems.org/pics/_w300/PUBLC/testimage%2B1574966820.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=83">Pentastomida</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:332} )" href="//www.boldsystems.org/pics/BSOIL/GBOL13607%2B1431095222.jpg"><img title=" (Protura - GBOL13607)  CC BY-NC-SA (2015) SNSB, Zoologische Staatssammlung Muenchen <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Protura - GBOL13607)  @11 [ ] CC BY-NC-SA (2015) SNSB, Zoologische Staatssammlung Muenchen SNSB, Zoologische Staatssammlung Muenchen"  src="//www.boldsystems.org/pics/_w300/BSOIL/GBOL13607%2B1431095222.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=734357">Protura</a></div></div></div><div class="row"><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:376} )" href="//www.boldsystems.org/pics/DSPYC/jr230_09_876_1_1%2B1321375902.JPG"><img title=" (Pycnogonida - JD_JR230_21A_876.1)  CC BY-NC-SA (2011) Chester Sands <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Pycnogonida - JD_JR230_21A_876.1)  @14 [ ] CC BY-NC-SA (2011) Chester Sands British Antarctic Survey"  src="//www.boldsystems.org/pics/_w300/DSPYC/jr230_09_876_1_1%2B1321375902.JPG"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=26059">Pycnogonida</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:295} )" href="//www.boldsystems.org/pics/GBMYR/JSP100515-024_Symphylellopsis_subnuda_j10_Altlussheim_DSC_0465_best_small%2B1391970876.jpg"><img title=" (Symphyla - GBOL02731)  CC BY-NC-SA (2013) Joerg Spelda <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Symphyla - GBOL02731)  @11 [ ] CC BY-NC-SA (2013) Joerg Spelda SNSB, Zoologische Staatssammlung Muenchen"  src="//www.boldsystems.org/pics/_w300/GBMYR/JSP100515-024_Symphylellopsis_subnuda_j10_Altlussheim_DSC_0465_best_small%2B1391970876.jpg"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=80390">Symphyla</a></div></div><div class="col-xs-4"><a class="highslide" onclick="return hs.expand(this,{width:500, height:376} )" href="//www.boldsystems.org/pics/DFO/P5305055%2B1306775406.JPG"><img title=" (Thecostraca - PEB0055)  CC BY-NC-SA (2011) DFO <br/><img src='/libhtml/icons/creativecommons/by-nc-sa_80x15.png'/>" alt=" (Thecostraca - PEB0055)  @15 [ ] CC BY-NC-SA (2011) DFO DFO"  src="//www.boldsystems.org/pics/_w300/DFO/P5305055%2B1306775406.JPG"width="200" class="img-responsive"></a><div class="highslide-heading" style="text-align:center;position:absolute;top:10px;left:0;right:0;margins:0 auto;"><a style="color:white; text-align:center; margin-top:40px; text-decoration:underline;" href="/index.php/Taxbrowser_Taxonpage?taxid=981579">Thecostraca</a></div></div></div></div>						</div>
+							</div>
+	</div> <!-- END OF FOURTH ROW -->
+
+	<!-- MODAL DIALOG FOR COUNTRIES -->
+	<div id="alldatadialog" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog" >
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title " id ="dialogTitle" >All Countries</h4>
+				</div>
+				<div class="modal-body" >
+
+					<table id="dialogTable"  class="table table-striped" style="width:100%;" border="0" cellpadding="1" cellspacing="10" >
+
+					</table>
+			</div>
+			<div class="modal-footer">
+				<button id = "closeDialog" name = "closeDialog"  data-dismiss="modal" class="btn btn-primary btn-sm" >Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+	<form name="actionRequest" action="/index.php/TaxBrowser_TaxonPage/SpeciesSummary" method="GET">
+		<input type="hidden" name="taxid" value="20">
+	</form>
+
+
+        </div>
+    </div>
+</div>
+				<div class="bloc bgc-platinum l-bloc" id="footer">
+			<div class="container bloc-md">
+				<div class="row">
+					<div class="col-sm-3">
+						<h3 class="mg-md">Databases</h3>
+						<ul class="list-unstyled">
+							<li><a href="/index.php/Public_BINSearch?searchtype=records">Public Data Portal</a></li>
+							<li><a href="/index.php/TaxBrowser_Home">Taxonomy Browser</a></li>
+							<li><a href="/index.php/Public_Publication_BibliographySearch">Publications</a></li>
+							<li><a href="/index.php/Public_Primer_PrimerSearch">Primers</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h3 class="mg-md">Resources</h3>
+						<ul class="list-unstyled">
+						  <!--<li><a href="/index.php/resources/handbook?chapter=1_gettingstarted.html">Documentation</a></li>-->
+						  <li><a href="/libhtml/docs/bold.pdf">Citing BOLD</a></li>
+						  <li><a href="/index.php/NewsFeed">News and Events</a></li>
+						  <li><a href="/index.php/datarelease">Data Releases</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h3 class="mg-md">Organization</h3>
+						<ul class="list-unstyled">
+						  <li><a href="/index.php/Resources/whatIsBOLD">About Us</a></li>
+						  <li><a href="/index.php/Resources/ContactUs">Contact Us</a></li>
+						  <li><a href="/index.php/NewsFeed">News &amp; Events</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h3 class="mg-md">Partners</h3>
+						<ul class="list-unstyled">
+						  <li><a href="http://www.ibol.org">iBOL</a></li>
+						  <li><a href="http://biodiversitygenomics.net/">CBG</a></li>
+						  <li><a href="http://ccdb.ca">CCDB</a></li>
+						  <li><a href="http://www.ncbi.nlm.nih.gov">GenBank</a></li>
+						  <li><a href="http://www.eol.org">EOL</a></li>
+						  <li><a href="http://www.gbif.org">GBIF</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="bloc bgc-floral-white l-bloc" id="affiliates">
+			<div class="container bloc-md">
+				<div class="row">
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" style="margin-top:20px" src="/libhtml_v4/img/ibol-50v.png" />
+					</div>
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" style="margin-top:20px" src="/libhtml_v4/img/CFREF.png" />
+					</div>
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" src="/libhtml_v4/img/MRI_logo.png" />
+					</div>
+					<div class="col-sm-2">
+						<img  class="img-responsive center-block" style="margin-top:20px" src="/libhtml_v4/img/CFINN.png"/>
+					</div>
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" style="margin-top:20px" src="/libhtml_v4/img/NSERC.png" />
+					</div>
+					<div class="col-sm-2">
+						<img class="img-responsive center-block" src="/libhtml_v4/img/UoGuelph_image18-100x100.png" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12"><br/><h5><small><strong>Copyright</strong> BOLD &copy; 2014-2021</small></h5></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

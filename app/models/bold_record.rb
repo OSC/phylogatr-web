@@ -26,6 +26,34 @@ class BoldRecord
     attr_accessor h
   end
 
+  # URI is either a filesystem path or a url
+  # https://www.boldsystems.org/index.php/TaxBrowser_Home
+  #
+  # =>
+  #
+  Taxonomy = Struct.new(:name, :count, :url)
+  def self.taxonomy(uri)
+    # //a[starts-with(@href, '/index.php/Taxbrowser_Taxonpage?taxid=')]
+    #
+    uri = URI.parse(uri)
+    doc = Nokogiri::HTML(URI.open(uri.scheme == 'file' ? uri.path : uri))
+    # doc.css('a[href^="/index.php/Taxbrowser_Taxonpage?taxid="').map do |link|
+    doc.xpath("//a[starts-with(@href, '/index.php/Taxbrowser_Taxonpage?taxid=')]").map do |link|
+      n, c = link.content.split('[')
+      next if c.nil?
+
+      # also ignore Genera
+      # link.parent is <li>
+      # link.parent.parent is <ol>
+      # prev to <ol> we are looking for <lh> but sometimes there is a <br> first
+      next if (link.parent.parent.previous.content + link.parent.parent.previous.previous.content).include?('Genera')
+
+      c = c.chomp(']').strip
+
+      Taxonomy.new(n.strip, c, link.attr('href'))
+    end.compact
+  end
+
   def gene_symbol_mapped
     @gene_symbol_mapped ||= lookup_gene_symbol(self.gene_symbol)
   end
