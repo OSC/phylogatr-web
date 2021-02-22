@@ -31,7 +31,7 @@ class SearchResultsTest < ActiveJob::TestCase
       SearchResults.write_tar_to_file({'taxon_order' => 'Squamata'}, tarpath)
       `cd #{dir}; tar xzf #{tarpath}`
 
-      expected = Rails.root.join('test/data/squamata_results')
+      expected = mock_data('squamata_results')
       result = Pathname.new(dir).join('phylogatr-results')
 
       assert_files_same expected.join('genes.txt'), result.join('genes.txt')
@@ -48,7 +48,7 @@ class SearchResultsTest < ActiveJob::TestCase
       SearchResults.write_zip_to_file({'taxon_order' => 'Squamata'}, tarpath)
       `cd #{dir}; unzip #{tarpath}`
 
-      expected = Rails.root.join('test/data/squamata_results')
+      expected = mock_data('squamata_results')
       result = Pathname.new(dir).join('phylogatr-results')
 
       assert_files_same expected.join('genes.txt'), result.join('genes.txt')

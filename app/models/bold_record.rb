@@ -36,7 +36,7 @@ class BoldRecord
     # //a[starts-with(@href, '/index.php/Taxbrowser_Taxonpage?taxid=')]
     #
     uri = URI.parse(uri)
-    doc = Nokogiri::HTML(URI.open(uri.scheme == 'file' ? uri.path : uri))
+    doc = Nokogiri::HTML(URI.open(uri.scheme == 'file' ? uri.path : uri.to_s))
 
     # get category
     first_lh = doc.css('lh').first
@@ -56,8 +56,18 @@ class BoldRecord
 
       c = c.chomp(']').strip
 
-      Taxonomy.new(n.strip, c, link.attr('href'), category)
+      Taxonomy.new(n.strip, c, 'https://www.boldsystems.org' + link.attr('href'), category)
     end.compact
+  rescue OpenURI::HTTPError => e
+    puts uri
+    puts e.inspect
+  end
+
+  def self.taxonomies(uri)
+    taxons = taxonomy(uri)
+
+    threshold = 860000
+    taxons.map {|t| t.count.to_i > threshold ? taxonomies(t.url) : t }.flatten
   end
 
   def gene_symbol_mapped

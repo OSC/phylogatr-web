@@ -3,121 +3,506 @@ require "thor"
 require "open3"
 require "benchmark"
 
-# copied from
-# https://www.boldsystems.org/index.php/TaxBrowser_Home
-#
-# Animals:
-# Acanthocephala [2285]
-# Acoelomorpha [20]
-# Annelida [101275]
-# Arthropoda [9897054]
-# Brachiopoda [302]
-# Bryozoa [4049]
-# Chaetognatha [1740]
-# Chordata [828360]
-# Cnidaria [29125]
-# Ctenophora [501]
-# Cycliophora [326]
-# Echinodermata [56221]
-# Entoprocta [64]
-# Gastrotricha [1350]
-# Gnathostomulida [24]
-# Hemichordata [231]
-# Kinorhyncha [719]
-# Mollusca [237180]
-# Nematoda [33851]
-# Nematomorpha [394]
-# Nemertea [5587]
-# Onychophora [1279]
-# Phoronida [157]
-# Placozoa [20]
-# Platyhelminthes [37650]
-# Porifera [7561]
-# Priapulida [148]
-# Rhombozoa [48]
-# Rotifera [12569]
-# Sipuncula [1304]
-# Tardigrada [2812]
-# Xenacoelomorpha [18]
-# Plants:
-# Bryophyta [21899]
-# Chlorophyta [14513]
-# Lycopodiophyta [1215]
-# Magnoliophyta [365823]
-# Pinophyta [7068]
-# Pteridophyta [11386]
-# Rhodophyta [54382]
-# Fungi:
-# Ascomycota [98294]
-# Basidiomycota [66383]
-# Chytridiomycota [293]
-# Glomeromycota [3529]
-# Myxomycota [235]
-# Zygomycota [3273]
-# Protists:
-# Chlorarachniophyta [67]
-# Ciliophora [788]
-# Heterokontophyta [7209]
-# Pyrrophycophyta [2337]
-#
-# copied Jan 15, 2021
-BOLD_PHYLA = %w(
+# bin/rake pipeline:bold_taxons | cut -f2 -d' ' taxons.txt | sort
+# Feb 21, 2021
+TAXONS = %w(
 Acanthocephala
+Acanthopteroctetidae
+Acartophthalmidae
 Acoelomorpha
+Acroceridae
+Acrothoracica
+Adelidae
+Agaonidae
+Agathiphagidae
+Agromyzidae
+Aididae
+Alucitidae
+Ammoplanidae
+Ampulicidae
+Anaxyelidae
+Andesianidae
+Andrenidae
+Anisopodidae
 Annelida
-Arthropoda
+Anthelidae
+Anthomyiidae
+Anthomyzidae
+Apatelodidae
+Aphelinidae
+Apidae
+Apioceridae
+Apsilocephalidae
+Apystomyiidae
+Arachnida
+Archaeognatha
+Argidae
+Argyresthiidae
+Ascomycota
+Asilidae
+Astatidae
+Asteiidae
+Atelestidae
+Athericidae
+Attevidae
+Aulacidae
+Aulacigastridae
+Australimyzidae
+Austroleptidae
+Autostichidae
+Axymyiidae
+Azotidae
+Basidiomycota
+Batrachedridae
+Bedelliidae
+Bembicidae
+Bethylidae
+Bibionidae
+Blasticotomidae
+Blastobasidae
+Blattodea
+Blephariceridae
+Bolbomyiidae
+Bolitophilidae
+Bombycidae
+Bombyliidae
 Brachiopoda
+Brachodidae
+Brachystomatidae
+Braconidae
+Bradynobaenidae
+Brahmaeidae
+Branchiopoda
+Braulidae
+Bryophyta
 Bryozoa
+Bucculatricidae
+Callidulidae
+Calliphoridae
+Camillidae
+Canacidae
+Canthyloscelidae
+Carnidae
+Carposinidae
+Carthaeidae
+Castniidae
+Cecidomyiidae
+Cecidosidae
+Celyphidae
+Cephalocarida
+Cephidae
+Ceraphronidae
+Ceratopogonidae
 Chaetognatha
+Chalcididae
+Chamaemyiidae
+Chaoboridae
+Chilopoda
+Chironomidae
+Chlorarachniophyta
+Chlorophyta
+Chloropidae
 Chordata
+Choreutidae
+Chrysididae
+Chyphotidae
+Chyromyidae
+Chytridiomycota
+Ciliophora
+Cimbicidae
+Cimeliidae
+Clusiidae
 Cnidaria
+Coelopidae
+Coleophoridae
+Coleoptera
+Collembola
+Colletidae
+Conopidae
+Copepoda
+Copromorphidae
+Corethrellidae
+Cosmopterigidae
+Cossidae
+Crabronidae
+Crambidae
+Cryptochetidae
 Ctenophora
+Ctenostylidae
+Culicidae
+Curtonotidae
 Cycliophora
+Cyclotornidae
+Cylindrotomidae
+Cynipidae
+Cypselosomatidae
+Dalceridae
+Depressariidae
+Dermaptera
+Deuterophlebiidae
+Diadocidiidae
+Diapriidae
+Diastatidae
+Diopsidae
+Diplopoda
+Diplura
+Diprionidae
+Diptera_family_incertae_sedis
+Ditomyiidae
+Dixidae
+Doidae
+Dolichopodidae
+Douglasiidae
+Drepanidae
+Drosophilidae
+Dryadaulidae
+Dryinidae
+Dryomyzidae
+Dudgeoneidae
 Echinodermata
+Elachistidae
+Embioptera
+Embolemidae
+Empididae
+Encyrtidae
+Endromidae
 Entoprocta
+Epermeniidae
+Ephemeroptera
+Ephydridae
+Epicopeiidae
+Epimarptidae
+Epipyropidae
+Erebidae
+Eriaporidae
+Eriocottidae
+Eriocraniidae
+Eucharitidae
+Eulophidae
+Eupelmidae
+Eupterotidae
+Eurytomidae
+Euteliidae
+Evaniidae
+Evocoidae
+Fanniidae
+Fergusoninidae
+Figitidae
+Formicidae
+Galacticidae
+Gasteruptiidae
 Gastrotricha
+Gelechiidae
+Geometridae
+Glomeromycota
+Glossinidae
+Glyphipterigidae
 Gnathostomulida
+Gobryidae
+Gracillariidae
+Halictidae
+Hedylidae
+Helcomyzidae
+Heleomyzidae
+Heliodinidae
+Heliozelidae
+Heloridae
+Helosciomyzidae
 Hemichordata
+Hemiptera
+Hepialidae
+Heptamelidae
+Hesperiidae
+Hesperinidae
+Heterobathmiidae
+Heterogynidae
+Heterokontophyta
+Hexanauplia
+Hilarimorphidae
+Himantopteridae
+Hippoboscidae
+Homalocnemiidae
+Huttoninidae
+Hyblaeidae
+Hybotidae
+Ibaliidae
+Ichneumonidae
+Ichthyostraca
+Immidae
+Inbiomyiidae
+Incurvariidae
+Ironomyiidae
+Ismaridae
+Iteaphila-group
+Keroplatidae
 Kinorhyncha
+Lacturidae
+Lasiocampidae
+Lauxaniidae
+Lecithoceridae
+Lepidoptera_incertae_sedis
+Leucospidae
+Limacodidae
+Limoniidae
+Liopteridae
+Lonchaeidae
+Lonchopteridae
+Lophocoronidae
+Lycaenidae
+Lycopodiophyta
+Lyonetiidae
+Lypusidae
+Maamingidae
+Magnoliophyta
+Malacostraca
+Mantodea
+Marginidae
+Mecoptera
+Meessiidae
+Megachilidae
+Megalodontesidae
+Megaloptera
+Megalopygidae
+Megalyridae
+Megamerinidae
+Megaspilidae
+Megastigmidae
+Melittidae
+Mellinidae
+Merostomata
+Mesembrinellidae
+Metarbelidae
+Micropezidae
+Micropterigidae
+Milichiidae
+Millieriidae
+Mimallonidae
+Mnesarchaeidae
 Mollusca
+Momphidae
+Monomachidae
+Mormotomyiidae
+Muscidae
+Mutillidae
+Mycetophilidae
+Mydidae
+Mymaridae
+Mymarommatidae
+Myrmosidae
+Mystacinobiidae
+Mythicomyiidae
+Myxomycota
+Nannodastiidae
+Natalimyzidae
 Nematoda
 Nematomorpha
 Nemertea
+Nemestrinidae
+Neminidae
+Neopseustidae
+Nepticulidae
+Neriidae
+Neurochaetidae
+Neuroptera
+Noctuidae
+Nolidae
+Nothybidae
+Notodontidae
+Notoptera
+Nymphalidae
+Nymphomyiidae
+Odiniidae
+Odonata
+Oecophoridae
+Oenosandridae
+Oestridae
+Oligostraca_class_incertae_sedis
 Onychophora
+Opetiidae
+Opomyzidae
+Opostegidae
+Oreogetonidae
+Oreoleptidae
+Ormyridae
+Orthoptera
+Orussidae
+Ostracoda
+Pachyneuridae
+Palaephatidae
+Pallopteridae
+Pamphiliidae
+Pantophthalmidae
+Papilionidae
+Paraleucopidae
+Pauropoda
+Pediciidae
+Pelecinidae
+Pelecorhynchidae
+Peleopodidae
+Pemphredonidae
+Pentastomida
+Pergidae
+Perilampidae
+Periscelididae
+Perissommatidae
+Phasmatodea
+Phaudidae
+Phiditiidae
+Philanthidae
+Phoridae
 Phoronida
-Placozoa
-Platyhelminthes
-Porifera
-Priapulida
-Rhombozoa
-Rotifera
-Sipuncula
-Tardigrada
-Xenacoelomorpha
-Bryophyta
-Chlorophyta
-Lycopodiophyta
-Magnoliophyta
+Pieridae
 Pinophyta
+Piophilidae
+Pipunculidae
+Placozoa
+Platygastridae
+Platyhelminthes
+Platypezidae
+Platystomatidae
+Plecoptera
+Plumariidae
+Plutellidae
+Polleniidae
+Pompilidae
+Porifera
+Praydidae
+Priapulida
+Proctotrupidae
+Prodidactidae
+Prodoxidae
+Protura
+Psenidae
+Pseudobistonidae
+Pseudopomyzidae
+Psilidae
+Psocodea
+Psychidae
+Psychodidae
 Pteridophyta
-Rhodophyta
-Ascomycota
-Basidiomycota
-Chytridiomycota
-Glomeromycota
-Myxomycota
-Zygomycota
-Chlorarachniophyta
-Ciliophora
-Heterokontophyta
+Pterolonchidae
+Pteromalidae
+Pterophoridae
+Ptychopteridae
+Pycnogonida
+Pyralidae
+Pyrgotidae
 Pyrrophycophyta
+Raphidioptera
+Ratardidae
+Remipedia
+Rhagionidae
+Rhiniidae
+Rhinophoridae
+Rhodophyta
+Rhombozoa
+Rhopalosomatidae
+Richardiidae
+Riodinidae
+Roeslerstammiidae
+Ropalomeridae
+Roproniidae
+Rotifera
+Rotoitidae
+Sapygidae
+Sarcophagidae
+Saturniidae
+Scathophagidae
+Scatopsidae
+Scelionidae
+Scenopinidae
+Schistonoeidae
+Schreckensteiniidae
+Sciaridae
+Sciaroidea_incertae_sedis
+Sciomyzidae
+Sclerogibbidae
+Scolebythidae
+Scoliidae
+Scythrididae
+Scythropiidae
+Sematuridae
+Sepsidae
+Sesiidae
+Sierolomorphidae
+Signiphoridae
+Simaethistidae
+Simuliidae
+Siphonaptera
+Sipuncula
+Siricidae
+Somabrachyidae
+Somatiidae
+Sphaeroceridae
+Sphecidae
+Sphingidae
+Stathmopodidae
+Stenotritidae
+Stephanidae
+Stratiomyidae
+Strepsiptera
+Strongylophthalmyiidae
+Symphyla
+Syringogastridae
+Syrphidae
+Tabanidae
+Tachinidae
+Tanaostigmatidae
+Tanyderidae
+Tanypezidae
+Tardigrada
+Tenthredinidae
+Tephritidae
+Teratomyzidae
+Tetracampidae
+Thaumaleidae
+Thecostraca
+Therevidae
+Thynnidae
+Thyrididae
+Thysanoptera
+Tineidae
+Tineodidae
+Tiphiidae
+Tipulidae
+Tischeriidae
+Tonzidae
+Tortricidae
+Torymidae
+Trachypetidae
+Trichoceridae
+Trichogrammatidae
+Trichoptera
+Tridentaformidae
+Trigonalidae
+Ulidiidae
+Uraniidae
+Urodidae
+Ustyurtiidae
+Vanhorniidae
+Vermileonidae
+Vespidae
+Whalleyanidae
+Xenacoelomorpha
+Xenasteiidae
+Xiphydriidae
+Xyelidae
+Xylomyidae
+Xylophagidae
+Xyloryctidae
+Yponomeutidae
+Ypsolophidae
+Zoraptera
+Zygaenidae
+Zygentoma
+Zygomycota
 )
 #
 # `curl https://www.boldsystems.org/index.php/TaxBrowser_Home | egrep -o '\w+ \[\d+\]' | awk '{ print $1 }'`.split also works but is brittle
 
-def download_bold_phylum(phylum, dir)
+def download_bold_taxon(taxon, dir, force=false)
   Dir.chdir(dir) do
-    system("curl 'http://www.boldsystems.org/index.php/API_Public/combined?taxon=#{phylum}&format=tsv' -o #{phylum.downcase}.tsv")
+    system("curl 'http://www.boldsystems.org/index.php/API_Public/combined?taxon=#{taxon}&format=tsv' -o #{taxon.downcase}.tsv") unless (! force) && File.file?("#{taxon.downcase}.tsv")
   end
 end
 
@@ -146,23 +531,23 @@ class MyCLI < Thor
     end
   end
 
-  desc "download_bold PHYLUM DIR", "download bold phylum to specified location"
-  def download_bold(phylum, dir)
-    puts "download bold data for #{phylum}"
-    download_bold_phylum phylum, dir
+  desc "download_bold TAXON DIR", "download bold taxon to specified location"
+  def download_bold(taxon, dir)
+    puts "download bold data for #{taxon}"
+    download_bold_taxon taxon, dir
   end
 
   desc "download_all_bold DIR", "download all bold data to dir"
   def download_all_bold(dir)
-    BOLD_PHYLA.each do |phylum|
-      puts "download bold data for #{phylum}"
-      download_bold_phylum phylum, dir
+    TAXONS.each do |taxon|
+      puts "download bold data for #{taxon}"
+      download_bold_taxon taxon, dir
     end
   end
 
-  desc "list_bold_phyla", "list bold phyla"
-  def list_bold_phyla
-    puts BOLD_PHYLA
+  desc "list_bold_taxons", "list bold taxons"
+  def list_bold_taxons
+    puts TAXONS
   end
 end
 

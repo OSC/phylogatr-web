@@ -12,6 +12,16 @@ def sqlite3_table_import_cmd(db, occurrences_tsv)
 end
 
 namespace :pipeline do
+  desc "bold taxonomies"
+  task bold_taxons: :environment do
+    taxons = BoldRecord.taxonomies('https://www.boldsystems.org/index.php/TaxBrowser_Home')
+
+    # print out API URLs?!
+    taxons.sort_by(&:category).each do |t|
+      puts "#{t.category}: #{t.name}"
+    end
+  end
+
   desc "filter out invalid or duplicate occurrences"
   task filter_occurrences: :environment do
     OccurrenceRecord.each_occurrence_slice_grouped_by_accession(STDIN) do |occurrences|
@@ -108,6 +118,13 @@ namespace :pipeline do
 
   desc "add bold records to database"
   task add_bold_records: :environment do
+    # After bold data is downloaded from BOLD website using API
+    # cat the files together and execute this to produce the simple version:
+    #
+    # cut -d $'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 $TMPDIR/bold.tsv > $TMPDIR/bold.simple.tsv
+    #
+    #
+    #
     #
     # FIXME: could use BoldRecord class
 
