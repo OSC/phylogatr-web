@@ -69,3 +69,4 @@ gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/sa
 # FIXME: after Rails 6 upgrade, you don't need this
 gem 'activerecord-import'
 gem 'parallel'
+gem 'parslet'
