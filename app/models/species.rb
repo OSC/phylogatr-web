@@ -22,6 +22,50 @@ class Species < ActiveRecord::Base
     end
   end
 
+  class FastaGrammar < Parslet::Parser
+    attr_accessor :verbose
+    rule(:delim) { match("\n") }
+    rule(:header) { (match('[>A-Z_0-9]').repeat(1) >> delim) }
+
+    # http://www.bioinformatics.org/sms/iupac.html
+    rule(:sequence) { (match('[abcdefghiklmnpqrstuvwy.-]').repeat(1) >> delim) }
+    rule(:entry) { (header >> sequence).repeat(1) }
+    root(:entry)
+  end
+
+  def self.fasta_grammar
+    @fasta_grammar ||= FastaGrammar.new
+  end
+
+  def self.valid_fasta?(fasta_str)
+    fasta_grammar.parse(fasta_str)
+
+    true
+    # fasta_str =~ /\A(>[A-Z_0-9]+\n[acgt-]+\n)+\z/m
+  rescue Parslet::ParseFailed => failure
+    if fasta_grammar.verbose
+      $stderr.puts failure.parse_failure_cause.ascii_tree
+
+      if failure.parse_failure_cause.children.try(:count) > 0 && failure.parse_failure_cause.children.first.children.try(:count) > 0
+        i = failure.parse_failure_cause.children.first.children.first.pos.charpos
+        $stderr.puts "match failed against: #{fasta_str[i]}"
+        $stderr.puts fasta_str[0..i]
+      end
+    end
+
+    false
+  end
+
+  def valid_fasta_files?
+    files.all? do |f|
+      Species.valid_fasta?(f.read)
+    end
+  end
+
+  def has_invalid_fasta_files?
+    ! valid_fasta_files?
+  end
+
   def absolute_path
     Configuration.genbank_root.join(path)
   end
