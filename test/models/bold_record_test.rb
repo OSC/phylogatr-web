@@ -57,7 +57,7 @@ class BoldRecordTest < ActiveSupport::TestCase
       %w(Ciliophora 788 /index.php/Taxbrowser_Taxonpage?taxid=72834 phylum),
       %w(Heterokontophyta 7209 /index.php/Taxbrowser_Taxonpage?taxid=53944 phylum),
       %w(Pyrrophycophyta 2337 /index.php/Taxbrowser_Taxonpage?taxid=317010 phylum)
-    ].map {|t| BoldRecord::Taxonomy.new(*t) }
+    ].map {|t| BoldRecord::Taxonomy.new(t[0], t[1], 'https://www.boldsystems.org' + t[2], t[3]) }
 
     assert_equal taxons, BoldRecord.taxonomy(uri)
   end
@@ -88,7 +88,7 @@ class BoldRecordTest < ActiveSupport::TestCase
       %w(Remipedia 36 /index.php/Taxbrowser_Taxonpage?taxid=84 class),
       %w(Symphyla 233 /index.php/Taxbrowser_Taxonpage?taxid=80390 class),
       %w(Thecostraca 17856 /index.php/Taxbrowser_Taxonpage?taxid=981579 class)
-    ].map {|t| BoldRecord::Taxonomy.new(*t) }
+    ].map {|t| BoldRecord::Taxonomy.new(t[0], t[1], 'https://www.boldsystems.org' + t[2], t[3]) }
 
     assert_equal taxons, BoldRecord.taxonomy(uri)
   end
@@ -123,7 +123,7 @@ class BoldRecordTest < ActiveSupport::TestCase
       %w(Trichoptera 81987 /index.php/Taxbrowser_Taxonpage?taxid=99 order),
       %w(Zoraptera 18 /index.php/Taxbrowser_Taxonpage?taxid=533231 order),
       %w(Zygentoma 824 /index.php/Taxbrowser_Taxonpage?taxid=770869 order)
-    ].map {|t| BoldRecord::Taxonomy.new(*t) }
+    ].map {|t| BoldRecord::Taxonomy.new(t[0], t[1], 'https://www.boldsystems.org' + t[2], t[3]) }
 
     assert_equal taxons, BoldRecord.taxonomy(uri)
   end
