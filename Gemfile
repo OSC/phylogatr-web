@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.10'
+gem 'rails', '4.2.11.3'
 
 # be able to use either mysql or sqlite3
 gem 'sqlite3', '~> 1.3', '< 1.4'
@@ -21,17 +21,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,8 +38,8 @@ gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'bootstrap_form', '~> 2.5'
 gem 'font-awesome-sass', '~> 4.6'
-gem 'dotenv-rails', '~> 2.1'
-gem 'paperclip', '~> 4.3'
+gem 'dotenv-rails'
+gem 'paperclip'
 gem 'rails_12factor', group: :production
 gem 'ood_support', '~> 0.0.2'
 gem 'ood_appkit', '~> 1.0'
@@ -59,8 +48,8 @@ gem 'mocha'
 gem 'bio'
 gem 'geokit-rails'
 
-gem 'caxlsx'
-gem 'caxlsx_rails'
+# gem 'caxlsx'
+# gem 'caxlsx_rails'
 
 gem 'zip_tricks', '~> 5.3', '>= 5.3.1'
 
