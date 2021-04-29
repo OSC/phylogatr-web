@@ -27,7 +27,7 @@ function generate_indexes_and_occurrence_files {
     split -d -n 27 $GBIF_PATH $TMPDIR/x
     ls -1 $TMPDIR/x* | \
         ruby -ne 'puts %Q[invoke expand-occurrences #{$_.strip} #{$_.strip}.expanded]' | \
-        mpiexec parallel-command-processor
+        srun parallel-command-processor
     cat $TMPDIR/x*expanded > $TMPDIR/gbif_occurrences.csv
     rm $TMPDIR/x*
 
@@ -39,7 +39,7 @@ function generate_indexes_and_occurrence_files {
     ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
         ruby -ne 'puts %Q[#{ENV["PBS_O_WORKDIR"]}/generate_index_and_accessions_files.sh #{ENV["TMPDIR"]}/gbif_occurrences.csv.sorted #{$_.strip} #{ENV["TMPDIR"]}]' > $TMPDIR/gen_index_cmds
 
-    mpiexec parallel-command-processor $TMPDIR/gen_index_cmds
+    srun parallel-command-processor $TMPDIR/gen_index_cmds
 }
 
 if [[ -d $INDEXES_CACHE_DIR ]]; then
@@ -63,7 +63,7 @@ fi
 ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
     ruby -ne 'puts %Q[invoke write-genes #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{$_.strip} #{ENV["TMPDIR"]}]' > $TMPDIR/run_pipeline_cmds
 
-mpiexec parallel-command-processor $TMPDIR/run_pipeline_cmds
+srun parallel-command-processor $TMPDIR/run_pipeline_cmds
 
 
 function add_incrementing_index_column_to_file {

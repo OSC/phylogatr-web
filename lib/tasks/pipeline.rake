@@ -267,7 +267,7 @@ namespace :pipeline do
   task alignpcp: :environment do
     files = Species.write_alignment_files_from_cache(Species.files_needing_alignment)
     commands = files.map {|f| "./align_sequences.sh #{f.to_s}"}.join("\n") + "\n"
-    puts Open3.capture2('mpiexec','parallel-command-processor', stdin_data: commands)
+    puts Open3.capture2('srun','parallel-command-processor', stdin_data: commands)
   end
 
   desc "delete all fasta alignment files"
