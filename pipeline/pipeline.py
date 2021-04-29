@@ -24,10 +24,13 @@ class OccurrenceRecordIndex(enum.IntEnum):
     GENUS = enum.auto()
     SPECIES = enum.auto()
     SUBSPECIES = enum.auto()
-    BASIS_OF_RECORD = enum.auto()
-    GEODETIC_DATUM = enum.auto()
     COORDINATE_UNCERTAINTIY_IN_METERS = enum.auto()
+    BASIS_OF_RECORD = enum.auto()
     ISSUE  = enum.auto()
+    FIELD_NUMBER = enum.auto()
+    CATALOG_NUMBER = enum.auto()
+    IDENTIFIER = enum.auto()
+    EVENT_DATE = enum.auto()
 
 
 # precedence is the value - larger is higher precendence

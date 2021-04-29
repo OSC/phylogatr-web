@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -l nodes=1:ppn=28
-#PBS -l walltime=01:00:00
+#PBS -l walltime=06:00:00
 #PBS -N phylogatr_pipeline
 #PBS -j oe
 #PBS -A PAS1604
@@ -10,7 +10,7 @@ set -xe
 export OUTPUT_DIR=/fs/scratch/PAS1604/genbank
 
 export GENBANK_DIR=/fs/project/PAS1604/genbank
-export GBIF_PATH=/fs/project/PAS1604/gbif_zenodo_3531675.csv
+export GBIF_PATH=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt
 export INDEXES_CACHE_DIR=/fs/scratch/PAS1604/genbank_indexes
 
 cd $PBS_O_WORKDIR
@@ -79,11 +79,11 @@ cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
 cut -f1 $TMPDIR/genes.tsv | sort | uniq -c | sort -n | ruby -ne 'puts $_.strip if($_.to_i > 2)' | cut -d ' ' -f2 | sort -k 1b,1 > $TMPDIR/genes_with_gt2_seqs
 invoke trim-genes-and-occurrences-by-fasta-paths $TMPDIR/genes.tsv $TMPDIR/gbif_occurrences_final.tsv $TMPDIR/genes_with_gt2_seqs
 
-cat $TMPDIR/gbif_occurrences_final.tsv.trimmed | add_incrementing_index_column_to_file > $OUTPUT_DIR/gbif_occurrences_final.tsv
+
+cp $TMPDIR/gbif_occurrences_final.tsv.trimmed $OUTPUT_DIR/gbif_occurrences_final.tsv
 
 # 6. create $OUTPUT/ genes/, genes.tar.gz, and genes.tsv
-
-cat $TMPDIR/genes.tsv.trimmed | add_incrementing_index_column_to_file > $TMPDIR/genes.tsv
+mv $TMPDIR/genes.tsv.trimmed $TMPDIR/genes.tsv
 mkdir $TMPDIR/genes
 
 # copy cache (this is regenerated after alignments)

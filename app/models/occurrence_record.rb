@@ -3,7 +3,7 @@ class OccurrenceRecord
   include ActiveModel::Model
   include ActiveModel::Validations
 
-  HEADERS=[:accession, :gbif_id, :lat, :lon, :taxon_kingdom, :taxon_phylum, :taxon_class, :taxon_order, :taxon_family, :taxon_genus, :taxon_species, :taxon_subspecies, :basis_of_record, :geodetic_datum, :coordinate_uncertainty_in_meters, :issue]
+  HEADERS=[:accession, :gbif_id, :lat, :lon, :taxon_kingdom, :taxon_phylum, :taxon_class, :taxon_order, :taxon_family, :taxon_genus, :taxon_species, :taxon_subspecies, :coordinate_uncertainty_in_meters, :basis_of_record, :issue,  :field_number, :catalog_number, :identifier, :event_date]
 
   HEADERS.each do |h|
     attr_accessor h
