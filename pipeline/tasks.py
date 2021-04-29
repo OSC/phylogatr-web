@@ -41,6 +41,6 @@ def trim_genes_and_occurrences_by_fasta_paths(c, genes_path, occurrences_path, f
         # if occurrence field 1 in accession set, write it out
         for line in occurrences_file:
             parts = line.strip().split("\t")
-            if len(parts) > 0 and parts[0] in accessions:
+            if len(parts) > 0 and parts[1] in accessions:
                 out.write(line)
 

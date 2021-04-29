@@ -177,7 +177,9 @@ class Pipeline:
                         occurrence[OccurrenceRecordIndex.FAMILY],
                         occurrence[OccurrenceRecordIndex.SPECIES]).replace(' ', '-')
                     different_species = genes[0].species_different_from_occurrence()
-                    out_occurrence = occurrence + [different_species, path]
+
+                    gene_symbols = " ".join(set(gene.symbol() for gene in genes))
+                    out_occurrence = [path] + occurrence + [different_species, gene_symbols]
 
                     out_occurrences_file.write("\t".join(out_occurrence).replace('\n','') + "\n")
 
