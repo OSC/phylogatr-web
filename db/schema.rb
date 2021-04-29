@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210426211251) do
+ActiveRecord::Schema.define(version: 20210429010049) do
 
   create_table "files", force: :cascade do |t|
     t.integer "species_id", limit: 4
@@ -27,18 +27,19 @@ ActiveRecord::Schema.define(version: 20210426211251) do
   create_table "occurrences", force: :cascade do |t|
     t.string  "accession",                        limit: 255
     t.string  "source_id",                        limit: 255
-    t.decimal "lat",                                          precision: 15, scale: 10
-    t.decimal "lng",                                          precision: 15, scale: 10
+    t.decimal "lat",                                            precision: 15, scale: 10
+    t.decimal "lng",                                            precision: 15, scale: 10
     t.string  "basis_of_record",                  limit: 255
     t.integer "coordinate_uncertainty_in_meters", limit: 4
     t.string  "issue",                            limit: 255
     t.string  "different_genbank_species",        limit: 255
     t.integer "species_id",                       limit: 4
-    t.integer "source",                           limit: 4,                             default: 0
+    t.integer "source",                           limit: 4,                               default: 0
     t.string  "field_number",                     limit: 255
     t.string  "catalog_number",                   limit: 255
     t.string  "identifier",                       limit: 255
     t.date    "event_date"
+    t.text    "genes",                            limit: 65535
   end
 
   add_index "occurrences", ["accession"], name: "index_occurrences_on_accession", using: :btree
