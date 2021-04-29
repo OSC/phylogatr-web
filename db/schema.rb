@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210122011413) do
+ActiveRecord::Schema.define(version: 20210426211251) do
 
   create_table "files", force: :cascade do |t|
     t.integer "species_id", limit: 4
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20210122011413) do
     t.decimal "lat",                                          precision: 15, scale: 10
     t.decimal "lng",                                          precision: 15, scale: 10
     t.string  "basis_of_record",                  limit: 255
-    t.string  "geodetic_datum",                   limit: 255
     t.integer "coordinate_uncertainty_in_meters", limit: 4
     t.string  "issue",                            limit: 255
     t.string  "different_genbank_species",        limit: 255
