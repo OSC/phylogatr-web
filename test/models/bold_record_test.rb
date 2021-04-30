@@ -127,4 +127,23 @@ class BoldRecordTest < ActiveSupport::TestCase
 
     assert_equal taxons, BoldRecord.taxonomy(uri)
   end
+
+  test "species normalization drops abbreviations with periods" do
+    assert_equal 'Salamandrella schrenckii', BoldRecord.new(taxon_species: 'Salamandrella cf. schrenckii').species
+    assert_equal 'Salamandrella schrenckii', BoldRecord.new(taxon_species: 'Salamandrella cf. schrenckii').species
+  end
+
+  test "species drops strings with numbers" do
+    assert_equal 'Mertensiella caucasica', BoldRecord.new(taxon_species: 'Mertensiella caucasica ssp. 1RuHF').species
+  end
+
+  test "species adds underscores to multi-word species names" do
+    assert_equal 'Ambystoma laterale_jeffersonianum_complex', BoldRecord.new(taxon_species: 'Ambystoma laterale jeffersonianum complex').species
+  end
+
+  test "species normalization nil if not full binomial" do
+    assert BoldRecord.new(taxon_species: 'Salamandrella schrenckii').species_binomial?
+    refute BoldRecord.new(taxon_species: 'Batrachuperus sp. 2').species_binomial?
+    refute BoldRecord.new(taxon_species: 'Onychodactylus sp. 2RuHF').species_binomial?
+  end
 end

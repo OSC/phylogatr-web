@@ -26,6 +26,22 @@ class BoldRecord
     attr_accessor h
   end
 
+  # normalized species form
+  #
+  # Batrachuperus sp. 2
+  #
+  # Salamandrella cf. schrenckii
+  #
+  # FIXME: do any species in BOLD have - or _ preset?
+  def species
+    genus, sp = species.split(' ').reject { |s| s =~ /[\.\d]/ }
+    genus + ' ' + sp.join('_')
+  end
+
+  def species_binomial?
+    species.split(' ').count == 2
+  end
+
   # URI is either a filesystem path or a url
   # https://www.boldsystems.org/index.php/TaxBrowser_Home
   #
