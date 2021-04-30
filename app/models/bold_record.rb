@@ -35,8 +35,8 @@ class BoldRecord
   # FIXME: do any species in BOLD have - or _ preset?
   def species
     @species ||= begin
-      genus, sp = species.split(' ').reject { |s| s =~ /[\.\d]/ }
-      genus + ' ' + sp.join('_')
+      genus, *sp = taxon_species.split(' ').reject { |s| s =~ /[\.\d]/ }
+      [genus, sp.join('_').presence].compact.join(' ')
     end
   end
 

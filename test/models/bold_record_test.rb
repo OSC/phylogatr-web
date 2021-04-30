@@ -128,6 +128,10 @@ class BoldRecordTest < ActiveSupport::TestCase
     assert_equal taxons, BoldRecord.taxonomy(uri)
   end
 
+  test "species normalization handles non binomial" do
+    assert_equal 'Salamand', BoldRecord.new(taxon_species: 'Salamand sp.').species
+  end
+
   test "species normalization drops abbreviations with periods" do
     assert_equal 'Salamandrella schrenckii', BoldRecord.new(taxon_species: 'Salamandrella cf. schrenckii').species
     assert_equal 'Salamandrella schrenckii', BoldRecord.new(taxon_species: 'Salamandrella cf. schrenckii').species
