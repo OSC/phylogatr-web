@@ -45,22 +45,25 @@ namespace :pipeline do
     using_mysql_adapter = ActiveRecord::Base.connection.adapter_name == 'Mysql2'
     using_sqlite_adapter = ActiveRecord::Base.connection.adapter_name == 'SQLite'
 
+    h = {}
+    OccurrenceRecord::POST_HEADERS.each_with_index {|column, index| h[column] = index }
+
     OccurrenceRecord.each_occurrence_slice_grouped_by_path(STDIN) do |chunk|
       row = chunk.first
-      species_path = row[0]
+      species_path = row[h[:species_path]]
 
       if species_hash.has_key?(species_path)
         species = species_hash[species_path]
       else
         species_hash[species_path] = Species.find_or_create_by(path: species_path) do |species|
-          species.taxon_kingdom = row[5]
-          species.taxon_phylum = row[6]
-          species.taxon_class = row[7]
-          species.taxon_order = row[8]
-          species.taxon_family = row[9]
-          species.taxon_genus = row[10]
-          species.taxon_species = row[11]
-          species.taxon_subspecies = row[12]
+          species.taxon_kingdom = row[h[:taxon_kingdom]]
+          species.taxon_phylum = row[h[:taxon_phylum]]
+          species.taxon_class = row[h[:taxon_class]]
+          species.taxon_order = row[h[:taxon_order]]
+          species.taxon_family = row[h[:taxon_family]]
+          species.taxon_genus = row[h[:taxon_genus]]
+          species.taxon_species = row[h[:taxon_species]]
+          species.taxon_subspecies = row[h[:taxon_subspecies]]
 
           # FIXME: move different_genbank_species to species
           # species.different_genbank_species = row[17]
@@ -71,14 +74,8 @@ namespace :pipeline do
 
       chunk.each do |row|
         idx += 1
-        # 0 is last argument for source gbif
-        #
-        #FIXME: row[14] is geodetic_datum which is dropped in the future for now...
-        if(using_mysql_adapter)
-          csv << [idx, row[1], row[2], row[3], row[4], row[13], row[14].presence || '\N', row[15].to_s.to_i, row[16], row[17], species.id, 0]
-        else
-          csv << [idx, row[1], row[2], row[3], row[4], row[13], row[14], row[15].to_s.to_i, row[16], row[17], species.id, 0]
-        end
+        basis_of_record = using_mysql_adapter ? (row[h[:basis_of_record]].presence || '\N') : row[h[:basis_of_record]]
+        csv << [idx, row[h[:accession]], row[h[:gbif_id]], row[h[:lat]], row[h[:lon]], basis_of_record, row[h[:coordinate_uncertainty_in_meters]], row[h[:issue]], row[h[:different_genbank_species]], species.id, 0, row[h[:field_number]], row[h[:catalog_number]], row[h[:event_date]], row[h[:genes]]]
       end
 
       # TODO:
