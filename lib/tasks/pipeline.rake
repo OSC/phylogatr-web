@@ -118,11 +118,14 @@ namespace :pipeline do
 
   desc "add bold records to database"
   task add_bold_records: :environment do
-    # After bold data is downloaded from BOLD website using API
-    # cat the files together and execute this to produce the simple version:
+    # Job array makes it easy cause then you can use the SAME
+    # starting boldfile is an ARRAY and then the job array is just the index to get you that item
     #
+    # For each files
+    #
+    # cp boldfile.tsv $TMPDIR/bold.tsv
     # cut -d $'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 $TMPDIR/bold.tsv > $TMPDIR/bold.simple.tsv
-    #
+    # 
     #
     #
     #
@@ -187,23 +190,25 @@ namespace :pipeline do
 
     csv.each do |row|
       record = BoldRecord.new(**row.to_h)
-      next unless record.gene_symbol_mapped.present? && record.sequence.present?
+
+      # TODO: every skipped record should be written to a file
+      next unless record.gene_symbol_mapped.present? && record.sequence.present? && record.species_binomial?
 
       # FIXME: be careful of case issues
-      species = Species.find_by(taxon_species: record.taxon_species)
+      species = Species.find_by(taxon_species: record.species)
       taxons_set = %w(phylum class order family genus species).all? {|t| record.send(:"taxon_#{t}").present? }
 
       if species || (taxons_set && kingdoms.include?(record.taxon_phylum))
         if species.nil?
           species = Species.create(
-            path: File.join(record.taxon_class, record.taxon_order, record.taxon_family, record.taxon_species.gsub(' ', '-')),
+            path: File.join(record.taxon_class, record.taxon_order, record.taxon_family, record.species.gsub(' ', '-')),
             taxon_kingdom: kingdoms[record.taxon_phylum],
             taxon_phylum: record.taxon_phylum,
             taxon_class: record.taxon_class,
             taxon_order: record.taxon_order,
             taxon_family: record.taxon_family,
             taxon_genus: record.taxon_genus,
-            taxon_species: record.taxon_species,
+            taxon_species: record.species,
             aligned: false
           )
         end
@@ -221,7 +226,7 @@ namespace :pipeline do
 
         if ! occurrence.duplicate? && occurrence.save
           # Reptilia/Squamata/Agamidae/Phrynocephalus-persicus/Phrynocephalus-persicus-COI
-          fasta_path = Configuration.genbank_root.join(species.path, "#{record.taxon_species}-#{record.gene_symbol_mapped.upcase}").to_s.gsub(' ', '-') + ".fa"
+          fasta_path = Configuration.genbank_root.join(species.path, "#{record.species}-#{record.gene_symbol_mapped.upcase}").to_s.gsub(' ', '-') + ".fa"
 
           # occurrence saved, now write gene data
           FileUtils.mkdir_p(File.dirname(fasta_path))
