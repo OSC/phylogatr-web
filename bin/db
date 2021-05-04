@@ -499,10 +499,27 @@ Zygomycota
 )
 #
 # `curl https://www.boldsystems.org/index.php/TaxBrowser_Home | egrep -o '\w+ \[\d+\]' | awk '{ print $1 }'`.split also works but is brittle
+#
+# NOTE: some downloads above will fail due to not having any public records available, these failures can be ignored
+# examples include: Australimyzidae, Braulidae, Epimarptidae, Homalocnemiidae, etc.
 
 def download_bold_taxon(taxon, dir, force=false)
   Dir.chdir(dir) do
-    system("curl 'http://www.boldsystems.org/index.php/API_Public/combined?taxon=#{taxon}&format=tsv' -o #{taxon.downcase}.tsv") unless (! force) && File.file?("#{taxon.downcase}.tsv")
+    file = "#{taxon.downcase}.tsv"
+
+    if force || ! File.file?("#{file}")
+      system("curl 'http://www.boldsystems.org/index.php/API_Public/combined?taxon=#{taxon}&format=tsv' -o #{file}")
+
+      # validate after download complete
+      if ! File.file?(file)
+        puts "file not created: #{file}"
+      elsif `tail #{file}`.include?('</html>')
+        puts "file is resulted in HTML error: #{file}"
+        FileUtils.mv file, "#{file}.error.html"
+      end
+    else
+      puts "skipping #{file} since it already exists"
+    end
   end
 end
 
