@@ -30,4 +30,4 @@ RUN cd /app && bin/bundle install
 RUN cd /app && bin/rake assets:precompile
 
 WORKDIR /app
-CMD bundle exec rails server
+CMD bundle exec passenger start
