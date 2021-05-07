@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :species, only: :index, defaults: { format: :json }
+
   root 'searches#new'
 
   # The priority is based upon order of creation: first created -> highest priority.

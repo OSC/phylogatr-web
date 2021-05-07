@@ -13,6 +13,10 @@ class Species < ActiveRecord::Base
     end
   end
 
+  def self.taxons
+    Species.pluck(:taxon_kingdom, :taxon_phylum, :taxon_order, :taxon_class, :taxon_family, :taxon_genus, :taxon_species)
+  end
+
   Fasta = Struct.new(:seqs, :bytes, :prefix, :extension) do
     def aligned?
       extension == ".afa"

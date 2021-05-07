@@ -39,4 +39,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  if Rails.root.join('tmp/caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+    config.static_cache_control = "public, max-age=172800"
+    config.cache_store = :memory_store, { size: 128.megabytes }
+  else
+    config.action_controller.perform_caching = false
+    config.cache_store = :null_store
+  end
 end
