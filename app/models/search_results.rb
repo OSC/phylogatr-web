@@ -101,6 +101,20 @@ class SearchResults
     @info ||= SearchResultsInfo.build(swpoint, nepoint, taxonomy)
   end
 
+  def citation
+    {
+      gbif_doi: '0147211-200613084148143',
+      genbank_release: 'GenBank Flat File Release 234.0',
+      bold_download: 'https://www.boldsystems.org/ downloaded 2021 01-15, 02-21, 05-1, 05-4'
+      bold_doi: '10.1111/j.1471-8286.2006.01678.x'
+      phylogatr_code_version: Configuration.app_version
+    }
+  end
+
+  def citation_yaml_string
+    citation.stringify_keys.to_yaml
+  end
+
   # TODO: pass block to capture progress messages (??) for progress messages
   # yield(message, percentage)
   #
@@ -114,12 +128,7 @@ class SearchResults
         # offset and its own sort by primary key so it ignores sort order we
         # want
 
-        #TODO:
-        cite_yaml = {
-          gbif_doi: '10.35000/cdl.t4hfxk',
-          genbank_release: 'GenBank Flat File Release 234.0',
-          phylogatr_code_version: Configuration.app_version
-        }.stringify_keys.to_yaml
+        cite_yaml = citation_yaml_string
 
         tar.add_file_simple("phylogatr-results/cite.txt", 0644, cite_yaml.length) do |io|
           io.write(cite_yaml)
@@ -215,12 +224,7 @@ class SearchResults
       # offset and its own sort by primary key so it ignores sort order we
       # want
 
-      #TODO:
-      cite_yaml = {
-        gbif_doi: '10.35000/cdl.t4hfxk',
-        genbank_release: 'GenBank Flat File Release 234.0',
-        phylogatr_code_version: Configuration.app_version
-      }.stringify_keys.to_yaml
+      cite_yaml = citation_yaml_string
 
       zip.write_deflated_file("phylogatr-results/cite.txt") do |io|
         io.write(cite_yaml)
