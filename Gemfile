@@ -33,6 +33,7 @@ group :development do
   gem 'pry'
 end
 
+gem 'passenger', require: 'phusion_passenger/rack_handler'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
