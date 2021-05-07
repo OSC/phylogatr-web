@@ -26,6 +26,24 @@ class BoldRecord
     attr_accessor h
   end
 
+  def self.from_str(str)
+    #FIXME: dangerous: should be using CSV reader/writer
+    BoldRecord.new(Hash[HEADERS.zip(str.chomp.split("\t", -1))])
+  end
+
+  def duplicate?
+    Occurrence.new(
+          source: :bold,
+          source_id: process_id,
+          catalog_number: catalog_number.presence,
+          field_number: field_number.presence,
+          accession: accession.presence,
+          lat: lat,
+          lng: lng,
+          genes: gene_symbol_mapped
+    ).duplicate?
+  end
+
   # normalized species form
   #
   # Batrachuperus sp. 2
@@ -34,6 +52,8 @@ class BoldRecord
   #
   # FIXME: do any species in BOLD have - or _ preset?
   def species
+    return nil unless taxon_species.present?
+
     @species ||= begin
       genus, *sp = taxon_species.split(' ').reject { |s| s =~ /[\.\d]/ }
       [genus, sp.join('_').presence].compact.join(' ')
@@ -94,7 +114,7 @@ class BoldRecord
 
   def fasta_sequence
     accession = self.accession.presence || '00000000'
-    ">#{accession}_#{self.process_id}\n#{self.sequence}\n"
+    ">#{accession}_#{self.process_id}\n#{self.sequence.downcase.gsub('-', '')}\n"
   end
 
   def self.line_count(path)

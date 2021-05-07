@@ -14,11 +14,17 @@ module load pcp
 
 for tsv in "$@"
 do
-  echo "./add_bold_records_from_tsv.sh $tsv" >> $TMPDIR/cmds
+  time tail -n +2 $tsv | cut -d $'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 >> $TMPDIR/bold.tsv
+done
+
+split -d -n 27 $TMPDIR/bold.tsv $TMPDIR/x
+
+for tsv in $TMPDIR/x*
+do
+  echo "echo $tsv; time GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:add_bold_records < $tsv 2>$tsv.errors" > $TMPDIR/cmds
 done
 
 srun parallel-command-processor $TMPDIR/cmds
-
 
 # print out all errors with header per error file
 echo "Errors:"
@@ -26,4 +32,4 @@ tail -n +1 $TMPDIR/*errors
 
 # tar up genes with bold data and copy back
 time (cd $TMPDIR; tar czf genes_with_bold.tar.gz genes)
-cp $TMPDIR/genes_with_bold.tar.gz /fs/project/PAS1604/pipeline/dev/
+cp $TMPDIR/genes_with_bold.tar.gz /fs/project/PAS1604/pipeline/dev/genes.tar.gz

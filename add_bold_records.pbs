@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=28
-#SBATCH -t 10:00:00
+#SBATCH --ntasks-per-node=4
+#SBATCH -t 04:00:00
 #SBATCH --job-name="add_bold_phylogatr"
 
 export BOLD_DATA=/fs/project/PAS1604/bold
 
-ls -1 "$BOLD_DATA"/*tsv | xargs ./add_bold_records_from_tsv
-
+ls -1 "$BOLD_DATA"/*tsv | xargs ./add_bold_records.sh
+# ls -1 "$BOLD_DATA"/*tsv | xargs ./add_bold_records_sequentially.sh

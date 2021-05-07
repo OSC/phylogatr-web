@@ -113,6 +113,28 @@ namespace :pipeline do
     tsv.unlink
   end
 
+  desc "filter out invalid or duplicate bold records"
+  task filter_bold_records: :environment do
+    STDIN.each_line do |line|
+      begin
+        # try to parse as CSV
+        CSV.parse(line, col_sep: "\t", headers: BoldRecord::HEADERS)
+        record = BoldRecord.from_str(line)
+
+        # good
+        puts line unless record.duplicate?
+      rescue => e
+        $stderr.puts "#{e.class} #{e.message} when parsing line"
+      end
+    end
+
+    OccurrenceRecord.each_occurrence_slice_grouped_by_accession(STDIN) do |occurrences|
+      OccurrenceRecord.filter(occurrences).each do |occurrence|
+        puts occurrence.to_str
+      end
+    end
+  end
+
   desc "add bold records to database"
   task add_bold_records: :environment do
     # Job array makes it easy cause then you can use the SAME
@@ -122,11 +144,6 @@ namespace :pipeline do
     #
     # cp boldfile.tsv $TMPDIR/bold.tsv
     # cut -d $'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 $TMPDIR/bold.tsv > $TMPDIR/bold.simple.tsv
-    # 
-    #
-    #
-    #
-    # FIXME: could use BoldRecord class
 
     # STDIN has all the bold records
     # markercode is understood to be gene_symbol
@@ -177,21 +194,25 @@ namespace :pipeline do
 
     phylums_ignore = Set.new(%w(Chlorarachniophyta Heterokontophyta Lycopodiophyta Myxomycota Onychophora Pyrrophycophyta))
 
-    # we need taxon_species => [id, path]
-    # TODO:
-    # after you confirm it works...
-    # species_names = Set.new(Species.pluck(:taxon_species))
-    # could cache the few species we get, by "species" so we don't do another query...
-
     fasta_files_updated = Set.new
 
-    csv.each do |row|
-      record = BoldRecord.new(**row.to_h)
+    loop do
+      # read line by line so we can catch and skip individual malformed rows
+      record = nil
+      begin
+        row = csv.shift
+        break unless row
+        record = BoldRecord.new(**row.to_h)
+      rescue => e
+        puts "#{e.class} #{e.message}"
+        next
+      end
 
       # TODO: every skipped record should be written to a file
-      next unless record.gene_symbol_mapped.present? && record.sequence.present? && record.species_binomial?
+      next unless record.gene_symbol_mapped.present? && record.sequence.present? && record.species.present? && record.species_binomial?
 
       # FIXME: be careful of case issues
+      # FIXME: cache species to reduce the number of queries?
       species = Species.find_by(taxon_species: record.species)
       taxons_set = %w(phylum class order family genus species).all? {|t| record.send(:"taxon_#{t}").present? }
 
@@ -218,35 +239,23 @@ namespace :pipeline do
           accession: record.accession.presence,
           lat: record.lat,
           lng: record.lng,
-          species_id: species.id
+          species_id: species.id,
+          genes: record.gene_symbol_mapped
         )
 
-        if ! occurrence.duplicate? && occurrence.save
+        if occurrence.save
           # Reptilia/Squamata/Agamidae/Phrynocephalus-persicus/Phrynocephalus-persicus-COI
           fasta_path = Configuration.genbank_root.join(species.path, "#{record.species}-#{record.gene_symbol_mapped.upcase}").to_s.gsub(' ', '-') + ".fa"
 
           # occurrence saved, now write gene data
           FileUtils.mkdir_p(File.dirname(fasta_path))
+
           File.write(fasta_path, record.fasta_sequence, mode: "a+")
 
           fasta_files_updated << fasta_path
 
           species.update(aligned: false) if species.aligned
         end
-      end # if species || (taxons_set && kingdoms.include?(record.taxon_phylum))
-    # else
-      #TODO: species not found and taxons not set - make note of this - as we could fill in taxonomy if we had more info
-    end
-
-    # remove and print to stderr the fasta_files that have fewer than 3 sequences
-    # the number of sequences is == number lines / 2
-    fasta_files_updated.each do |path|
-      # FIXME: 3 is this magic threshold
-      count = BoldRecord.line_count(path)
-      if(BoldRecord.line_count(path) < 3)
-        $stderr.puts "#{path} has only #{count} lines"
-
-        File.unlink path
       end
     end
   end
