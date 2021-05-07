@@ -12,8 +12,6 @@ class OccurrenceRecord
     attr_accessor h
   end
 
-  attr_accessor :event_date
-
   validates_inclusion_of :basis_of_record, in: %w(PRESERVED_SPECIMEN MATERIAL_SAMPLE HUMAN_OBSERVATION MACHINE_OBSERVATION)
   validates_format_of :taxon_kingdom, :taxon_phylum, :taxon_class, :taxon_order, :taxon_family, :taxon_genus, :taxon_species, :taxon_subspecies, without: /\d/
 
