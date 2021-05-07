@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=28
+#SBATCH -t 01:00:00
+#SBATCH --job-name="filter_bold_phylogatr"
+
+set -x
+
+module load ruby
+
+export BOLD_DATA=/fs/project/PAS1604/bold
+export PROJ=/fs/project/PAS1604/pipeline/dev
+
+for tsv in $BOLD_DATA/*tsv; do
+  time tail -n +2 $tsv | cut -d $'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 >> $TMPDIR/bold.tsv
+done
+
+# sequential
+# time bin/rake pipeline:filter_bold_records < $TMPDIR/bold.tsv >$TMPDIR/bold.tsv.filtered 2>$TMPDIR/bold.tsv.filtered.errors
+
+# parallel
+# NOTE: 14 not 28 because more than that puts too much load on MySQL
+# this only takes 10 minutes anyways
+split -d -n 14 $TMPDIR/bold.tsv $TMPDIR/x
+
+for tsv in $TMPDIR/x*
+do
+  time bin/rake pipeline:filter_bold_records < $tsv >$tsv.filtered 2>$tsv.filtered.errors &
+done
+wait
+
+# print out all errors with header per error file
+echo "Errors:"
+tail -n +1 $TMPDIR/*errors
+
+cat $TMPDIR/*filtered > $TMPDIR/bold.tsv.filtered
+cp $TMPDIR/bold.tsv.filtered $PROJ/bold.tsv
