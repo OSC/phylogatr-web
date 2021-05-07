@@ -277,8 +277,12 @@ namespace :pipeline do
   desc "align fasta files using parallel command processor"
   task alignpcp: :environment do
     files = Species.write_alignment_files_from_cache(Species.files_needing_alignment)
-    commands = files.map {|f| "./align_sequences.sh #{f.to_s}"}.join("\n") + "\n"
-    puts Open3.capture2('srun','parallel-command-processor', stdin_data: commands)
+    commands = files.map {|f| "time timeout 10m ./align_sequences.sh #{f.to_s}"}.join("\n") + "\n"
+    commands_path = File.join(ENV['TMPDIR'], 'commands')
+    File.write(commands_path, commands)
+    # puts Open3.capture2('srun','parallel-command-processor', stdin_data: commands)
+    # puts Open3.capture2('srun','parallel-command-processor', stdin_data: commands)
+    exec "srun parallel-command-processor #{commands_path}"
   end
 
   desc "delete all fasta alignment files"

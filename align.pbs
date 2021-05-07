@@ -1,17 +1,29 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=28
-#PBS -l walltime=10:00:00
-#PBS -N phylogatr_alignments
-#PBS -j oe
-#PBS -A PAS1604
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=28
+#SBATCH -t 20:00:00
+#SBATCH --job-name="align_phylogatr"
 
 set -xe
 
-cd $PBS_O_WORKDIR
+cd $SLURM_SUBMIT_DIR
 
 module load ruby
 module load pcp
-GENBANK_ROOT=/fs/project/PAS1604/pipeline/dev/genes ALIGNMENTS_CACHE_PATH=/fs/project/PAS1604/pipeline/dev/genes.db bin/rake pipeline:alignpcp
+
+
+# copy genes tarball to TMPDIR
+cp /fs/project/PAS1604/pipeline/dev/genes.tar.gz $TMPDIR
+time (cd $TMPDIR; tar xzf genes.tar.gz)
+
+
+GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:alignpcp
+# GENBANK_ROOT=$TMPDIR/genes ALIGNMENTS_CACHE_PATH=/fs/project/PAS1604/pipeline/dev/genes.db bin/rake pipeline:alignpcp
+
+
+# tar up genes with alignments and copy back
+time (cd $TMPDIR; tar czf genes_with_alignments.tar.gz genes)
+cp $TMPDIR/genes_with_alignments.tar.gz /fs/project/PAS1604/pipeline/dev/
 
 # TODO: will need to rsync back if we do this
 # cp /fs/project/PAS1604/pipeline/dev/genes.db $TMPDIR

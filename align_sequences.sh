@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -xe
+set -x
 set -o pipefail
 
 # $1 is path to fasta file ending in .fa
@@ -8,8 +8,7 @@ fasta_file=$1
 fasta_file_aligned="${fasta_file%.fa}.afa"
 
 function remove_newlines_in_fasta {
-  # ruby -ne 'print $_[0] == ">" ? "\n#{$_}" : $_.sub("\n","")' | ruby -e 'puts $stdin.read.strip'
-  awk '/^>/ { print (NR==1 ? "" : RS) $0; next  } { printf "%s", $0  } END {  printf RS  }'
+  seqkit seq -i -w0
 }
 
 function align {
@@ -28,3 +27,5 @@ function trim {
 fasta_tmp="$TMPDIR/$(basename $fasta_file_aligned)"
 align $fasta_file > $fasta_tmp
 trim $fasta_tmp | remove_newlines_in_fasta > $fasta_file_aligned
+
+rm $fasta_tmp
