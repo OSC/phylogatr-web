@@ -126,9 +126,21 @@ class Species < ActiveRecord::Base
   def update_metrics!
     self.total_seqs = calculate_total_seqs
     self.total_bytes = calculate_total_bytes
+
+    delete_empty_afa_files
+
     self.aligned = all_files_aligned?
 
     save
+  end
+
+  def delete_empty_afa_files
+    absolute_path.glob('*.afa').each do |f|
+      if f.size == 0
+        $stderr.puts "deleted empty file: #{f.to_s}"
+        f.unlink 
+      end
+    end
   end
 
   # which file has the most sequences?
