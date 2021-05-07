@@ -6,10 +6,10 @@ require 'fileutils'
 Dir.chdir ARGV.first if ARGV.first
 
 CSV.new(STDIN, col_sep: "\t").each do |row|
-  path = row[1]
-  accession = row[2]
-  sequence = row[8]
-  gbif_id = row[9]
+  path = row[0]
+  accession = row[1]
+  sequence = row[7]
+  gbif_id = row[8]
 
   FileUtils.mkdir_p(File.dirname(path))
   File.write(path + ".fa", ">#{accession}_#{gbif_id}\n#{sequence}\n", mode: "a+")
