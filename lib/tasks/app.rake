@@ -22,10 +22,13 @@ namespace :app do
 
   desc "validate db"
   task validate_db: :environment do
-    Species.fasta_grammar.verbose = true
+    Species::FastaGrammar.verbose = true
 
     # validate all FASTA files
-    species_with_invalid_fasta_files = Species.find_each.find_all(&:has_invalid_fasta_files?)
+    species_with_invalid_fasta_files = Species.find_each.with_index.find_all do |s, idx|
+      puts idx
+      s.has_invalid_fasta_files?
+    end
 
     if species_with_invalid_fasta_files.any?
       invalid_species_str = species_with_invalid_fasta_files.map {|s| "id: #{s.id} files: #{s.files.inspect}"}.join("\n")
