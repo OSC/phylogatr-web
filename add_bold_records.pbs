@@ -1,10 +1,33 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
-#SBATCH -t 04:00:00
+#SBATCH --ntasks-per-node=28
+#SBATCH -t 01:00:00
 #SBATCH --job-name="add_bold_phylogatr"
 
-export BOLD_DATA=/fs/project/PAS1604/bold
+module load ruby
 
-ls -1 "$BOLD_DATA"/*tsv | xargs ./add_bold_records.sh
-# ls -1 "$BOLD_DATA"/*tsv | xargs ./add_bold_records_sequentially.sh
+export PROJ=/fs/project/PAS1604/pipeline/dev
+
+cd $SLURM_SUBMIT_DIR
+
+cp $PROJ/bold.tsv $TMPDIR
+cp $PROJ/genes.tar.gz $TMPDIR
+time (cd $TMPDIR; tar xzf genes.tar.gz)
+
+# parallel
+# NOTE: 14 not 28 because more than that puts too much load on MySQL
+# this only takes 10 minutes anyways
+split -d -n 14 $TMPDIR/bold.tsv $TMPDIR/x
+
+for tsv in $TMPDIR/x*
+do
+  time GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:add_bold_records < $tsv 2>$tsv.errors &
+done
+wait
+
+# print out all errors with header per error file
+echo "Errors:"
+tail -n +1 $TMPDIR/*errors
+
+time (cd $TMPDIR; tar czf genes_with_bold.tar.gz genes)
+cp $TMPDIR/genes_with_bold.tar.gz /fs/project/PAS1604/pipeline/dev/genes.tar.gz
