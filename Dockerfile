@@ -16,9 +16,9 @@ RUN dnf install -y \
 RUN mkdir -p /opt/phylogatr
 COPY docker/passenger-setup.sh /opt/phylogatr/passenger-setup.sh
 RUN /opt/phylogatr/passenger-setup.sh
-RUN dnf module install ruby:2.5
+RUN dnf -y module install ruby:2.5
 
 COPY . /app
+RUN cd /app && bin/bundle install
+RUN cd /app && bin/rake assets:precompile
 WORKDIR /app
-RUN bin/bundle install
-RUN bin/rake assets:precompile
