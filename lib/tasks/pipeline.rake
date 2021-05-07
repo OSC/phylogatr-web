@@ -279,8 +279,19 @@ namespace :pipeline do
 
   desc "update Species metrics"
   task update_species_metrics: :environment do
-    # Species.where(aligned: false).each(&:update_metrics!)
-    Species.find_each(&:update_metrics!)
+    workers = Parallel.physical_processor_count-1
+    count = Species.count
+
+    limit = count/workers
+    
+    Parallel.each(1..workers, :in_processes => workers) { |i|
+      # execute once per worker - would it be easier to just fork?
+      offset = limit * Parallel.worker_number
+
+      # worker number starts at 0, so if last worker, want to get rest of records
+      limit = count - offset if Parallel.worker_number == workers-1
+      Species.limit(limit).offset(offset).each(&:update_metrics!)
+    }
   end
 
   desc "update Species metrics that are flagged as not aligned"
