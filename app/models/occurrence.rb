@@ -43,11 +43,11 @@ class Occurrence < ActiveRecord::Base
 
   # TODO: pluck(:field_number, :gene_symbol) so we can turn this into a hash
   def self.gbif_field_numbers
-    @gbif_field_numbers ||= Set.new(self.gbif.pluck(:field_number))
+    @gbif_field_numbers ||= Hash[self.gbif.where.not(field_number: nil).distinct.pluck(:field_number, :genes)]
   end
 
   def self.gbif_catalog_numbers
-    @gbif_catalog_numbers ||= Set.new(self.gbif.pluck(:catalog_number))
+    @gbif_catalog_numbers ||= Hash[self.gbif.where.not(catalog_number: nil).distinct.pluck(:catalog_number, :genes)]
   end
 
   # TODO: to do this, we need to know the
@@ -66,38 +66,23 @@ class Occurrence < ActiveRecord::Base
   # end
 
   def duplicate?
-    # FIXME: instead of doing these queries for accessions, use a lookup
-    #
-    #
-    # 1) array of accessions currently in use
-    # 2)
-    # 3)
-    if bold?
-      if self.accession.present? && (Occurrence.accessions.include?(self.accession) || Occurrence.identifiers.include?(self.source_id))
-        # duplicate
-        true
-      else
-        # TODO: do not do queries, do 1 query like this:
-        # Occurrence.gbif.pluck(:field_number, :catalog_number, :gene_symbol)
-        #
-        # this means we need to add gene_symbol to the occurrences! Until we do we cannot filter these duplicates out.
-        if(self.field_number.present? && Occurrence.gbif_field_numbers.include?(self.field_number))
-          #TODO: does markercode i.e. gene_symbol match the gbif gene_symbol?
-          # if it does it is a duplicate, else we want to keep it
-          $stderr.puts "duplicate warning: recognize bold record #{self.source_id} as duplicate because field number found"
-          true
-        elsif(self.catalog_number.present? && Occurrence.gbif_catalog_numbers.include?(self.catalog_number))
-          #TODO: does markercode i.e. gene_symbol match the gbif gene_symbol?
-          # if it does it is a duplicate, else we want to keep it
-          $stderr.puts "duplicate warning: recognize bold record #{self.source_id} as duplicate because catalog number found"
-          true
-        else
-          # not duplicate
-          false
-        end
-      end
+    #TODO: this currently is handled by OccurrenceRecord but could be moved here...
+    return false unless bold?
+
+    if self.accession.present? && (Occurrence.accessions.include?(self.accession) || Occurrence.identifiers.include?(self.source_id))
+      # duplicate
+      true
+    elsif(self.field_number.present? &&
+       Occurrence.gbif_field_numbers.include?(self.field_number) &&
+       Occurrence.gbif_field_numbers[self.field_number].split.include?(self.genes))
+      $stderr.puts "duplicate warning: recognize bold record #{self.source_id} as duplicate because field number found"
+      true
+    elsif(self.catalog_number.present? &&
+       Occurrence.gbif_catalog_numbers.include?(self.catalog_number) &&
+       Occurrence.gbif_catalog_numbers[self.catalog_number].split.include?(self.genes))
+      $stderr.puts "duplicate warning: recognize bold record #{self.source_id} as duplicate because catalog number found"
+      true
     else
-      #TODO: this currently is handled by OccurrenceRecord but could be moved here...
       # not duplicate
       false
     end
