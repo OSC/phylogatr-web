@@ -74,8 +74,24 @@ namespace :pipeline do
 
       chunk.each do |row|
         idx += 1
-        basis_of_record = using_mysql_adapter ? (row[h[:basis_of_record]].presence || '\N') : row[h[:basis_of_record]]
-        csv << [idx, row[h[:accession]], row[h[:gbif_id]], row[h[:lat]], row[h[:lon]], basis_of_record, row[h[:coordinate_uncertainty_in_meters]], row[h[:issue]], row[h[:different_genbank_species]], species.id, 0, row[h[:field_number]], row[h[:catalog_number]], row[h[:event_date]], row[h[:genes]]]
+        csv << [
+          idx,
+          row[h[:accession]],
+          row[h[:gbif_id]],
+          row[h[:lat]],
+          row[h[:lon]],
+          OccurrencePostRecord.handle_null(row[h[:basis_of_record]]),
+          row[h[:coordinate_uncertainty_in_meters]],
+          OccurrencePostRecord.handle_null(row[h[:issue]]),
+          OccurrencePostRecord.handle_null(row[h[:different_genbank_species]]),
+          species.id,
+          0,
+          OccurrencePostRecord.handle_null(row[h[:field_number]]),
+          OccurrencePostRecord.handle_null(row[h[:catalog_number]]),
+          OccurrencePostRecord.handle_null(row[h[:identifier]]),
+          row[h[:event_date]],
+          row[h[:genes]]
+        ]
       end
 
       # TODO:
