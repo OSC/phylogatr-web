@@ -17,9 +17,7 @@ RUN dnf install -y \
         nodejs \
     && dnf clean all && rm -rf /var/cache/dnf/*
 
-#RUN mkdir -p /opt/phylogatr
-#COPY docker/passenger-setup.sh /opt/phylogatr/passenger-setup.sh
-#RUN /opt/phylogatr/passenger-setup.sh
+# install Ruby
 RUN dnf -y module install ruby:2.5
 RUN dnf -y install ruby-devel \
     && dnf clean all && rm -rf /var/cache/dnf/*
