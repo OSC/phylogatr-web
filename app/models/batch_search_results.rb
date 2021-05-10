@@ -124,7 +124,7 @@ class BatchSearchResults
     cd #{app_root.to_s}
 
     # batch job to use tar.gz of the genbank_root directory in root of the app directory
-    cp genes_aligned.tar.gz $TMPDIR
+    cp #{Configuration.genes_tarball_path.to_s} $TMPDIR
     ( cd $TMPDIR; tar xzf genes_aligned.tar.gz )
     export GENBANK_ROOT=$TMPDIR/genes
 

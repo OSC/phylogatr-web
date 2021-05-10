@@ -122,6 +122,10 @@ class ConfigurationSingleton
     Pathname.new(ENV["GENBANK_ROOT"] || Rails.root.join('test/data/reptilia_genes'))
   end
 
+  def genes_tarball_path
+    Pathname.new(ENV['GENES_TARBALL_PATH'] || Rails.root.join('genes_aligned.tar.gz'))
+  end
+
   def alignments_cache_path
     ENV["ALIGNMENTS_CACHE_PATH"] ? Pathname.new(ENV["ALIGNMENTS_CACHE_PATH"]) : nil
   end
