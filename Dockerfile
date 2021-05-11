@@ -44,6 +44,14 @@ RUN cd /src && tar xzf mafft.tar.gz && cd mafft-7.475-with-extensions/core && ma
 RUN cd /src && curl -LJO https://github.com/shenwei356/seqkit/releases/download/v0.16.0/seqkit_linux_amd64.tar.gz
 RUN cd /src && tar xzf seqkit_linux_amd64.tar.gz && cp seqkit /usr/local/bin
 
+# Add SLURM
+RUN dnf config-manager --add-repo https://repo.hpc.osc.edu/internal/slurm/slurm.repo
+RUN dnf config-manager --add-repo https://repo.hpc.osc.edu/internal/osc_yum_repo/osc_repo.repo
+RUN dnf -y install slurm slurm-spank-lua lua lua-posix \
+    && dnf clean all && rm -rf /var/cache/dnf/*
+RUN groupadd -r slurm
+RUN useradd -r -g slurm -d /var/spool/slurm -s /sbin/nologin slurm
+
 COPY . /app
 RUN cd /app && bin/bundle install
 RUN cd /app && bin/rake assets:precompile
@@ -51,8 +59,8 @@ RUN cd /app && bin/rake assets:precompile
 RUN groupadd -g 6314 PAS1604
 RUN groupadd -g 6557 accessphylogatr
 RUN groupadd -g 6558 accessphylogatrdev
-RUN useradd -g PAS1604 -u 33252 phylogatr
-RUN useradd -g PAS1604 -u 33253 phylogatrdev
+RUN useradd -g PAS1604 -u 33252 -d /users/PAS1604/phylogatr -M phylogatr
+RUN useradd -g PAS1604 -u 33253 -d /users/PAS1604/phylogatrdev -M phylogatrdev
 RUN usermod -aG accessphylogatr phylogatr
 RUN usermod -aG accessphylogatrdev phylogatr
 RUN usermod -aG accessphylogatr phylogatrdev
