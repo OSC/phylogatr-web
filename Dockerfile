@@ -48,5 +48,17 @@ COPY . /app
 RUN cd /app && bin/bundle install
 RUN cd /app && bin/rake assets:precompile
 
+RUN groupadd -g 6314 PAS1604
+RUN groupadd -g 6557 accessphylogatr
+RUN groupadd -g 6558 accessphylogatrdev
+RUN useradd -g PAS1604 -u 33252 phylogatr
+RUN useradd -g PAS1604 -u 33253 phylogatrdev
+RUN usermod -aG accessphylogatr phylogatr
+RUN usermod -aG accessphylogatrdev phylogatr
+RUN usermod -aG accessphylogatr phylogatrdev
+RUN usermod -aG accessphylogatrdev phylogatrdev
+RUN chgrp -R PAS1604 /app/log && chmod -R g=u /app/log
+RUN chgrp -R PAS1604 /app/tmp && chmod -R g=u /app/tmp
+
 WORKDIR /app
 CMD bundle exec passenger start
