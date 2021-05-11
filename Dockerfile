@@ -15,6 +15,7 @@ RUN dnf install -y \
         shared-mime-info \
         mariadb-devel \
         nodejs \
+        libnsl \
     && dnf clean all && rm -rf /var/cache/dnf/*
 
 # install Ruby
