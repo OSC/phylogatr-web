@@ -125,7 +125,7 @@ class BatchSearchResults
 
     # batch job to use tar.gz of the genbank_root directory in root of the app directory
     cp #{Configuration.genes_tarball_path.to_s} $TMPDIR
-    ( cd $TMPDIR; tar xzf genes_aligned.tar.gz )
+    ( cd $TMPDIR; tar xzf #{Configuration.genes_tarball_path.basename.to_s} )
     export GENBANK_ROOT=$TMPDIR/genes
 
     time RAILS_ENV=#{Rails.env} bin/rails runner 'BatchSearchResults.new(#{params.inspect}, "'"${SLURM_JOBID}"'").create_info'
