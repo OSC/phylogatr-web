@@ -14,7 +14,7 @@ class Species < ActiveRecord::Base
   end
 
   def self.taxons
-    Species.where(aligned: true).pluck(:taxon_kingdom, :taxon_phylum, :taxon_order, :taxon_class, :taxon_family, :taxon_genus, :taxon_species)
+    Species.where(aligned: true).pluck(:taxon_kingdom, :taxon_phylum, :taxon_class, :taxon_order, :taxon_family, :taxon_genus, :taxon_species)
   end
 
   Fasta = Struct.new(:seqs, :bytes, :prefix, :extension) do
