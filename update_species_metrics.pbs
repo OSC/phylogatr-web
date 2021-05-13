@@ -10,9 +10,6 @@ cd $SLURM_SUBMIT_DIR
 module load ruby
 
 cp /fs/project/PAS1604/pipeline/dev/genes.tar.gz $TMPDIR
-cd $TMPDIR
-time tar xzf genes.tar.gz
-
-cd $SLURM_SUBMIT_DIR
+time (cd $TMPDIR; tar xzf genes.tar.gz)
 
 time GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:update_species_metrics
