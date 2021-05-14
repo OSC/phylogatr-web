@@ -1,9 +1,9 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=28
-#PBS -l walltime=06:00:00
-#PBS -N phylogatr_pipeline
-#PBS -j oe
-#PBS -A PAS1604
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=28
+#SBATCH -t 01:00:00
+#SBATCH --job-name="pipeline_phylogatr"
+#SBATCH --account=PAS1604
 
 set -xe
 
@@ -13,7 +13,7 @@ export GENBANK_DIR=/fs/project/PAS1604/genbank
 export GBIF_PATH=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt
 export INDEXES_CACHE_DIR=/fs/scratch/PAS1604/genbank_indexes
 
-cd $PBS_O_WORKDIR
+cd $SLURM_SUBMIT_DIR
 
 # Steps
 # 1. given original gbif occurrences tsv, expand on accessions column so there is 1 accession per row
