@@ -21,6 +21,7 @@ class BoldRecord
     sequence
   )
 
+  validates_presence_of :lat, :lng
 
   HEADERS.each do |h|
     attr_accessor h

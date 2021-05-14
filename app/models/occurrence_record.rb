@@ -12,6 +12,7 @@ class OccurrenceRecord
     attr_accessor h
   end
 
+  validates_presence_of :lat, :lon
   validates_inclusion_of :basis_of_record, in: %w(PRESERVED_SPECIMEN MATERIAL_SAMPLE HUMAN_OBSERVATION MACHINE_OBSERVATION)
   validates_format_of :taxon_kingdom, :taxon_phylum, :taxon_class, :taxon_order, :taxon_family, :taxon_genus, :taxon_species, :taxon_subspecies, without: /\d/
 
@@ -52,6 +53,9 @@ class OccurrenceRecord
           end
         end
       end
+
+      # FIXME: at the end we need an array of Occurrences to keep and the REASON
+      # and we need to add the REASON as a column to the database
 
       keep
     end
