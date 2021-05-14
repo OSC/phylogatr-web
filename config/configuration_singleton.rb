@@ -109,6 +109,10 @@ class ConfigurationSingleton
     Pathname.new(ENV["DATABASE_PATH"] || dataroot.join('production.sqlite3'))
   end
 
+  def sif_path
+    ENV['SIF_PATH'] || 'phylogatr.sif'
+  end
+
   # The app's configuration root directory
   # @return [Pathname] path to configuration root
   def config_root
