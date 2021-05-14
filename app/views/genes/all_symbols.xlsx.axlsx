@@ -1,8 +1,0 @@
-wb = xlsx_package.workbook
-wb.add_worksheet(name: "All Symbols") do |sheet|
-  sheet.add_row ["Symbol", "Sequences"]
-
-  @genes.sort_by{|k,v| k.downcase }.each do |symbol,sequences|
-    sheet.add_row [symbol, sequences]
-  end
-end
