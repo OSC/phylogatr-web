@@ -19,7 +19,6 @@ class Occurrence < ActiveRecord::Base
       latitude
       longitude
       basis_of_record
-      geodetic_datum
       coordinate_uncertainty_in_meters
       issue
     )
