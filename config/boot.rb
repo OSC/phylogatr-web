@@ -1,11 +1,9 @@
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
 require 'socket'
-if Socket.gethostname.start_with?("o") || Socket.gethostname.start_with?("p")
-  # Owens
-  ENV['BUNDLE_IGNORE_CONFIG'] = "1"
-  ENV['BUNDLE_PATH'] = "vendor/bundle-owens"
-  # $stderr.puts "using vendor/bundle-owens and ignoring bundle config"
+if Socket.gethostname.start_with?("webtest")
+  ENV['BUNDLE_PATH'] = "vendor/bundle"
+  ENV['BUNDLE_DISABLE_SHARED_GEMS'] = "true"
 end
 
 require 'bundler/setup' # Set up gems listed in the Gemfile.
