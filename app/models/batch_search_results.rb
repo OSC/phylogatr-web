@@ -1,9 +1,19 @@
+require 'base64'
+
 class BatchSearchResults
   attr_reader :params, :format, :search_results, :id
 
   # have the same interface as SearchResults
   delegate :num_species, :estimated_tar_size, :percent_complete, :message, to: :info
   delegate :to_s, to: :search_results
+
+  def serialize_params
+    Serialize.to_str(params)
+  end
+
+  def self.deserialize_params(str)
+    Serialize.from_str(str)
+  end
 
   def self.id_from_param(param)
     param&.gsub('_', '.')
@@ -81,8 +91,12 @@ class BatchSearchResults
     @info = SearchResultsInfo.new
   end
 
-  def create_info
-    search_results.info.save(json_path_template(id))
+  def create_info(path = nil)
+    if path
+      search_results.info.save(path)
+    else
+      search_results.info.save(json_path_template(id))
+    end
   end
 
   def tar?
@@ -121,20 +135,22 @@ class BatchSearchResults
 
     mkdir -p #{output_path_template('$SLURM_JOBID').to_s}
 
-    cd #{app_root.to_s}
+    # cd #{app_root.to_s}
 
     # batch job to use tar.gz of the genbank_root directory in root of the app directory
     cp #{Configuration.genes_tarball_path.to_s} $TMPDIR
     ( cd $TMPDIR; tar xzf #{Configuration.genes_tarball_path.basename.to_s} )
+
     export GENBANK_ROOT=$TMPDIR/genes
+    export RAILS_ENV=#{Rails.env}
+    export INFO_FILE=#{json_path_template('$SLURM_JOBID')}
+    export RESULTS=$TMPDIR/results.tar
+    export PARAMS=#{serialize_params}
 
-    time RAILS_ENV=#{Rails.env} bin/rails runner 'BatchSearchResults.new(#{params.inspect}, "'"${SLURM_JOBID}"'").create_info'
+    # execute command
+    singularity exec #{Configuration.sif_path} /app/bin/bundle exec /app/bin/db search
 
-    INFO_FILE=#{json_path_template('$SLURM_JOBID')}
-
-    RESULTS=$TMPDIR/results.tar
-    time RAILS_ENV=#{Rails.env} bin/rails runner 'SearchResults.write_#{pkg}_to_file(#{params.inspect}, "'"${RESULTS}"'", "'"${INFO_FILE}"'")'
-
+    # cp results to file
     cp $RESULTS #{package_path_template(pkg, '$SLURM_JOBID').to_s}
 
     # sleep for 30 seconds due to delay in writing to scratch and it accessible from web app

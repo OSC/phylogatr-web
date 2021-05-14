@@ -566,6 +566,26 @@ class MyCLI < Thor
   def list_bold_taxons
     puts TAXONS
   end
+
+  desc "search", "generate a tarball or zip file using the provided query"
+  def search
+   app_root = File.expand_path('../..', __FILE__)
+   Dir.chdir(app_root)
+   exec 'bin/rake search:search'
+  end
+
+  desc "search_test genbank_root_path", "generate tarball of reptilia in dev database from dev"
+  def search_test(genbank_root)
+    require_relative '../app/models/serialize'
+    params = { :taxon_class => 'Reptilia'}
+    ENV['PARAMS'] = Serialize.to_str(params)
+    ENV['RESULTS'] = File.join(Dir.pwd,'reptilia.tar.gz')
+    ENV['INFO_FILE'] = File.join(Dir.pwd,'reptilia.tar.gz.json')
+    ENV['RAILS_ENV'] = 'development'
+    ENV['GENBANK_ROOT'] = genbank_root
+
+    invoke :search, []
+  end
 end
 
 MyCLI.start(ARGV)

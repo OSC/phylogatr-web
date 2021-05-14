@@ -1,5 +1,30 @@
 require 'benchmark'
+require 'base64'
+
 namespace :search do
+  desc "search"
+  task search: :environment do
+    puts "searching to generate tarball"
+
+    params = BatchSearchResults.deserialize_params(ENV['PARAMS'])
+
+    raise 'PARAMS not set to base64 marshalled hash of params' unless params.present?
+
+    Benchmark.bm do |x|
+      x.report("metrics: ") {
+        SearchResults.from_params(params).info.save(ENV['INFO_FILE'])
+      }
+      x.report("write pkg: ") {
+        if ENV['PKG_FORMAT'] == 'zip'
+          SearchResults.write_zip_to_file(params, ENV['RESULTS'], ENV['INFO_FILE'])
+        else
+          SearchResults.write_tar_to_file(params, ENV['RESULTS'], ENV['INFO_FILE'])
+        end
+      }
+    end
+  end
+
+
   desc "TODO"
   task perftest: :environment do
     # t = {
