@@ -137,16 +137,11 @@ namespace :pipeline do
         CSV.parse(line, col_sep: "\t", headers: BoldRecord::HEADERS)
         record = BoldRecord.from_str(line)
 
-        # good
-        puts line unless record.duplicate?
+        if record.valid? && ! record.duplicate?
+          puts line
+        end
       rescue => e
         $stderr.puts "#{e.class} #{e.message} when parsing line"
-      end
-    end
-
-    OccurrenceRecord.each_occurrence_slice_grouped_by_accession(STDIN) do |occurrences|
-      OccurrenceRecord.filter(occurrences).each do |occurrence|
-        puts occurrence.to_str
       end
     end
   end
