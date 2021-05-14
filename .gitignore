@@ -52,3 +52,6 @@
 
 # ignore pyc files
 *.pyc
+
+# ignore slurm output files
+*.out
