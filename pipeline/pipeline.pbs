@@ -66,11 +66,6 @@ ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
 srun parallel-command-processor $TMPDIR/run_pipeline_cmds
 
 
-function add_incrementing_index_column_to_file {
-    awk '{ print NR "\t" $0  }'
-}
-
-
 # 4. cat all gene files together into 1
 cat $TMPDIR/*.genes.tsv.occurrences > $TMPDIR/gbif_occurrences_final.tsv
 cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
@@ -86,27 +81,12 @@ cp $TMPDIR/gbif_occurrences_final.tsv.trimmed $OUTPUT_DIR/gbif_occurrences_final
 mv $TMPDIR/genes.tsv.trimmed $TMPDIR/genes.tsv
 mkdir $TMPDIR/genes
 
-# copy cache (this is regenerated after alignments)
-cp $OUTPUT_DIR/genes.db $TMPDIR/genes.db
-
 # create the directory structure from the genes.tsv file
-# FIXME: genes.rb should use the cache to write the fa files, not the alignment
-# commands below - or have a separate script for updating alignments
-#
 cat $TMPDIR/genes.tsv | ruby genes.rb $TMPDIR/genes
 
-# add back alignments from cache
-# update alignall file for what needs aligned
-#FIXME: needs_aligned needs to have this $OUTPUT_DIR replace the $TMPDIR using sed
-ruby generate_alignment_commands.rb $TMPDIR/genes $TMPDIR/genes.db > $OUTPUT_DIR/needs_aligned
-
-# sync genes
 # create tarball for future use
 cd $TMPDIR
 tar czf genes.tar.gz genes
 cp genes.tar.gz $OUTPUT_DIR
-
-#FIXME: this previously did not work
-# rsync -a --ignore-times --delete genes $OUTPUT_DIR/genes
 
 cp genes.tsv $OUTPUT_DIR/genes.tsv
