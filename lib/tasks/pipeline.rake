@@ -90,7 +90,8 @@ namespace :pipeline do
           OccurrencePostRecord.handle_null(row[h[:catalog_number]]),
           OccurrencePostRecord.handle_null(row[h[:identifier]]),
           row[h[:event_date]],
-          row[h[:genes]]
+          row[h[:genes]],
+          row[h[:flag]]
         ]
       end
 

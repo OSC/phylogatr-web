@@ -31,6 +31,7 @@ class OccurrenceRecordIndex(enum.IntEnum):
     CATALOG_NUMBER = enum.auto()
     IDENTIFIER = enum.auto()
     EVENT_DATE = enum.auto()
+    FLAG = enum.auto()
 
 
 # precedence is the value - larger is higher precendence

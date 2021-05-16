@@ -1,7 +1,8 @@
 class OccurrencePostRecord
   include ActiveModel::Model
 
-  HEADERS=[:species_path, *OccurrenceRecord::HEADERS, :different_genbank_species, :genes]
+  #FIXME: OccurrenceRecord::INPUT_HEADERS and OccurrenceRecord::OUTPUT_HEADERS
+  HEADERS=[:species_path, *OccurrenceRecord::HEADERS, :flag, :different_genbank_species, :genes]
 
   HEADERS.each do |h|
     attr_accessor h

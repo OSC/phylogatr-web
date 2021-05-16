@@ -5,15 +5,25 @@ class OccurrenceRecord
 
   HEADERS=[:accession, :gbif_id, :lat, :lon, :taxon_kingdom, :taxon_phylum, :taxon_class, :taxon_order, :taxon_family, :taxon_genus, :taxon_species, :taxon_subspecies, :coordinate_uncertainty_in_meters, :basis_of_record, :issue,  :field_number, :catalog_number, :identifier, :event_date]
 
+  #FIXME: duplicate of OccurrencePostRecord but add tests first before refactoring
+  #
   # headers after pipeline.py processes everything
-  POST_HEADERS=[:species_path, *HEADERS, :different_genbank_species, :genes]
+  POST_HEADERS=[:species_path, *HEADERS, :flag, :different_genbank_species, :genes]
 
   HEADERS.each do |h|
     attr_accessor h
   end
 
-  validates_presence_of :lat, :lon
-  validates_inclusion_of :basis_of_record, in: %w(PRESERVED_SPECIMEN MATERIAL_SAMPLE HUMAN_OBSERVATION MACHINE_OBSERVATION)
+  attr_accessor :flag
+
+  # highest precendence last
+  BASIS_OF_RECORD=%w(MACHINE_OBSERVATION HUMAN_OBSERVATION MATERIAL_SAMPLE PRESERVED_SPECIMEN)
+
+  validates_each :lat, :lon do |record, attr, value|
+    record.errors.add attr, "nil or 0" unless value.present? && OccurrenceRecord.float_rounded(value) != 0
+  end
+
+  validates_inclusion_of :basis_of_record, in: BASIS_OF_RECORD
   validates_format_of :taxon_kingdom, :taxon_phylum, :taxon_class, :taxon_order, :taxon_family, :taxon_genus, :taxon_species, :taxon_subspecies, without: /\d/
 
   def self.from_str(str)
@@ -94,7 +104,7 @@ class OccurrenceRecord
   # end
 
   def duplicate?(other)
-    if ! (lon_rounded == other.lon_rounded && lat_rounded == other.lat_rounded)
+    if ! (lng_rounded == other.lng_rounded && lat_rounded == other.lat_rounded)
       false
     elsif taxon_species != other.taxon_species
       true
@@ -105,11 +115,16 @@ class OccurrenceRecord
     end
   end
 
-  def lat_rounded
-    lat.to_f.round(2)
+  def self.float_rounded(value)
+    value.to_f.round(2)
   end
 
-  def lon_rounded
-    lon.to_f.round(2)
+  def lat_rounded
+    self.class.float_rounded(lat)
+  end
+
+  def lng_rounded
+    self.class.float_rounded(lon)
   end
 end
+
