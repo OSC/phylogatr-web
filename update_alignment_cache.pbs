@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH -t 01:00:00
+#SBATCH --job-name="phylogatr_update_alignment_metrics"
+
+set -xe
+
+cd $SLURM_SUBMIT_DIR
+module load ruby
+
+cp /fs/project/PAS1604/pipeline/dev/genes.tar.gz $TMPDIR
+time (cd $TMPDIR; tar xzf genes.tar.gz)
+
+cp /fs/project/PAS1604/pipeline/dev/genes.db $TMPDIR
+time ./generate_alignment_cache.rb $TMPDIR/genes $TMPDIR/genes.db
+
+cp $TMPDIR/genes.db /fs/project/PAS1604/pipeline/dev/genes.db.test
