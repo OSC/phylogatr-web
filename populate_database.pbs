@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks-per-node=28
 #SBATCH -t 01:00:00
 #SBATCH --job-name="populate_db_phlyogatr"
 
@@ -9,4 +9,8 @@ cd $SLURM_SUBMIT_DIR
 export PROJ=/fs/project/PAS1604/pipeline/dev
 export GBIF=$PROJ/stage-1/gbif_occurrences_final.tsv
 
+module load ruby
+
 time bin/bundle exec bin/db populate development $GBIF
+
+cp $PROJ/stage-1/genes.tar.gz $PROJ/genes.tar.gz
