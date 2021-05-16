@@ -544,7 +544,8 @@ class MyCLI < Thor
 
     Benchmark.bm(26) do |x|
       x.report("pipeline:add_occurrences:") { system("bin/rake pipeline:add_occurrences < #{occurrences_tsv_path}") }
-      x.report("update Species metrics:") { system("bin/rails r 'Species.find_each(&:update_metrics!)'") }
+      # FIXME: I think this is no longer approriate? FWIW it was also incorrect
+      # x.report("update Species metrics:") { system("bin/rails r 'Species.find_each(&:update_metrics!)'") }
     end
   end
 
