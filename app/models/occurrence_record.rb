@@ -42,35 +42,77 @@ class OccurrenceRecord
     }
   end
 
+  # output format includes flag
   def to_str
-    HEADERS.map { |h| self.send(h) }.join("\t")
+    (HEADERS.map { |h| self.send(h) } + [flag]).join("\t")
   end
 
-  def self.filter(occurrences)
-    occurrences.reduce([]) do |keep, o|
-      if o.valid?
-        # if keep empty, keep it
-        if keep.empty?
-          keep << o
-        else
-          idx = keep.find_index { |i| o.duplicate?(i) }
-          if(idx)
-            # duplicate - use more recent
-            keep[idx] = o if o.gbif_id > keep[idx].gbif_id
-          else
-            # not duplicate, append
-            keep << o
-          end
-        end
-      end
+  def self.same(records, attrs)
+    records.uniq {|o|
+      Array.wrap(attrs).map {|a| o.send(a) }
+    }.count == 1
+  end
 
-      # FIXME: at the end we need an array of Occurrences to keep and the REASON
-      # and we need to add the REASON as a column to the database
+  def self.flag(records, flag)
+    records.each do |o|
+      o.flag = flag
+    end
 
-      keep
+    records
+  end
+
+  def self.records_with_highest_precendence_basis_of_record(records)
+   # get the highest precendence basis of record
+   index = records.map { |o| BASIS_OF_RECORD.index(o.basis_of_record) }.max
+   # return all the records with that basis
+   records.select { |o| o.basis_of_record == BASIS_OF_RECORD[index] }
+  end
+
+  def self.most_recent_record(records)
+    records.max {|a, b| a.gbif_id.to_i <=> b.gbif_id.to_i }
+  end
+
+  def self.filter_by_species_and_event_date(records)
+    if ! same(records, :taxon_species)
+      flag([most_recent_record(records)], 's')
+    elsif same(records, :event_date)
+      flag([most_recent_record(records)], 'm')
+    else
+      flag(records, 'd')
     end
   end
 
+  def self.filter(records)
+    # ignore invalid records and duplicates of same gbif_id
+    # duplicates of same gbif_id would be produced only by our
+    # earlier expansion of a single record into multiple records, one
+    # per accessions, if the accession appeared twice in the original record
+    records = records.select(&:valid?).uniq {|r| r.gbif_id }
+
+    # don't flag records if there are no duplicates
+    return records unless records.count > 1
+
+    # WARNING: this algorithm doesn't consider cases where:
+    # 5 of 6 coords same, but 6th is different
+    # 4 of 5 basis of record same, but 5th is different
+    # etc.
+
+    # 1. are geographic coordinates the same?
+    if ! same(records, [:lng_rounded, :lng_rounded])
+      # keep all records and flag with g
+      flag(records, 'g')
+    elsif ! same(records, :basis_of_record)
+      # keep only highest precedence basis of record
+      records = records_with_highest_precendence_basis_of_record(records)
+      if(records.count > 1)
+        filter_by_species_and_event_date(records)
+      else
+        flag(records, 'b')
+      end
+    else
+      filter_by_species_and_event_date(records)
+    end
+  end
 
   # argument comparator (lambda) - otherwise compare first column
   # or just column comparison (0,1,2,3, etc.)

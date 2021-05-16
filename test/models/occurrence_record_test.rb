@@ -7,18 +7,20 @@ class OccurrenceRecordTest < ActiveSupport::TestCase
 
   test "invalid if basis of record invalid" do
     refute OccurrenceRecord.new.valid?
-    refute OccurrenceRecord.new(basis_of_record: "LIVING_SPECIMEN").valid?
+    refute OccurrenceRecord.new(basis_of_record: "LIVING_SPECIMEN", lat: 35.766701, lon: -74.849999).valid?
   end
 
   test "valid if basis of record valid" do
-     assert OccurrenceRecord.new(basis_of_record: "PRESERVED_SPECIMEN").valid?
+     assert OccurrenceRecord.new(basis_of_record: "PRESERVED_SPECIMEN", lat: 35.766701, lon: -74.849999, taxon_class: 'Reptilia').valid?
   end
 
   test "not duplicate if locations differ" do
-    o1 = OccurrenceRecord.new(lat: 35.766701, lon: -74.849999)
-    o2 = OccurrenceRecord.new(lat: 30.76, lon: -74.849999)
+    o1 = OccurrenceRecord.new(lat: 35.766701, lon: -74.859999, taxon_class: 'Reptilia', basis_of_record: 'PRESERVED_SPECIMEN')
+    o2 = OccurrenceRecord.new(lat: 30.76, lon: -74.849999, taxon_class: 'Reptilia', basis_of_record: 'PRESERVED_SPECIMEN')
 
-    refute  o1.duplicate?(o2)
+    records = OccurrenceRecord.filter([o1, o2])
+    assert_equal 2, records.count
+    assert_equal 'g', records.first.flag
   end
 
   test "duplicate if everything else same" do
@@ -69,7 +71,7 @@ class OccurrenceRecordTest < ActiveSupport::TestCase
 
   test ".filter" do
     # FIXME: hard to test
-    str = "KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES"
+    str = "KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides			MATERIAL_SAMPLE	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES			KY172636	2014-04-07T00:00:00"
     result = OccurrenceRecord.filter([OccurrenceRecord.from_str(str), OccurrenceRecord.from_str(str.sub('2306662591', '2306662592')), OccurrenceRecord.from_str(str.sub('2306662591', '2306662593'))])
     assert_equal 1, result.count
     assert_equal "KY172636", result.first.accession
@@ -77,7 +79,7 @@ class OccurrenceRecordTest < ActiveSupport::TestCase
   end
 
   test "#from_str" do
-    str = "KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES"
+    str = "KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides			MATERIAL_SAMPLE	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES			KY172636	2014-04-07T00:00:00"
     o = OccurrenceRecord.from_str(str)
     assert_equal "KY172636", o.accession
     assert_equal "2306662591", o.gbif_id
@@ -85,13 +87,15 @@ class OccurrenceRecordTest < ActiveSupport::TestCase
     assert_equal "Marcusenius cyprinoides", o.taxon_species
     assert_equal "MATERIAL_SAMPLE", o.basis_of_record
     assert_equal "MATERIAL_SAMPLE", o.basis_of_record
-    assert_equal "", o.geodetic_datum.to_s
     assert_equal "GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES", o.issue
 
   end
 
   test "#to_str" do
-    str = "KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides		MATERIAL_SAMPLE			GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES"
-    assert_equal str, OccurrenceRecord.from_str(str).to_str
+    str = "KY172636	2306662591	7.88	34.43	Animalia	Chordata	Actinopterygii	Osteoglossiformes	Mormyridae	Marcusenius	Marcusenius cyprinoides			MATERIAL_SAMPLE	GEODETIC_DATUM_ASSUMED_WGS84COUNTRY_DERIVED_FROM_COORDINATES			KY172636	2014-04-07T00:00:00"
+    record = OccurrenceRecord.from_str(str)
+    assert_equal str + "\t", record.to_str
+    record.flag = 'g'
+    assert_equal str + "\tg", record.to_str
   end
 end
