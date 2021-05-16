@@ -151,6 +151,10 @@ class Species < ActiveRecord::Base
     end
   end
 
+  def empty_afa_files
+    absolute_path.glob('*.afa').select {|f| f.size == 0 }
+  end
+
   # which file has the most sequences?
   def calculate_max_seqs
     file_summaries.map(&:seqs).max
