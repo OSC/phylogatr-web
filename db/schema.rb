@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210429010049) do
+ActiveRecord::Schema.define(version: 20210515133101) do
 
   create_table "files", force: :cascade do |t|
     t.integer "species_id", limit: 4
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20210429010049) do
     t.string  "identifier",                       limit: 255
     t.date    "event_date"
     t.text    "genes",                            limit: 65535
+    t.string  "flag",                             limit: 255
   end
 
   add_index "occurrences", ["accession"], name: "index_occurrences_on_accession", using: :btree
