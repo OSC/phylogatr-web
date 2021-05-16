@@ -16,11 +16,11 @@ module load pcp
 cp /fs/project/PAS1604/pipeline/dev/genes.tar.gz $TMPDIR
 time (cd $TMPDIR; tar xzf genes.tar.gz)
 
+# FIXME: test: is it enough to set TIMEOUT when submitting the job?
 
 # GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:alignpcp
-
 # TIMEOUT=10m GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:alignpcp
-TIMEOUT=60m GENBANK_ROOT=$TMPDIR/genes ALIGNMENTS_CACHE_PATH=/fs/project/PAS1604/pipeline/dev/genes.db bin/rake pipeline:alignpcp
+GENBANK_ROOT=$TMPDIR/genes ALIGNMENTS_CACHE_PATH=/fs/project/PAS1604/pipeline/dev/genes.db bin/rake pipeline:alignpcp
 
 
 # tar up genes with alignments and copy back
