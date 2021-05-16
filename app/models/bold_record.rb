@@ -21,10 +21,16 @@ class BoldRecord
     sequence
   )
 
-  validates_presence_of :lat, :lng
+  validates_each :lat, :lng do |record, attr, value|
+    record.errors.add attr, "nil or 0" unless value.present? && BoldRecord.float_rounded(value) != 0
+  end
 
   HEADERS.each do |h|
     attr_accessor h
+  end
+
+  def self.float_rounded(value)
+    value.to_f.round(2)
   end
 
   def self.from_str(str)
