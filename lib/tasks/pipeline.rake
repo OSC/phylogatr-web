@@ -329,4 +329,15 @@ namespace :pipeline do
   task update_unaligned_species_metrics: :environment do
     Species.where(aligned: false).each(&:update_metrics!)
   end
+
+  desc "delete species and occurrences that have 0 or few sequences"
+  task clean_db: :environment do
+    # first delete all fasta files that have only 1 or 2 sequences
+    # this call update_metrics on each modified Species
+    Species.find_each {|s| s.delete_files_with_few_sequences }
+
+    # then delete all the Species that have 0 sequences
+    Species.where(total_seqs: 0).find_each {|s| s.occurrences.delete_all }
+    Species.where(total_seqs: 0).delete_all
+  end
 end

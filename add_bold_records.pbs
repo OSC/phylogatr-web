@@ -4,6 +4,8 @@
 #SBATCH -t 01:00:00
 #SBATCH --job-name="add_bold_phylogatr"
 
+set -xe
+
 module load ruby
 
 export PROJ=/fs/project/PAS1604/pipeline/dev

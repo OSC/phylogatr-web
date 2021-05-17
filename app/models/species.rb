@@ -109,9 +109,18 @@ class Species < ActiveRecord::Base
 
   # FIXME: this method should not exist. see above.
   def all_files_aligned?
+    return false unless files.count > 1 # have to be at least 2 files to be aligned
     # for every fa file there is a corresponding afa file
     # means that chopping off the extensions there will be 2 of every file
+    #
+    # basename('') chops off both the prefix and the suffix provided so
+    # /path/to/foo.fa => foo
     (absolute_path.glob('*.fa').map {|f| f.basename('.fa')} - absolute_path.glob('*.afa').map {|f| f.basename('.afa')}).empty?
+  end
+
+  def files_with_few_sequences
+    # 3 sequences is 6 lines
+    absolute_path.glob('*.fa').select {|f| f.each_line.count < 6  }
   end
 
   def files
@@ -146,9 +155,28 @@ class Species < ActiveRecord::Base
     absolute_path.glob('*.afa').each do |f|
       if f.size == 0
         $stderr.puts "deleted empty file: #{f.to_s}"
-        f.unlink 
+        f.unlink
       end
     end
+  end
+
+  def delete_files_with_few_sequences
+    deleted_files = false
+
+    files_with_few_sequences.each do |path|
+      afapath = path.sub(/fa$/, 'afa')
+
+      path.unlink
+      $stderr.puts "deleted file with few sequences: #{path.to_s}"
+      if afapath.file?
+        afapath.unlink
+        $stderr.puts "deleted file with few sequences: #{afapath.to_s}"
+      end
+
+      deleted_files = true
+    end
+
+    update_metrics! if deleted_files
   end
 
   def empty_afa_files

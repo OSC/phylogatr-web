@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH -t 02:00:00
+#SBATCH --job-name="clean_phylogatr"
+
+set -xe
+
+module load ruby
+
+export PROJ=/fs/project/PAS1604/pipeline/dev
+
+cd $SLURM_SUBMIT_DIR
+
+cp $PROJ/genes.tar.gz $TMPDIR
+time (cd $TMPDIR; tar xzf genes.tar.gz)
+
+# clean database after deleting files
+time GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:clean_db
+
+# copy modified genes.tar.gz back
+
+time (cd $TMPDIR; tar czf genes2.tar.gz genes)
+cp $TMPDIR/genes2.tar.gz $PROJ/genes.tar.gz
