@@ -21,6 +21,7 @@ class Occurrence < ActiveRecord::Base
       basis_of_record
       coordinate_uncertainty_in_meters
       issue
+      flag
     )
   end
 
