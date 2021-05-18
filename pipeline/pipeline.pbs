@@ -69,44 +69,50 @@ function generate_occurrence_files {
     cp -r $TMPDIR/*idx.occurrences $INDEXES_CACHE_DIR
 }
 
+function link_occurrence_and_genes {
+    #    3. for each relevant accession, read flatfile format sequence data and corresponding occurrence record and:
+    #       1. append organism to last column if genbank organism differs from occurrence record taxonomy, or empty string
+    #       2. write occurrence record with new column to a new output file
+    #       3. create directory to store sequence data
+    #       4. for each gene, use lookup to get gene short name for gene, then create directory and write gene and sequences as files
+    #       5. write gene metadata record to file
+
+    ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
+        ruby -ne 'puts %Q[invoke write-genes #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{$_.strip} #{ENV["TMPDIR"]}]' > $TMPDIR/run_pipeline_cmds
+
+    srun parallel-command-processor $TMPDIR/run_pipeline_cmds
+}
+
+function collect_files {
+    cat $TMPDIR/*.genes.tsv.occurrences > $TMPDIR/gbif_occurrences_final.tsv
+    cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
+}
+
+function trim_files {
+    # get rid of occurrences and genes that do not have 3 genes or more
+    cut -f1 $TMPDIR/genes.tsv | sort | uniq -c | sort -n | ruby -ne 'puts $_.strip if($_.to_i > 2)' | cut -d ' ' -f2 | sort -k 1b,1 > $TMPDIR/genes_with_gt2_seqs
+    invoke trim-genes-and-occurrences-by-fasta-paths $TMPDIR/genes.tsv $TMPDIR/gbif_occurrences_final.tsv $TMPDIR/genes_with_gt2_seqs
+}
+
+function create_genes_directory {
+    mv $TMPDIR/genes.tsv.trimmed $TMPDIR/genes.tsv
+    mkdir $TMPDIR/genes
+    cat $TMPDIR/genes.tsv | ruby genes.rb $TMPDIR/genes
+    cd $TMPDIR
+    tar czf genes.tar.gz genes
+}
+
+function copy_results_to_output_dir {
+    cp genes.tar.gz $OUTPUT_DIR
+    cp genes.tsv $OUTPUT_DIR/genes.tsv
+    cp $TMPDIR/gbif_occurrences_final.tsv.trimmed $OUTPUT_DIR/gbif_occurrences_final.tsv
+}
+
 time expand_gbif_occurrences
 time generate_indexes
 time generate_occurrence_files
-
-#    3. for each relevant accession, read flatfile format sequence data and corresponding occurrence record and:
-#       1. append organism to last column if genbank organism differs from occurrence record taxonomy, or empty string
-#       2. write occurrence record with new column to a new output file
-#       3. create directory to store sequence data
-#       4. for each gene, use lookup to get gene short name for gene, then create directory and write gene and sequences as files
-#       5. write gene metadata record to file
-
-ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
-    ruby -ne 'puts %Q[invoke write-genes #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{$_.strip} #{ENV["TMPDIR"]}]' > $TMPDIR/run_pipeline_cmds
-
-srun parallel-command-processor $TMPDIR/run_pipeline_cmds
-
-
-# 4. cat all gene files together into 1
-cat $TMPDIR/*.genes.tsv.occurrences > $TMPDIR/gbif_occurrences_final.tsv
-cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
-
-# 5. get rid of occurrences and genes that do not have 3 genes or more
-cut -f1 $TMPDIR/genes.tsv | sort | uniq -c | sort -n | ruby -ne 'puts $_.strip if($_.to_i > 2)' | cut -d ' ' -f2 | sort -k 1b,1 > $TMPDIR/genes_with_gt2_seqs
-invoke trim-genes-and-occurrences-by-fasta-paths $TMPDIR/genes.tsv $TMPDIR/gbif_occurrences_final.tsv $TMPDIR/genes_with_gt2_seqs
-
-
-cp $TMPDIR/gbif_occurrences_final.tsv.trimmed $OUTPUT_DIR/gbif_occurrences_final.tsv
-
-# 6. create $OUTPUT/ genes/, genes.tar.gz, and genes.tsv
-mv $TMPDIR/genes.tsv.trimmed $TMPDIR/genes.tsv
-mkdir $TMPDIR/genes
-
-# create the directory structure from the genes.tsv file
-cat $TMPDIR/genes.tsv | ruby genes.rb $TMPDIR/genes
-
-# create tarball for future use
-cd $TMPDIR
-tar czf genes.tar.gz genes
-cp genes.tar.gz $OUTPUT_DIR
-
-cp genes.tsv $OUTPUT_DIR/genes.tsv
+time link_occurrence_and_genes
+time collect_files
+time trim_files
+time create_genes_directory
+time copy_results_to_output_dir
