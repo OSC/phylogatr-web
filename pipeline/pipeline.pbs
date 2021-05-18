@@ -31,10 +31,14 @@ function expand_gbif_occurrences {
         cp $GBIF_PATH_EXPANDED $TMPDIR/gbif_occurrences.csv.sorted
     else
         echo "Generating expanded GBIF file"
-        split -d -n 27 $GBIF_PATH $TMPDIR/x
-        ls -1 $TMPDIR/x* | \
-          ruby -ne 'puts %Q[invoke expand-occurrences #{$_.strip} #{$_.strip}.expanded]' | \
-          srun parallel-command-processor
+        split -d -n $SLURM_NTASKS $GBIF_PATH $TMPDIR/x
+
+        for i in $TMPDIR/x*
+        do
+          invoke expand-occurrences $i $i.expanded &
+        done
+        wait
+
         cat $TMPDIR/x*expanded > $TMPDIR/gbif_occurrences.csv
         rm $TMPDIR/x*
 
@@ -51,7 +55,7 @@ function generate_indexes {
     else
         mkdir -p $INDEXES_CACHE_DIR
 
-        for i in $GENBANK_DIR/gb{inv,mam,pln,pri,rod,vrt}*seq 
+        for i in $GENBANK_DIR/gb{inv,mam,pln,pri,rod,vrt}*seq
         do
             echo "invoke make-index $i $TMPDIR"
         done | srun parallel-command-processor
@@ -76,11 +80,10 @@ function link_occurrence_and_genes {
     #       3. create directory to store sequence data
     #       4. for each gene, use lookup to get gene short name for gene, then create directory and write gene and sequences as files
     #       5. write gene metadata record to file
-
-    ls -1 "$GENBANK_DIR"/gb{inv,mam,pln,pri,rod,vrt}*seq | \
-        ruby -ne 'puts %Q[invoke write-genes #{ENV["TMPDIR"]}/#{File.basename($_.strip)}.idx.occurrences #{$_.strip} #{ENV["TMPDIR"]}]' > $TMPDIR/run_pipeline_cmds
-
-    srun parallel-command-processor $TMPDIR/run_pipeline_cmds
+    for i in $GENBANK_DIR/gb{inv,mam,pln,pri,rod,vrt}*seq
+    do
+        echo "invoke write-genes $TMPDIR/$(basename $i).idx.occurrences $i $TMPDIR"
+    done | srun parallel-command-processor
 }
 
 function collect_files {
