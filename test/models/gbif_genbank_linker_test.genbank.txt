@@ -1,0 +1,609 @@
+GBVRT3.SEQ          Genetic Sequence Data Bank
+                         October 15 2019
+
+                NCBI-GenBank Flat File Release 234.0
+
+              Other Vertebrate Sequences (Part 3)
+
+   39409 loci,   105465132 bases, from    39409 reported sequences
+
+
+LOCUS       AY099992                1114 bp    DNA     linear   VRT 03-OCT-2013
+DEFINITION  Typhlops platycephalus voucher CAS:HERP:200736 cytochrome b (cytb)
+            gene, partial cds; mitochondrial.
+ACCESSION   AY099992
+VERSION     AY099992.1
+KEYWORDS    .
+SOURCE      mitochondrion Antillotyphlops platycephalus (flathead worm snake)
+  ORGANISM  Antillotyphlops platycephalus
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Lepidosauria; Squamata; Bifurcata; Unidentata; Episquamata;
+            Toxicofera; Serpentes; Typhlopoidea; Typhlopidae; Antillotyphlops.
+REFERENCE   1  (bases 1 to 1114)
+  AUTHORS   Slowinski,J.B. and Lawson,R.
+  TITLE     Snake phylogeny: evidence from nuclear and mitochondrial genes
+  JOURNAL   Mol. Phylogenet. Evol. 24 (2), 194-202 (2002)
+   PUBMED   12144756
+REFERENCE   2  (bases 1 to 1114)
+  AUTHORS   Lawson,R.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (25-APR-2002) Osher Foundation Laboratory for Molecular
+            Systematics, California Academy of Sciences, Golden Gate Park, San
+            Francisco, CA 94118, USA
+FEATURES             Location/Qualifiers
+     source          1..1114
+                     /organism="Antillotyphlops platycephalus"
+                     /organelle="mitochondrion"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="CAS:HERP:200736"
+                     /db_xref="taxon:159176"
+                     /country="Puerto Rico"
+     gene            1..>1114
+                     /gene="cytb"
+     CDS             1..>1114
+                     /gene="cytb"
+                     /codon_start=1
+                     /transl_table=2
+                     /product="cytochrome b"
+                     /protein_id="AAM47766.1"
+                     /translation="MNLKNIKSSMMDIPTPTNISAMWNFGSLLMMCLMIQILTGLFLA
+                     MHYTADISLAFSSIIHICRNVNAGWLIQNIHANGASLFFMCMYIHIARGLYYGSYMYK
+                     NTWFIGVTILLATMLTAFLGYVLPWGQMSLWGATVITNLLSAIPYIGTTLVTWIWGGF
+                     SISNSTLTRFFTFHFMLPFVIIALTAIHILFLHETGSNNPLGINSNTDKIQFHPYFTF
+                     KDILGIALTLTTLLTMVFFFPNLLGDPENFSKANPMSTPVHIKPEWYFLFAYAILRSI
+                     PNKLGGVMALLASILVLMIMPMTHTSKQRTKTFQPLSQILLWLLLTTVVLLTWVATKP
+                     VEYPFIILGQLTSVMYFSIFIIMLPMTAMMENKIIWP"
+ORIGIN      
+        1 atgaacttaa aaaatatcaa gtcctctata atagatatcc caactccaac caatatctca
+       61 gcgatatgaa acttcggctc actactaata atatgcttaa taatccaaat cttaactgga
+      121 ctattcttag ctatacatta cacagcagat atctcactag ccttctcctc aatcattcac
+      181 atctgtcgaa acgtaaatgc aggatgacta atccaaaaca ttcatgccaa cggggcctca
+      241 ctattcttca tatgcatata cattcatatt gcccgcggat tatactacgg ctcatacata
+      301 tacaaaaata catgattcat cggagtcacc atccttctag caacaatact cactgccttc
+      361 ctaggatacg tactaccatg aggacaaata tcactatgag gggcaacagt aatcacaaac
+      421 ttactttctg ctattccata tatcggaaca acactagtaa catgaatctg agggggattc
+      481 tcaattagca actcaaccct aacacgattc ttcacattcc acttcatatt accatttgta
+      541 atcatcgccc ttacagctat ccacatccta tttctacacg aaacaggatc aaacaaccca
+      601 cttggtatca actcaaacac cgataaaatc caattccacc cgtacttcac attcaaagac
+      661 atcctaggca ttgcactgac tctaacaacc ctgctaacca tggtattttt cttcccaaac
+      721 cttctaggtg acccggaaaa tttctcaaaa gccaacccaa tatccacccc agtccacatc
+      781 aaaccagagt ggtacttcct atttgcctac gccattctac gatcaatccc taacaaatta
+      841 gggggggtaa tagcacttct agcatcaatc ctagtattaa taattatacc aataacccac
+      901 acatcaaaac aacgaacaaa aaccttccaa ccattatcac aaatcttact atgactacta
+      961 ctaaccactg tagtactatt aacctgagta gcaacaaaac cagtagaata cccatttatt
+     1021 attctaggac aactaacatc cgtaatatac ttctccatct ttattatcat actacctata
+     1081 actgccataa tagaaaacaa aattatttga ccat
+//
+//
+LOCUS       AY099996                1116 bp    DNA     linear   VRT 03-OCT-2013
+DEFINITION  Anguis fragilis voucher CAS:HERP:173016 cytochrome b (cytb) gene,
+            complete cds; mitochondrial.
+ACCESSION   AY099996
+VERSION     AY099996.1
+KEYWORDS    .
+SOURCE      mitochondrion Anguis fragilis (Slow worm)
+  ORGANISM  Anguis fragilis
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Lepidosauria; Squamata; Bifurcata; Unidentata; Episquamata;
+            Toxicofera; Anguimorpha; Neoanguimorpha; Anguioidea; Anguidae;
+            Anguis.
+REFERENCE   1  (bases 1 to 1116)
+  AUTHORS   Slowinski,J.B. and Lawson,R.
+  TITLE     Snake phylogeny: evidence from nuclear and mitochondrial genes
+  JOURNAL   Mol. Phylogenet. Evol. 24 (2), 194-202 (2002)
+   PUBMED   12144756
+REFERENCE   2  (bases 1 to 1116)
+  AUTHORS   Lawson,R.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (25-APR-2002) Osher Foundation Laboratory for Molecular
+            Systematics, California Academy of Sciences, Golden Gate Park, San
+            Francisco, CA 94118, USA
+FEATURES             Location/Qualifiers
+     source          1..1116
+                     /organism="Anguis fragilis"
+                     /organelle="mitochondrion"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="CAS:HERP:173016"
+                     /db_xref="taxon:102178"
+                     /country="United Kingdom: England, Kent"
+     gene            1..1116
+                     /gene="cytb"
+     CDS             1..1116
+                     /gene="cytb"
+                     /codon_start=1
+                     /transl_table=2
+                     /product="cytochrome b"
+                     /protein_id="AAM47770.1"
+                     /translation="MTPRKTHPLLKILNNSLIDLPAPPNLSSWWNFGSLLGLCLIVQI
+                     MTGIFLAMHYTPHISLAFSSIAHICRDVQYGWLLRNLHANGASMFFFCIYAHIGRGLY
+                     YGSYTLKKTWYSGVALLLMLMATAFLGYVLPWGQMSFWGATVITNLSSAFPYIGTAIV
+                     QWTWGGFAIDNATLTRFFTLHFALPFGLAGHYMIHLLFLHETGSNNPLGISSNTDKIR
+                     FHPYYTYKDLLGASIFTTILATLALLSPDLLGDPENFNPANPMVTPPHIKPEWYFLFA
+                     YAILRSIPNKIGGVLALLFSVLILVLIPSLHASKQQAMTFRPLSQLTFWFIITNILIL
+                     TWIGAQPVEQPFIIIGQIASTLYFSLFLLIMPHYRPL"
+ORIGIN      
+        1 atgaccccac gaaaaactca cccgcttctt aaaatcctaa ataactccct aattgaccta
+       61 cccgcaccac caaatctgtc ctcatggtga aacttcggct ccctactagg actctgccta
+      121 atcgtacaga ttataaccgg gatcttccta gccatgcact acacccccca catctcccta
+      181 gcattctcat ctattgcaca catctgccga gacgtacagt atgggtgatt attacgaaac
+      241 ctgcatgcca acggagcttc catgttcttc ttctgcatct acgcccatat tggacgaggc
+      301 ttatattacg gctcctacac acttaaaaaa acatgatact ccggagtcgc acttctacta
+      361 atacttatag ccacagcttt tctcggatac gttctcccat gaggacaaat gtcattctgg
+      421 ggagcaacag tcatcaccaa cctctcctct gctttcccct atatcgggac tgctattgta
+      481 caatgaacct gagggggctt tgctattgac aatgccaccc tcacacgatt cttcacacta
+      541 cactttgccc tcccttttgg acttgccggg cattatataa tccaccttct attccttcat
+      601 gaaacagggt ccaacaaccc gctcggcatc tcatcaaaca cagacaaaat ccgatttcac
+      661 ccctactaca catacaagga tctcctgggg gcctccatct ttacaacaat cctagcaacc
+      721 ctagccctac tatcaccaga cctcctagga gacccagaaa atttcaaccc ggctaacccg
+      781 atagtaactc ccccacacat taaacccgag tggtacttcc tatttgctta cgcaatcctc
+      841 cgctcaatcc cgaacaaaat cgggggtgtg ttagccttat tattctcagt actaattctt
+      901 gttctaatcc cgtcactcca cgcatctaaa caacaggcta taaccttccg cccactatca
+      961 caactaacat tctgatttat tattaccaat atccttattt taacctgaat cggagcccag
+     1021 ccagtagaac aaccatttat catcattgga caaatcgcat caaccctata ttttagcctt
+     1081 ttcctcctaa ttatacccca ttatcgccct cttaga
+//
+LOCUS       AY308768                1455 bp    DNA     linear   VRT 25-JUL-2016
+DEFINITION  Perca flavescens recombinase activating gene-1 (RAG1) gene, partial
+            cds.
+ACCESSION   AY308768
+VERSION     AY308768.1
+KEYWORDS    .
+SOURCE      Perca flavescens (yellow perch)
+  ORGANISM  Perca flavescens
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Actinopterygii; Neopterygii; Teleostei; Neoteleostei;
+            Acanthomorphata; Eupercaria; Perciformes; Percoidei; Percidae;
+            Percinae; Perca.
+REFERENCE   1  (bases 1 to 1455)
+  AUTHORS   Holcroft,N.I.
+  TITLE     A molecular test of alternative hypotheses of tetraodontiform
+            (Acanthomorpha: Tetraodontiformes) sister group relationships using
+            data from the RAG1 gene
+  JOURNAL   Mol. Phylogenet. Evol. 32 (3), 749-760 (2004)
+   PUBMED   15288052
+REFERENCE   2  (bases 1 to 1455)
+  AUTHORS   Holcroft,N.I.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (28-MAY-2003) Division of Ichthyology, Natural History
+            Museum and Biodiversity Research Center, Dept. of Ecology and
+            Evolutionary Biology, University of Kansas, 1345 Jayhawk Blvd,
+            Lawrence, KS 66045-7561, USA
+FEATURES             Location/Qualifiers
+     source          1..1455
+                     /organism="Perca flavescens"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="KU 29844 (KU T817)"
+                     /db_xref="taxon:8167"
+     gene            <1..>1455
+                     /gene="RAG1"
+     mRNA            <1..>1455
+                     /gene="RAG1"
+                     /product="recombinase activating gene-1"
+     CDS             <1..>1455
+                     /gene="RAG1"
+                     /codon_start=1
+                     /product="recombinase activating gene-1"
+                     /protein_id="AAQ76914.1"
+                     /translation="SLRAAEKELLPGFHEFEWQPALKNVSTSCSVGIINGVSGWASSV
+                     DDFPADTITRRFRYDVALVSALKDLEEDIMEGLSESGMEDSACTSGFSVMIKESCDGM
+                     GDVSEKHGGGPAVPEKAVRFSFTIMSISVLADEEEKEVTIFTEPKPNSELSCKPLCLM
+                     FVDESDHETLTAVLGPIVAERNAMKESRLIVSMGGLPRSFRFHFRGTGYDEKMVREME
+                     GLEASGSTYVCTLCDSTRAEASQNMVLHSVTRSHEENLDRYEIWRTNPFSESVDELRD
+                     RVKGVSAKPFMETHLTLDALHCDIGNATEFYKIFQDEIGEVYKKVNPSREERRSWRAA
+                     LDKQLRKKLKLRPVMRMNGNYARRLMTQEAVEVVCELVPSEERREALRELIRIYLQMK
+                     PVWRASCPAKECPDQLCRYSFNSQRFADILSSTFKYRYDGKITNYLHKTLAHVPEIIE
+                     RDGSIGAWASEGNESANKLFRRFRKMNARQSKAFE"
+ORIGIN      
+        1 tccctgcgag ctgcagagaa ggagcttctc cctggctttc acgagtttga atggcagccc
+       61 gctctcaaga atgtgtctac atcttgcagt gttggcatta ttaatggagt ctctggatgg
+      121 gcttcctcgg tggatgactt cccagctgac accatcactc ggcggtttcg ctatgatgtg
+      181 gcactggtgt cagcattaaa agatctggag gaggacatca tggaggggct gagcgagagt
+      241 gggatggaag acagcgcttg cacctcaggc ttcagtgtca tgatcaagga atcctgtgat
+      301 ggcatgggcg atgtcagcga gaagcacggt ggaggaccag ctgttcctga gaaggctgta
+      361 cgtttttctt tcactattat gtctatctcc gtcctggcag acgaggagga gaaagaggtt
+      421 accatcttca ctgagccaaa gccaaactca gaactgtcct gtaagcccct ttgcctgatg
+      481 tttgtggatg agtcagacca tgagacgctc acagccgtcc tggggcctat agttgcagag
+      541 cgtaatgcaa tgaaagagag caggctcatc gtatccatgg gtggactacc tcgctccttt
+      601 cgctttcact tcagaggcac gggatatgat gagaagatgg tgcgtgagat ggagggcctc
+      661 gaggcctcag ggtccaccta cgtgtgcact ctttgtgact ccactcgggc agaggcctct
+      721 caaaacatgg tgctacattc cgtcacccgc agtcatgaag agaacctaga tcggtacgaa
+      781 atatggagaa ccaacccctt ttctgagtct gtagatgagc tgcgagacag agtcaagggg
+      841 gtctctgcca agcccttcat ggagacccat ttaacgctgg acgcattgca ctgcgacatc
+      901 ggcaatgcca ctgagttcta caaaatcttc caggatgaga tcggagaggt gtacaaaaag
+      961 gtcaacccca gtcgggagga acggcgcagc tggagggcgg ccctggataa acagctgagg
+     1021 aagaagttga agctgagacc ggtgatgagg atgaatggga actatgcccg gaggctaatg
+     1081 acccaagagg ctgtggaggt ggtgtgtgar ctggtgcctt cagaggagag gagggaggcc
+     1141 ctgagggagc ttataaggat ctacctccag atgaagcctg tgtggcgcgc ctcctgccct
+     1201 gccaaggagt gccccgacca gctgtgccgc tacagcttta actcccagcg ctttgctgac
+     1261 attctctcct ctacatttaa atataggtac gatggaaaga taaccaatta cctgcacaag
+     1321 accctggccc acgtgcctga aatcatagag agagatggct ccataggagc ttgggccagc
+     1381 gaagggaacg agtcagcaaa caaactgttc aggcgtttcc ggaagatgaa cgctcgtcag
+     1441 tcaaaggcct ttgag
+//
+LOCUS       AY308769                1455 bp    DNA     linear   VRT 25-JUL-2016
+DEFINITION  Bothus lunatus recombinase activating gene-1 (RAG1) gene, partial
+            cds.
+ACCESSION   AY308769
+VERSION     AY308769.1
+KEYWORDS    .
+SOURCE      Bothus lunatus (plate fish)
+  ORGANISM  Bothus lunatus
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Actinopterygii; Neopterygii; Teleostei; Neoteleostei;
+            Acanthomorphata; Carangaria; Pleuronectiformes; Pleuronectoidei;
+            Bothidae; Bothus.
+REFERENCE   1  (bases 1 to 1455)
+  AUTHORS   Holcroft,N.I.
+  TITLE     A molecular test of alternative hypotheses of tetraodontiform
+            (Acanthomorpha: Tetraodontiformes) sister group relationships using
+            data from the RAG1 gene
+  JOURNAL   Mol. Phylogenet. Evol. 32 (3), 749-760 (2004)
+   PUBMED   15288052
+REFERENCE   2  (bases 1 to 1455)
+  AUTHORS   Holcroft,N.I.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (28-MAY-2003) Division of Ichthyology, Natural History
+            Museum and Biodiversity Research Center, Dept. of Ecology and
+            Evolutionary Biology, University of Kansas, 1345 Jayhawk Blvd,
+            Lawrence, KS 66045-7561, USA
+FEATURES             Location/Qualifiers
+     source          1..1455
+                     /organism="Bothus lunatus"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="USNM 349048 (KU T154)"
+                     /db_xref="taxon:94921"
+     gene            <1..>1455
+                     /gene="RAG1"
+     mRNA            <1..>1455
+                     /gene="RAG1"
+                     /product="recombinase activating gene-1"
+     CDS             <1..>1455
+                     /gene="RAG1"
+                     /codon_start=1
+                     /product="recombinase activating gene-1"
+                     /protein_id="AAQ76915.1"
+                     /translation="TLRAFEKELLPGFHQFEWQPALKNVSTSCDVGIINGLSGWTSSV
+                     DDSPAETITRRFRYDVALVSAMKDLEEDIVEGLRESGMEDSACTSGFKVMIKECCDGM
+                     GDVSEKHGGGPALPEKAVRFSFTVMSVSVLADDGSGEVTVFTEPKPNSELSCKPLCLM
+                     FVDESDHETLTAVLGPIVAERNAMKESRLILSIGGLPRLFRFHFRGTGYDEKMVRELE
+                     GLEASGSTYVCTLCDSSRAEASENMVLHSITRSHEENLERYEIWRTNPFSESAEELRD
+                     RVKGVSAKPFMETQPTMDALHCDIGNATEFYKIFQDEIGEMHKRVNPSREERRSWRAA
+                     LDKQLRRKMKLKPVMRMNGNYARKLMTQETVEAVCELVPSEERREALRELVRLYLQMK
+                     PVWRATCPAKECPDQLCRYSFNSQRFAELLSSTFKYRYNGKITNYLHKTLAHVPEIIE
+                     RDGSIGAWASEGNESANKLFRRFRKMNARQSKVFE"
+ORIGIN      
+        1 actctccgtg ccttcgagaa ggagcttctc cccggcttcc accagtttga gtggcagcct
+       61 gccctcaaga acgtgtcaac ctcttgcgac gtgggcatca ttaacggcct ctccggatgg
+      121 acctcctcag tggacgactc ccccgccgag accatcacca ggcgctttcg ctatgatgtg
+      181 gcgctggtgt cggcaatgaa agacctggag gaggacatcg tggaggggtt gagggagagt
+      241 gggatggagg acagcgcctg cacctctggt ttcaaagtca tgatcaagga gtgctgtgac
+      301 ggcatgggcg acgtcagcga gaagcacggg ggagggccgg cacttccgga aaaggccgta
+      361 cgtttctcct tcaccgtcat gtccgtctct gtcctagcag atgatggatc gggtgaggtc
+      421 accgtcttca ccgagccaaa gcccaactca gaactgtcgt gtaagcccct ctgcctcatg
+      481 tttgtggacg aatcagacca tgagaccctt actgccgtcc tgggccctat cgttgctgag
+      541 cgcaatgcaa tgaaggagag ccgcctcatc ctgtccatag gtggcctgcc tcgcttgttc
+      601 cgctttcact tcagaggcac gggatatgac gagaagatgg tgcgcgagct ggagggtctg
+      661 gaagcctcgg gctccactta cgtctgcacg ctgtgtgatt ccagtcgtgc cgaagcctca
+      721 gagaacatgg tgctgcactc catcacccgc tcacatgagg aaaacctgga gcgctatgag
+      781 atatggcgca ccaatccttt ctccgagtcg gcggaggagc tgcgagacag ggtcaaaggc
+      841 gtctcagcca agcccttcat ggagacccag cccaccatgg acgctttgca ttgtgacatt
+      901 ggcaatgcca ctgagttcta caagatattc caggacgaga tcggcgagat gcacaagagg
+      961 gtcaacccca gccgggagga aaggcgcagc tggcgggcgg cgctggataa gcagctgagg
+     1021 aggaagatga aactcaaacc agtgatgagg atgaacggga actacgcccg caagctcatg
+     1081 acccaggaaa cggtggaggc ggtgtgtgag ctggtgccct cggaggarcg gagggaggcc
+     1141 cttagggaac tggtcaggct ctaccttcag atgaagcctg tgtggcgcgc cacctgccct
+     1201 gccaaggagt gccccgacca gctgtgccgc tacagcttca actcacagcg ctttgccgag
+     1261 ctcctctcgt ccaccttcaa gtacaggtac aatgggaaga tcaccaacta cctccacaag
+     1321 accctggctc atgtacctga gatcatcgag agggatgggt caataggggc ctgggccagt
+     1381 gagggaaacg agtcggccaa caaactcttc aggcgctttc ggaagatgaa tgcccggcag
+     1441 tccaaggtgt tcgaa
+//
+LOCUS       AY308770                1446 bp    DNA     linear   VRT 25-JUL-2016
+DEFINITION  Sargocentron vexillarium recombinase activating gene-1 (RAG1) gene,
+            partial cds.
+ACCESSION   AY308770
+VERSION     AY308770.1
+KEYWORDS    .
+SOURCE      Neoniphon vexillarium (dusky squirrelfish)
+  ORGANISM  Neoniphon vexillarium
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Actinopterygii; Neopterygii; Teleostei; Neoteleostei;
+            Acanthomorphata; Holocentriformes; Holocentridae; Neoniphon.
+REFERENCE   1  (bases 1 to 1446)
+  AUTHORS   Holcroft,N.I.
+  TITLE     A molecular test of alternative hypotheses of tetraodontiform
+            (Acanthomorpha: Tetraodontiformes) sister group relationships using
+            data from the RAG1 gene
+  JOURNAL   Mol. Phylogenet. Evol. 32 (3), 749-760 (2004)
+   PUBMED   15288052
+REFERENCE   2  (bases 1 to 1446)
+  AUTHORS   Holcroft,N.I.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (28-MAY-2003) Division of Ichthyology, Natural History
+            Museum and Biodiversity Research Center, Dept. of Ecology and
+            Evolutionary Biology, University of Kansas, 1345 Jayhawk Blvd,
+            Lawrence, KS 66045-7561, USA
+FEATURES             Location/Qualifiers
+     source          1..1446
+                     /organism="Neoniphon vexillarium"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="KU 29729 (KU T3874)"
+                     /db_xref="taxon:245691"
+     gene            <1..>1446
+                     /gene="RAG1"
+     mRNA            <1..>1446
+                     /gene="RAG1"
+                     /product="recombinase activating gene-1"
+     CDS             <1..>1446
+                     /gene="RAG1"
+                     /codon_start=1
+                     /product="recombinase activating gene-1"
+                     /protein_id="AAQ76916.1"
+                     /translation="RAAEKELLPGYHPFEWQPPLKNVSASCHVGIIDGISGWAASVDD
+                     SPLDTITRRFRYDVALVSALKDLEEDIMEGLRQCGVEDSACTSGFNVLIKESCDGMGD
+                     VSEKHGGGPVVAEKAVRFSFTVMSVSVVVDGDEEVTIFREPKPNSELSCKPLCLMFLD
+                     ESNHEILTAVLGPVVEERNAMKQSRLILSVGGLPRSFRFFFRGTGYDEKMVRDMEGLE
+                     ASGSTYVCTLCDSTRAEASHNMVLHSITRSHDENLERYEIWRTNPFSESVEELRDRVK
+                     GVSAKPFMETQPTLDALHCDIGNATEFYKIFQDEIGEVYKKVNPTREERRGWRAALDK
+                     QLRKKIKLKPVMRMNGNYARKLMTMEAMEVVCELVPTEERREALRELMGLYLQMKPVW
+                     RTTCPAKECPDQLCRYSFNSQRFADLLSTTFKYRYNGKITNYLHKTLAHVPEIIERDG
+                     SIGAWASEGNESANKLFRRFRKMNARQSKSFE"
+ORIGIN      
+        1 cgagccgcag agaaggagct cctccccggc tatcacccat tcgagtggca gcctcccctc
+       61 aagaacgtgt ctgcttcctg ccacgtgggt attattgatg ggatctctgg atgggctgcc
+      121 tcagtggacg actccccact tgacaccatc actcgccgat ttcgctatga tgtggccctg
+      181 gtttcagcct taaaggatct ggaggaggac attatggaag ggctgaggca gtgtggggtg
+      241 gaagacagcg cttgcacgtc aggtttcaat gttttgatca aggaatcttg tgacggtatg
+      301 ggagatgtca gtgagaagca cggcggaggg ccagtggtag ctgagaaagc tgtacgtttc
+      361 tcttttactg tcatgtctgt ctctgtcgta gtagatggag atgaggaggt taccattttc
+      421 agggagccaa agcccaactc agaactgtcc tgcaagcccc tgtgcctgat gtttttggat
+      481 gagtctaacc acgagattct cactgctgtc ctggggcctg tggtcgaaga gcgtaatgcc
+      541 atgaagcaaa gtcgactcat cctgtctgtt ggaggcctgc ctcgatcttt ccggttcttt
+      601 ttcagaggca cgggatatga tgagaagatg gtgcgcgaca tggagggcct agaggcctca
+      661 ggttccacat atgtctgcac tctgtgtgac tccacgcggg cagaggcctc tcacaacatg
+      721 gtgctgcact ccatcacccg cagccacgat gaaaatctgg agcgttatga aatatggagg
+      781 accaatccat tttccgagtc agttgaggag ctgcgagacc gagtcaaagg ggtctcggcc
+      841 aagcccttta tggagaccca gcccaccctg gatgcattac actgtgacat tggtaatgcc
+      901 actgagttct acaaaatctt ccaggatgag ataggagagg tgtacaaaaa ggtcaacccc
+      961 acccgggagg agcggcgggg gtggcgtgca gccctagaca agcagctgag gaagaagata
+     1021 aagctcaagc cggtgatgag gatgaatggg aactatgccc ggaagctaat gacaatggag
+     1081 gcgatggagg tggtgtgtga gctggtgccc acagaagaaa ggagggaggc cctgagggag
+     1141 ctgatggggc tatacctgca gatgaagcct gtgtggcgca ccacctgccc ggccaaggag
+     1201 tgccctgatc agctgtgccg ctacagcttt aactcccagc gctttgctga tctcctttcc
+     1261 actaccttca aatataggta caacggaaag atcaccaatt acctgcacaa aacgctggcc
+     1321 catgttcctg aaatcataga gagagatggc tccataggcg cctgggccag cgaagggaat
+     1381 gagtcagcaa acaaactgtt caggcgcttc cgtaagatga atgcacgtca gtcaaagtca
+     1441 tttgag
+//
+LOCUS       AY308771                1455 bp    DNA     linear   VRT 25-JUL-2016
+DEFINITION  Scomberesox saurus recombinase activating gene-1 (RAG1) gene,
+            partial cds.
+ACCESSION   AY308771
+VERSION     AY308771.1
+KEYWORDS    .
+SOURCE      Scomberesox saurus
+  ORGANISM  Scomberesox saurus
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Actinopterygii; Neopterygii; Teleostei; Neoteleostei;
+            Acanthomorphata; Ovalentaria; Atherinomorphae; Beloniformes;
+            Belonidae; Scomberesox.
+REFERENCE   1  (bases 1 to 1455)
+  AUTHORS   Holcroft,N.I.
+  TITLE     A molecular test of alternative hypotheses of tetraodontiform
+            (Acanthomorpha: Tetraodontiformes) sister group relationships using
+            data from the RAG1 gene
+  JOURNAL   Mol. Phylogenet. Evol. 32 (3), 749-760 (2004)
+   PUBMED   15288052
+REFERENCE   2  (bases 1 to 1455)
+  AUTHORS   Holcroft,N.I.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (28-MAY-2003) Division of Ichthyology, Natural History
+            Museum and Biodiversity Research Center, Dept. of Ecology and
+            Evolutionary Biology, University of Kansas, 1345 Jayhawk Blvd,
+            Lawrence, KS 66045-7561, USA
+FEATURES             Location/Qualifiers
+     source          1..1455
+                     /organism="Scomberesox saurus"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="KU uncat. (KU T2797)"
+                     /db_xref="taxon:129061"
+     gene            <1..>1455
+                     /gene="RAG1"
+     mRNA            <1..>1455
+                     /gene="RAG1"
+                     /product="recombinase activating gene-1"
+     CDS             <1..>1455
+                     /gene="RAG1"
+                     /codon_start=1
+                     /product="recombinase activating gene-1"
+                     /protein_id="AAQ76917.1"
+                     /translation="TLRAAEKELLPGFHQFEWQPALKNVSTSCTVGIINGLSGWAYSV
+                     DDSPAETITRRFRYDVALVAALKDLEEDIMDGLTQNGMEDSACTSGFNVMIKECCDGM
+                     GDVSEKHGGGPAVPEKAVRFSFTVMSISVHGEDDNEQVTIFTEPKPNSELSCKPLCLM
+                     FVDESDHETLTAVLGPVVAERNAMKESRLILSIGGLPRSFRFHFRGTGYDEKMVREME
+                     GLEASGSTYVCTLCDSTRAEAAQNMVLHSITRSHDENLERYEIWRTNPFSESMEELRD
+                     RVKGVSAKAFMETQPTLDALHCDIGNAAEFYKIFQDEIGEVVQKANPSREERRSWRAA
+                     LDKQLRKKMKLKPVMRMNGNYARRLMTLEAVEVVCELVPSEERREVLKELMKLYLEMK
+                     PVWRTTCPAKECPKQLCRYSFNSQRFADLLSSAFKYRYNGKITNYLHKTLAHVPEIIE
+                     RDGSIGAWASEGNESANKLFRRFRKMNARQSKAFE"
+ORIGIN      
+        1 acgctccgag ccgccgagaa agagctcctc cccggctttc accagtttga atggcagcca
+       61 gctctcaaga atgtgtctac atcttgcact gttggtatta ttaatggtct ctctggatgg
+      121 gcatactcag tggatgactc cccagctgag actatcactc gtcgctttcg ctatgatgtt
+      181 gcgctggtgg cagcattaaa ggatctggaa gaggacatca tggacgggct gacacagaat
+      241 gggatggaag acagtgcttg cacctcaggc tttaacgtca tgatcaagga atgttgtgat
+      301 ggcatggggg atgtcagcga gaagcatggc ggaggaccag ctgttcctga gaaagctgtc
+      361 cgcttctctt tcactgttat gtctatctct gtccacggag aagatgacaa tgarcaggtc
+      421 acaattttca ctgaaccaaa gccaaactca gagctgtctt gtaaaccgct ttgcctgatg
+      481 tttgtagacg agtcagacca cgagactctc acagctgtcc tggggcctgt agtcgcagag
+      541 cggaatgcca tgaaagagag ccggttaatc ctatccatag gaggcttgcc acgctccttt
+      601 cgattccact tcaggggtac aggatacgat gaaaagatgg tgcgtgagat ggagggcctg
+      661 gaggcctccg ggtcaacata cgtctgcact ctgtgcgact ccacccgtgc ggaggctgct
+      721 caaaacatgg tgttacattc catcacccgc agccatgatg agaatctaga acgttatgaa
+      781 atatggagaa ccaacccatt ttctgagtct atggaagagc tgcgagacag agtcaaagga
+      841 gtctctgcta aggcattcat ggagacgcag cccacgctag atgcattaca ctgcgacatt
+      901 ggcaatgctg ctgaattcta caaaatcttc caggacgaga ttggcgaagt agtacaaaag
+      961 gcgaacccaa gccgtgaaga gcgacgcagc tggagggcag ccttagataa acagctgagg
+     1021 aagaagatga agcttaaacc agtgatgagg atgaatggga actatgcccg caggctaatg
+     1081 accctggagg ctgtggaggt ggtgtgtgag ctggtgccct cagaggagag gagagaggtc
+     1141 ctgaaagagc ttatgaaact ctatctcgag atgaagcctg tgtggcgcac cacatgcccg
+     1201 gccaaggagt gtcccaagca gctgtgccgc tacagtttta actcccagcg ctttgctgac
+     1261 ctcctctcct ctgccttcaa atataggtac aatggaaaga taaccaatta cctgcacaag
+     1321 actctggctc atgtgcctga aatcatagag agagatggat ctattggagc ctgggccagt
+     1381 gaggggaatg agtcagcaaa caaactgttc aggcgcttca ggaagatgaa cgcacgtcag
+     1441 tcaaaggcct tcgag
+//
+LOCUS       AY308772                1437 bp    DNA     linear   VRT 25-JUL-2016
+DEFINITION  Drepane punctata recombinase activating gene-1 (RAG1) gene, partial
+            cds.
+ACCESSION   AY308772
+VERSION     AY308772.1
+KEYWORDS    .
+SOURCE      Drepane punctata (spotted sicklefish)
+  ORGANISM  Drepane punctata
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Actinopterygii; Neopterygii; Teleostei; Neoteleostei;
+            Acanthomorphata; Eupercaria; Ephippiformes; Drepaneidae; Drepane.
+REFERENCE   1  (bases 1 to 1437)
+  AUTHORS   Holcroft,N.I.
+  TITLE     A molecular test of alternative hypotheses of tetraodontiform
+            (Acanthomorpha: Tetraodontiformes) sister group relationships using
+            data from the RAG1 gene
+  JOURNAL   Mol. Phylogenet. Evol. 32 (3), 749-760 (2004)
+   PUBMED   15288052
+REFERENCE   2  (bases 1 to 1437)
+  AUTHORS   Holcroft,N.I.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (28-MAY-2003) Division of Ichthyology, Natural History
+            Museum and Biodiversity Research Center, Dept. of Ecology and
+            Evolutionary Biology, University of Kansas, 1345 Jayhawk Blvd,
+            Lawrence, KS 66045-7561, USA
+FEATURES             Location/Qualifiers
+     source          1..1437
+                     /organism="Drepane punctata"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="ROM 69918 (KU T1837)"
+                     /db_xref="taxon:75022"
+     gene            <1..>1437
+                     /gene="RAG1"
+     mRNA            <1..>1437
+                     /gene="RAG1"
+                     /product="recombinase activating gene-1"
+     CDS             <1..>1437
+                     /gene="RAG1"
+                     /codon_start=2
+                     /product="recombinase activating gene-1"
+                     /protein_id="AAQ76918.1"
+                     /translation="AEKELLPGFHQFEWQPALKNVSSSCDVGIINGLSGWAFSVDDAP
+                     ADTITRRFRYDVALVSALKDLEEDIMEGLRESGMEDSACTSGFSVMIKESCDGMGDVS
+                     EKHGGGPVVPEKAVRFSFTVMSISVVADEEGEEVTIFTEPKPNSELSCKPLCLMFVDE
+                     SDHETLTAILCPIVAERNAMRESRLILSIGGLLRSFRFHFRSTGYDEKMVREMEGLEA
+                     SGSTYVCTLCDSSRAEASQNMVLHSITRNHEENLERYEIWRTNPFSESVDELRERVKG
+                     VSAKPFMDTHPTLDALHCDIGNATEFYKIFQDEIGEVYQKANPSREERRSWRAALDKQ
+                     LRKKMKLKPVMRMNGNYARRLMTLEAIEVVCELVPSEERREALRELMRLYLQMKPVWR
+                     ATCPAKECPDQLCRYSFNSQRFADLLSSTFKYRYNGKITNYLHKTLAHVPEIIEKDGS
+                     IGAWASEGNESANKLFRRFRKMNARQSKA"
+ORIGIN      
+        1 tgcagagaag gagcttctcc ctggatttca ccagtttgaa tggcagccag ctctcaagaa
+       61 tgtgtcttca tcttgtgatg ttggcattat taatgggctc tctggatggg ctttctcagt
+      121 ggatgacgcc ccggctgaca ccatcactcg gcgatttcgc tatgatgtgg cactggtgtc
+      181 agcattaaag gatctggagg aggacatcat ggaggggctg agagagagtg ggatggaaga
+      241 cagtgcttgc acctcaggct tcagtgtcat gatcaaagaa tcttgtgatg gcatgggcga
+      301 tgtcagtgag aagcacggcg gcggaccagt tgttcctgag aaggctgtac gtttctcttt
+      361 cactgttatg tctatctctg tggtggcaga cgaggagggg gaagaggtta ccatcttcac
+      421 agagccaaag ccaaactcag aactgtcctg taagcccctt tgcctgatgt ttgtggatga
+      481 gtcagaccat gagacactca cagccatcct gtgtcctata gttgcagagc gtaatgcaat
+      541 gagagagagc aggcttatcc tatccatcgg tggactactt cgctccttcc gctttcactt
+      601 cagaagcaca ggatatgatg agaagatggt gcgtgagatg gagggcctcg aggcctcagg
+      661 atccacctat gtctgcacac tttgtgactc tagtcgggca gaggcctctc aaaacatggt
+      721 gctacactcc atcactcgca atcatgaaga gaacctagaa cgttatgaaa tatggagaac
+      781 caaccccttt tctgagtctg tagatgagct gcgggagaga gtcaaagggg tctctgccaa
+      841 gcccttcatg gacacccatc ccacactgga tgcattacac tgtgacatag gcaatgccac
+      901 cgagttctac aaaatcttcc aggatgagat cggggaggtg tatcagaagg ccaaccccag
+      961 ccgggaggaa cggcgcagct ggcgggcagc ccttgataaa cagctgagga agaagatgaa
+     1021 gcttaaaccg gtaatgagga tgaatgggaa ctatgcccgc cggctaatga ccctggaggc
+     1081 tatagaggtc gtgtgtgagc tggtgccctc agaggagagg agggaggccc tgagggagct
+     1141 tatgaggctc tacctccaga tgaagcctgt gtggcgtgcc acctgcccag ccaaggaatg
+     1201 tcctgaccag ctgtgccgct acagctttaa ctcccagcgc tttgctgacc tcctctcctc
+     1261 taccttcaaa tataggtaca atggaaagat aaccaattac ctgcacaaga ccctggccca
+     1321 tgtgcctgaa atcatagaga aagatggatc cataggagcc tgggccagcg aggggaacga
+     1381 gtcggcaaac aaactgttca ggcgtttccg gaagatgaat gcacgtcaat caaaggc
+//
+LOCUS       AY308773                1455 bp    DNA     linear   VRT 25-JUL-2016
+DEFINITION  Chaetodipterus faber recombinase activating gene-1 (RAG1) gene,
+            partial cds.
+ACCESSION   AY308773
+VERSION     AY308773.1
+KEYWORDS    .
+SOURCE      Chaetodipterus faber
+  ORGANISM  Chaetodipterus faber
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Actinopterygii; Neopterygii; Teleostei; Neoteleostei;
+            Acanthomorphata; Eupercaria; Ephippiformes; Ephippidae;
+            Chaetodipterus.
+REFERENCE   1  (bases 1 to 1455)
+  AUTHORS   Holcroft,N.I.
+  TITLE     A molecular test of alternative hypotheses of tetraodontiform
+            (Acanthomorpha: Tetraodontiformes) sister group relationships using
+            data from the RAG1 gene
+  JOURNAL   Mol. Phylogenet. Evol. 32 (3), 749-760 (2004)
+   PUBMED   15288052
+REFERENCE   2  (bases 1 to 1455)
+  AUTHORS   Holcroft,N.I.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (28-MAY-2003) Division of Ichthyology, Natural History
+            Museum and Biodiversity Research Center, Dept. of Ecology and
+            Evolutionary Biology, University of Kansas, 1345 Jayhawk Blvd,
+            Lawrence, KS 66045-7561, USA
+FEATURES             Location/Qualifiers
+     source          1..1455
+                     /organism="Chaetodipterus faber"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="KU photo voucher (KU T131)"
+                     /db_xref="taxon:75018"
+     gene            <1..>1455
+                     /gene="RAG1"
+     mRNA            <1..>1455
+                     /gene="RAG1"
+                     /product="recombinase activating gene-1"
+     CDS             <1..>1455
+                     /gene="RAG1"
+                     /codon_start=1
+                     /product="recombinase activating gene-1"
+                     /protein_id="AAQ76919.1"
+                     /translation="TLRAAEKELLPGFHQFEWQPALKNVSASCNVGIINGLSGWASSV
+                     DDAPADTITRRFRYDVALVSALKDLEEDIMEGLRESGMEDSACTSGFSVMIKESCDGM
+                     GDVSEKHGGGPVVPEKAVRFSFTVMSISILADEEEEEXTIFREPKPNSELSCKPLCLM
+                     FVDESDHETLTAILWPIVAERKAMKESRLILSIGGLLRSFRFHFRGTGYDEKMVREME
+                     GLEASGSTYVCTLCDSSRPEACRNMVLHSITRSHEENLERYEIWRTNPFSESVDELRD
+                     RVKGVSAKPFMETHPTLDALHCDIGNAIEFYKIFQDEIGEVYQKANPCREERRSWRAA
+                     LDKQLRKKLKLKPVMRMNGNYARRLMTMEAVDVVCELVPSEERREALRELMRLYLQMK
+                     PVWRATCPAKECPDQLCRYSFNSQRFADILSSTFKYRYNGKITNYLHKTLAHVPEIIE
+                     KDGSIGAWASEGNESANKLFRRFRKMNARQSKAFE"
+ORIGIN      
+        1 accctgcgag ctgcagagaa ggagcttctc cctggctttc accagtttga atggcagcca
+       61 gctctcaaga atgtgtctgc atcttgcaat gttggcatta ttaatgggct ctctggatgg
+      121 gcttcctcag tggatgacgc cccagctgac accatcactc ggcgatttcg ctatgatgtg
+      181 gcactggtgt cagcattaaa ggatctggag gaggacatca tggaagggtt gagagagagt
+      241 gggatggaag acagtgcttg cacctcaggc ttcagtgtca tgatcaaaga atcttgtgat
+      301 ggcatgggcg atgtgagcga gaagcatggt ggaggaccag ttgttcctga gaaggctgtg
+      361 cgtttctctt tcactgttat gtcaatctct atcctggcag atgaggagga ggaagagstt
+      421 accatcttca gggagccaaa gccaaactca gaactgtcct gtaagcccct ttgcctgatg
+      481 tttgtggatg agtcagacca tgagacactc acagccatcc tatggcctat agttgcagaa
+      541 cgtaaggcaa tgaaagagag caggctcatc ctatccatcg gcggactact tcgctccttc
+      601 cgctttcact tcagaggcac aggatatgat gagaagatgg tgcgtgagat ggagggcctt
+      661 gaggcctcag ggtccaccta tgtctgcacg ctttgtgact ccagtcggcc agaggcctgt
+      721 cgaaacatgg tgctacactc catcacacgc agtcacgagg agaacctaga acgttatgaa
+      781 atatggagaa ccaacccctt ttctgagtcg gtagacgagc tgagagacag agtcaaaggg
+      841 gtctctgcca agcctttcat ggagactcat cccacgctgg atgcattaca ctgtgacata
+      901 ggcaatgcca ttgagttcta caaaatcttc caggatgaga tcggagaggt gtaccaaaag
+      961 gccaacccct gccgtgaaga acggcgcagc tggagggcag ccctcgataa acagctgagg
+     1021 aagaagctga agcttaaacc ggtaatgaga atgaatggga actatgcccg ccggctaatg
+     1081 accatggagg ctgtggatgt ggtgtgtgaa ctggtgccct cagaggagag aagggaggcc
+     1141 ctgagggagc ttatgagact ctacctccag atgaagcctg tgtggcgtgc cacctgccca
+     1201 gccaaggagt gccctgacca gctctgccgc tatagcttta actcccagcg cttcgctgac
+     1261 atcctctcct ctaccttcaa atataggtac aatggaaaga taaccaatta tctgcacaag
+     1321 accctggccc atgtgcctga aatcatagag aaagatggat ccataggagc ctgggccagc
+     1381 gaggggaacg agtctgcaaa caaactcttt aggcgtttcc ggaagatgaa tgcacgtcag
+     1441 tcaaaggctt ttgaa
+//

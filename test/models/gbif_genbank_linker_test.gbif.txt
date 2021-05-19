@@ -1,0 +1,11 @@
+80720161	1457484909	-19.228889	-40.758611	Animalia	Arthropoda	Insecta	Diptera	Psychodidae	Brumptomyia	Brumptomyia cunhai			PRESERVED_SPECIMEN	OCCURRENCE_STATUS_INFERRED_FROM_INDIVIDUAL_COUNT;GEODETIC_DATUM_ASSUMED_WGS84		90417	Fiocruz:COLFLEB:90417	2011-05-25T00:00:00
+AY099992	543553080	18.38838	-66.5717	Animalia	Chordata	Reptilia	Squamata	Typhlopidae	Typhlops	Typhlops platycephalus		3735.0	PRESERVED_SPECIMEN	COUNTRY_DERIVED_FROM_COORDINATES		200736	urn:catalog:CAS:HERP:200736	1995-12-15T00:00:00
+AY099996	543522280			Animalia	Chordata	Reptilia	Squamata	Anguidae	Anguis	Anguis fragilis			PRESERVED_SPECIMEN			173016	urn:catalog:CAS:HERP:173016	1989-09-11T00:00:00
+AY099996	543522281			Animalia	Chordata	Reptilia	Squamata	Anguidae	Anguis	Anguis fragilis			PRESERVED_SPECIMEN			173016	urn:catalog:CAS:HERP:173016	1989-09-11T00:00:00
+AY100002	2250181221			Plantae	Rhodophyta	Florideophyceae	Halymeniales	Halymeniaceae	Grateloupia	Grateloupia turuturu			MATERIAL_SAMPLE		AY100002		GBRED1213-13	
+AY100003	2250179862			Plantae	Rhodophyta	Florideophyceae	Halymeniales	Halymeniaceae	Grateloupia	Grateloupia turuturu			MATERIAL_SAMPLE		AY100003		GBRED1214-13	
+AY308770	656962943	32.433333	-64.666667	Animalia	Chordata	Actinopterygii	Beryciformes	Holocentridae	Sargocentron	Sargocentron vexillarium			MATERIAL_SAMPLE	COORDINATE_ROUNDED;CONTINENT_INVALID	BBC 99-53	3874	8406d8ee-dba5-4382-b16f-69d38b65c856	1999-08-14T00:00:00
+AY308771	656971435	43.292295	-69.333534	Animalia	Chordata	Actinopterygii	Beloniformes	Scomberesocidae	Scomberesox	Scomberesox saurus		17183.0	MATERIAL_SAMPLE		GM 98-07:dipnetted	2797	003d560b-82e8-410f-84f7-03a82dd5fb72	1998-07-01T00:00:00
+AY308771	656971436	43.292295	-69.333534	Animalia	Chordata	Actinopterygii	Beloniformes	Scomberesocidae	Scomberesox	Scomberesox saurus		17183.0	MATERIAL_SAMPLE		GM 98-07:dipnetted	2797	003d560b-82e8-410f-84f7-03a82dd5fb72	1998-07-01T00:00:00
+AY308773	656964387	16.7833	-88.0667	Animalia	Chordata	Actinopterygii	Perciformes	Ephippidae	Chaetodipterus	Chaetodipterus faber			MATERIAL_SAMPLE		EOW 91-21	131	185a79e1-f2db-4412-bc4f-f359f37e061c	1991-07-15T00:00:00
+AY308778	656972553	35.766701	-74.849999	Animalia	Chordata	Actinopterygii	Zeiformes	Zeidae	Zenopsis	Zenopsis conchifer			MATERIAL_SAMPLE	COORDINATE_ROUNDED;CONTINENT_INVALID	AL 98-04:047	3277	06346ea9-3288-4eb9-b836-31ad9b92791e	1998-03-07T00:00:00
