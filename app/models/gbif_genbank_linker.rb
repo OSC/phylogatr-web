@@ -49,26 +49,29 @@ class GbifGenbankLinker
   # 1. genbank flat file will have only 1 record per accession
   # 2. gbif tsv may have multiple records per accession
   #
+  #
+  # WARNING: this assumes genbank and gbif accessions are UPCASE
   def each
     return to_enum(:each) unless block_given?
 
-    gbif_enum = OccurrenceRecord.each_occurrence_slice_grouped_by_accession(@gbif)
-    records = gbif_enum.next
-
-    ff = Bio::GenBank.open(@genbank)
-    ff.each_entry do |entry|
-      until records.first.accession >= entry.accession do
+    File.open(@gbif) do |gbifio|
+      File.open(@genbank) do |genbankio|
+        gbif_enum = OccurrenceRecord.each_occurrence_slice_grouped_by_accession(gbifio)
         records = gbif_enum.next
-      end
 
-      if records.first.accession == entry.accession
-        yield Sequence.new(entry, records)
+        ff = Bio::GenBank.open(genbankio)
+        ff.each_with_index do |entry, index|
+          until records.first&.accession >= entry.accession do
+            records = gbif_enum.next
+          end
+
+          if records.first.accession == entry.accession
+            yield Sequence.new(entry, records)
+          end
+        end
+      rescue StopIteration => e
+        # noop - end of the enumeration
       end
     end
-
-    # instead of iterating over both, I did 1 and then the other...
-    # need an iterator for occurrences that
-  rescue StopIteration => e
-    # noop - end of the enumeration
   end
 end
