@@ -5,8 +5,8 @@ class GbifGenbankLinkerTest < ActiveJob::TestCase
 
   # gbif_genbank_linker_test.genbank.txt and gbif_genbank_linker_test.gbif.txt in the same directory as this file
   def setup
-    @gbif = File.join(File.dirname(__FILE__), 'gbif_genbank_linker_test.gbif.txt')
-    @genbank = File.join(File.dirname(__FILE__), 'gbif_genbank_linker_test.genbank.txt')
+    @gbif =  Pathname.new(__FILE__).dirname.join('gbif_genbank_linker_test.gbif.txt')
+    @genbank = Pathname.new(__FILE__).dirname.join('gbif_genbank_linker_test.genbank.txt')
 
     # the sample gbif test file above has these accessions:
     @gbif_accessions = %w(
@@ -35,45 +35,78 @@ class GbifGenbankLinkerTest < ActiveJob::TestCase
       AY308773
     )
 
+    # tests that rely on the actual downloads will be skipped unless these are
+    # manually supplied
+    # TODO: add how we get this
+    @gbif_all = Rails.root.join('test/data/pipeline/input/0147211-200613084148143.filtered.txt.expanded')
   end
 
   test "can iterate over test occurrences data" do
-    assert_equal @gbif_accessions, OccurrenceRecord.each_occurrence_slice_grouped_by_accession(File.open(@gbif)).to_a.flatten.map(&:accession)
+    @gbif.open do |f|
+      assert_equal @gbif_accessions, OccurrenceRecord.each_occurrence_slice_grouped_by_accession(f).to_a.flatten.map(&:accession)
+    end
   end
 
   test "can iterate over genbank data" do
-    accessions = []
-    ff = Bio::GenBank.open(@genbank)
-    ff.each_entry do |entry|
-      accessions << entry.accession
-    end
-    ff.close
+    @genbank.open do |f|
+      accessions = []
+      ff = Bio::GenBank.open(f)
+      ff.each_entry do |entry|
+        accessions << entry.accession
+      end
 
-    assert_equal  @genbank_accessions, accessions
+      assert_equal  @genbank_accessions, accessions
+    end
   end
 
   test "iterator links gbif records with genbank records" do
-    gbif = File.open(@gbif)
-    genbank = File.open(@genbank)
-
-    assert_equal (@gbif_accessions & @genbank_accessions), GbifGenbankLinker.new(gbif, genbank).each.to_a.map(&:accession).sort
-
-  ensure
-    gbif.close
-    genbank.close
+    @gbif.open do |gbif|
+      @genbank.open do |genbank|
+        assert_equal (@gbif_accessions & @genbank_accessions), GbifGenbankLinker.new(gbif, genbank).each.to_a.map(&:accession).sort
+      end
+    end
   end
 
   test "can step through iterator one at a time" do
-    gbif = File.open(@gbif)
-    genbank = File.open(@genbank)
+    @gbif.open do |gbif|
+      @genbank.open do |genbank|
+        enum = GbifGenbankLinker.new(gbif, genbank).each
+        assert_equal "AY099992", enum.next.accession
+        seq = enum.next
+        assert_equal "AY099996", seq.accession
+        assert_equal ['543522280', '543522281'], seq.gbif_records.map(&:gbif_id)
+      end
+    end
+  end
 
-    enum = GbifGenbankLinker.new(gbif, genbank).each
-    assert_equal "AY099992", enum.next.accession
-    seq = enum.next
-    assert_equal "AY099996", seq.accession
-    assert_equal ['543522280', '543522281'], seq.gbif_records.map(&:gbif_id)
-  ensure
-    gbif.close
-    genbank.close
+  test "can execute iterator multiple times and get the same result" do
+    @gbif.open do |gbif|
+      @genbank.open do |genbank|
+        gb = GbifGenbankLinker.new(gbif, genbank)
+        assert_equal gb.each.each.to_a.map(&:accession).sort, gb.each.each.to_a.map(&:accession).sort
+      end
+    end
+  end
+
+  test "seek closer to starting accession" do
+    skip "need to add expanded gbif to #{@gbif_all}" unless @gbif_all.file?
+
+    @gbif_all.open do |f|
+      GbifGenbankLinker.seek_closer_to_starting_accession!(f, @genbank_accessions.first)
+
+      # verify position has been moved
+      assert f.pos > 0
+    end
+  end
+
+  test "still works when seeking closer to start position" do
+    skip "need to add expanded gbif to #{@gbif_all}" unless @gbif_all.file?
+
+    @genbank.open do |genbank|
+      @gbif_all.open do |gbif|
+        gb = GbifGenbankLinker.new(gbif, genbank)
+        assert_equal gb.each.each.to_a.map(&:accession).sort, gb.each.each.to_a.map(&:accession).sort
+      end
+    end
   end
 end
