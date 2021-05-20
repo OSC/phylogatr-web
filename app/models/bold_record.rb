@@ -227,7 +227,7 @@ class BoldRecord
     s = gene_symbol.to_s.strip.upcase
 
     if s.present? && ! (GENE_SYMBOL_NOT_SURE.include?(s) || GENE_SYMBOL_IGNORE.include?(s))
-      GENE_SYMBOL_LOOKUP[s]
+      GENE_SYMBOL_LOOKUP.fetch(s, s)
     end
   end
 end

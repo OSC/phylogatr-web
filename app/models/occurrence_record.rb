@@ -16,6 +16,10 @@ class OccurrenceRecord
 
   attr_accessor :flag
 
+  def accession
+    @accession.upcase
+  end
+
   # highest precendence last
   BASIS_OF_RECORD=%w(MACHINE_OBSERVATION HUMAN_OBSERVATION MATERIAL_SAMPLE PRESERVED_SPECIMEN)
 

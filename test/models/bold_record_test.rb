@@ -150,4 +150,20 @@ class BoldRecordTest < ActiveSupport::TestCase
     refute BoldRecord.new(taxon_species: 'Batrachuperus sp. 2').species_binomial?
     refute BoldRecord.new(taxon_species: 'Onychodactylus sp. 2RuHF').species_binomial?
   end
+
+  test "gene symbol mapping maps known symbols" do
+    assert_equal "COI", BoldRecord.new(gene_symbol: "COI-5P").gene_symbol_mapped
+    assert_equal "58S", BoldRecord.new(gene_symbol: "5-8S").gene_symbol_mapped
+  end
+
+  test "gene symbol mapping excludes bad symbols" do
+    refute BoldRecord.new(gene_symbol: "COII-COI").gene_symbol_mapped
+    refute BoldRecord.new(gene_symbol: "R35").gene_symbol_mapped
+    refute BoldRecord.new(gene_symbol: "COI-PSEUDO").gene_symbol_mapped
+    refute BoldRecord.new(gene_symbol: "S7").gene_symbol_mapped
+  end
+
+  test "known gene symbols are unchanged after mapping" do
+    assert_equal "COI", BoldRecord.new(gene_symbol: "COI").gene_symbol_mapped
+  end
 end
