@@ -198,16 +198,6 @@ class BoldRecord
         'RBCL-5P' => 'RBCL'
     }
 
-  GENE_SYMBOL_NOT_SURE = %w(
-      COII-COI
-      16S-ND2
-      ND6-ND3
-      atpB-rbcL
-      atp6-atp8
-      markercode
-      matK-trnK
-      R35
-    )
   GENE_SYMBOL_IGNORE = %w(
       COI-LIKE
       TMO-4C4
@@ -215,12 +205,53 @@ class BoldRecord
       S7
       RPB2
       RPB1
-      EF1-alpha
+      EF1-ALPHA
       COI-PSEUDO
       COI-NUMT
     )
-
-
+  GENE_SYMBOL_NOT_SURE = %w(
+      COII-COI
+      16S-ND2
+      ND6-ND3
+      ATPB-RBCL
+      ATP6-ATP8
+      MARKERCODE
+      MATK-TRNK
+      R35
+      28S-D3
+      28S-D3-D5
+      AATS
+      CAD
+      CAD1
+      CAD4
+      CADH
+      CK1
+      COI-5PNMT1
+      COI-5PNMT2
+      CYTB-NUMT
+      DDC
+      ENO
+      GAPDH
+      H3-NUMT
+      LWRHO
+      PER
+      PGD
+      PY-IGS
+      RBM15
+      TPI
+      TULP
+      WSP
+      ATPB-RBCL
+      ATPF-ATPH
+      CSIV
+      EF1-ALPHA
+      FBPAHFIV
+      MATK-TRNK
+      PSBK-PSBI
+      RPL32-TRNL
+      RPS5
+      WNT1
+    )
 
 
   def lookup_gene_symbol(gene_symbol)
