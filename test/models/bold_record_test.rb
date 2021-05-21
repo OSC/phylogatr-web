@@ -163,7 +163,14 @@ class BoldRecordTest < ActiveSupport::TestCase
     refute BoldRecord.new(gene_symbol: "S7").gene_symbol_mapped
   end
 
-  test "known gene symbols are unchanged after mapping" do
-    assert_equal "COI", BoldRecord.new(gene_symbol: "COI").gene_symbol_mapped
+# NOTE: this may make sense in normal cases, but in BOLD cases, nearly all of the
+# "markercodes" have extra
+#  test "known gene symbols are unchanged after mapping" do
+#    assert_equal "COI", BoldRecord.new(gene_symbol: "COI").gene_symbol_mapped
+#  end
+  test "unknown BOLD gene symbol returns nil and logs error" do
+    assert_output(nil, /not specified/){
+      refute BoldRecord.new(gene_symbol: "SOME_SYMBOL_THAT_DOESNT_EXIST").gene_symbol_mapped
+    }
   end
 end

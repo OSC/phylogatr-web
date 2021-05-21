@@ -258,7 +258,14 @@ class BoldRecord
     s = gene_symbol.to_s.strip.upcase
 
     if s.present? && ! (GENE_SYMBOL_NOT_SURE.include?(s) || GENE_SYMBOL_IGNORE.include?(s))
-      GENE_SYMBOL_LOOKUP.fetch(s, s)
+      if GENE_SYMBOL_LOOKUP.include?(s)
+        GENE_SYMBOL_LOOKUP[s]
+      else
+        # the goal is to specify all of the gene symbols and their mappings in the hash above
+        # or include in the NOT_SURE or IGNORE
+        $stderr.puts "BOLD gene symbol '#{s}' not specified in Bold::GENE_SYMBOL arrays/hash"
+        nil
+      end
     end
   end
 end
