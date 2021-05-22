@@ -12,7 +12,10 @@ module load ruby
 cp /fs/project/PAS1604/pipeline/dev/genes.tar.gz $TMPDIR
 time (cd $TMPDIR; tar xzf genes.tar.gz)
 
-cp /fs/project/PAS1604/pipeline/dev/genes.db $TMPDIR
+if [[ -e /fs/project/PAS1604/pipeline/dev/genes.db ]]; then
+  cp /fs/project/PAS1604/pipeline/dev/genes.db $TMPDIR
+fi
+
 time ./generate_alignment_cache.rb $TMPDIR/genes $TMPDIR/genes.db
 
-cp $TMPDIR/genes.db /fs/project/PAS1604/pipeline/dev/genes.db.test
+cp $TMPDIR/genes.db /fs/project/PAS1604/pipeline/dev/genes.db
