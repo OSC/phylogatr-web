@@ -109,4 +109,23 @@ class GbifGenbankLinkerTest < ActiveJob::TestCase
       end
     end
   end
+
+  test "gbif genbank linker for gbvrt3.seq and expanded 0147211-200613084148143" do
+    skip "need to add expanded gbif to #{@gbif_all}" unless @gbif_all.file?
+    skip "need to add genbank test file gbvrt3.seq from GenBank Flat File Release 234.0 to #{test/data/pipeline/input/gbvrt3.seq}" unless @gbif_all.file?
+
+    genbank_path = Rails.root.join('test/data/pipeline/input/gbvrt3.seq')
+
+    dir = Dir.mktmpdir
+#    Dir.mktmpdir do|dir|
+      genes_out = File.join(dir, 'genes.tsv')
+      gbif_out = File.join(dir, 'gbif.tsv')
+
+      GbifGenbankLinker.write_genes_and_occurrences(@gbif_all.to_s, genbank_path.to_s, genes_out, gbif_out)
+
+      
+      assert_files_same Rails.root.join('test/data/pipeline/output/gbif_occurrences_final.tsv').to_s, gbif_out
+      assert_files_same Rails.root.join('test/data/pipeline/output/genes.tsv').to_s, genes_out
+#    end
+  end
 end

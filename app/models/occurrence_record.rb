@@ -20,6 +20,10 @@ class OccurrenceRecord
     @accession.upcase
   end
 
+  def species_path
+    File.join(taxon_class, taxon_order, taxon_family, taxon_species).gsub(' ', '-')
+  end
+
   # highest precendence last
   BASIS_OF_RECORD=%w(MACHINE_OBSERVATION HUMAN_OBSERVATION MATERIAL_SAMPLE PRESERVED_SPECIMEN)
 
@@ -49,6 +53,10 @@ class OccurrenceRecord
   # output format includes flag
   def to_str
     (HEADERS.map { |h| self.send(h) } + [flag]).join("\t")
+  end
+
+  def to_post_str(different_genbank_species, genes)
+    ([species_path] + HEADERS.map { |h| self.send(h) } + [flag, different_genbank_species, genes]).join("\t").gsub("\n", '')
   end
 
   def self.same(records, attrs)
