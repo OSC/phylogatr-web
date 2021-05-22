@@ -25,6 +25,10 @@ class BoldRecord
     record.errors.add attr, "nil or 0" unless value.present? && BoldRecord.float_rounded(value) != 0
   end
 
+  # sequence_normalized is lowercase so we only validate lowercase values
+  # see https://guides.rubyonrails.org/active_record_validations.html#format
+  validates :sequence_normalized, format: { with: /\A[abcdefghiklmnpqrstuvwy.-]+\z/, message: 'sequence contains invalid characters according to http://www.bioinformatics.org/sms/iupac.html' }
+
   HEADERS.each do |h|
     attr_accessor h
   end
@@ -119,9 +123,13 @@ class BoldRecord
     @gene_symbol_mapped ||= lookup_gene_symbol(self.gene_symbol)
   end
 
+  def sequence_normalized
+    @sequence_normalized ||= self.sequence.downcase.gsub('-', '')
+  end
+
   def fasta_sequence
     accession = self.accession.presence || '00000000'
-    ">#{accession}_#{self.process_id}\n#{self.sequence.downcase.gsub('-', '')}\n"
+    ">#{accession}_#{self.process_id}\n#{sequence_normalized}\n"
   end
 
   def self.line_count(path)
