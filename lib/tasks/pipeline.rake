@@ -25,7 +25,24 @@ namespace :pipeline do
   end
 
   desc "link gbif with genbank"
-  task link_gbif_with_genbank: :environment do
+  task :link_gbif_with_genbank do
+    raise "required: GBIF_PATH_EXPANDED OUTPUT_DIR" unless ENV['GBIF_PATH_EXPANDED'] && ENV['OUTPUT_DIR'] && ENV['GENBANK_PATH']
+    genbank_path = ENV['GENBANK_PATH']
+    output_dir = ENV['OUTPUT_DIR']
+
+        puts "linking #{ENV['GBIF_PATH_EXPANDED']} with #{genbank_path}"
+
+        basepath = File.join(output_dir, File.basename(genbank_path))
+        genes_out = basepath+'.genes.tsv'
+        gbif_out = basepath+'.genes.tsv.occurrences'
+
+        GbifGenbankLinker.write_genes_and_occurrences(ENV['GBIF_PATH_EXPANDED'], genbank_path, genes_out, gbif_out)
+
+        puts "done linking #{ENV['GBIF_PATH_EXPANDED']} with #{genbank_path}"
+  end
+
+  desc "link all gbif with genbank"
+  task link_all_gbif_with_genbank: :environment do
     # execute with rake -m to parallelize
     raise "required: GBIF_PATH_EXPANDED GENBANK_DIR OUTPUT_DIR" unless ENV['GENBANK_DIR'] && ENV['GBIF_PATH_EXPANDED'] && ENV['OUTPUT_DIR']
 
