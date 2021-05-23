@@ -52,15 +52,15 @@ class GbifGenbankLinker
     end
 
     def name
-      qualifiers['product']&.first.to_s.gsub(/[ \/ ]/, '-').gsub(/['\.]/, '')
+      qualifiers['product']&.first.to_s.gsub(/[ \/ ]/, '-').gsub(/['\.]/, '').strip
     end
 
     def original_symbol
-      qualifiers['gene']&.first.to_s.gsub(/[ \/ ]/, '-').gsub(/['\.]/, '').upcase
+      qualifiers['gene']&.first.to_s.gsub(/[ \/ ]/, '-').gsub(/['\.]/, '').upcase.strip
     end
 
     def symbol
-      @symbol ||= self.class.product_symbol_mappings.fetch(name, original_symbol)
+      @symbol ||= self.class.product_symbol_mappings.fetch(name, original_symbol).strip
     end
 
     def valid?
