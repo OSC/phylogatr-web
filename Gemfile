@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.11.3'
+gem 'rails', '5.0.6'
 
 # be able to use either mysql or sqlite3
 gem 'sqlite3', '~> 1.3', '< 1.4'

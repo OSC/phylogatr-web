@@ -2,7 +2,7 @@ require 'shellwords'
 require 'gdbm'
 require 'digest'
 
-class Species < ActiveRecord::Base
+class Species < ApplicationRecord
   has_many :occurrences
 
   def self.in_bounds_with_taxonomy(swpoint, nepoint, taxonomy)
@@ -40,7 +40,7 @@ class Species < ActiveRecord::Base
     root(:entry)
   end
 
-  def self.valid_fasta?(fasta_str) 
+  def self.valid_fasta?(fasta_str)
     FastaGrammar.new.parse(fasta_str)
 
     true

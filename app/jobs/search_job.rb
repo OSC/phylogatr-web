@@ -1,6 +1,6 @@
 require 'rubygems/package'
 
-class SearchJob < ActiveJob::Base
+class SearchJob < ApplicationJob
   queue_as :default
 
   # in_bounds_with_taxonomy.count # so we know the maximum

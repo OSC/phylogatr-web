@@ -1,4 +1,4 @@
-class Occurrence < ActiveRecord::Base
+class Occurrence < ApplicationRecord
   belongs_to :species
   acts_as_mappable
 

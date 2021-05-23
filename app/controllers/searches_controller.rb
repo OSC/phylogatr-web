@@ -17,33 +17,33 @@ class SearchesController < ApplicationController
       # for the mode to submit the job we would:
       #
       # 1. submit job
-      # 2. search_path(job_id, search: params)
+      # 2. search_path(job_id, search: search_params)
       # 3. handle job submission error
       #
       # 4. note: I think that search => create... we would want to render a page "are you sure" here for the intermediate with the
       #
       # TODO: validate using form helper
       #
-      search = BatchSearchResults.new(params)
+      search = BatchSearchResults.new(search_params)
       search.submit_job
       redirect_to search_path(search.to_param, search.params)
     else
       # immediate
-      redirect_to search_path(0, SearchResults.clean_params(params))
+      redirect_to search_path(0, SearchResults.clean_params(search_params))
     end
   end
 
   # GET /searches/1234/?longitude=?&latitude=?&taxon_anima=?
   def show
-    @id = params[:id]
+    @id = search_params[:id]
     if ::Configuration.batch_mode?
-      @search_results = BatchSearchResults.new(params)
+      @search_results = BatchSearchResults.new(search_params)
     else
-      @search_results = SearchResults.from_params(params)
+      @search_results = SearchResults.from_params(search_params)
     end
 
     #TODO: right now the id is random and throwaway, the only thing
-    # that matters here are the query params
+    # that matters here are the query search_params
     # this makes routing easy and would be the same routing if we
     # switch to background jobs; except background job would refer to
     # an id in this case
@@ -71,7 +71,7 @@ class SearchesController < ApplicationController
       }
       format.zip {
         if ::Configuration.batch_mode?
-          send_file BatchSearchResults.new(params).zip_path, filename: "phylogatr_results.zip"
+          send_file BatchSearchResults.new(search_params).zip_path, filename: "phylogatr_results.zip"
         else
           response.headers["Content-Disposition"] = "attachment; filename=\"phylogatr_results.zip\""
           response.headers["Cache-Control"] = "no-cache"
@@ -106,5 +106,13 @@ class SearchesController < ApplicationController
     @search_results.write_tar(response.stream)
   ensure
     response.stream.close
+  end
+
+
+  private
+
+  def search_params
+    params.permit!
+    params.to_h
   end
 end
