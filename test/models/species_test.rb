@@ -26,16 +26,4 @@ class SpeciesTest < ActiveJob::TestCase
       species.each(&:update_metrics!)
     end
   end
-
-  test "correct fasta file is valid" do
-    assert Species.valid_fasta?(">MG699913_2306983915\naacactatatttcctattcg\n>MG699914_2305605780\ntttcctat--tttcctat--\n")
-  end
-
-  test "fasta with missing newlines is invalid" do
-    refute Species.valid_fasta?(">MG699913_2306983915aacactatatttcctattcg\n>MG699914_2305605780\ntttcctat--tttcctat--")
-  end
-
-  test "fasta with invalid characters in header is invalid" do
-    refute Species.valid_fasta?(">MG699913_2306983915 bp 123\naacactatatttcctattcg\n>MG699914_2305605780\ntttcctat--tttcctat--\n")
-  end
 end

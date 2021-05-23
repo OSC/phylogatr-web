@@ -40,13 +40,14 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'bootstrap_form', '~> 2.5'
 gem 'font-awesome-sass', '~> 4.6'
 gem 'dotenv-rails'
-gem 'paperclip'
 gem 'rails_12factor', group: :production
 gem 'ood_support', '~> 0.0.2'
 gem 'ood_appkit', '~> 1.0'
 gem 'mocha'
 
 gem 'bio'
+
+# FIXME: replace geokit with using an R-Tree or other spacial index
 gem 'geokit-rails'
 
 # gem 'caxlsx'
@@ -54,9 +55,15 @@ gem 'geokit-rails'
 
 gem 'zip_tricks', '~> 5.3', '>= 5.3.1'
 
-gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
+# FIXME: add back reports that use this
+# gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 
 # FIXME: after Rails 6 upgrade, you don't need this
 gem 'activerecord-import'
 gem 'parallel'
-gem 'parslet'
+
+# install/use for testing purposes
+# bin/bundle exec derailed bundle:mem
+# 
+# gem 'derailed', group: :development
+# gem "stackprof", group: :development

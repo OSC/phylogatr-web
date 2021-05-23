@@ -19,22 +19,4 @@ namespace :app do
 
     puts json
   end
-
-  desc "validate db"
-  task validate_db: :environment do
-    Species::FastaGrammar.verbose = true
-
-    # validate all FASTA files
-    species_with_invalid_fasta_files = Species.find_each.with_index.find_all do |s, idx|
-      puts idx
-      s.has_invalid_fasta_files?
-    end
-
-    if species_with_invalid_fasta_files.any?
-      invalid_species_str = species_with_invalid_fasta_files.map {|s| "id: #{s.id} files: #{s.files.inspect}"}.join("\n")
-      puts "species have invalid fasta files: #{invalid_species_str}\nall invalid species ids: #{species_with_invalid_fasta_files.map(&:id)}"
-    else
-      puts "validated"
-    end
-  end
 end
