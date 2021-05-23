@@ -1,6 +1,8 @@
 require 'csv'
 require 'activerecord-import'
 require 'parallel'
+require_relative '../../app/models/occurrence_record'
+require_relative '../../app/models/gbif_genbank_linker'
 
 def sqlite3_table_import_cmd(db, occurrences_tsv)
   <<~HEREDOC
@@ -20,6 +22,39 @@ namespace :pipeline do
     taxons.sort_by(&:category).each do |t|
       puts "#{t.category}: #{t.name}"
     end
+  end
+
+  desc "link gbif with genbank"
+  task link_gbif_with_genbank: :environment do
+    # execute with rake -m to parallelize
+    raise "required: GBIF_PATH_EXPANDED GENBANK_DIR OUTPUT_DIR" unless ENV['GENBANK_DIR'] && ENV['GBIF_PATH_EXPANDED'] && ENV['OUTPUT_DIR']
+
+    # GBIF_PATH_EXPANDED=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt.expanded
+    # GENBANK_DIR=/fs/project/PAS1604/genbank
+    # OUTPUT_DIR=/fs/scratch/PAS1604/genbank
+
+    gbif_expanded = ENV['GBIF_PATH_EXPANDED']
+    output_dir = ENV['OUTPUT_DIR']
+
+    genbank_files = FileList[File.join(ENV['GENBANK_DIR'], 'gb{inv,mam,pln,pri,rod,vrt}*seq')]
+
+    genbank_files.each do |genbank_path|
+      task genbank_path do
+        puts "linking #{ENV['GBIF_PATH_EXPANDED']} with #{genbank_path}"
+
+        basepath = File.join(output_dir, File.basename(genbank_path))
+        genes_out = basepath+'.genes.tsv'
+        gbif_out = basepath+'.genes.tsv.occurrences'
+
+        GbifGenbankLinker.write_genes_and_occurrences(ENV['GBIF_PATH_EXPANDED'], genbank_path, genes_out, gbif_out)
+
+        puts "done linking #{ENV['GBIF_PATH_EXPANDED']} with #{genbank_path}"
+      end
+    end
+
+    task :link_all => genbank_files
+
+    Rake::Task[:link_all].invoke
   end
 
   desc "filter out invalid or duplicate occurrences"
@@ -314,7 +349,7 @@ namespace :pipeline do
     count = Species.count
 
     limit = count/workers
-    
+
     Parallel.each(1..workers, :in_processes => workers) { |i|
       # execute once per worker - would it be easier to just fork?
       offset = limit * Parallel.worker_number
