@@ -1,0 +1,129 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=28
+#SBATCH -t 01:00:00
+#SBATCH --job-name="pipeline_phylogatr"
+#SBATCH --account=PAS1604
+
+set -xe
+
+export OUTPUT_DIR=/fs/scratch/PAS1604/genbank
+
+export GENBANK_DIR=/fs/project/PAS1604/genbank
+export GBIF_PATH=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt
+export GBIF_PATH_EXPANDED=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt.expanded
+
+export INDEXES_CACHE_DIR=/fs/scratch/PAS1604/genbank_indexes
+
+cd $SLURM_SUBMIT_DIR
+
+# Steps
+# 1. given original gbif occurrences tsv, expand on accessions column so there is 1 accession per row
+
+module load pcp
+module load ruby
+module load python/3.6-conda5.2
+source activate local
+
+function expand_gbif_occurrences {
+    if [[ -f $GBIF_PATH_EXPANDED ]]; then
+        echo "Using expanded GBIF file at $GBIF_PATH_EXPANDED"
+        cp $GBIF_PATH_EXPANDED $TMPDIR/gbif_occurrences.csv.sorted
+    else
+        cd $SLURM_SUBMIT_DIR/pipeline
+
+        echo "Generating expanded GBIF file"
+        split -d -n $SLURM_NTASKS $GBIF_PATH $TMPDIR/x
+
+        for i in $TMPDIR/x*
+        do
+          invoke expand-occurrences $i $i.expanded &
+        done
+        wait
+
+        cat $TMPDIR/x*expanded > $TMPDIR/gbif_occurrences.csv
+        rm $TMPDIR/x*
+
+        sort -k 1b,1 $TMPDIR/gbif_occurrences.csv > $TMPDIR/gbif_occurrences.csv.sorted
+        cp $TMPDIR/gbif_occurrences.csv.sorted $GBIF_PATH_EXPANDED
+        cd $SLURM_SUBMIT_DIR
+    fi
+}
+
+# create .seq.idx files in $TMPDIR
+function generate_indexes {
+    if [[ -d $INDEXES_CACHE_DIR ]]; then
+        echo "Using genbank indexes from cache at $INDEXES_CACHE_DIR"
+        cp -r $INDEXES_CACHE_DIR/*.idx $TMPDIR
+    else
+        mkdir -p $INDEXES_CACHE_DIR
+
+        for i in $GENBANK_DIR/gb{inv,mam,pln,pri,rod,vrt}*seq
+        do
+            echo "invoke make-index $i $TMPDIR"
+        done | srun parallel-command-processor
+
+        cp -r $TMPDIR/*idx $INDEXES_CACHE_DIR
+    fi
+}
+
+function generate_occurrence_files {
+    for i in $TMPDIR/*idx
+    do
+        echo "$SLURM_SUBMIT_DIR/generate_accessions_files.sh $TMPDIR/gbif_occurrences.csv.sorted $i $TMPDIR"
+    done | srun parallel-command-processor
+
+    cp -r $TMPDIR/*idx.occurrences $INDEXES_CACHE_DIR
+}
+
+function link_occurrence_and_genes {
+    #    3. for each relevant accession, read flatfile format sequence data and corresponding occurrence record and:
+    #       1. append "species" to last column if genbank "species" differs from occurrence record taxonomy, or empty string
+    #       2. write occurrence record with new column to a new output file
+    #       3. create directory to store sequence data
+    #       4. for each gene, use lookup to get gene short name for gene, then create directory and write gene and sequences as files
+    #       5. write gene metadata record to file
+    # for i in $GENBANK_DIR/gb{inv,mam,pln,pri,rod,vrt}*seq
+    # do
+    #     echo "invoke write-genes $TMPDIR/$(basename $i).idx.occurrences $i $TMPDIR"
+    # done | srun parallel-command-processor
+
+    export GBIF_PATH_EXPANDED=$TMPDIR/gbif_occurrences.csv.sorted
+
+    # takes 20m - a lot of time lost in bin/rake setup - could switch this to bin/db or add a bin/pipeline thor script
+    for i in $GENBANK_DIR/gb{inv,mam,pln,pri,rod,vrt}*seq
+    do
+        echo "OUTPUT_DIR=$TMPDIR GENBANK_PATH=$i bin/rake pipeline:link_gbif_with_genbank"
+    done | srun parallel-command-processor
+
+    # 38m on 40 items (so it really isn't doing parallelism (just using threads)
+    # (time GBIF_PATH_EXPANDED=$TMPDIR/gbif_occurrences.csv.sorted OUTPUT_DIR=$TMPDIR bin/rake -m pipeline:link_gbif_with_genbank)
+}
+
+function collect_files {
+    cat $TMPDIR/*.genes.tsv.occurrences > $TMPDIR/gbif_occurrences_final.tsv
+    cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
+}
+
+function create_genes_directory {
+    mkdir $TMPDIR/genes
+    cat $TMPDIR/genes.tsv | ruby genes.rb $TMPDIR/genes
+    cd $TMPDIR
+    tar czf genes.tar.gz genes
+}
+
+function copy_results_to_output_dir {
+    cp genes.tar.gz $OUTPUT_DIR
+    cp genes.tsv $OUTPUT_DIR/genes.tsv
+    cp $TMPDIR/gbif_occurrences_final.tsv $OUTPUT_DIR/gbif_occurrences_final.tsv
+}
+
+time expand_gbif_occurrences
+
+
+# time generate_indexes
+# time generate_occurrence_files
+time link_occurrence_and_genes
+time collect_files
+time create_genes_directory
+time copy_results_to_output_dir
