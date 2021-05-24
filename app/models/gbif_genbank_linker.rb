@@ -177,11 +177,18 @@ class GbifGenbankLinker
           end
 
           until records.first&.accession >= entry.accession do
+            # useful for debugging:
+            # puts "gbif #{records.first&.accession} < #{entry.accession} so getting next gbif record"
             records = gbif_enum.next
           end
 
           if records.first.accession == entry.accession
+            # useful for debugging:
+            # puts "#{records.first.accession} == #{entry.accession} so yielding sequence"
             yield Sequence.new(entry, records)
+          # useful for debugging:
+          # else
+          #   puts "gbif #{records.first.accession} not equal to #{entry.accession}"
           end
         end
 
