@@ -41,14 +41,14 @@ def occurrence_without_null(occurrence):
     return ['' if x.strip() == '\\N' else x for x in occurrence]
 
 def expand_gbif_occurrences_on_accession(gbif_file, gbif_out_file):
-    accession_regex = re.compile('\w{2}\d{6}')
+    accession_regex = re.compile('[A-Z]{2}\d{6}')
     for line in gbif_file:
         parts = occurrence_without_null(line.split("\t"))
 
         # omit occurrences that are missing KINGDOM through SPECIES
         if('' not in parts[OccurrenceRecordIndex.KINGDOM:OccurrenceRecordIndex.SUBSPECIES]):
             # expand the accession column
-            for accession in accession_regex.findall(parts[0]):
+            for accession in accession_regex.findall(parts[0].upper()):
                 gbif_out_file.write("\t".join([accession] + parts[1:]))
 
 @functools.lru_cache()
