@@ -104,8 +104,21 @@ namespace :pipeline do
       row = chunk.first
       species_path = row[h[:species_path]]
 
+      different_genbank_species = row[h[:different_genbank_species]].presence
+
       if species_hash.has_key?(species_path)
         species = species_hash[species_path]
+
+        # HACK: this replicates the previous functionality of storing the
+        # first "differeng genbanks species" string found but doesn't address
+        # the case where some genes might not have accessions with a different
+        # genbank species or when the number of records containing different
+        # genbank species strings is greater than 1 (in some cases 70+
+        # variations)
+        if different_genbank_species && species.different_genbank_species.nil?
+          species.different_genbank_species = different_genbank_species
+          species.save
+        end
       else
         species_hash[species_path] = Species.find_or_create_by(path: species_path) do |species|
           species.taxon_kingdom = row[h[:taxon_kingdom]]
@@ -117,8 +130,8 @@ namespace :pipeline do
           species.taxon_species = row[h[:taxon_species]]
           species.taxon_subspecies = row[h[:taxon_subspecies]]
 
-          # FIXME: move different_genbank_species to species
-          # species.different_genbank_species = row[17]
+          # HACK: see above HACK message for details
+          species.different_genbank_species = different_genbank_species
         end
 
         species = species_hash[species_path]

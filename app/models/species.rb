@@ -202,8 +202,7 @@ class Species < ApplicationRecord
         taxon_genus,
         taxon_species,
         taxon_subspecies,
-        # move to species table :-P
-        occurrences.first.different_genbank_species
+        different_genbank_species
       ].join("\t")
     end.sort.join("\n")+"\n"
   end
