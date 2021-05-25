@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20210525131547) do
 
-  create_table "files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "files", force: :cascade do |t|
     t.integer "species_id"
     t.string  "name"
     t.text    "content",    limit: 4294967295
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20210525131547) do
     t.index ["species_id"], name: "index_files_on_species_id", using: :btree
   end
 
-  create_table "occurrences", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "occurrences", force: :cascade do |t|
     t.string  "accession"
     t.string  "source_id"
     t.decimal "lat",                                            precision: 15, scale: 10
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20210525131547) do
     t.index ["species_id"], name: "index_occurrences_on_species_id", using: :btree
   end
 
-  create_table "species", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "species", force: :cascade do |t|
     t.string  "path"
     t.integer "total_seqs"
     t.integer "total_bytes"
