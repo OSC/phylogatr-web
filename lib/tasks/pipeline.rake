@@ -14,6 +14,13 @@ def sqlite3_table_import_cmd(db, occurrences_tsv)
 end
 
 namespace :pipeline do
+  desc "expand GBIF GBIF_OUT "
+  task "expand_gbif_occurrences_on_accession" do
+    raise "required: GBIF GBIF_OUT" unless ENV['GBIF'] && ENV['GBIF_OUT']
+
+    GbifGenbankLinker.expand_gbif_occurrences_on_accession(ENV['GBIF'], ENV['GBIF_OUT'])
+  end
+
   desc "bold taxonomies"
   task bold_taxons: :environment do
     taxons = BoldRecord.taxonomies('https://www.boldsystems.org/index.php/TaxBrowser_Home')

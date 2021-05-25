@@ -114,20 +114,34 @@ class GbifGenbankLinker
     @genbank = genbank
   end
 
-  # iterator works like this:
-  # tab delimited io
-  # GbifRecord GenbankRecord
-  #
-  #
-  # each_valid_sequence(gbif_path, gb_path) do |sequence|
-  #   sequence.genes.each do |gene|
-  #     genes.write(gene.to_str)
-  #   end
-  #   sequence.occurrences.each do |occurrence|
-  #     occurrences.write(occurrence.to_str)
-  #   end
-  # end
-  #
+
+  # the accession column for occurrence download has multiple occurrences
+  # so we expand a single occurrence record into separate rows, one per accession
+  # since we link gbif with genbank on accession
+  def self.expand_gbif_occurrences_on_accession(gbif_path, gbif_out_path)
+    File.open(gbif_path) do |gbif|
+      File.open(gbif_out_path, 'w') do |out|
+        accession_regex = Regexp.new /[A-Z]{2}\d{6}/
+
+        accession_index = OccurrenceRecord::HEADERS.index(:accession)
+        raise "assuming accession_index is first record" unless accession_index == 0
+
+        kingdom_index = OccurrenceRecord::HEADERS.index(:taxon_kingdom)
+        species_index = OccurrenceRecord::HEADERS.index(:taxon_species)
+
+        gbif.each_line do |line|
+          fields = line.chomp.split("\t", -1).map {|x| x.strip == "\\N" ? '' : x }
+
+          unless fields[kingdom_index..species_index].include?('')
+            fields[accession_index].upcase.scan(accession_regex) do |match|
+              # WARNING: assume accession index is first record (see above)
+              out.write(([match]+fields[1..-1]).join("\t") + "\n")
+            end
+          end
+        end
+      end
+    end
+  end
 
   #
   # index is an array of [[ACCESSION, BYTEPOS],[ACCESSION, BYTEPOS], ...]
