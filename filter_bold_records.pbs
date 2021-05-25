@@ -11,6 +11,24 @@ module load ruby
 export BOLD_DATA=/fs/project/PAS1604/bold
 export PROJ=/fs/project/PAS1604/pipeline/dev
 
+# 1   processid
+# 3   recordID
+# 4   catalognum
+# 5   fieldnum
+# 10  phylum_name
+# 12  class_name
+# 14  order_name
+# 16  family_name
+# 18  subfamily_name
+# 20  genus_name
+# 22  species_name
+# 24  subspecies_name
+# 47  lat
+# 48  lon
+# 70  markercode
+# 71  genbank_accession
+# 72  nucleotides
+
 for tsv in $BOLD_DATA/*tsv; do
   time tail -n +2 $tsv | cut -d $'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 >> $TMPDIR/bold.tsv
 done
