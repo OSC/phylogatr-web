@@ -21,11 +21,15 @@ module load ruby
 function expand_gbif_occurrences {
     if [[ -f $GBIF_PATH_EXPANDED ]]; then
         echo "Using expanded GBIF file at $GBIF_PATH_EXPANDED"
+        cp $GBIF_PATH_EXPANDED $TMPDIR/gbif_occurrences.csv.sorted
     else
-        bin/rake pipeline:expand_gbif_occurrences_on_accession GBIF=$GBIF_PATH GBIF_OUT=$GBIF_PATH_EXPANDED
+        # FIXME: if the expanded gbif file is not sorted, the linking of the two files will fail silently
+        # either test and verify, and leave below as is
+        # or change the expansion code to build the file in memory before writing or write to tmp file and then sort tmp to final dest
+        bin/rake pipeline:expand_gbif_occurrences_on_accession GBIF=$GBIF_PATH GBIF_OUT=$TMPDIR/gbif_occurrences.csv
+        sort -k 1b,1 $TMPDIR/gbif_occurrences.csv > $TMPDIR/gbif_occurrences.csv.sorted
+        cp $TMPDIR/gbif_occurrences.csv.sorted $GBIF_PATH_EXPANDED
     fi
-
-    cp $GBIF_PATH_EXPANDED $TMPDIR/gbif_occurrences.csv.sorted
 }
 
 function link_occurrence_and_genes {
