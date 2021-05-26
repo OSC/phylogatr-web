@@ -6,10 +6,12 @@
 
 set -xe
 
+export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
+
 cd $SLURM_SUBMIT_DIR
 module load ruby
 
-cp /fs/project/PAS1604/pipeline/dev/genes.tar.gz $TMPDIR
+cp $WORKDIR/genes.tar.gz $TMPDIR
 time (cd $TMPDIR; tar xzf genes.tar.gz)
 
 time GENBANK_ROOT=$TMPDIR/genes bin/rake metrics:species

@@ -6,6 +6,17 @@
 
 set -xe
 
+export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
+
+# if you want to set a timeout for alignments, this is a way to ensure the majority of alignments
+# will get done in a timely manner, and then you can resubmit a job without the timelimit
+#
+#    export TIMEOUT=10m
+#
+# or
+#
+#    export TIMEOUT=60m
+
 cd $SLURM_SUBMIT_DIR
 
 module load ruby
@@ -13,26 +24,12 @@ module load pcp
 
 
 # copy genes tarball to TMPDIR
-cp /fs/project/PAS1604/pipeline/dev/genes.tar.gz $TMPDIR
+cp $WORKDIR/genes.tar.gz $TMPDIR
 time (cd $TMPDIR; tar xzf genes.tar.gz)
 
-# FIXME: test: is it enough to set TIMEOUT when submitting the job?
-
-# GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:alignpcp
-# TIMEOUT=10m GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:alignpcp
-GENBANK_ROOT=$TMPDIR/genes ALIGNMENTS_CACHE_PATH=/fs/project/PAS1604/pipeline/dev/genes.db bin/rake pipeline:alignpcp
+GENBANK_ROOT=$TMPDIR/genes ALIGNMENTS_CACHE_PATH=$WORKDIR/genes.db bin/rake pipeline:alignpcp
 
 
 # tar up genes with alignments and copy back
 time (cd $TMPDIR; tar czf genes_with_alignments.tar.gz genes)
-cp $TMPDIR/genes_with_alignments.tar.gz /fs/project/PAS1604/pipeline/dev/genes.tar.gz
-
-# TODO: will need to rsync back if we do this
-# cp /fs/project/PAS1604/pipeline/dev/genes.db $TMPDIR
-# cp -r /fs/project/PAS1604/pipeline/dev/genes $TMPDIR/genes
-#
-# module load ruby
-#
-# GENBANK_ROOT=$TMPDIR/genes ALIGNMENTS_CACHE_PATH=$TMPDIR/genes.db bin/rake pipeline:align
-#
-# TODO: rsync back $TMPDIR/genes to /fs/project/PAS1604/pipeline/dev/genes
+cp $TMPDIR/genes_with_alignments.tar.gz $WORKDIR/genes.tar.gz

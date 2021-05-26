@@ -9,7 +9,7 @@ set -x
 module load ruby
 
 export BOLD_DATA=/fs/project/PAS1604/bold
-export PROJ=/fs/project/PAS1604/pipeline/dev
+export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
 
 # 1   processid
 # 3   recordID
@@ -52,4 +52,4 @@ echo "Errors:"
 tail -n +1 $TMPDIR/*errors
 
 cat $TMPDIR/*filtered > $TMPDIR/bold.tsv.filtered
-cp $TMPDIR/bold.tsv.filtered $PROJ/bold.tsv
+cp $TMPDIR/bold.tsv.filtered $WORKDIR/bold.tsv

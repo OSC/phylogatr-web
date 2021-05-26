@@ -7,7 +7,7 @@
 
 set -xe
 
-export OUTPUT_DIR=/fs/scratch/PAS1604/genbank
+export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
 
 export GENBANK_DIR=/fs/project/PAS1604/genbank
 export GBIF_PATH=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt
@@ -15,19 +15,17 @@ export GBIF_PATH_EXPANDED=/fs/project/PAS1604/gbif/0147211-200613084148143.filte
 
 cd $SLURM_SUBMIT_DIR
 
-# Steps
-# 1. given original gbif occurrences tsv, expand on accessions column so there is 1 accession per row
-
 module load pcp
 module load ruby
 
 function expand_gbif_occurrences {
     if [[ -f $GBIF_PATH_EXPANDED ]]; then
         echo "Using expanded GBIF file at $GBIF_PATH_EXPANDED"
-        cp $GBIF_PATH_EXPANDED $TMPDIR/gbif_occurrences.csv.sorted
     else
         bin/rake pipeline:expand_gbif_occurrences_on_accession GBIF=$GBIF_PATH GBIF_OUT=$GBIF_PATH_EXPANDED
     fi
+
+    cp $GBIF_PATH_EXPANDED $TMPDIR/gbif_occurrences.csv.sorted
 }
 
 function link_occurrence_and_genes {
@@ -45,25 +43,27 @@ function link_occurrence_and_genes {
 }
 
 function collect_files {
-    cat $TMPDIR/*.genes.tsv.occurrences > $TMPDIR/gbif_occurrences_final.tsv
+    cat $TMPDIR/*.genes.tsv.occurrences > $TMPDIR/gbif.tsv
     cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
 }
 
 function create_genes_directory {
     mkdir $TMPDIR/genes
     cat $TMPDIR/genes.tsv | ruby genes.rb $TMPDIR/genes
-    cd $TMPDIR
-    tar czf genes.tar.gz genes
+    (cd $TMPDIR; tar czf genes.tar.gz genes)
 }
 
 function copy_results_to_output_dir {
-    cp genes.tar.gz $OUTPUT_DIR
-    cp genes.tsv $OUTPUT_DIR/genes.tsv
-    cp $TMPDIR/gbif_occurrences_final.tsv $OUTPUT_DIR/gbif_occurrences_final.tsv
+    cp $TMPDIR/genes.tar.gz $TMPDIR/genes.tsv $TMPDIR/gbif.tsv $WORKDIR
 }
 
-time expand_gbif_occurrences
-time link_occurrence_and_genes
-time collect_files
-time create_genes_directory
-time copy_results_to_output_dir
+if [[ -f $WORKDIR/genes.tsv && -f $WORKDIR/gbif.tsv && -f $WORKDIR/genes.tar.gz ]]
+then
+    echo "Using already generated genes.tsv, gbif.tsv, and genes.tar.gz"
+else
+    time expand_gbif_occurrences
+    time link_occurrence_and_genes
+    time collect_files
+    time create_genes_directory
+    time copy_results_to_output_dir
+fi

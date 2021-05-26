@@ -41,8 +41,6 @@ cd $PFSDIR
 # 69   catalogNumber
 # 27   identifier
 # 99   eventDate
-#
-# missing: v_geodeticdatum
 
 pids=()
 for i in x*; do
