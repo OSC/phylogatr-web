@@ -1,0 +1,30 @@
+name: Publish Docker image
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to OSC Container Registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup the environment
+        run: |
+          TAG=${GITHUB_REF#refs/*/}
+          REPO="docker-registry.osc.edu/gateways"
+          echo "LATEST_IMG=$REPO/phylogatr:latest" >> $GITHUB_ENV
+          echo "VERSIONED_IMG=$REPO/phylogatr:$TAG" >> $GITHUB_ENV
+      - name: docker build and tag
+        run: | 
+          docker build -t $LATEST_IMG .
+          docker tag $LATEST_IMG $VERSIONED_IMG
+      - name: login to osc harbor
+        run: docker login -u ${{ secrets.OSC_DOCKER_REGISTRY_USER }} -p ${{ secrets.OSC_DOCKER_REGISTRY_TOKEN }}
+      - name: push images to osc harbor
+        run: |
+          docker push $LATEST_IMG
+          docker push $VERSIONED_IMG
