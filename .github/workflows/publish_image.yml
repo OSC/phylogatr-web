@@ -17,18 +17,19 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: setup the environment
+        id: setup
         run: |
           TAG=${GITHUB_REF#refs/*/}
           REPO="docker-registry.osc.edu/gateways"
-          echo "LATEST_IMG=$REPO/phylogatr:latest" >> $GITHUB_ENV
-          echo "VERSIONED_IMG=$REPO/phylogatr:$TAG" >> $GITHUB_ENV
+          echo ::set-output name=latest::$LATEST_IMG
+          echo ::set-output name=versioned::$VERSIONED_IMG
       - name: docker build and tag
-        run: | 
-          docker build -t $LATEST_IMG .
-          docker tag $LATEST_IMG $VERSIONED_IMG
+        run: |
+          docker build -t ${{ steps.setup.outputs.latest }} .
+          docker tag ${{ steps.setup.outputs.latest }} ${{ steps.setup.outputs.versioned }}
       - name: login to osc harbor
         run: docker login -u ${{ secrets.OSC_DOCKER_REGISTRY_USER }} -p ${{ secrets.OSC_DOCKER_REGISTRY_TOKEN }}
       - name: push images to osc harbor
         run: |
-          docker push $LATEST_IMG
-          docker push $VERSIONED_IMG
+          docker push ${{ steps.setup.outputs.latest }}
+          docker push ${{ steps.setup.outputs.versioned }}
