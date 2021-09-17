@@ -15,7 +15,7 @@ namespace :search do
         SearchResults.from_params(params).info.save(ENV['INFO_FILE'])
       }
       x.report("write pkg: ") {
-        if ENV['PKG_FORMAT'] == 'zip'
+        if params[:results_format] == 'zip'
           SearchResults.write_zip_to_file(params, ENV['RESULTS'], ENV['INFO_FILE'])
         else
           SearchResults.write_tar_to_file(params, ENV['RESULTS'], ENV['INFO_FILE'])
