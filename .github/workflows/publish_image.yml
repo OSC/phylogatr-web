@@ -5,6 +5,10 @@ on:
     tags:
       - '*'
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   push_to_registry:
     name: Push Docker image to OSC Container Registry
