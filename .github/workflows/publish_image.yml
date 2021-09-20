@@ -22,12 +22,16 @@ jobs:
         run: |
           TAG=${GITHUB_REF#refs/*/}
           REPO="docker-registry.osc.edu/gateways"
-          echo ::set-output name=latest::$LATEST_IMG
-          echo ::set-output name=versioned::$VERSIONED_IMG
+          LATEST_IMG="$REPO/phylogatr:latest"
+          VERSIONED_IMG="$REPO/phylogatr:$TAG"
+          echo "::set-output name=latest::$LATEST_IMG"
+          echo "::set-output name=versioned::$VERSIONED_IMG"
       - name: docker build and tag
         run: |
           docker build -t ${{ steps.setup.outputs.latest }} .
-          docker tag ${{ steps.setup.outputs.latest }} ${{ steps.setup.outputs.versioned }}
+          if [[ -n "${{ steps.setup.outputs.versioned }}" ]]; then
+            docker tag ${{ steps.setup.outputs.latest }} ${{ steps.setup.outputs.versioned }}
+          fi
       - name: login to osc harbor
         run: docker login -u ${{ secrets.OSC_DOCKER_REGISTRY_USER }} -p ${{ secrets.OSC_DOCKER_REGISTRY_TOKEN }}
       - name: push images to osc harbor
