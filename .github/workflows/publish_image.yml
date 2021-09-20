@@ -1,7 +1,9 @@
 name: Publish Docker image
 
 on:
-  tags:
+  push:
+    tags:
+      - '*'
   pull_request:
 
 defaults:
@@ -29,7 +31,7 @@ jobs:
       - name: login to osc harbor
         run: docker login -u ${{ secrets.OSC_DOCKER_REGISTRY_USER }} -p ${{ secrets.OSC_DOCKER_REGISTRY_TOKEN }}
       - name: push images to osc harbor
-        if: ${{ github.event_name == 'create' && github.event.ref_type == 'tag' }}
+        if: ${{ github.push == 'create' && github.event.ref_type == 'tag' }}
         run: |
           docker push ${{ steps.setup.outputs.latest }}
           docker push ${{ steps.setup.outputs.versioned }}
