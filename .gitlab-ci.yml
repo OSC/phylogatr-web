@@ -6,6 +6,12 @@ tag-image:
   only:
     - tags
   script: |
-    IMG="docker-registry.osc.edu/gateways/phylogatr:$CI_COMMIT_TAG"
-    docker build -t $IMG .
-    docker push $IMG
+    IMG="docker-registry.osc.edu/gateways/phylogatr"
+    TAG="$IMG:$CI_COMMIT_TAG"
+    LATEST="$IMG:latest"
+
+    docker build -t $TAG .
+    docker tag $TAG $LATEST
+
+    docker push $TAG
+    docker push $LATEST
