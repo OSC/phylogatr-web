@@ -1,0 +1,11 @@
+variables:
+  # older versions of git have issues fetching.
+  GIT_STRATEGY: clone
+
+tag-image:
+  only:
+    - tags
+  script: |
+    IMG="docker-registry.osc.edu/gateways/phylogatr:$CI_COMMIT_TAG"
+    docker build -t $IMG .
+    docker push $IMG
