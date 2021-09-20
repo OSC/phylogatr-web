@@ -145,7 +145,7 @@ class BatchSearchResults
     export GENBANK_ROOT=$TMPDIR/genes
     export RAILS_ENV=#{Rails.env}
     export INFO_FILE=#{json_path_template('$SLURM_JOBID')}
-    export RESULTS=$TMPDIR/results.tar
+    export RESULTS=$TMPDIR/results.#{pkg}
     export PARAMS=#{serialize_params}
     export DATABASE_URL=#{ENV['DATABASE_URL']}
 
