@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### [2.2.3] - 10-18-2021
+
+- Fixed mistype of `phylogatr_id` in [11](https://github.com/OSC/phylogatr-web/pull/11).
+
 ### [2.2.2] - 10-18-2021
 
 #### Added
@@ -30,7 +34,9 @@ All notable changes to this project will be documented in this file.
 
 ### 1.0.0
 
-[Unreleased]: https://github.com/OSC/ood-dashboard/compare/v2.2.2...HEAD
+[Unreleased]: https://github.com/OSC/ood-dashboard/compare/v2.2.3...HEAD
+[2.2.3]: https://github.com/OSC/phylogatr-web/compare/v2.2.2...v2.2.3
+[2.2.2]: https://github.com/OSC/phylogatr-web/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/OSC/phylogatr-web/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/OSC/phylogatr-web/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/OSC/phylogatr-web/compare/v2.0.1...v2.1.0
