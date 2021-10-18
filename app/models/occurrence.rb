@@ -14,6 +14,7 @@ class Occurrence < ApplicationRecord
 
   def self.headers
     %w(
+      pylogatr_id
       accession
       source_id
       latitude
@@ -86,5 +87,11 @@ class Occurrence < ApplicationRecord
       # not duplicate
       false
     end
+  end
+
+  # not stored as a part of the model. it's just for the view
+  def phylogatr_id
+    a = accession.present? ? accession : '00000000'
+    "#{a}_#{source_id}"
   end
 end
