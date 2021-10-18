@@ -14,7 +14,7 @@ class Occurrence < ApplicationRecord
 
   def self.headers
     %w(
-      pylogatr_id
+      phylogatr_id
       accession
       source_id
       latitude
