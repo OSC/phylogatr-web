@@ -1,9 +1,12 @@
-## Phylogatr
+# Phylogatr Web
 
-## See wiki for more information
+ Phylogatr described at https://phylogatr.org/.
 
-- https://code.osu.edu/phylogatr/phylogatr/wikis
+This repository is the source code for the Phylogatr web app.  It also contains the
+code that downloads, filters and creates the database.
 
-## License
+See these links for more details.
 
-To Be Determined!
+- [Phylogatr website](https://phylogatr.org/)
+- [Pipeline documentation](docs/PIPELINE.md)
+- [OSC's Phylogatr](https://phylogatr.osc.edu)
