@@ -12,5 +12,12 @@ cd "$PHYLOGATR_GENBANK_DIR"
 # rsync was here initially, but stopped working after some time.
 wget -m -nH --cut-dirs=1 'ftp://ftp.ncbi.nlm.nih.gov/genbank'
 
+# rsync isn't working for me at the moment
+# rsync \
+#   --copy-links --recursive \
+#   --times --verbose --exclude wgs \
+#   rsync://ftp.ncbi.nlm.nih.gov/genbank \
+#   $PHYLOGATR_GENBANK_DIR 
+
 gunzip *.gz
 ls *.tar | xargs -i tar xf {}
