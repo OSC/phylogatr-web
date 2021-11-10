@@ -2,7 +2,7 @@
 
 [ -f "$PWD/.env.local" ] && source "$PWD/.env.local"
 
-export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
+export WORKDIR=${WORKDIR:=/fs/project/PAS1604/pipeline/dev}
 
 # genback data
 export PHYLOGATR_GENBANK_DIR="${PHYLOGATR_GENBANK_DIR:=/fs/project/PAS1604/genbank}"
@@ -18,9 +18,3 @@ export PHYLOGATR_BOLD_DIR="${PHYLOGATR_GENBANK_DIR:=/fs/project/PAS1604/bold}"
 
 # other stuff
 export PHYLOGATR_RUBY_VERSION="$RUBY_VERSION"
-
-
-
-# export GENBANK_DIR=/fs/project/PAS1604/genbank
-# export GBIF_PATH=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt
-# export GBIF_PATH_EXPANDED=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt.expanded

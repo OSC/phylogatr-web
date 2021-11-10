@@ -9,7 +9,7 @@ cd $SLURM_SUBMIT_DIR
 mkdir -p "$PHYLOGATR_GENBANK_DIR"
 cd "$PHYLOGATR_GENBANK_DIR"
 
-# rsync was here initially, but stopped working after some time.
+# FIXME: very slow
 wget -m -nH --cut-dirs=1 'ftp://ftp.ncbi.nlm.nih.gov/genbank'
 
 # rsync isn't working for me at the moment
