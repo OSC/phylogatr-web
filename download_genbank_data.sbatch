@@ -1,16 +1,23 @@
 #!/bin/bash
 #SBATCH --ntasks=1
-#SBATCH -t 15:00:00
+#SBATCH -t 72:00:00
 #SBATCH --job-name=genbank_update
 
-PHYLOGATR_GENBANK_DIR="${PHYLOGATR_GENBANK_DIR:=/fs/project/PAS1604/genbank}"
+cd $SLURM_SUBMIT_DIR
+[ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
 
-cd $PHYLOGATR_GENBANK_DIR
-rsync \
-  --copy-links --recursive \
-  --times --verbose --exclude wgs \
-  rsync://ftp.ncbi.nlm.nih.gov/genbank \
-  $PHYLOGATR_GENBANK_DIR 
+mkdir -p "$PHYLOGATR_GENBANK_DIR"
+cd "$PHYLOGATR_GENBANK_DIR"
+
+# FIXME: very slow
+wget -m -nH --cut-dirs=1 'ftp://ftp.ncbi.nlm.nih.gov/genbank'
+
+# rsync isn't working for me at the moment
+# rsync \
+#   --copy-links --recursive \
+#   --times --verbose --exclude wgs \
+#   rsync://ftp.ncbi.nlm.nih.gov/genbank \
+#   $PHYLOGATR_GENBANK_DIR 
 
 gunzip *.gz
 ls *.tar | xargs -i tar xf {}

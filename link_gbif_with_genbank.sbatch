@@ -7,11 +7,14 @@
 
 set -xe
 
-export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
+cd $SLURM_SUBMIT_DIR
+[ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
 
-export GENBANK_DIR=/fs/project/PAS1604/genbank
-export GBIF_PATH=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt
-export GBIF_PATH_EXPANDED=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt.expanded
+
+# export GENBANK_DIR=/fs/project/PAS1604/genbank
+# export GBIF_PATH=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt
+# export GBIF_PATH_EXPANDED=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt.expanded
+
 
 cd $SLURM_SUBMIT_DIR
 

@@ -7,8 +7,13 @@
 
 set -xe
 
-cd $SLURM_SUBMIT_DIR
-time unzip 0147211-200613084148143.zip occurrence.txt
+cd "$SLURM_SUBMIT_DIR"
+[ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
+
+cd "$PHYLOGATR_GBIF_DIR"
+
+time unzip "$GBIF_ID.zip"
+
 # cp 0147211-200613084148143.zip $TMPDIR/gbif.zip
 
 # cd $TMPDIR
