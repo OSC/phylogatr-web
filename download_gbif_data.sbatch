@@ -2,6 +2,7 @@
 #SBATCH --ntasks=1
 #SBATCH -t 30:00:00
 #SBATCH --job-name="gbif_phylogatr_download"
+#SBATCH --output=log/%x-%j.out
 
 set -xe
 

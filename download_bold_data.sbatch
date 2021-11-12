@@ -2,6 +2,7 @@
 #SBATCH --ntasks=1
 #SBATCH -t 20:00:00
 #SBATCH --job-name="phylogatr_download_bold_data"
+#SBATCH --output=log/%x-%j.out
 
 set -xe
 
