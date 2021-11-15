@@ -16,14 +16,16 @@ class GenbankDownloader
   end
 
   def update!
+    clean!
     Dir.chdir(dir) do
-      (remote_files - local_files).each do |file|
-        clean_file(file)
-      end.each do |file|
+      puts "Need to download #{files_needed.size} files."
+      # FIXME: add retries here. you clean it above, dl a new bad one, and clean it below.
+      files_needed.each do |file|
         puts "retrieving file #{file}"
         `wget -q --progress=dot https://#{NIH}/#{GENBANK}/#{file}`
       end
     end
+    clean!
   end
 
   def remote_files
@@ -33,17 +35,27 @@ class GenbankDownloader
     end.compact
   end
 
-  def local_files
-    Dir.chdir(dir) do
-      Dir.glob('*.seq.gz')
+  def files_needed
+    @files_needed ||= begin
+      remote = remote_files.map { |s| s.chomp('.gz') }
+      local = Dir.glob('*.{seq,seq.gz}').map { |s| s.chomp('.gz') }
+      (remote - local).map { |s| "#{s}.gz" }
     end
   end
 
-  def clean_file(file)
-    p = Pathname.new(file)
-    return unless p.file? && (p.zero? || `gzip -t #{f} 2>&1`.chomp != '')
+  def clean!
+    Dir.chdir(dir) do
+      Dir.glob('*.seq.gz').each do |gz|
+        unless valid_gz?(gz)
+          puts "removing file #{gz}. "
+          File.delete(gz) unless valid_gz?(gz)
+        end
+      end
+    end
+  end
 
-    puts "cleaning #{f} #{p.file? && p.zero?}"
-    File.delete(p.to_s)
+  def valid_gz?(file)
+    p = Pathname.new(file)
+    p.file? && !p.zero? && `gzip -t #{p} 2>&1`.chomp == ''
   end
 end
