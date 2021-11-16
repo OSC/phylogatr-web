@@ -4,23 +4,23 @@
 #SBATCH --job-name=genbank_update
 #SBATCH --output=log/%x-%j.out
 
-set -xe
 module purge
 
+set -x
 cd $SLURM_SUBMIT_DIR
 [ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
+set +x
 
-cd $SLURM_SUBMIT_DIR
 module load ruby/$PHYLOGATR_RUBY_VERSION
 
 mkdir -p "$PHYLOGATR_GENBANK_DIR"
 
-# need to migrate to this
 bin/bundle exec bin/db download_genbank $PHYLOGATR_GENBANK_DIR
 # ruby dl_genbank.rb
 
-gunzip *.gz
-ls *.tar | xargs -i tar xf {}
+# cd "$PHYLOGATR_GENBANK_DIR"
+# gunzip *.gz
+# ls *.tar | xargs -i tar xf {}
 
 # I'm leaving all of these here out of frustration. Or at least so
 # they're in the mainline for a while (if anyone happens upon them).
