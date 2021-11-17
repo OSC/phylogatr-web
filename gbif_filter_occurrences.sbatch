@@ -1,22 +1,17 @@
 #!/bin/bash
-#SBATCH --tasks=28
+#SBATCH --exclusive
 #SBATCH -t 10:00:00
-#SBATCH --job-name="filter_phylogatr"
+#SBATCH --job-name="filter_gbif_data"
+#SBATCH --output=log/%x-%j.out
 #SBATCH --gres=pfsdir
 
 # this took 1:07 to process 1.7T of data
 # run on occurrence.txt from 0147211-200613084148143.zip
 set -xe
+cd $SLURM_SUBMIT_DIR
+[ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
 
-if [[ -z "$OCCURRENCES_PATH" ]]; then
-  echo "Must set OCCURRENCES_PATH. Do OCCURRENCES_PATH=/path/to/occurrences sbatch gbif_filter_occurrences.pbs" 1>&2
-  exit 1
-fi
-
-time split -d -n 28 $OCCURRENCES_PATH $PFSDIR/x
-
-cd $PFSDIR
-
+time split -d -n $(nproc) $PHYLOGATR_GBIF_RAW $PFSDIR/x
 
 # 249 is the number of columns created from a gbif search
 # 84 is the column number (starting from 1) that is "associatedSequences"
@@ -42,6 +37,8 @@ cd $PFSDIR
 # 27   identifier
 # 99   eventDate
 
+cd $PFSDIR
+
 pids=()
 for i in x*; do
   awk -F$'\t' 'BEGIN {OFS = FS} { if (NF==249 && $84 != "") print $84, $1, $133, $134, $191, $192, $193, $194, $195, $196, $230, $199, $135, $64, $216, $98, $69, $27, $99 }' $i > filtered.$i &
@@ -49,4 +46,4 @@ for i in x*; do
 done
 wait "${pids[@]}"
 
-cat filtered.* > $OCCURRENCES_PATH.filtered.txt
+cat filtered.* > "$PHYLOGATR_GBIF_FILTERED"
