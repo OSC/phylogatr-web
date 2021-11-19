@@ -1,7 +1,9 @@
-class GbifGenbankLinker
+# frozen_string_literal: true
 
+class GbifGenbankLinker
   class GenbankRecord
     attr_reader :record
+
     def initialize(record)
       @record = record
     end
@@ -9,12 +11,17 @@ class GbifGenbankLinker
 
   class Gene
     attr_reader :feature, :record, :occurrence
+
     delegate :gbif_id, :accession, to: :occurrence
 
     def self.product_symbol_mappings
-      @product_symbol_mappings ||= Hash[Rails.root.join('pipeline', 'product_symbol_lookup.tsv').read.strip.split("\n").map {|l|
-        l.split("\t")
-      }]
+      @product_symbol_mappings ||=
+        Hash[Rails.root
+                  .join('pipeline', 'product_symbol_lookup.tsv')
+                  .read
+                  .strip
+                  .split("\n").map { |l| l.split("\t") }
+        ]
     end
 
     def initialize(feature, record, occurrence)
@@ -40,7 +47,7 @@ class GbifGenbankLinker
     end
 
     def species
-      record.organism.gsub(/\//, ' ')
+      record.organism.gsub(%r{/}, ' ')
     end
 
     def species_different_from_occurrence
@@ -52,11 +59,11 @@ class GbifGenbankLinker
     end
 
     def name
-      qualifiers['product']&.first.to_s.gsub(/[ \/ ]/, '-').gsub(/['\.]/, '').strip
+      qualifiers['product']&.first.to_s.gsub(%r{[ / ]}, '-').gsub(/['.]/, '').strip
     end
 
     def original_symbol
-      qualifiers['gene']&.first.to_s.gsub(/[ \/ ]/, '-').gsub(/['\.]/, '').upcase.strip
+      qualifiers['gene']&.first.to_s.gsub(%r{[ / ]}, '-').gsub(/['.]/, '').upcase.strip
     end
 
     def symbol
@@ -69,8 +76,7 @@ class GbifGenbankLinker
   end
 
   class Sequence
-    attr_reader :genbank_record
-    attr_reader :gbif_records
+    attr_reader :genbank_record, :gbif_records
 
     delegate :accession, to: :genbank_record
 
@@ -83,18 +89,16 @@ class GbifGenbankLinker
     end
 
     def genes
-      @genes ||= begin
-        if occurrences.present?
-          list = []
-          genbank_record.each_cds do |feature|
-            g = Gene.new(feature, genbank_record, occurrences.first)
-            list << g if g.valid?
-          end
-          list
-        else
-          []
-        end
-      end
+      @genes ||= if occurrences.present?
+                   list = []
+                   genbank_record.each_cds do |feature|
+                     g = Gene.new(feature, genbank_record, occurrences.first)
+                     list << g if g.valid?
+                   end
+                   list
+                 else
+                   []
+                 end
     end
 
     # filter may get rid of all valid occurrences, in which case we ignore this sequence
@@ -114,6 +118,9 @@ class GbifGenbankLinker
     @genbank = genbank
   end
 
+  def genbank_gz?
+    @genbank.end_with?('gz')
+  end
 
   # the accession column for occurrence download has multiple occurrences
   # so we expand a single occurrence record into separate rows, one per accession
@@ -121,22 +128,29 @@ class GbifGenbankLinker
   def self.expand_gbif_occurrences_on_accession(gbif_path, gbif_out_path)
     File.open(gbif_path) do |gbif|
       File.open(gbif_out_path, 'w') do |out|
-        accession_regex = Regexp.new /[A-Z]{2}\d{6}/
+        puts "reading '#{gbif_path}', writing '#{gbif_out_path}'."
+        accession_regex = Regexp.new(/[A-Z]{2}\d{6}/)
 
         accession_index = OccurrenceRecord::HEADERS.index(:accession)
-        raise "assuming accession_index is first record" unless accession_index == 0
+        raise 'assuming accession_index is first record' unless accession_index.zero?
 
         kingdom_index = OccurrenceRecord::HEADERS.index(:taxon_kingdom)
         species_index = OccurrenceRecord::HEADERS.index(:taxon_species)
+        written = 0
+        fs = "\t"
 
-        gbif.each_line do |line|
-          fields = line.chomp.split("\t", -1).map {|x| x.strip == "\\N" ? '' : x }
+        gbif.each_line.with_index do |line, index|
+          fields = line.chomp.split(fs, -1).map { |x| x.strip == '\\N' ? '' : x }
+          next unless fields[kingdom_index..species_index].include?('')
 
-          unless fields[kingdom_index..species_index].include?('')
-            fields[accession_index].upcase.scan(accession_regex) do |match|
-              # WARNING: assume accession index is first record (see above)
-              out.write(([match]+fields[1..-1]).join("\t") + "\n")
-            end
+          fields[accession_index].upcase.scan(accession_regex) do |match|
+            # WARNING: assume accession index is first record (see above)
+            # written += out.write(([match] + fields[1..-1]).join("\t") + "\n")
+            written += out.write("#{([match] + fields[1..-1]).join(fs)}\n")
+          end
+
+          if (index % 10_000_000).zero?
+            puts "read #{index} lines and have written #{written} bytes"
           end
         end
       end
@@ -155,7 +169,7 @@ class GbifGenbankLinker
 
     File.open(gbif) do |f|
       f.each_line.with_index do |line, index|
-        gbif_index << [OccurrenceRecord.from_str(line).accession, f.pos]  if index % 50000 == 0
+        gbif_index << [OccurrenceRecord.from_str(line).accession, f.pos] if (index % 50_000).zero?
       end
     end
 
@@ -165,7 +179,7 @@ class GbifGenbankLinker
   def self.seek_closer_to_starting_accession!(gbif, accession)
     gbif_index = build_gbif_index(gbif)
 
-    pos = ((accession && gbif_index.reverse_each.find {|i| i.first < accession}) || [0,0]).last
+    pos = ((accession && gbif_index.reverse_each.find { |i| i.first < accession }) || [0, 0]).last
 
     gbif.seek(pos, IO::SEEK_SET)
   end
@@ -180,30 +194,32 @@ class GbifGenbankLinker
     return to_enum(:each) unless block_given?
 
     File.open(@gbif) do |gbifio|
-      File.open(@genbank) do |genbankio|
+      file_clazz = genbank_gz? ? Zlib::GzipReader : File
+      file_clazz.open(@genbank) do |genbankio|
         gbif_enum = OccurrenceRecord.each_occurrence_slice_grouped_by_accession(gbifio)
         records = gbif_enum.next
 
         ff = Bio::GenBank.open(genbankio)
         ff.each_with_index do |entry, index|
-          if index == 0
-            self.class.seek_closer_to_starting_accession!(gbifio, entry.accession) unless records.first&.accession == entry.accession
+          if index.zero? && records.first&.accession != entry.accession
+            self.class.seek_closer_to_starting_accession!(gbifio,
+                                                          entry.accession)
           end
 
-          until records.first&.accession >= entry.accession do
+          until records.first&.accession >= entry.accession
             # useful for debugging:
             # puts "gbif #{records.first&.accession} < #{entry.accession} so getting next gbif record"
             records = gbif_enum.next
           end
 
-          if records.first.accession == entry.accession
-            # useful for debugging:
-            # puts "#{records.first.accession} == #{entry.accession} so yielding sequence"
-            yield Sequence.new(entry, records)
+          next unless records.first.accession == entry.accession
+
+          # useful for debugging:
+          # puts "#{records.first.accession} == #{entry.accession} so yielding sequence"
+          yield Sequence.new(entry, records)
           # useful for debugging:
           # else
           #   puts "gbif #{records.first.accession} not equal to #{entry.accession}"
-          end
         end
 
       rescue StopIteration => e
@@ -213,35 +229,32 @@ class GbifGenbankLinker
   end
 
   def self.write_genes_and_occurrences(gbif_path, genbank_path, out_genes_path, out_occurrences_path)
-    gbif_file = File.open(gbif_path)
-    genbank_file = File.open(genbank_path)
     out_genes_file = File.open(out_genes_path, 'w')
     out_occurrences_file = File.open(out_occurrences_path, 'w')
 
-    GbifGenbankLinker.new(gbif_file, genbank_file).each do |sequence|
-      if sequence.occurrences.present? && sequence.genes.present?
-        sequence.genes.each do |gene|
-          out_genes_file.write([
-            gene.fasta_file_path,
-            gene.accession,
-            gene.symbol,
-            gene.name,
-            gene.fasta_file_prefix,
-            gene.species,
-            File.basename(genbank_path.to_s),
-            gene.sequence,
-            gene.gbif_id
-          ].join("\t") + "\n")
-        end
+    GbifGenbankLinker.new(gbif_path, genbank_path).each do |sequence|
+      next unless sequence.occurrences.present? && sequence.genes.present?
 
-        sequence.occurrences.each do |occurrence|
-          out_occurrences_file.write(occurrence.to_post_str(sequence.species_different_from_occurrence, sequence.genes.map(&:symbol).sort.uniq.join(" "))+ "\n")
-        end
+      sequence.genes.each do |gene|
+        out_genes_file.write([
+          gene.fasta_file_path,
+          gene.accession,
+          gene.symbol,
+          gene.name,
+          gene.fasta_file_prefix,
+          gene.species,
+          File.basename(genbank_path.to_s),
+          gene.sequence,
+          gene.gbif_id
+        ].join("\t") + "\n")
+      end
+
+      sequence.occurrences.each do |occurrence|
+        out_occurrences_file.write(occurrence.to_post_str(sequence.species_different_from_occurrence,
+                                                          sequence.genes.map(&:symbol).sort.uniq.join(' ')) + "\n")
       end
     end
   ensure
-    gbif_file.close
-    genbank_file.close
     out_genes_file.close
     out_occurrences_file.close
   end
