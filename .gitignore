@@ -24,11 +24,6 @@
 /.env.local
 /.env.production
 
-# awesim-branding uses separately versioned wiki repositories
-# do not include those in the app repo
-/docs
-/wiki
-
 # Do not version the dependencies
 /vendor/bundle*
 

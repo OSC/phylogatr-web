@@ -1,48 +1,52 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=28
-#SBATCH -t 01:00:00
-#SBATCH --job-name="pipeline_phylogatr"
-#SBATCH --account=PAS1604
+#SBATCH --ntasks-per-node=40
+#SBATCH -t 12:00:00
+#SBATCH --job-name="link_gbif_and_genbank"
+#SBATCH --output=log/%x-%j.out
 
 set -xe
 
 cd $SLURM_SUBMIT_DIR
 [ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
 
-
 # export GENBANK_DIR=/fs/project/PAS1604/genbank
 # export GBIF_PATH=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt
+    #  now PHYLOGATR_GBIF_FILTERED
 # export GBIF_PATH_EXPANDED=/fs/project/PAS1604/gbif/0147211-200613084148143.filtered.txt.expanded
-
-
-cd $SLURM_SUBMIT_DIR
+    #  now PHYLOGATR_GBIF_EXPANDED
 
 module load pcp
-module load ruby
+module load ruby/$PHYLOGATR_RUBY_VERSION
 
 function expand_gbif_occurrences {
-    if [[ -f $GBIF_PATH_EXPANDED ]]; then
-        echo "Using expanded GBIF file at $GBIF_PATH_EXPANDED"
-        cp $GBIF_PATH_EXPANDED $TMPDIR/gbif_occurrences.csv.sorted
+    export GBIF_OUT="$TMPDIR/gbif_occurrences.csv"
+    export GBIF_SORTED="$GBIF_OUT.sorted"
+
+    if [[ -f $PHYLOGATR_GBIF_EXPANDED ]]; then
+        echo "Using expanded GBIF file at $PHYLOGATR_GBIF_EXPANDED"
+        cp "$PHYLOGATR_GBIF_EXPANDED" "$GBIF_SORTED"
     else
         # FIXME: if the expanded gbif file is not sorted, the linking of the two files will fail silently
         # either test and verify, and leave below as is
         # or change the expansion code to build the file in memory before writing or write to tmp file and then sort tmp to final dest
-        bin/rake pipeline:expand_gbif_occurrences_on_accession GBIF=$GBIF_PATH GBIF_OUT=$TMPDIR/gbif_occurrences.csv
-        sort -k 1b,1 $TMPDIR/gbif_occurrences.csv > $TMPDIR/gbif_occurrences.csv.sorted
-        cp $TMPDIR/gbif_occurrences.csv.sorted $GBIF_PATH_EXPANDED
+        bin/rake pipeline:expand_gbif_occurrences_on_accession GBIF=$PHYLOGATR_GBIF_FILTERED
+        sort -k 1b,1 "$GBIF_OUT" > "$GBIF_SORTED"
+        cp "$GBIF_SORTED" $PHYLOGATR_GBIF_EXPANDED
     fi
 }
 
 function link_occurrence_and_genes {
     export GBIF_PATH_EXPANDED=$TMPDIR/gbif_occurrences.csv.sorted
+    TMP_SCRIPT=$(mktemp)
 
     # takes 20m - a lot of time lost in bin/rake setup - could switch this to bin/db or add a bin/pipeline thor script
-    for i in $GENBANK_DIR/gb{inv,mam,pln,pri,rod,vrt}*seq
+    for i in $PHYLOGATR_GENBANK_DIR/gb{inv,mam,pln,pri,rod,vrt}*seq.gz
     do
-        echo "OUTPUT_DIR=$TMPDIR GENBANK_PATH=$i bin/rake pipeline:link_gbif_with_genbank"
-    done | srun parallel-command-processor
+        echo "OUTPUT_DIR=$TMPDIR GENBANK_PATH=$i bin/rake pipeline:link_gbif_with_genbank" >> "$TMP_SCRIPT"
+    done
+
+    srun -n $((`nproc`-1)) --export=ALL parallel-command-processor $TMP_SCRIPT
 
     # FIXME: parallelizing tasks doesn't work with multitask but may with https://github.com/grosser/parallel_tests
     # 38m on 40 items (so it really isn't doing parallelism (just using threads)

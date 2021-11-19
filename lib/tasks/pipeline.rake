@@ -37,15 +37,15 @@ namespace :pipeline do
     genbank_path = ENV['GENBANK_PATH']
     output_dir = ENV['OUTPUT_DIR']
 
-        puts "linking #{ENV['GBIF_PATH_EXPANDED']} with #{genbank_path}"
+    puts "linking #{ENV['GBIF_PATH_EXPANDED']} with #{genbank_path}"
 
-        basepath = File.join(output_dir, File.basename(genbank_path))
-        genes_out = basepath+'.genes.tsv'
-        gbif_out = basepath+'.genes.tsv.occurrences'
+    basepath = File.join(output_dir, File.basename(genbank_path))
+    genes_out = basepath+'.genes.tsv'
+    gbif_out = basepath+'.genes.tsv.occurrences'
 
-        GbifGenbankLinker.write_genes_and_occurrences(ENV['GBIF_PATH_EXPANDED'], genbank_path, genes_out, gbif_out)
+    GbifGenbankLinker.write_genes_and_occurrences(ENV['GBIF_PATH_EXPANDED'], genbank_path, genes_out, gbif_out)
 
-        puts "done linking #{ENV['GBIF_PATH_EXPANDED']} with #{genbank_path}"
+    puts "done linking #{ENV['GBIF_PATH_EXPANDED']} with #{genbank_path}"
   end
 
   desc "link all gbif with genbank"
