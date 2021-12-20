@@ -11,6 +11,6 @@ CSV.new(STDIN, col_sep: "\t").each do |row|
   sequence = row[7]
   gbif_id = row[8]
 
-  FileUtils.mkdir_p(File.dirname(path))
-  File.write(path + ".fa", ">#{accession}_#{gbif_id}\n#{sequence}\n", mode: "a+")
+  FileUtils.mkdir_p(File.dirname("./#{path}"))
+  File.write("./#{path}.fa", ">#{accession}_#{gbif_id}\n#{sequence}\n", mode: "a+")
 end
