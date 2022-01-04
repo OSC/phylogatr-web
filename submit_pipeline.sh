@@ -36,4 +36,4 @@ id=$(sbatch --dependency=afterok:${id##* } align.pbs)
 id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.sbatch)
 id=$(sbatch --dependency=afterok:${id##* } update_alignment_cache.sbatch)
 
-id=$(sbatch --dependency=afterok:${id##* } report_species_metrics.pbs)
+id=$(sbatch --dependency=afterok:${id##* } report_species_metrics.sbatch)
