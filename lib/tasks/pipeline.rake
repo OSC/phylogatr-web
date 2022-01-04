@@ -394,18 +394,23 @@ namespace :pipeline do
 
   desc 'update Species metrics'
   task update_species_metrics: :environment do
-    workers = Parallel.physical_processor_count - 1
+    workers = `nproc`.strip.to_i
     count = Species.count
 
     limit = count / workers
 
-    Parallel.each(1..workers, :in_processes => workers) do |_i|
-      # execute once per worker - would it be easier to just fork?
-      offset = limit * Parallel.worker_number
+    # support for serial if there's only 1 processor allocated
+    if workers == 1
+      Species.all.each(&:update_metrics!)
+    else
+      Parallel.each(1..workers, :in_processes => workers) do |_i|
+        # execute once per worker - would it be easier to just fork?
+        offset = limit * Parallel.worker_number
 
-      # worker number starts at 0, so if last worker, want to get rest of records
-      limit = count - offset if Parallel.worker_number == workers - 1
-      Species.limit(limit).offset(offset).each(&:update_metrics!)
+        # worker number starts at 0, so if last worker, want to get rest of records
+        limit = count - offset if Parallel.worker_number == workers - 1
+        Species.limit(limit).offset(offset).each(&:update_metrics!)
+      end
     end
   end
 

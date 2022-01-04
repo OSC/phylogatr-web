@@ -49,7 +49,9 @@ class Species < ApplicationRecord
   end
 
   def file_summaries
-    @files ||= absolute_path.glob('*fa').map do |f|
+    @files ||= absolute_path.glob('*fa').select do |f|
+      File.file?(f)
+    end.map do |f|
       lines, bytes = line_and_byte_count(f)
       Fasta.new(lines/2, bytes, f.basename('.*'), f.extname)
     end
