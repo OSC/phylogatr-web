@@ -210,7 +210,7 @@ namespace :pipeline do
         CSV.parse(line, col_sep: "\t", headers: BoldRecord::HEADERS)
         record = BoldRecord.from_str(line)
 
-        if record.valid? && ! record.duplicate?
+        if record.valid? && !record.duplicate?
           puts line
         end
       rescue => e

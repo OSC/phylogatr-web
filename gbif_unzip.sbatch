@@ -11,12 +11,9 @@ cd "$SLURM_SUBMIT_DIR"
 [ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
 
 cd "$PHYLOGATR_GBIF_DIR"
+cp "$PHYLOGATR_GBIF_ID.zip" $TMPDIR/gbif.zip
 
-time unzip "$GBIF_ID.zip"
-
-# cp 0147211-200613084148143.zip $TMPDIR/gbif.zip
-
-# cd $TMPDIR
-# time unzip gbif.zip citations.txt metadata.xml meta.xml rights.txt occurrence.txt
-
-# cp citations.txt metadata.xml meta.xml rights.txt occurrence.txt $SLURM_SUBMIT_DIR
+# TODO: find out, is this all we need from gbif?
+cd $TMPDIR
+time unzip gbif.zip citations.txt metadata.xml meta.xml rights.txt occurrence.txt
+cp citations.txt metadata.xml meta.xml rights.txt occurrence.txt $PHYLOGATR_GBIF_DIR

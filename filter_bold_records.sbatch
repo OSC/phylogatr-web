@@ -3,13 +3,14 @@
 #SBATCH --ntasks-per-node=28
 #SBATCH -t 01:00:00
 #SBATCH --job-name="filter_bold_phylogatr"
+#SBATCH --output=log/%x-%j.out
 
 set -x
 
-module load ruby
+cd $SLURM_SUBMIT_DIR
+[ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
 
-export BOLD_DATA=/fs/project/PAS1604/bold
-export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
+module load ruby/$PHYLOGATR_RUBY_VERSION
 
 # 1   processid
 # 3   recordID
@@ -29,7 +30,7 @@ export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
 # 71  genbank_accession
 # 72  nucleotides
 
-for tsv in $BOLD_DATA/*tsv; do
+for tsv in $PHYLOGATR_BOLD_DIR/*tsv; do
   time tail -n +2 $tsv | cut -d $'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 >> $TMPDIR/bold.tsv
 done
 
