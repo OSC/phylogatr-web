@@ -3,13 +3,14 @@
 #SBATCH --ntasks-per-node=28
 #SBATCH -t 04:00:00
 #SBATCH --job-name="update_species_metrics_phylogatr"
+#SBATCH --output=log/%x-%j.out
 
 set -xe
 
-export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
-
 cd $SLURM_SUBMIT_DIR
-module load ruby
+[ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
+
+module load ruby/$PHYLOGATR_RUBY_VERSION
 
 cp $WORKDIR/genes.tar.gz $TMPDIR
 time (cd $TMPDIR; tar xzf genes.tar.gz)

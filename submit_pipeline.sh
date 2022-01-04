@@ -21,9 +21,9 @@ id=$(sbatch --dependency=afterok:${id##* } filter_bold_records.sbatch)
 # populates database from bold.tsv and adds new files or sequences to existing files in genes.tar.gz
 id=$(sbatch --dependency=afterok:${id##* } add_bold_records.sbatch)
 
-id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.pbs)
-id=$(sbatch --dependency=afterok:${id##* } clean_database.pbs)
-id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.pbs)
+id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.sbatch)
+id=$(sbatch --dependency=afterok:${id##* } clean_database.sbatch)
+id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.sbatch)
 
 # FIXME: if executing this job alignment without TIMEOUT and no genes.db cache file this job will likely exceed
 # the walltime and fail; since the copy back to project is done at the end,
@@ -33,7 +33,7 @@ id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.pbs)
 # if not run align.pbs three times, first with a timeout of 10m, second with 60m and finally without a timeout,
 # copying results back in between; or add logic here and submit align.pbs several times with different timeouts
 id=$(sbatch --dependency=afterok:${id##* } align.pbs)
-id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.pbs)
-id=$(sbatch --dependency=afterok:${id##* } update_alignment_cache.pbs)
+id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.sbatch)
+id=$(sbatch --dependency=afterok:${id##* } update_alignment_cache.sbatch)
 
-id=$(sbatch --dependency=afterok:${id##* } report_species_metrics.pbs)
+id=$(sbatch --dependency=afterok:${id##* } report_species_metrics.sbatch)
