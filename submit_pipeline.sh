@@ -22,8 +22,8 @@ id=$(sbatch --dependency=afterok:${id##* } filter_bold_records.sbatch)
 id=$(sbatch --dependency=afterok:${id##* } add_bold_records.sbatch)
 
 id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.sbatch)
-id=$(sbatch --dependency=afterok:${id##* } clean_database.pbs)
-id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.pbs)
+id=$(sbatch --dependency=afterok:${id##* } clean_database.sbatch)
+id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.sbatch)
 
 # FIXME: if executing this job alignment without TIMEOUT and no genes.db cache file this job will likely exceed
 # the walltime and fail; since the copy back to project is done at the end,
