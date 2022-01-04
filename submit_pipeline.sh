@@ -21,7 +21,7 @@ id=$(sbatch --dependency=afterok:${id##* } filter_bold_records.sbatch)
 # populates database from bold.tsv and adds new files or sequences to existing files in genes.tar.gz
 id=$(sbatch --dependency=afterok:${id##* } add_bold_records.sbatch)
 
-id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.pbs)
+id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.sbatch)
 id=$(sbatch --dependency=afterok:${id##* } clean_database.pbs)
 id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.pbs)
 
