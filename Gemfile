@@ -62,6 +62,8 @@ gem 'zip_tricks', '~> 5.3', '>= 5.3.1'
 gem 'activerecord-import'
 gem 'parallel'
 
+
+gem 'gdbm'
 # install/use for testing purposes
 # bin/bundle exec derailed bundle:mem
 # 
