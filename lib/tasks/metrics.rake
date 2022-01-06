@@ -24,4 +24,26 @@ namespace :metrics do
       puts "%-16s %s" % pair
     end
   end
+
+  task :filtered_bold, [:directory] => :environment do |_task, args|
+    data_path = args[:directory]
+    raise "#{data_path} is not a valid directory" unless File.directory?(data_path)
+
+    total_records = 0
+    invalid_records = 0
+    tmp_file = '/tmp/bold.tsv'
+
+    Dir.glob("#{data_path}/*.tsv").each do |f|
+      sh "tail -n +1 #{f} | cut -d'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 > #{tmp_file}"
+
+      CSV.foreach(tmp_file, col_sep: "\t", headers: BoldRecord::HEADERS) do |record|
+        total_records += 1
+        invalid_records += 1 if BoldRecord.new(record.to_h).invalid?
+      end
+    end
+
+    puts "#{format('%.2f', (invalid_records / total_records.to_f) * 100)}% of records were found to be invalid."
+    puts "total records: #{total_records}"
+    puts "invalid records: #{invalid_records}"
+  end
 end

@@ -40,6 +40,36 @@
 /bin/nwns
 /bin/nwnsi
 /mafft
+bin/addsingle
+bin/contrafoldwrap
+bin/countlen
+bin/disttbfast
+bin/dndblast
+bin/dndfast7
+bin/dndpre
+bin/dvtditr
+bin/f2cl
+bin/filter
+bin/getlag
+bin/hex2maffttext
+bin/makedirectionlist
+bin/mccaskillwrap
+bin/multi2hat3s
+bin/nodepair
+bin/pairash
+bin/pairlocalalign
+bin/regtable2seq
+bin/replaceu
+bin/restoreu
+bin/score
+bin/seq2regtable
+bin/seqkit
+bin/setcore
+bin/setdirection
+bin/sextet5
+bin/splittbfast
+bin/tbfast
+bin/version
 
 # hide job output files
 *.o[0-9][0-9][0-9][0-9]*

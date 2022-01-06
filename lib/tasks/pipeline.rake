@@ -379,12 +379,14 @@ namespace :pipeline do
     puts "#{files_needing_alignment.count - files.count} alignments written from cache"
     puts "aligning #{files.count} files"
 
-    commands = files.map { |f| "time #{timeout} ./align_sequences.sh #{f}" }.join("\n") + "\n"
-
+    commands = files.map { |f| "time #{timeout} ./align_sequences.sh #{f}" }
     commands_path = File.join(ENV['TMPDIR'], 'commands')
-    File.write(commands_path, commands)
+    File.open(commands_path, 'w+') do |f|
+      f.puts(commands)
+    end
 
-    exec "srun parallel-command-processor #{commands_path}"
+    nproc = `nproc`.strip.to_i - 1
+    exec "srun -n #{nproc} --export=ALL parallel-command-processor #{commands_path}"
   end
 
   desc 'delete all fasta alignment files'
