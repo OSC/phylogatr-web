@@ -2,6 +2,9 @@
 
 [ -f "$PWD/.env.local" ] && source "$PWD/.env.local"
 
+# pick up all the things in bin/
+export MAFFT_BINARIES="$PWD/bin"
+
 export WORKDIR=${WORKDIR:=/fs/project/PAS1604/pipeline/dev}
 
 # genback data

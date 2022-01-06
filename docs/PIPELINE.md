@@ -14,6 +14,11 @@ of this project.
 Other schedulers need to replicate this pattern to make use of environment variables
 to change locations of data files.
 
+## Prepare Binaries
+
+You'll need a host of binaries for aligning sequences. You can see the [Dockerfile](../Dockerfile)
+for binaries and locations. Once they're built, place them into the `bin/` of this project.
+
 ## Download Raw data
 
 First you need to get the raw data from other sources.
@@ -60,18 +65,8 @@ gbif_unzip.sbatch
 gbif_filter_occurrences.sbatch
 ```
 
-## Link GBIF data with Genbank
+## Run the pipeline
 
-The script [link_gbif_with_genbank.sbatch](../link_gbif_with_genbank.sbatch)
-will link GBIF data with Genbank and starts the pipeline.
-
-When this job is complete you should see the beginnings of the pipeline in
-the `WORKDIR` environment variable, like so:
-
-```
-[johrstrom phylogatr(link-gbif)] 🐻  ls $WORKDIR -lrt
-total 1940576
--rw-r--r-- 1 johrstrom PZS0714   93992551 Nov 19 11:09 genes.tar.gz
--rw-r--r-- 1 johrstrom PZS0714 1116367020 Nov 19 11:09 genes.tsv
--rw-r--r-- 1 johrstrom PZS0714  776777918 Nov 19 11:09 gbif.tsv
-```
+At this point you have all the raw data you need. You can run the
+[submit_pipeline.sh](../submit_pipeline.sh) script to submit all the jobs
+or you can submit them individually by following submissions in that script.

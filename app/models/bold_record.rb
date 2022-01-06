@@ -124,7 +124,7 @@ class BoldRecord
   end
 
   def sequence_normalized
-    @sequence_normalized ||= self.sequence.downcase.gsub('-', '')
+    @sequence_normalized ||= self.sequence.to_s.downcase.gsub('-', '')
   end
 
   def fasta_sequence

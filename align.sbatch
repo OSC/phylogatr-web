@@ -1,12 +1,17 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=28
+#SBATCH --exclusive
 #SBATCH -t 40:00:00
 #SBATCH --job-name="align_phylogatr"
+#SBATCH --output=log/%x-%j.out
 
 set -xe
 
-export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
+cd $SLURM_SUBMIT_DIR
+[ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
+
+module load ruby/$PHYLOGATR_RUBY_VERSION
+module load pcp
 
 # if you want to set a timeout for alignments, this is a way to ensure the majority of alignments
 # will get done in a timely manner, and then you can resubmit a job without the timelimit
@@ -16,12 +21,6 @@ export WORKDIR=${WORKDIR:-/fs/project/PAS1604/pipeline/dev}
 # or
 #
 #    export TIMEOUT=60m
-
-cd $SLURM_SUBMIT_DIR
-
-module load ruby
-module load pcp
-
 
 # copy genes tarball to TMPDIR
 cp $WORKDIR/genes.tar.gz $TMPDIR

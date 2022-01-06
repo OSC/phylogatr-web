@@ -8,7 +8,7 @@ fasta_file=$1
 fasta_file_aligned="${fasta_file%.fa}.afa"
 
 function remove_newlines_in_fasta {
-  seqkit seq -i -w0
+  bin/seqkit seq -i -w0
 }
 
 function align {
@@ -24,7 +24,7 @@ function trim {
 #     align $fasta_file |  trim /dev/stdin > $fasta_file_aligned
 #
 # so below uses an intermediate file to ensure alignment completes before trimal begins
-fasta_tmp="$TMPDIR/$(basename $fasta_file_aligned)"
+fasta_tmp="$(mktemp)"
 align $fasta_file > $fasta_tmp
 trim $fasta_tmp | remove_newlines_in_fasta > $fasta_file_aligned
 
