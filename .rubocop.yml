@@ -31,12 +31,3 @@ Metrics/CyclomaticComplexity:
 Metrics/AbcSize:
   Max: 30
 
-# rspec
-RSpec/MultipleMemoizedHelpers:
-  Max: 10
-RSpec/MultipleExpectations:
-  Enabled: false
-RSpec/ExampleLength:
-  Enabled: false
-RSpec/MessageSpies:
-  EnforcedStyle: receive
