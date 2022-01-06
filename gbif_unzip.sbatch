@@ -2,6 +2,7 @@
 #SBATCH --tasks=1
 #SBATCH -t 20:00:00
 #SBATCH --job-name="unzip_phylogatr"
+#SBATCH --output=log/%x-%j.out
 
 # this took 03:25:13 to unzip occurrence.txt a 1.7T file
 
