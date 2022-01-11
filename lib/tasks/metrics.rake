@@ -46,4 +46,48 @@ namespace :metrics do
     puts "total records: #{total_records}"
     puts "invalid records: #{invalid_records}"
   end
+
+  desc 'Gbif records with no latitude or longitude'
+  task :gbif_no_location, [:occurrences_txt] => :environment do |_task, args|
+    files = Dir.glob("#{args[:occurrences_txt]}*")
+
+    results = Parallel.map(files) do |file|
+      res = { total: 0, invalid: 0 }
+
+      CSV.foreach(file, col_sep: "\t", headers: true, liberal_parsing: true) do |record|
+        res[:total] += 1
+        res[:invalid] += 1 if record['decimalLatitude'].nil? || record['decimalLongitude'].nil?
+      end
+
+      res
+    end.each_with_object({}) do |tmp, total|
+      total[:total] = 0 if total[:total].nil?
+      total[:invalid] = 0 if total[:invalid].nil?
+
+      total[:total] += tmp[:total].to_i
+      total[:invalid] += tmp[:invalid].to_i
+    end
+
+    puts "#{format('%.2f', (results[:invalid] / results[:total].to_f) * 100)}% of records were found to have no lat & lon coordinates."
+    puts "total records: #{results[:total]}"
+    puts "invalid records: #{results[:invalid]}"
+  end
+
+  desc 'Gbif records ascensions'
+  task :gbif_no_ascension, [:occurrences_txt] => :environment do |_task, args|
+    occurrences_txt = args[:occurrences_txt].to_s
+    raise "#{occurrences_txt} must be a file that is readable" unless File.file?(occurrences_txt) && File.readable?(occurrences_txt)
+
+    total_records = 0
+    invalid_records = 0
+    CSV.foreach(occurrences_txt, col_sep: "\t", headers: true, liberal_parsing: true) do |record|
+      total_records += 1
+      invalid_records += 1 if record['associatedSequences'].nil? || !/[A-Z]{2}\d{6}/.match?(record['associatedSequences'])
+      puts "read #{total_records / 1_000_000}M total records" if (total_records % 1_000_000).zero?
+    end
+
+    puts "#{format('%.2f', (invalid_records / total_records.to_f) * 100)}% of records were found to have ascensions."
+    puts "total records: #{total_records}"
+    puts "invalid records: #{invalid_records}"
+  end
 end
