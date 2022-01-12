@@ -32,7 +32,7 @@ id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.sbatch)
 # consider adding logic here to determine if alignment cache is available,
 # if not run align.pbs three times, first with a timeout of 10m, second with 60m and finally without a timeout,
 # copying results back in between; or add logic here and submit align.pbs several times with different timeouts
-id=$(sbatch --dependency=afterok:${id##* } align.pbs)
+id=$(sbatch --dependency=afterok:${id##* } align.sbatch)
 id=$(sbatch --dependency=afterok:${id##* } update_species_metrics.sbatch)
 id=$(sbatch --dependency=afterok:${id##* } update_alignment_cache.sbatch)
 

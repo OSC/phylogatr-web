@@ -12,7 +12,11 @@ function remove_newlines_in_fasta {
 }
 
 function align {
-  bin/mafft --adjustdirection --auto --inputorder --quiet $1
+  if [[ -z "$PHYLOGATR_VERBOSE_ALIGN" ]]; then
+    bin/mafft --adjustdirection --auto --inputorder --quiet $1
+  else
+    bin/mafft --adjustdirection --auto --inputorder $1
+  fi
 }
 
 function trim {
@@ -26,6 +30,11 @@ function trim {
 # so below uses an intermediate file to ensure alignment completes before trimal begins
 fasta_tmp="$(mktemp)"
 align $fasta_file > $fasta_tmp
+
+if [ -s $fasta_tmp ]; then
+  echo "$fasta_file alignment file is empty!"
+fi
+
 trim $fasta_tmp | remove_newlines_in_fasta > $fasta_file_aligned
 
 rm $fasta_tmp
