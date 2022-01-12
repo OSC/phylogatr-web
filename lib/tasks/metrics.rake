@@ -73,24 +73,6 @@ namespace :metrics do
     puts "invalid records: #{results[:invalid]}"
   end
 
-  desc 'Gbif records ascensions'
-  task :gbif_no_ascension, [:occurrences_txt] => :environment do |_task, args|
-    occurrences_txt = args[:occurrences_txt].to_s
-    raise "#{occurrences_txt} must be a file that is readable" unless File.file?(occurrences_txt) && File.readable?(occurrences_txt)
-
-    total_records = 0
-    invalid_records = 0
-    CSV.foreach(occurrences_txt, col_sep: "\t", headers: true, liberal_parsing: true) do |record|
-      total_records += 1
-      invalid_records += 1 if record['associatedSequences'].nil? || !/[A-Z]{2}\d{6}/.match?(record['associatedSequences'])
-      puts "read #{total_records / 1_000_000}M total records" if (total_records % 1_000_000).zero?
-    end
-
-    puts "#{format('%.2f', (invalid_records / total_records.to_f) * 100)}% of records were found to have ascensions."
-    puts "total records: #{total_records}"
-    puts "invalid records: #{invalid_records}"
-  end
-
   task gbif_filter_occurrences: :environment do
     PipelineMetrics.gbif_filter_occurrences
   end
