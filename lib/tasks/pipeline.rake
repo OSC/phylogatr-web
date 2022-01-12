@@ -379,7 +379,7 @@ namespace :pipeline do
     puts "#{files_needing_alignment.count - files.count} alignments written from cache"
     puts "aligning #{files.count} files"
 
-    commands = files.map { |f| "time #{timeout} ./align_sequences.sh #{f}" }
+    commands = files.map { |f| "time #{timeout} ./align_sequences.sh #{Shellwords.escape(f)}" }
     commands_path = File.join(ENV['TMPDIR'], 'commands')
     File.open(commands_path, 'w+') do |f|
       f.puts(commands)
