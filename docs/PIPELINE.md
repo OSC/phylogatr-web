@@ -65,8 +65,17 @@ gbif_unzip.sbatch
 gbif_filter_occurrences.sbatch
 ```
 
+`gbif_filter_occurrences` will start a metrics.yml file at `$WORKDIR/metrics.yml`
+if it doesn't exist.
+
 ## Run the pipeline
 
 At this point you have all the raw data you need. You can run the
 [submit_pipeline.sh](../submit_pipeline.sh) script to submit all the jobs
 or you can submit them individually by following submissions in that script.
+
+## Metrics
+
+As you run the pipeline you'll find information at `$WORKDIR/metrics.yml` regarding
+any given stage. Stages will log things like number of input & output records so
+you can see how many records where filtered at any given stage.

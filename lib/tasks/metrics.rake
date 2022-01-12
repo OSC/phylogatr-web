@@ -90,4 +90,8 @@ namespace :metrics do
     puts "total records: #{total_records}"
     puts "invalid records: #{invalid_records}"
   end
+
+  task gbif_filter_occurrences: :environment do
+    PipelineMetrics.gbif_filter_occurrences
+  end
 end
