@@ -15,10 +15,10 @@ class PipelineMetrics
       metrics = YAML.safe_load(File.read(metric_file)) || {}
       metrics['entries'] = metrics.fetch('entries', []).concat [
         {
-          'name'            => 'gbif_filter_occurrences',
-          'time'  => DateTime.now.to_s,
-          'input_records'   => raw,
-          'output_records'  => filtered
+          'name'           => 'gbif_filter_occurrences',
+          'time'           => DateTime.now.to_s,
+          'input_records'  => raw,
+          'output_records' => filtered
         }
       ]
 
