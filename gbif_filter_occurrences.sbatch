@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --exclusive
 #SBATCH -t 10:00:00
-#SBATCH --job-name="filter_gbif_data"
+#SBATCH --job-name="gbif_filter_occurrences"
 #SBATCH --output=log/%x-%j.out
 #SBATCH --gres=pfsdir
 
@@ -10,6 +10,8 @@
 set -xe
 cd $SLURM_SUBMIT_DIR
 [ -f "$SLURM_SUBMIT_DIR/env" ] && source "$SLURM_SUBMIT_DIR/env"
+
+module load ruby/$PHYLOGATR_RUBY_VERSION
 
 time split -d -n $(nproc) $PHYLOGATR_GBIF_RAW $PFSDIR/x
 
@@ -47,3 +49,6 @@ done
 wait "${pids[@]}"
 
 cat filtered.* > "$PHYLOGATR_GBIF_FILTERED"
+
+cd $SLURM_SUBMIT_DIR
+time bin/rake metrics:gbif_filter_occurrences
