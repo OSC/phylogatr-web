@@ -11,16 +11,19 @@ class PipelineMetrics
       raw = `wc -l #{rf}`.split(' ')[0].to_i
       filtered = `wc -l #{ff}`.split(' ')[0].to_i
 
-      FileUtils.touch(metric_file)
+      PipelineMetrics.append_record(
+      {
+        'name'           => 'gbif_filter_occurrences',
+        'time'           => DateTime.now.to_s,
+        'input_records'  => raw,
+        'output_records' => filtered
+      })
+    end
+
+    def append_record(entry)
       metrics = YAML.safe_load(File.read(metric_file)) || {}
-      metrics['entries'] = metrics.fetch('entries', []).concat [
-        {
-          'name'           => 'gbif_filter_occurrences',
-          'time'           => DateTime.now.to_s,
-          'input_records'  => raw,
-          'output_records' => filtered
-        }
-      ]
+
+      metrics['entries'] = metrics.fetch('entries', []).append(entry.to_h)
 
       File.open(metric_file, 'w+') { |f| f.write(metrics.to_yaml) }
     end
@@ -35,9 +38,13 @@ class PipelineMetrics
     end
 
     def metric_file
-      raise 'environment variable PHYLOGATR_METRIC_FILE must be set' if ENV['PHYLOGATR_METRIC_FILE'].nil?
+      @metric_file ||= begin
+        raise 'environment variable PHYLOGATR_METRIC_FILE must be set' if ENV['PHYLOGATR_METRIC_FILE'].nil?
 
-      ENV['PHYLOGATR_METRIC_FILE'].to_s
+        f = ENV['PHYLOGATR_METRIC_FILE'].to_s
+        FileUtils.touch(f)
+        f
+      end
     end
   end
 end

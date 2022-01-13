@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'pipeline_metrics'
+
 class GbifGenbankLinker
   class GenbankRecord
     attr_reader :record
@@ -119,42 +121,51 @@ class GbifGenbankLinker
   end
 
   def genbank_gz?
-    @genbank.end_with?('gz')
+    @genbank.to_s.ends_with?('gz')
   end
 
   # the accession column for occurrence download has multiple occurrences
   # so we expand a single occurrence record into separate rows, one per accession
   # since we link gbif with genbank on accession
   def self.expand_gbif_occurrences_on_accession(gbif_path, gbif_out_path)
-    File.open(gbif_path) do |gbif|
-      File.open(gbif_out_path, 'w') do |out|
-        puts "reading '#{gbif_path}', writing '#{gbif_out_path}'."
-        accession_regex = Regexp.new(/[A-Z]{2}\d{6}/)
+    gbif = File.open(gbif_path)
+    out = File.open(gbif_out_path, 'w')
 
-        accession_index = OccurrenceRecord::HEADERS.index(:accession)
-        raise 'assuming accession_index is first record' unless accession_index.zero?
+    puts "reading '#{gbif_path}', writing '#{gbif_out_path}'."
+    accession_regex = Regexp.new(/[A-Z]{2}\d{6}/)
 
-        kingdom_index = OccurrenceRecord::HEADERS.index(:taxon_kingdom)
-        species_index = OccurrenceRecord::HEADERS.index(:taxon_species)
-        written = 0
-        fs = "\t"
+    accession_index = OccurrenceRecord::HEADERS.index(:accession)
+    raise 'assuming accession_index is first record' unless accession_index.zero?
 
-        gbif.each_line.with_index do |line, index|
-          fields = line.chomp.split(fs, -1).map { |x| x.strip == '\\N' ? '' : x }
-          next unless fields[kingdom_index..species_index].include?('')
+    kingdom_index = OccurrenceRecord::HEADERS.index(:taxon_kingdom)
+    species_index = OccurrenceRecord::HEADERS.index(:taxon_species)
 
-          fields[accession_index].upcase.scan(accession_regex) do |match|
-            # WARNING: assume accession index is first record (see above)
-            # written += out.write(([match] + fields[1..-1]).join("\t") + "\n")
-            written += out.write("#{([match] + fields[1..-1]).join(fs)}\n")
-          end
+    output_records = 0
+    input_records = gbif.each_line.map do |line|
+      fields = line.chomp.split("\t", -1).map { |x| x.strip == '\\N' ? '' : x }
 
-          if (index % 10_000_000).zero?
-            puts "read #{index} lines and have written #{written} bytes"
-          end
+      unless fields[kingdom_index..species_index].include?('')
+        fields[accession_index].upcase.scan(accession_regex) do |match|
+          # WARNING: assume accession index is first record (see above)
+          # written += out.write(([match] + fields[1..-1]).join("\t") + "\n")
+          out.write("#{([match] + fields[1..-1]).join("\t")}\n")
+          output_records += 1
         end
       end
-    end
+
+      1
+    end.sum
+
+    PipelineMetrics.append_record(
+      {
+        'name'           => 'gbif_expand_occurrences_on_accession',
+        'time'           => DateTime.now.to_s,
+        'input_records'  => input_records,
+        'output_records' => output_records
+      })
+  ensure
+    gbif&.close
+    out&.close
   end
 
   #
