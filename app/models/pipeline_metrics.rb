@@ -24,6 +24,7 @@ class PipelineMetrics
       metrics = YAML.safe_load(File.read(metric_file)) || {}
 
       metrics['entries'] = metrics.fetch('entries', []).append(entry.to_h)
+      metrics['time'] = DateTime.now.to_s if metrics['time'].nil?
 
       File.open(metric_file, 'w+') { |f| f.write(metrics.to_yaml) }
     end

@@ -4,6 +4,7 @@
 #SBATCH -t 12:00:00
 #SBATCH --job-name="link_gbif_and_genbank"
 #SBATCH --output=log/%x-%j.out
+#SBATCH --gres=pfsdir
 
 set -xe
 
@@ -20,7 +21,7 @@ module load pcp
 module load ruby/$PHYLOGATR_RUBY_VERSION
 
 function expand_gbif_occurrences {
-    export GBIF_OUT="$TMPDIR/gbif_occurrences.csv"
+    export GBIF_OUT="$PFSDIR/gbif_occurrences.csv"
     export GBIF_SORTED="$GBIF_OUT.sorted"
 
     if [[ -f $PHYLOGATR_GBIF_EXPANDED ]]; then
@@ -37,35 +38,48 @@ function expand_gbif_occurrences {
 }
 
 function link_occurrence_and_genes {
-    export GBIF_PATH_EXPANDED=$TMPDIR/gbif_occurrences.csv.sorted
+    export GBIF_PATH_EXPANDED=$PFSDIR/gbif_occurrences.csv.sorted
     TMP_SCRIPT=$(mktemp)
+    IDX=0
 
     # takes 20m - a lot of time lost in bin/rake setup - could switch this to bin/db or add a bin/pipeline thor script
     for i in $PHYLOGATR_GENBANK_DIR/gb{inv,mam,pln,pri,rod,vrt}*seq.gz
     do
-        echo "OUTPUT_DIR=$TMPDIR GENBANK_PATH=$i bin/rake pipeline:link_gbif_with_genbank" >> "$TMP_SCRIPT"
+        IDX=$((IDX+1))
+        echo "OUTPUT_DIR=$PFSDIR GENBANK_PATH=$i bin/rake pipeline:link_gbif_with_genbank" >> "$TMP_SCRIPT"
     done
 
     srun -n $((`nproc`-1)) --export=ALL parallel-command-processor $TMP_SCRIPT
 
     # FIXME: parallelizing tasks doesn't work with multitask but may with https://github.com/grosser/parallel_tests
     # 38m on 40 items (so it really isn't doing parallelism (just using threads)
-    # (time GBIF_PATH_EXPANDED=$TMPDIR/gbif_occurrences.csv.sorted OUTPUT_DIR=$TMPDIR bin/rake -m pipeline:link_gbif_with_genbank)
+    # (time GBIF_PATH_EXPANDED=$PFSDIR/gbif_occurrences.csv.sorted OUTPUT_DIR=$PFSDIR bin/rake -m pipeline:link_gbif_with_genbank)
+
+    #  $PFSDIR/*.genes.tsv.occurrences
+    OUTPUT_OCCURENCES=$(wc -l $PFSDIR/*.genes.tsv.occurrences 2>/dev/null  | tail -n 1  | awk '{print $1}')
+    OUTPUT_GENES=$(wc -l $PFSDIR/*.genes.tsv 2>/dev/null  | tail -n 1  | awk '{print $1}')
+
+    INPUT_GENES="$IDX" \
+        OUTPUT_GENES=$OUTPUT_GENES \
+        OUTPUT_OCCURENCES=$OUTPUT_OCCURENCES \
+        RECORD_NAME="link_occurrence_and_genes" \
+        bin/rake metrics:save_record
 }
 
+
 function collect_files {
-    cat $TMPDIR/*.genes.tsv.occurrences > $TMPDIR/gbif.tsv
-    cat $TMPDIR/*.genes.tsv > $TMPDIR/genes.tsv
+    cat $PFSDIR/*.genes.tsv.occurrences > $PFSDIR/gbif.tsv
+    cat $PFSDIR/*.genes.tsv > $PFSDIR/genes.tsv
 }
 
 function create_genes_directory {
-    mkdir $TMPDIR/genes
-    cat $TMPDIR/genes.tsv | ruby genes.rb $TMPDIR/genes
-    (cd $TMPDIR; tar czf genes.tar.gz genes)
+    mkdir $PFSDIR/genes
+    cat $PFSDIR/genes.tsv | ruby genes.rb $PFSDIR/genes
+    (cd $PFSDIR; tar czf genes.tar.gz genes)
 }
 
 function copy_results_to_output_dir {
-    cp $TMPDIR/genes.tar.gz $TMPDIR/genes.tsv $TMPDIR/gbif.tsv $WORKDIR
+    cp $PFSDIR/genes.tar.gz $PFSDIR/genes.tsv $PFSDIR/gbif.tsv $WORKDIR
 }
 
 if [[ -f $WORKDIR/genes.tsv && -f $WORKDIR/gbif.tsv && -f $WORKDIR/genes.tar.gz ]]
