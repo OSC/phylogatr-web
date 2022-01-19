@@ -42,6 +42,12 @@ class BoldRecord
     BoldRecord.new(Hash[HEADERS.zip(str.chomp.split("\t", -1))])
   end
 
+  def to_tsv
+    HEADERS.map do |header|
+      self.send(header.to_sym).to_s
+    end.join("\t")
+  end
+
   def duplicate?
     Occurrence.new(
           source: :bold,

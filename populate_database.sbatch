@@ -11,3 +11,4 @@ cd $SLURM_SUBMIT_DIR
 module load ruby/$PHYLOGATR_RUBY_VERSION
 
 time bin/bundle exec bin/db populate development $WORKDIR/gbif.tsv
+bin/rake metrics:populate_database

@@ -14,19 +14,27 @@ class PipelineMetrics
       PipelineMetrics.append_record(
       {
         'name'           => 'gbif_filter_occurrences',
-        'time'           => DateTime.now.to_s,
         'input_records'  => raw,
         'output_records' => filtered
       })
     end
 
     def append_record(entry)
-      metrics = YAML.safe_load(File.read(metric_file)) || {}
+      entry['time'] = DateTime.now.to_s if entry['time'].nil?
 
+      metrics = YAML.safe_load(File.read(metric_file)) || {}
       metrics['entries'] = metrics.fetch('entries', []).append(entry.to_h)
-      metrics['time'] = DateTime.now.to_s if metrics['time'].nil?
 
       File.open(metric_file, 'w+') { |f| f.write(metrics.to_yaml) }
+    end
+
+    def populate_database
+      append_record({
+        'name'          => 'populate_database',
+        'input_records' => `wc -l #{ENV['WORKDIR']}/gbif.tsv`.split(' ')[0].to_i,
+        'output_occurences'    => Occurrence.all.size,
+        'output_species'       => Species.all.size,
+      })
     end
 
     private

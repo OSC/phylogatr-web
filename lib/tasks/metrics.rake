@@ -76,4 +76,24 @@ namespace :metrics do
   task gbif_filter_occurrences: :environment do
     PipelineMetrics.gbif_filter_occurrences
   end
+
+  task :save_record do
+    raise 'requried environment variables RECORD_NAME' unless ENV['RECORD_NAME']
+
+    record = {
+      'name' => ENV['RECORD_NAME'].to_s,
+    }.tap do |hsh|
+      ENV.select do |k, v|
+        /^INPUT_[\w_]+|^OUTPUT_[\w_]+/.match?(k)
+      end.each do |k, v|
+        hsh[k.downcase.to_s] = v
+      end
+    end
+
+    PipelineMetrics.append_record(record)
+  end
+
+  task populate_database: :environment do
+    PipelineMetrics.populate_database
+  end
 end
