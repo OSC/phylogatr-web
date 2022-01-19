@@ -212,15 +212,45 @@ namespace :pipeline do
 
   desc 'filter out invalid or duplicate bold records'
   task filter_bold_records: :environment do
-    $stdin.each_line do |line|
-      # try to parse as CSV
-      CSV.parse(line, col_sep: "\t", headers: BoldRecord::HEADERS)
-      record = BoldRecord.from_str(line)
+    files = Dir.glob("#{ENV['FILTERED_BOLD_DIR']}/x*").reject { |p| File.extname(p) == '.filtered' }
 
-      puts line if record.valid? && !record.duplicate?
-    rescue StandardError => e
-      warn "#{e.class} #{e.message} when parsing line"
+    totals = Parallel.map(files) do |file|
+      puts "reading file #{file}"
+      output_records = invalid_records = duplicate_records = 0
+
+      records = CSV.read(file, col_sep: "\t", headers: BoldRecord::HEADERS)
+      input_records = records.size
+
+      all = records.map do |record|
+        BoldRecord.new(record.to_h)
+      end.select do |record|
+        invalid_records += 1 if !record.valid?
+        record.valid?
+      end.reject do |record|
+        duplicate_records += 1 if record.duplicate?
+        record.duplicate?
+      end
+
+      File.open("#{file}.filtered", 'w+') do |output_file|
+        all.each do |record|
+          output_file.puts(record.to_tsv)
+        end
+      end
+
+        {
+          'input_records' => input_records,
+          'output_records' => all.size,
+          'invalid_records' => invalid_records,
+          'duplicate_records' => duplicate_records
+        }
+    end.each_with_object({}) do |entry, total|
+      total['input_records'] = entry['input_records'] + (total['input_records'] || 0)
+      total['output_records'] = entry['output_records'] + (total['output_records'] || 0)
+      total['invalid_records'] = entry['invalid_records'] + (total['invalid_records'] || 0)
+      total['duplicate_records'] = entry['duplicate_records'] + (total['duplicate_records'] || 0)
     end
+
+    PipelineMetrics.append_record(totals.merge({ 'name' => 'filter_bold_records' }))
   end
 
   desc 'add bold records to database'

@@ -1,9 +1,10 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=28
+#SBATCH --exclusive
 #SBATCH -t 01:00:00
 #SBATCH --job-name="filter_bold_phylogatr"
 #SBATCH --output=log/%x-%j.out
+#SBATCH --gres=pfsdir
 
 set -x
 
@@ -31,26 +32,21 @@ module load ruby/$PHYLOGATR_RUBY_VERSION
 # 72  nucleotides
 
 for tsv in $PHYLOGATR_BOLD_DIR/*tsv; do
-  time tail -n +2 $tsv | cut -d $'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 >> $TMPDIR/bold.tsv
+  time tail -n +2 $tsv | cut -d $'\t' -f1,3,4,5,10,12,14,16,20,22,24,47,48,70,71,72 >> $PFSDIR/bold.tsv
 done
 
 # sequential
-# time bin/rake pipeline:filter_bold_records < $TMPDIR/bold.tsv >$TMPDIR/bold.tsv.filtered 2>$TMPDIR/bold.tsv.filtered.errors
+# time bin/rake pipeline:filter_bold_records < $PFSDIR/bold.tsv >$PFSDIR/bold.tsv.filtered 2>$PFSDIR/bold.tsv.filtered.errors
 
 # parallel
 # NOTE: 14 not 28 because more than that puts too much load on MySQL
 # this only takes 10 minutes anyways
-split -d -n 14 $TMPDIR/bold.tsv $TMPDIR/x
+split -d -n $(nproc) $PFSDIR/bold.tsv $PFSDIR/x
 
-for tsv in $TMPDIR/x*
-do
-  time bin/rake pipeline:filter_bold_records < $tsv >$tsv.filtered 2>$tsv.filtered.errors &
-done
-wait
+FILTERED_BOLD_DIR=$PFSDIR \
+  OUTPUT_FILE="$PFSDIR/bold.tsv.filtered" \
+  time bin/rake pipeline:filter_bold_records
 
-# print out all errors with header per error file
-echo "Errors:"
-tail -n +1 $TMPDIR/*errors
-
-cat $TMPDIR/*filtered > $TMPDIR/bold.tsv.filtered
-cp $TMPDIR/bold.tsv.filtered $WORKDIR/bold.tsv
+cat $PFSDIR/x*.filtered > $PFSDIR/bold.tsv.filtered
+ls -lrt $PFSDIR
+cp $PFSDIR/bold.tsv.filtered $WORKDIR/bold.tsv
