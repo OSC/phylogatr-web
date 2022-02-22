@@ -1,4 +1,4 @@
-FROM centos:8
+FROM rockylinux/rockylinux:8
 LABEL maintainer 'Eric Franz <efranz@osc.edu>'
 RUN dnf update -y && dnf clean all && rm -rf /var/cache/dnf/*
 RUN dnf install -y \
@@ -19,10 +19,10 @@ RUN dnf install -y \
     && dnf clean all && rm -rf /var/cache/dnf/*
 
 # install Ruby
-RUN dnf -y module install ruby:2.5
+RUN dnf -y module install ruby:2.7
 RUN dnf -y install ruby-devel \
     && dnf clean all && rm -rf /var/cache/dnf/*
-RUN gem install bundler:1.17.3
+RUN gem install bundler:2.1.4
 
 # install Python pipeline dependencies
 RUN dnf -y install python3
@@ -51,20 +51,6 @@ RUN dnf -y install slurm slurm-spank-lua lua lua-posix \
     && dnf clean all && rm -rf /var/cache/dnf/*
 RUN groupadd -r slurm
 RUN useradd -r -g slurm -d /var/spool/slurm -s /sbin/nologin slurm
-
-# Add gem deps that require building native extensions
-RUN gem install byebug -v 11.1.3
-RUN gem install debug_inspector -v 1.1.0
-RUN gem install ffi -v 1.15.1
-RUN gem install mimemagic -v 0.3.10
-RUN gem install mysql2 -v 0.4.10
-RUN gem install nokogiri -v 1.11.5
-RUN gem install passenger -v 6.0.8
-RUN gem install racc -v 1.5.2
-RUN gem install redcarpet -v 3.5.1
-RUN gem install sassc -v 2.4.0
-RUN gem install sqlite3 -v 1.3.13
-RUN gem install jquery-rails -v 4.4.0
 
 # Copy app and install rest of the gems
 COPY . /app
