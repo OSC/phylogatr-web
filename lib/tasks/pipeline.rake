@@ -398,16 +398,42 @@ namespace :pipeline do
 
   desc 'align fasta files'
   task align: :environment do
-    # FIXME: this currently does not parallelize the work and instead does all the work sequentially
-    files = Species.write_alignment_files_from_cache(Species.files_needing_alignment)
-
-    workers = files.count >= 27 ? Parallel.physical_processor_count - 1 : 0
-    puts "Parallel.each over files with in_processes: #{workers}"
-
-    Parallel.each(files, in_processes: workers) do |file|
-      puts "aligning #{file}"
-      Species.align_file file
+    if ENV['GENBANK_ROOT'].nil? || !File.directory?(ENV['GENBANK_ROOT'])
+      raise "#{ENV['GENBANK_ROOT']} set in GENBANK_ROOT environment variable is invalid!"
     end
+
+    gb_root = ENV['GENBANK_ROOT'].to_s
+    fa_files = Dir.glob("#{gb_root}/**/*.fa")
+    afa_files = Dir.glob("#{gb_root}/**/*.afa")
+
+    files = fa_files.reject do |file|
+      path = Pathname.new(file)
+      fname = File.basename(file, '.fa')
+      afa_files.include?("#{path.parent}/#{fname}.afa")
+    end
+
+    timeout = ENV['TIMEOUT'].nil? ? '' : ENV['TIMEOUT'].to_s
+
+    puts "#{afa_files.count} files already aligned"
+    puts "aligning #{files.count} files"
+
+    alinged_files = Parallel.map(files) do |file|
+      puts "aligning #{file}"
+      args = [timeout, './align_sequences.sh', file]
+      # FIXME: do somthing with output here?
+      _, status = Open3.capture2('timeout', *args)
+      puts "did not align #{file} with exit status #{status.exitstatus}" unless status.success?
+
+      status.success? ? 1 : 0
+    end.compact.reduce(&:+)
+
+    PipelineMetrics.append_record(
+      {
+        'name' => 'align_fasta_files',
+        'input_records' => files.count,
+        'output_records' => alinged_files
+      }
+    )
   end
 
   desc 'align fasta files using parallel command processor'
