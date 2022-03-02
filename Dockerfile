@@ -10,7 +10,7 @@ RUN dnf install -y \
 RUN dnf install -y \
         gcc gcc-c++ gdb make curl curl-devel openssl-devel libxml2-devel \
         sqlite-devel readline-devel redhat-rpm-config shared-mime-info \
-        mariadb-devel nodejs libnsl procps-ng \
+        mariadb-devel nodejs libnsl procps-ng mariadb \
     && dnf clean all && rm -rf /var/cache/dnf/*
 
 # install Ruby
