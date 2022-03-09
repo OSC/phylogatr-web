@@ -26,7 +26,7 @@ module load pcp
 cp $WORKDIR/genes.tar.gz $TMPDIR
 time (cd $TMPDIR; tar xzf genes.tar.gz)
 
-GENBANK_ROOT=$TMPDIR/genes ALIGNMENTS_CACHE_PATH=$WORKDIR/genes.db bin/rake pipeline:alignpcp
+GENBANK_ROOT=$TMPDIR/genes bin/rake pipeline:align
 
 
 # tar up genes with alignments and copy back
