@@ -46,8 +46,6 @@ class BatchSearchResults
   # should have added that a long very long time ago
   # ################################################
   def submit_job
-    # FIXME: protect against crash?
-    results_root.mkpath
 
     # generate headers and insert into batch script INSTEAD OF command line args
     # skip #!/bin/bash and then do that

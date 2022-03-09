@@ -4,6 +4,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.6'
 
+# FIXME: after upgrading rails may have to change this
+# https://github.com/ruby/bigdecimal#which-version-should-you-select
+gem 'bigdecimal', '1.3.5'
+
 # be able to use either mysql or sqlite3
 gem 'sqlite3', '~> 1.3', '< 1.4'
 gem 'mysql2', '~> 0.4.1'
@@ -63,7 +67,6 @@ gem 'activerecord-import'
 gem 'parallel'
 
 
-gem 'gdbm'
 # install/use for testing purposes
 # bin/bundle exec derailed bundle:mem
 # 
