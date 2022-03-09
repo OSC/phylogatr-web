@@ -1,0 +1,17 @@
+{
+  "upload_type": "software", 
+  "description": "Phylogatr described at https://phylogatr.org/.\n\nThis repository is the source code for the Phylogatr web app. It also contains the code that downloads, filters and creates the database.",
+  "title": "Phylgatr Web source code",
+  "creators": [
+     {
+       "affiliation": "Ohio SuperComputer Center",
+       "name": "Jeff Ohrstrom"
+     },
+     {
+      "affiliation": "Ohio SuperComputer Center",
+      "name": "Eric Franz"
+    }
+  ],
+  "keywords": ["ruby", "rails", "biology"],
+  "license": "MIT"
+}
