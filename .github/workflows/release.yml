@@ -21,7 +21,7 @@ jobs:
     - name: Run Zenodo Deploy
       uses: rseng/zenodo-release@0.0.17
       with:
-        token: ${{ secrets.ZENODO_TOKEN }}
+        token: ${{ secrets.OSC_ROBOT_ZENODO_TOKEN }}
         version: ${{ github.event.release.tag_name }}
         zenodo_json: .zenodo.json   # optional
         archive: ${{ env.archive }}
