@@ -23,6 +23,7 @@
 /public/assets
 /.env.local
 /.env.production
+/.env.development
 
 # Do not version the dependencies
 /vendor/bundle*

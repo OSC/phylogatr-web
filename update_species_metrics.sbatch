@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=28
+#SBATCH --ntasks-per-node=1
 #SBATCH -t 04:00:00
 #SBATCH --job-name="update_species_metrics_phylogatr"
 #SBATCH --output=log/%x-%j.out
