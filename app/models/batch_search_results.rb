@@ -145,7 +145,7 @@ class BatchSearchResults
     export INFO_FILE=#{json_path_template('$SLURM_JOBID')}
     export RESULTS=$TMPDIR/results.#{pkg}
     export PARAMS=#{serialize_params}
-    export DATABASE_URL=#{ENV['REAL_DATABASE_URL']}
+    export DATABASE_URL=#{ENV['REAL_DATABASE_URL'] || ENV['PHYLOGATR_DATABASE_URL'] || ENV['DATABASE_URL'] }
 
     # execute command
     singularity exec #{Configuration.sif_path} /app/bin/bundle exec /app/bin/db search
