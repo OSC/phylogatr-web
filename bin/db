@@ -507,16 +507,23 @@ def download_bold_taxon(taxon, dir, force=false)
   Dir.chdir(dir) do
     file = "#{taxon.downcase}.tsv"
 
-    if force || ! File.file?("#{file}")
-      system("curl 'http://www.boldsystems.org/index.php/API_Public/combined?taxon=#{taxon}&format=tsv' -o #{file}")
+    if force || !File.file?("#{file}")
+      start_time = Time.now
+      status = system("curl -sS 'http://www.boldsystems.org/index.php/API_Public/combined?taxon=#{taxon}&format=tsv' -o #{file}")
 
-      # validate after download complete
-      if ! File.file?(file)
-        puts "file not created: #{file}"
-      elsif `tail #{file}`.include?('</html>')
+      # now validate
+      if !status
+        puts "attempt to download #{file} failed!"
+        File.unlink if File.file?(file)
+      elsif File.file?(file) && `tail #{file}`.include?('</html>')
         puts "file is resulted in HTML error: #{file}"
         FileUtils.mv file, "#{file}.error.html"
+      elsif !File.file?(file)
+        puts "download for #{file} is empty!"
+      else
+        puts "downloaded #{file}. #{File.new(file).size} bytes in #{(Time.now - start_time).to_i} seconds."
       end
+
     else
       puts "skipping #{file} since it already exists"
     end
@@ -557,8 +564,8 @@ class MyCLI < Thor
 
   desc "download_all_bold DIR", "download all bold data to dir"
   def download_all_bold(dir)
-    TAXONS.each do |taxon|
-      puts "download bold data for #{taxon}"
+    require 'parallel'
+    Parallel.each(-> { TAXONS.pop || Parallel::Stop } , in_processes: 20) do |taxon|
       download_bold_taxon taxon, dir
     end
   end
