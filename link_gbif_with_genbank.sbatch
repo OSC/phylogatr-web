@@ -87,8 +87,8 @@ then
     echo "Using already generated genes.tsv, gbif.tsv, and genes.tar.gz"
 else
     time expand_gbif_occurrences
-    # time link_occurrence_and_genes
-    # time collect_files
-    # time create_genes_directory
-    # time copy_results_to_output_dir
+    time link_occurrence_and_genes
+    time collect_files
+    time create_genes_directory
+    time copy_results_to_output_dir
 fi
