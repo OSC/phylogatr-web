@@ -241,7 +241,7 @@ namespace :pipeline do
       'fieldNumber', 'catalogNumber', 'identifier', 'eventDate'
     ].freeze
 
-    indexes = [1,133,134,191,192,193,194,195,196,230,199,135,64,216,98,69,27,99]
+    indexes = [1,133,134,191,192,193,194,195,196,230,199,135,64,216,98,69,27,99].freeze
     accession_regex = Regexp.new(/[A-Z]{2}\d{6}/).freeze
 
     require 'csv'
@@ -253,14 +253,16 @@ namespace :pipeline do
       invalid_records = 0
       output_lines = []
 
-      CSV.foreach(file, col_sep: "\t", headers: true, quote_char: '"', liberal_parsing: true, encoding: Encoding::ISO_8859_1) do |row|
+      File.foreach(file) do |line|
+        line = line.split("\t")
         input_records += 1
-        output = output_format.map { |key| row[key] }
+        output = indexes.map { |key| line[key - 1] }
 
-        gene_data = if row['associatedSequences'].to_s.match?(accession_regex)
-                      row['associatedSequences'].to_s
-                    elsif row['otherCatalogNumbers'].to_s.match?(accession_regex)
-                      row['otherCatalogNumbers']
+
+        gene_data = if line[83].to_s.match?(accession_regex)
+                      line[83].to_s
+                    elsif line[85].to_s.match?(accession_regex)
+                      line[85]
                     end
 
         if gene_data.nil? || output[0].to_s.empty?

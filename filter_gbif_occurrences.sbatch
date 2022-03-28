@@ -22,7 +22,4 @@ time split -d -n $(nproc) --filter=split_filter $PHYLOGATR_GBIF_RAW $PFSDIR/x
 FILTERED_GBIF_DIR=$PFSDIR bin/rake pipeline:filter_gbif_records
 
 cd $PFSDIR
-cat *.filtered > "$PHYLOGATR_GBIF_FILTERED.test"
-
-# cd $SLURM_SUBMIT_DIR
-# time bin/rake metrics:gbif_filter_occurrences
+cat *.filtered > "$PHYLOGATR_GBIF_FILTERED"

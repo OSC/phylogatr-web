@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=40
+#SBATCH --exclusive
 #SBATCH -t 12:00:00
 #SBATCH --job-name="link_gbif_and_genbank"
 #SBATCH --output=log/%x-%j.out
@@ -87,8 +87,8 @@ then
     echo "Using already generated genes.tsv, gbif.tsv, and genes.tar.gz"
 else
     time expand_gbif_occurrences
-    time link_occurrence_and_genes
-    time collect_files
-    time create_genes_directory
-    time copy_results_to_output_dir
+    # time link_occurrence_and_genes
+    # time collect_files
+    # time create_genes_directory
+    # time copy_results_to_output_dir
 fi
