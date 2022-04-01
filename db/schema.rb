@@ -19,34 +19,34 @@ ActiveRecord::Schema.define(version: 20210525131547) do
     t.integer "num_seqs"
     t.integer "num_bytes"
     t.string  "gene"
-    t.index ["species_id"], name: "index_files_on_species_id", using: :btree
+    t.index ["species_id"], name: "index_files_on_species_id"
   end
 
   create_table "occurrences", force: :cascade do |t|
     t.string  "accession"
-    t.string  "source_id"
-    t.decimal "lat",                                            precision: 15, scale: 10
-    t.decimal "lng",                                            precision: 15, scale: 10
+    t.string  "source_id",                        limit: 8
+    t.decimal "lat",                                        precision: 15, scale: 10
+    t.decimal "lng",                                        precision: 15, scale: 10
     t.string  "basis_of_record"
     t.integer "coordinate_uncertainty_in_meters"
     t.string  "issue"
     t.string  "different_genbank_species"
     t.integer "species_id"
-    t.integer "source",                                                                   default: 0
+    t.integer "source",                                                               default: 0
     t.string  "field_number"
     t.string  "catalog_number"
     t.string  "identifier"
     t.date    "event_date"
-    t.text    "genes",                            limit: 65535
+    t.text    "genes"
     t.string  "flag"
-    t.index ["accession"], name: "index_occurrences_on_accession", using: :btree
-    t.index ["catalog_number"], name: "index_occurrences_on_catalog_number", using: :btree
-    t.index ["field_number"], name: "index_occurrences_on_field_number", using: :btree
-    t.index ["identifier"], name: "index_occurrences_on_identifier", using: :btree
-    t.index ["lat"], name: "index_occurrences_on_lat", using: :btree
-    t.index ["lng"], name: "index_occurrences_on_lng", using: :btree
-    t.index ["source"], name: "index_occurrences_on_source", using: :btree
-    t.index ["species_id"], name: "index_occurrences_on_species_id", using: :btree
+    t.index ["accession"], name: "index_occurrences_on_accession"
+    t.index ["catalog_number"], name: "index_occurrences_on_catalog_number"
+    t.index ["field_number"], name: "index_occurrences_on_field_number"
+    t.index ["identifier"], name: "index_occurrences_on_identifier"
+    t.index ["lat"], name: "index_occurrences_on_lat"
+    t.index ["lng"], name: "index_occurrences_on_lng"
+    t.index ["source"], name: "index_occurrences_on_source"
+    t.index ["species_id"], name: "index_occurrences_on_species_id"
   end
 
   create_table "species", force: :cascade do |t|
@@ -63,15 +63,15 @@ ActiveRecord::Schema.define(version: 20210525131547) do
     t.string  "taxon_species"
     t.string  "taxon_subspecies"
     t.string  "different_genbank_species"
-    t.index ["path"], name: "index_species_on_path", using: :btree
-    t.index ["taxon_class"], name: "index_species_on_taxon_class", using: :btree
-    t.index ["taxon_family"], name: "index_species_on_taxon_family", using: :btree
-    t.index ["taxon_genus"], name: "index_species_on_taxon_genus", using: :btree
-    t.index ["taxon_kingdom"], name: "index_species_on_taxon_kingdom", using: :btree
-    t.index ["taxon_order"], name: "index_species_on_taxon_order", using: :btree
-    t.index ["taxon_phylum"], name: "index_species_on_taxon_phylum", using: :btree
-    t.index ["taxon_species"], name: "index_species_on_taxon_species", using: :btree
-    t.index ["taxon_subspecies"], name: "index_species_on_taxon_subspecies", using: :btree
+    t.index ["path"], name: "index_species_on_path"
+    t.index ["taxon_class"], name: "index_species_on_taxon_class"
+    t.index ["taxon_family"], name: "index_species_on_taxon_family"
+    t.index ["taxon_genus"], name: "index_species_on_taxon_genus"
+    t.index ["taxon_kingdom"], name: "index_species_on_taxon_kingdom"
+    t.index ["taxon_order"], name: "index_species_on_taxon_order"
+    t.index ["taxon_phylum"], name: "index_species_on_taxon_phylum"
+    t.index ["taxon_species"], name: "index_species_on_taxon_species"
+    t.index ["taxon_subspecies"], name: "index_species_on_taxon_subspecies"
   end
 
 end

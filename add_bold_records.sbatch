@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=28
-#SBATCH -t 01:30:00
+#SBATCH -t 06:00:00
 #SBATCH --job-name="add_bold_phylogatr"
 #SBATCH --output=log/%x-%j.out
 #SBATCH --gres=pfsdir

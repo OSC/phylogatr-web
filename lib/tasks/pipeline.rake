@@ -210,6 +210,86 @@ namespace :pipeline do
     tsv.unlink
   end
 
+  desc 'filter invalid gbif records'
+  task :filter_gbif_records do
+    # 249 is the number of columns created from a gbif search
+    # 84 is the column number (starting from 1) that is "associatedSequences"
+    #
+    #
+    # 84   associatedSequences
+    # 1    gbifID
+    # 133  decimalLatitude
+    # 134  decimalLongitude
+    # 191  kingdom
+    # 192  phylum
+    # 193  class
+    # 194  order
+    # 195  family
+    # 196  genus
+    # 230  species
+    # 199  infraspecificEpithet
+    # 135  coordinateUncertaintyInMeters
+    # 64   basisOfRecord
+    # 216  issue
+    # 98   fieldNumber
+    # 69   catalogNumber
+    # 27   identifier
+    # 99   eventDate
+    output_format = [
+      'gbifID', 'decimalLatitude', 'decimalLongitude', 'kingdom', 'phylum', 'class', 'order', 'family',
+      'species', 'infraspecificEpithet', 'coordinateUncertaintyInMeters', 'basisOfRecord', 'issue',
+      'fieldNumber', 'catalogNumber', 'identifier', 'eventDate'
+    ].freeze
+
+    indexes = [1,133,134,191,192,193,194,195,196,230,199,135,64,216,98,69,27,99].freeze
+    accession_regex = Regexp.new(/[A-Z]{2}\d{6}/).freeze
+
+    require 'csv'
+    require 'json'
+    files = Dir.glob("#{ENV['FILTERED_GBIF_DIR']}/x*")
+
+    totals = Parallel.map(files) do |file|
+      input_records = 0
+      invalid_records = 0
+      output_lines = []
+
+      File.foreach(file) do |line|
+        line = line.split("\t")
+        input_records += 1
+        output = indexes.map { |key| line[key - 1] }
+
+
+        gene_data = if line[83].to_s.match?(accession_regex)
+                      line[83].to_s
+                    elsif line[85].to_s.match?(accession_regex)
+                      line[85]
+                    end
+
+        if gene_data.nil? || output[0].to_s.empty?
+          invalid_records += 1
+          next
+        else
+          output_lines.append(output.prepend(gene_data).join("\t"))
+        end
+      end
+
+      # File.open()
+      File.open("#{file}.filtered", 'w') { |of| of.write(output_lines.join("\n")) }
+      {
+        'input_records' => input_records,
+        'invalid_records' => invalid_records,
+        'output_records' => output_lines.size
+      }
+    end.each_with_object({}) do |entry, total|
+      total['input_records'] = entry['input_records'] + (total['input_records'] || 0)
+      total['output_records'] = entry['output_records'] + (total['output_records'] || 0)
+      total['invalid_records'] = entry['invalid_records'] + (total['invalid_records'] || 0)
+    end
+
+    puts totals
+    PipelineMetrics.append_record(totals.merge({ 'name' => 'gbif_filter_occurrences' }))
+  end
+
   desc 'filter out invalid or duplicate bold records'
   task filter_bold_records: :environment do
     files = Dir.glob("#{ENV['FILTERED_BOLD_DIR']}/x*").reject { |p| File.extname(p) == '.filtered' }

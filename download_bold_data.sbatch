@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --ntasks=1
-#SBATCH -t 20:00:00
-#SBATCH --job-name="phylogatr_download_bold_data"
+#SBATCH --ntasks-per-node=4
+#SBATCH -t 48:00:00
+#SBATCH --job-name="download_bold_data"
 #SBATCH --output=log/%x-%j.out
 
 set -xe

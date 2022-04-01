@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=40
+#SBATCH --exclusive
 #SBATCH -t 12:00:00
 #SBATCH --job-name="link_gbif_and_genbank"
 #SBATCH --output=log/%x-%j.out
