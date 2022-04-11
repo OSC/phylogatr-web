@@ -38,3 +38,16 @@
     color: #ddd;
   }
 }
+
+// FIXME: Defining bootstrap 4+ classes here so, remove when this upgrades from 3
+.d-flex {
+  display: flex !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.table-filter {
+  padding-right: 50%;
+}

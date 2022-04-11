@@ -1,18 +1,24 @@
 <% content_for :page_title, "New Search" %>
 
-<h1>Phylogatr</h1>
-<p class="lead"><strong>phylo</strong>geographic data aggre<strong>gat</strong>ion and <strong>r</strong>epurposing</p>
+<row>
+<h1 class="d-flex justify-content-center">Phylogatr</h1>
+<p class="lead d-flex justify-content-center"><strong>phylo</strong>geographic data aggre<strong>gat</strong>ion and <strong>r</strong>epurposing</p>
 
-<h2>New Search</h2>
+<h2 class="d-flex justify-content-center">New Search</h2>
 
 <h3>Step 1: Specify location constraint (optional) <br><small>Skip this step if you want global data</small></h3>
 
 <div class="row">
 <%= bootstrap_form_tag url: searches_path, method: :post do |f| %>
-  <div class="col-xs-12 col-md-6">
+
+  <div class="visible-lg-block col-lg-2">
+    <!-- some left padding for the search fields -->
+  </div>
+
+  <div class="col-xs-12 col-md-6 col-lg-4">
     <div id="mapid" style="height: 400px"></div>
   </div>
-  <div class="col-xs-12 col-md-4">
+  <div class="col-xs-12 col-md-3">
     <%= f.text_field :southwest_corner_latitude %>
     <%= f.text_field :southwest_corner_longitude %>
     <%= f.text_field :northeast_corner_latitude %>
