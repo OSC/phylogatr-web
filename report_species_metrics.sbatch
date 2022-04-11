@@ -2,7 +2,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH -t 01:00:00
-#SBATCH --job-name="phylogatr_report_species_metrics"
+#SBATCH --job-name="report_species_metrics"
 #SBATCH --output=log/%x-%j.out
 
 set -xe
