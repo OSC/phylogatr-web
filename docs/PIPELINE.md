@@ -14,6 +14,21 @@ of this project.
 Other schedulers need to replicate this pattern to make use of environment variables
 to change locations of data files.
 
+## Workflow
+
+### Pipeline Overview
+
+![alt text needed](imgs/Figure1.png "Figure 1: Pipeline Overview")
+
+### GBIF & GenBank Quality Control
+
+![alt text needed](imgs/Figure2.png "Figure 2: GBIF & GenBank Quality Control")
+
+### Bold Quality Control
+
+![alt text needed](imgs/Figure3.png "Figure 3: Bold Quality Control")
+
+
 ## Prepare Binaries
 
 You'll need a host of binaries for aligning sequences. You can see the [Dockerfile](../Dockerfile)
