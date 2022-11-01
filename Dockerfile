@@ -3,7 +3,7 @@ LABEL maintainer 'Eric Franz <efranz@osc.edu>'
 RUN dnf update -y && dnf clean all && rm -rf /var/cache/dnf/*
 RUN dnf install -y \
         dnf-utils \
-        epel-release \
+        epel-release gzip \
     && dnf config-manager --set-enabled powertools \
     && dnf clean all && rm -rf /var/cache/dnf/*
 

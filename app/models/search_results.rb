@@ -123,7 +123,7 @@ class SearchResults
 
 
     Zlib::GzipWriter.wrap(file) do |gz|
-      Gem::Package::TarWriter.new(gz) do |tar|
+      TarWriter.new(gz) do |tar|
         # Note: cannot use find-each because that uses primary key and limit and
         # offset and its own sort by primary key so it ignores sort order we
         # want
