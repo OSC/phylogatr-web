@@ -59,7 +59,7 @@ class BatchSearchResults
       job_name: "phylogatr_search",
       wall_time: 3600,
       # native: [ "--partition", "quick", "--nodes", "1", "--ntasks-per-node", "1"  ]
-      native: [ "--nodes", "1", "--ntasks-per-node", "2"  ]
+      native: [ "--nodes", "1", "--ntasks-per-node", "2", -D, results_root  ]
     ))
   end
 
