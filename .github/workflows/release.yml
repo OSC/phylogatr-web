@@ -19,7 +19,7 @@ jobs:
         echo "archive=${name}" >> $GITHUB_ENV
 
     - name: Run Zenodo Deploy
-      uses: rseng/zenodo-release@0.0.17
+      uses: rseng/zenodo-release@main
       with:
         token: ${{ secrets.OSC_ROBOT_ZENODO_TOKEN }}
         version: ${{ github.event.release.tag_name }}
