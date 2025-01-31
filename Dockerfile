@@ -30,8 +30,8 @@ RUN pip3 install invoke
 # RUN /src/aligntools-setup.sh
 
 RUN mkdir -p /src
-RUN curl -o /src/trimal.tar.gz http://trimal.cgenomics.org/_media/trimal.v1.2rev59.tar.gz
-RUN cd /src && tar xzf trimal.tar.gz && cd trimAl/source && make && cp trimal readal /usr/local/bin
+RUN curl -L -o /src/trimal.tar.gz https://github.com/inab/trimal/archive/refs/tags/v1.4.1.tar.gz
+RUN cd /src && tar xzf trimal.tar.gz && cd trimal-1.4.1/source && make && cp trimal readal /usr/local/bin
 
 RUN curl -o /src/mafft.tar.gz https://mafft.cbrc.jp/alignment/software/mafft-7.475-with-extensions-src.tgz
 RUN cd /src && tar xzf mafft.tar.gz && cd mafft-7.475-with-extensions/core && make clean && make && make install
