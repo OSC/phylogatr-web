@@ -14,10 +14,9 @@ RUN dnf install -y \
     && dnf clean all && rm -rf /var/cache/dnf/*
 
 # install Ruby
-RUN dnf -y module install ruby:2.7
+RUN dnf -y module install ruby:3.3
 RUN dnf -y install ruby-devel \
     && dnf clean all && rm -rf /var/cache/dnf/*
-RUN gem install bundler:2.1.4
 
 # install Python pipeline dependencies
 RUN dnf -y install python3
