@@ -126,7 +126,6 @@ class BatchSearchResults
     umask 002
 
     set -xe
-    module load ruby
 
     mkdir -p #{output_path_template('$SLURM_JOBID').to_s}
 
