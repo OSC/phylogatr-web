@@ -17,7 +17,7 @@ class OccurrenceRecord
   attr_accessor :flag
 
   def accession
-    @accession.upcase
+    @accession.to_s.upcase
   end
 
   def species_path
