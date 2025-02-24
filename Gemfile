@@ -2,14 +2,12 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.6'
+gem 'rails', '6.0.6.1'
 
-# FIXME: after upgrading rails may have to change this
-# https://github.com/ruby/bigdecimal#which-version-should-you-select
-gem 'bigdecimal', '1.3.5'
+gem 'bigdecimal'
 
 # be able to use either mysql or sqlite3
-gem 'sqlite3', '~> 1.3', '< 1.4'
+gem 'sqlite3', '1.4.2'
 gem 'mysql2', '~> 0.4.1'
 
 # Use SCSS for stylesheets
@@ -17,7 +15,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails' #, '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -37,7 +35,7 @@ group :development do
   gem 'pry'
 end
 
-gem 'passenger', require: 'phusion_passenger/rack_handler'
+gem 'passenger' #, require: 'phusion_passenger/rack_handler'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
@@ -46,10 +44,11 @@ gem 'font-awesome-sass', '~> 4.6'
 gem 'dotenv-rails'
 gem 'rails_12factor', group: :production
 gem 'ood_support', '~> 0.0.2'
-gem 'ood_appkit', '~> 1.0'
+gem 'ood_appkit', '~> 2.0'
 gem 'mocha'
 
 gem 'bio'
+gem 'gdbm'
 
 # FIXME: replace geokit with using an R-Tree or other spacial index
 gem 'geokit-rails'
@@ -66,6 +65,9 @@ gem 'zip_tricks', '~> 5.3', '>= 5.3.1'
 gem 'activerecord-import'
 gem 'parallel'
 
+gem 'nokogiri', force_ruby_platform: true
+
+gem 'psych', '< 4.0.0'
 
 # install/use for testing purposes
 # bin/bundle exec derailed bundle:mem
