@@ -130,7 +130,7 @@ GEM
     minitest (5.25.4)
     mocha (2.7.1)
       ruby2_keywords (>= 0.0.5)
-    mysql2 (0.4.10)
+    mysql2 (0.5.6)
     net-imap (0.5.6)
       date
       net-protocol
@@ -276,7 +276,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mocha
-  mysql2 (~> 0.4.1)
+  mysql2
   nokogiri
   ood_appkit (~> 2.0)
   ood_support (~> 0.0.2)
