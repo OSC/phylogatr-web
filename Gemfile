@@ -8,7 +8,7 @@ gem 'bigdecimal'
 
 # be able to use either mysql or sqlite3
 gem 'sqlite3', '1.4.2'
-gem 'mysql2', '~> 0.4.1'
+gem 'mysql2' #, '~> 0.4.1', platforms: :ruby
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
