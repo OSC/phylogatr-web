@@ -64,13 +64,9 @@ class BatchSearchResults
   end
 
   def cluster
-    @cluster ||= OodCore::Cluster.new(id: 'owens-quick', job: {
+    @cluster ||= OodCore::Cluster.new(id: 'cardinal', job: {
       adapter: "slurm",
-      cluster: "owens",
-      host: "owens-slurm01.ten.osc.edu",
-      lib: "/usr/lib64",
-      bin: "/usr/bin",
-      conf: "/etc/slurm/slurm.conf",
+      conf: "/etc/slurm/slurm-cardinal.conf",
     })
   end
 
