@@ -1,4 +1,4 @@
-class AddGenesTable < ActiveRecord::Migration
+class AddGenesTable < ActiveRecord::Migration[4.2]
   def change
     create_table :genes do |t|
       t.string   "accession"

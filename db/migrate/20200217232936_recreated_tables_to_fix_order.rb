@@ -1,4 +1,4 @@
-class RecreatedTablesToFixOrder < ActiveRecord::Migration
+class RecreatedTablesToFixOrder < ActiveRecord::Migration[4.2]
   def change
     create_table "occurrences", force: true do |t|
       t.string   "accession"

@@ -1,4 +1,4 @@
-class AddFieldsToOccurrences < ActiveRecord::Migration
+class AddFieldsToOccurrences < ActiveRecord::Migration[4.2]
   def change
     change_table :occurrences do |t|
       t.string :field_number

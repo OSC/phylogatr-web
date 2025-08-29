@@ -1,4 +1,4 @@
-class RemoveSequencesFromOccurrences < ActiveRecord::Migration
+class RemoveSequencesFromOccurrences < ActiveRecord::Migration[4.2]
   def change
     remove_column :occurrences, :gene_name, :string
     remove_column :occurrences, :sequence, :text

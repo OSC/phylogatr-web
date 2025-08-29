@@ -1,4 +1,4 @@
-class MoveTaxonToSpecies < ActiveRecord::Migration
+class MoveTaxonToSpecies < ActiveRecord::Migration[4.2]
   def change
     change_table :occurrences do |t|
       t.remove :taxon_kingdom
