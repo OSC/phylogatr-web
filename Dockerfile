@@ -39,6 +39,9 @@ RUN cd /src && tar xzf mafft.tar.gz && cd mafft-7.475-with-extensions/core && ma
 RUN cd /src && curl -LJO https://github.com/shenwei356/seqkit/releases/download/v0.16.0/seqkit_linux_amd64.tar.gz
 RUN cd /src && tar xzf seqkit_linux_amd64.tar.gz && cp seqkit /usr/local/bin
 
+# Cache bust
+RUN echo 'cache bust'
+
 # Add SLURM
 RUN dnf config-manager --add-repo https://repo.hpc.osc.edu/internal/slurm/slurm.repo
 RUN dnf config-manager --add-repo https://repo.hpc.osc.edu/internal/osc_yum_repo/osc_repo.repo
