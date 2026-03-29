@@ -28,7 +28,7 @@ class OccurrenceRecord
   BASIS_OF_RECORD=%w(MACHINE_OBSERVATION HUMAN_OBSERVATION MATERIAL_SAMPLE PRESERVED_SPECIMEN)
 
   validates_each :lat, :lon do |record, attr, value|
-    record.errors.add attr, "nil or 0" unless value.present? && OccurrenceRecord.float_rounded(value) != 0
+    record.errors.add attr, "nil or 0" unless value.present? && value.to_f.round != 0
   end
 
   validates_inclusion_of :basis_of_record, in: BASIS_OF_RECORD
@@ -36,7 +36,10 @@ class OccurrenceRecord
 
   def self.from_str(str)
     #FIXME: dangerous: should be using CSV reader/writer
-    OccurrenceRecord.new(Hash[HEADERS.zip(str.chomp.split("\t", -1))])
+    o = OccurrenceRecord.new(Hash[HEADERS.zip(str.chomp.split("\t", -1))])
+    o.lat = self.format_decimal(o.lat)
+    o.lon = self.format_decimal(o.lon)
+    o
   end
 
   # read the file line by line, processing
@@ -110,7 +113,7 @@ class OccurrenceRecord
     # etc.
 
     # 1. are geographic coordinates the same?
-    if ! same(records, [:lng_rounded, :lng_rounded])
+    if !same(records, [:lat, :lon])
       # keep all records and flag with g
       flag(records, 'g')
     elsif ! same(records, :basis_of_record)
@@ -158,7 +161,7 @@ class OccurrenceRecord
   # end
 
   def duplicate?(other)
-    if ! (lng_rounded == other.lng_rounded && lat_rounded == other.lat_rounded)
+    if ! (lon == other.lon && lat == other.lat)
       false
     elsif taxon_species != other.taxon_species
       true
@@ -169,16 +172,12 @@ class OccurrenceRecord
     end
   end
 
-  def self.float_rounded(value)
-    value.to_f.round(2)
-  end
+  def self.format_decimal(num)
+    int, dec = num.to_s.split('.')
+    dec = '00' if dec.nil?
+    dec = "#{dec}0" if dec.length == 1
 
-  def lat_rounded
-    self.class.float_rounded(lat)
-  end
-
-  def lng_rounded
-    self.class.float_rounded(lon)
+    "#{int}.#{dec.chars[0, 2].join}".to_f
   end
 end
 
