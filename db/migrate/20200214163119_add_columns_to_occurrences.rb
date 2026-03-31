@@ -1,4 +1,4 @@
-class AddColumnsToOccurrences < ActiveRecord::Migration
+class AddColumnsToOccurrences < ActiveRecord::Migration[4.2]
   def change
     add_column :occurrences, :basis_of_record, :string
     add_column :occurrences, :geodetic_datum, :string

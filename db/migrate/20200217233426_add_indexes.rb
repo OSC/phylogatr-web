@@ -1,4 +1,4 @@
-class AddIndexes < ActiveRecord::Migration
+class AddIndexes < ActiveRecord::Migration[4.2]
   def change
     change_table(:occurrences) do |t|
       t.index :lat

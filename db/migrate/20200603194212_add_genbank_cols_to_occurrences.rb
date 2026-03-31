@@ -1,4 +1,4 @@
-class AddGenbankColsToOccurrences < ActiveRecord::Migration
+class AddGenbankColsToOccurrences < ActiveRecord::Migration[4.2]
   def change
     add_column :occurrences, :different_genbank_species, :string
     add_column :occurrences, :species_path, :string

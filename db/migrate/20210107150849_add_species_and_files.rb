@@ -1,4 +1,4 @@
-class AddSpeciesAndFiles < ActiveRecord::Migration
+class AddSpeciesAndFiles < ActiveRecord::Migration[4.2]
   def change
     create_table :species do |t|
       t.string :path
